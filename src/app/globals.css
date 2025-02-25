@@ -1,21 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@300;500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins:wght@300;500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary-color: #2E71FE;
+  --secondary-color: #283042;
+  --font-family: "Montserrat", serif;
+  --text-primary: #283042;
+  --text-secondary: #545a68;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer utilities {
+
+  .primaryBg {
+    background: var(--primary-color);
+  }
+
+  .primaryColor {
+    color: var(--primary-color);
+  }
+
+  .secondaryBg {
+    background: var(--secondary-color);
+  }
+
+  .secondaryColor {
+    color: var(--secondary-color);
+  }
+
+  .commonBg {
+    background: #2e71fe14;
+  }
+
+  .textPrimary {
+    color: var(--text-primary);
+  }
+
+  .textSecondary {
+    color: var(--text-secondary);
+  }
+
+  .primaryBorder {
+    border-color: var(--primary-color);
+  }
+
+  .commonMT {
+    @apply mt-[36px] md:mt-[66px] lg:mt-[100px]
+  }
+
+  .flexCenter {
+    @apply flex items-center justify-center
+  }
+
+  .flexColCenter {
+    @apply flex flex-col items-center justify-center
+  }
+
+  .sectionTag {
+    @apply px-[10px] py-[10px] bg-[#2e71fe14] rounded-[8px] text-[#2e71fe] text-[16px] font-[600] leading-[19px] [&_span]:textPrimary;
+  }
+
+  .sectionTitle {
+    @apply text-2xl md:text-4xl lg:text-4xl/[50px] font-[800] [&_span]:primaryColor
+  }
+
+  .sectionPara {
+    @apply textSecondary font-[600] text-[14px] sm:text-base/[32px]
+  }
+
+  .commonBtn {
+    @apply py-[6px] md:py-[12px] px-[18px] md:px-[30px] primaryBg font-[600] text-white border-none rounded-[8px] relative z-[1] overflow-hidden w-max
+  }
+
+  .commonTextGap {
+    @apply gap-4 md:gap-6
+  }
+
+  .fillTextAnimation {
+    @apply text-[40px] sm:text-[60px] md:text-[89px] font-[800] !relative md:!absolute md:left-24 lg:left-20 md:top-0 bottom-0 m-auto md:-rotate-[89deg]
+  }
+
+  .fillTextAnimationAchievement {
+    @apply md:!right-24 lg:!right-20 !left-auto right-[-40%] sm:right-[-54%] md:!rotate-[90deg]
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+/* custom css  */
+
+.commonBtn:after {
+  content: "";
+  background-color: var(--secondary-color);
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewY(89.5deg) scale(0, 1);
+  transition: all 0.7s;
+}
+
+.commonBtn:hover:after {
+  transform: skewY(-89.5deg) scale(1, 1040);
+  -webkit-transition: all 0.7s;
+  transition: all 0.7s;
+}
+
+header .commonBtn,
+footer .commonBtn {
+  background-color: var(--secondary-color);
+}
+
+header .commonBtn:after {
+  background-color: var(--primary-color);
+}
+footer .commonBtn:after {
+  background-color: #fff;
+}
+
+.commonKeyFramesDiv {
+  animation: float2 3s ease-in-out 1s infinite alternate-reverse forwards;
+  transition: left 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.reviews {
+  animation: float1 3s ease-in-out 1s infinite alternate-reverse forwards;
+  transition: left 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes float1 {
+  0% {
+    left: 8%;
+  }
+
+  50% {
+    left: 7%;
+  }
+
+  100% {
+    left: 10%;
+  }
+}
+
+@keyframes float2 {
+  0% {
+    left: 64%;
+  }
+
+  50% {
+    left: 66%;
+  }
+
+  100% {
+    left: 62%;
+  }
+}
+
+.curlArrow {
+  animation: arrowMove 3s ease-in-out 1s infinite alternate-reverse forwards;
+  transition: top 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes arrowMove {
+  0% {
+    top: -12%;
+  }
+
+  50% {
+    top: -10%;
+  }
+
+  100% {
+    top: -16%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .bgLineDiv {
+    background: transparent !important;
+  }
+}
+
+.fillTextAnimation {
+  position: absolute;
+  color: transparent;
+  font-family: Poppins, sans-serif;
+  /* margin-left: 110px; */
+  -webkit-text-stroke: 0.3px var(--secondary-color);
+}
+
+.fillTextAnimation::before {
+  content: attr(data-fill-text);
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  color: #2E71FE;
+  -webkit-text-stroke: 0px transparent;
+  overflow: hidden;
+  animation: text-fill 2s ease-in-out 1s infinite alternate-reverse forwards;
+  transition: width 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes text-fill {
+  0% {
+    width: 30%;
+  }
+
+  50% {
+    width: 60%;
+  }
+
+  0% {
+    width: 100%;
+  }
+}
+
+.companyExp {
+  animation: arrowMove 3s ease-in-out 1s infinite alternate-reverse forwards;
+  transition: top 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+
+@keyframes experience {
+  0% {
+    top: -8%;
+  }
+
+  50% {
+    top: -6%;
+  }
+
+  100% {
+    top: -10%;
+  }
+}
+
+
+.solutionImgs {
+  height: 380px;
+  width: 735px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-radius: 3px;
+  perspective: 30px;
+  transform-origin: bottom center;
+  perspective-origin: bottom center;
+}
+
+.solutionImgs:before {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  background: inherit;
+  border-radius: inherit;
+}
+
+.solutionImgs:after {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: inherit;
+  left: 42%;
+  transform-origin: bottom center;
+  perspective-origin: bottom center;
+  transform: translateX(-42%) rotateX(2deg);
+  opacity: 0.8;
+  bottom: -5%;
+  height: 100%;
+  width: 100%;
+  background: inherit;
+  filter: blur(15px);
+  z-index: -1;
+}
+
+.workchainImg:hover {
+  filter: invert(30%) sepia(134%) saturate(6126%) hue-rotate(221deg) brightness(136%) contrast(200%);
+}
+
+@media screen and (max-width: 1024px) {
+  .workChain {
+    background: transparent !important;
+  }
+}
+
+.testimonialCard:hover img {
+  filter: invert(48%) sepia(29%) saturate(6045%) hue-rotate(181deg) brightness(80%) contrast(200%);
+}
+
+#renderBullets {
+  display: none;
+}
+
+@media screen and (max-width: 1199px) {
+  #renderBullets {
+    display: inline-block !important;
+  }
 }
