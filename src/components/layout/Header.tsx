@@ -9,7 +9,7 @@ import MorePagesDropdown from '../commonComponents/dropdowns/MorePagesDropdown'
 
 const Header = () => {
   return (
-    <header className='py-7 fixed top-0 w-full z-[10] border-b'>
+    <header className='py-7 fixed top-0 w-full z-[10] border-b bg-white'>
       <div className="container">
         <div className='flex items-center justify-between'>
           <div>

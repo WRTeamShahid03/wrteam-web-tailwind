@@ -1,17 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@300;500&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins:wght@300;500&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --primary-color: #2E71FE;
+  --primary-color: #2e71fe;
   --secondary-color: #283042;
-  --font-family: "Montserrat", serif;
   --text-primary: #283042;
   --text-secondary: #545a68;
 }
@@ -19,7 +12,6 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: var(--font-family);
 }
 
 html {
@@ -27,7 +19,6 @@ html {
 }
 
 @layer utilities {
-
   .primaryBg {
     background: var(--primary-color);
   }
@@ -61,15 +52,15 @@ html {
   }
 
   .commonMT {
-    @apply mt-[36px] md:mt-[66px] lg:mt-[100px]
+    @apply mt-[36px] md:mt-[66px] lg:mt-[100px];
   }
 
   .flexCenter {
-    @apply flex items-center justify-center
+    @apply flex items-center justify-center;
   }
 
   .flexColCenter {
-    @apply flex flex-col items-center justify-center
+    @apply flex flex-col items-center justify-center;
   }
 
   .sectionTag {
@@ -77,33 +68,32 @@ html {
   }
 
   .sectionTitle {
-    @apply text-2xl md:text-4xl lg:text-4xl/[50px] font-[800] [&_span]:primaryColor
+    @apply text-2xl md:text-4xl lg:text-4xl/[50px] font-[800] [&_span]:primaryColor;
   }
 
   .sectionPara {
-    @apply textSecondary font-[600] text-[14px] sm:text-base/[32px]
+    @apply textSecondary font-[600] text-[14px] sm:text-base/[32px];
   }
 
   .commonBtn {
-    @apply py-[6px] md:py-[12px] px-[18px] md:px-[30px] primaryBg font-[600] text-white border-none rounded-[8px] relative z-[1] overflow-hidden w-max
+    @apply py-[6px] md:py-[12px] px-[18px] md:px-[30px] primaryBg font-[600] text-white border-none rounded-[8px] relative z-[1] overflow-hidden w-max;
   }
 
   .commonTextGap {
-    @apply gap-4 md:gap-6
+    @apply gap-4 md:gap-6;
   }
 
   .fillTextAnimation {
-    @apply text-[40px] sm:text-[60px] md:text-[89px] font-[800] !relative md:!absolute md:left-24 lg:left-20 md:top-0 bottom-0 m-auto md:-rotate-[89deg]
+    @apply text-[40px] sm:text-[60px] md:text-[89px] font-[800] !relative md:!absolute md:left-24 lg:left-20 md:top-0 bottom-0 m-auto md:-rotate-[89deg];
   }
 
   .fillTextAnimationAchievement {
-    @apply md:!right-24 lg:!right-20 !left-auto right-[-40%] sm:right-[-54%] md:!rotate-[90deg]
+    @apply md:!right-24 lg:!right-20 !left-auto right-[-40%] sm:right-[-54%] md:!rotate-[90deg];
   }
 
-  .commonMB{
-    @apply mb-40 md:mb-48
+  .commonMB {
+    @apply mb-40 md:mb-48;
   }
-
 }
 
 @layer base {
@@ -211,7 +201,7 @@ footer .commonBtn:after {
 .fillTextAnimation {
   position: absolute;
   color: transparent;
-  font-family: Poppins, sans-serif;
+  /* Removed hardcoded font-family */
   /* margin-left: 110px; */
   -webkit-text-stroke: 0.3px var(--secondary-color);
 }
@@ -221,7 +211,7 @@ footer .commonBtn:after {
   position: absolute;
   width: 0%;
   height: 100%;
-  color: #2E71FE;
+  color: #2e71fe;
   -webkit-text-stroke: 0px transparent;
   overflow: hidden;
   animation: text-fill 2s ease-in-out 1s infinite alternate-reverse forwards;
@@ -247,7 +237,6 @@ footer .commonBtn:after {
   transition: top 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-
 @keyframes experience {
   0% {
     top: -8%;
@@ -262,7 +251,6 @@ footer .commonBtn:after {
   }
 }
 
-
 .solutionImgs {
   height: 380px;
   width: 735px;
@@ -276,7 +264,7 @@ footer .commonBtn:after {
 }
 
 .solutionImgs:before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   height: 100%;
@@ -287,7 +275,7 @@ footer .commonBtn:after {
 }
 
 .solutionImgs:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   border-radius: inherit;
@@ -305,7 +293,8 @@ footer .commonBtn:after {
 }
 
 .workchainImg:hover {
-  filter: invert(30%) sepia(134%) saturate(6126%) hue-rotate(221deg) brightness(136%) contrast(200%);
+  filter: invert(30%) sepia(134%) saturate(6126%) hue-rotate(221deg)
+    brightness(136%) contrast(200%);
 }
 
 @media screen and (max-width: 1024px) {
@@ -315,7 +304,8 @@ footer .commonBtn:after {
 }
 
 .testimonialCard:hover img {
-  filter: invert(48%) sepia(29%) saturate(6045%) hue-rotate(181deg) brightness(80%) contrast(200%);
+  filter: invert(48%) sepia(29%) saturate(6045%) hue-rotate(181deg)
+    brightness(80%) contrast(200%);
 }
 
 #renderBullets {
@@ -332,8 +322,7 @@ footer .commonBtn:after {
 html body[data-scroll-locked] {
   overflow: visible !important;
   margin-right: 0 !important;
-} 
-
+}
 
 .devSlider {
   margin-top: 100px;
@@ -357,7 +346,7 @@ html body[data-scroll-locked] {
   transition: transform 0.5s ease-in-out;
 }
 
-.devSlider .sidebar>div {
+.devSlider .sidebar > div {
   height: 100%;
   width: 100%;
   display: flex;
@@ -382,7 +371,6 @@ html body[data-scroll-locked] {
   color: #212121;
 }
 
-
 .devSlider .main-slide {
   height: 100%;
   position: absolute;
@@ -393,7 +381,7 @@ html body[data-scroll-locked] {
   /* overflow: hidden; */
 }
 
-.devSlider .main-slide>div {
+.devSlider .main-slide > div {
   background-repeat: no-repeat !important;
   background-size: cover !important;
   height: 100%;

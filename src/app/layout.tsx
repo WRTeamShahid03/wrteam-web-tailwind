@@ -1,6 +1,29 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import { Montserrat, Poppins, Roboto } from "next/font/google";
+
+// Define the fonts with their respective weights
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["600", "800"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "500"],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+  variable: "--font-roboto",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "WRTeam",
@@ -14,11 +37,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <Toaster
-          position="top-center"
-          reverseOrder={false}
-        />
+      <body
+        className={`${montserrat.variable} ${poppins.variable} ${roboto.variable} font-sans`}
+      >
+        <Toaster position="top-center" reverseOrder={false} />
         {children}
       </body>
     </html>

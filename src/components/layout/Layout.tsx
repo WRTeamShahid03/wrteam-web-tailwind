@@ -1,16 +1,16 @@
-'use client'
-import React from 'react'
-import Header from './Header'
-import Footer from './Footer'
+"use client";
+import React from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
-const Layout = ({ children } : any) => {
-    return (
-        <div>
-            <Header />
-            {children}
-            <Footer />
-        </div>
-    )
-}
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div>
+      <Header />
+      {children}
+      <Footer />
+    </div>
+  );
+};
 
-export default Layout
+export default Layout;
