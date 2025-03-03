@@ -40,6 +40,16 @@ export default {
           max: "399px",
         },
       },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
+      animation: {
+        float: "float 2.5s ease-in-out infinite",
+        "float-delayed": "float 2.5s ease-in-out 0.5s infinite",
+      },
     },
     container: {
       center: true,
