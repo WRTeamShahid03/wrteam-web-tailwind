@@ -15,28 +15,28 @@ const WorkChain: React.FC = () => {
             id: 1,
             img: workImg1,
             title: 'Choose service',
-            description: 'Choose the service from our list of solutions, Mobile Development, Web Development, UI/UX Design, etc.',
+            desc: 'Choose the service from our list of solutions, Mobile Development, Web Development, UI/UX Design, etc.',
             alt: 'best web development company-WRTeam bhuj-kutch'
         },
         {
             id: 2,
             img: workImg2,
             title: 'Request a meeting',
-            description: 'Connect with our expert developers and have a detailed discussion about your requirements.',
+            desc: 'Connect with our expert developers and have a detailed discussion about your requirements.',
             alt: 'best mobile app service provider-WRTeam India'
         },
         {
             id: 3,
             title: 'Start planning',
             img: workImg3,
-            description: 'best UI/UX designing servicer provider-WRTeam bhuj gujrat',
+            desc: 'best UI/UX designing servicer provider-WRTeam bhuj gujrat',
             alt: 'best UI/UX designing servicer provider-WRTeam bhuj gujrat'
         },
         {
             id: 4,
             title: `Let's make it happen`,
             img: workImg4,
-            description: 'Time to build real solutions that work for you.',
+            desc: 'Time to build real solutions that work for you.',
             alt: 'best digital marketing service provider -WRTeam bhuj gujrat'
         },
     ]
@@ -57,7 +57,7 @@ const WorkChain: React.FC = () => {
                                 <Image src={item.img} height={0} width={0} alt={item.alt} className='rounded-full filter brightness-[36%] invert-[8%] saturate-[100%] contrast-[96%] sepia-[8%] grayscale-[3%] workchainImg transition-all duration-300' />
                             </div>
                             <span className='text-base md:text-xl font-[600] title'>{item.title}</span>
-                            <p className='sectionPara'>{item.description}</p>
+                            <p className='sectionPara'>{item.desc}</p>
                         </div>
                     })
                 }

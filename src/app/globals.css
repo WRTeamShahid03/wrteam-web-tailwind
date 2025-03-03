@@ -99,6 +99,11 @@ html {
   .fillTextAnimationAchievement {
     @apply md:!right-24 lg:!right-20 !left-auto right-[-40%] sm:right-[-54%] md:!rotate-[90deg]
   }
+
+  .commonMB{
+    @apply mb-40 md:mb-48
+  }
+
 }
 
 @layer base {
@@ -321,4 +326,118 @@ footer .commonBtn:after {
   #renderBullets {
     display: inline-block !important;
   }
+}
+
+/* global.css */
+html body[data-scroll-locked] {
+  overflow: visible !important;
+  margin-right: 0 !important;
+} 
+
+
+.devSlider {
+  margin-top: 100px;
+}
+
+.devSlider .sliderWrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 500px;
+  border-radius: 16px;
+  margin-top: -70px;
+}
+
+.devSlider .sidebar {
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.devSlider .sidebar>div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  padding: 0px 70px;
+}
+
+.devSlider .sidebar .newSliderTitle {
+  font: normal normal bold 30px/37px Montserrat;
+  text-align: center;
+  color: #212121;
+  margin-bottom: 20px;
+  margin-top: -30px;
+}
+
+.devSlider .sidebar p {
+  text-align: center;
+  font: 16px/32px Montserrat;
+  color: #212121;
+}
+
+
+.devSlider .main-slide {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  transition: transform 0.5s ease-in-out;
+  /* overflow: hidden; */
+}
+
+.devSlider .main-slide>div {
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  height: 100%;
+  width: 100%;
+}
+
+.devSlider .buttn {
+  background-color: #fff;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px;
+}
+
+.devSlider .buttn:hover {
+  color: #222;
+}
+
+.devSlider .buttn:focus {
+  outline: none;
+}
+
+.devSlider .sliderWrapper .controls .buttn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 12;
+  background-color: var(--primary-color);
+}
+
+.devSlider .sliderWrapper .controls .buttn svg {
+  color: white;
+  font-size: 18px;
+}
+
+.devSlider .sliderWrapper .controls .down-button {
+  transform: translateX(-100%);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.devSlider .sliderWrapper .controls .up-button {
+  transform: translateY(-100%);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }

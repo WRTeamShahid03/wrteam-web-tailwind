@@ -19,10 +19,10 @@ const ServicesDropdown = () => {
                         <NavigationMenuTrigger className='flex items-center gap-1'>Services <AiFillPlusCircle className='!secondaryColor' size={19}/></NavigationMenuTrigger>
                         <NavigationMenuContent className='w-full'>
                             <div className='flex flex-col gap-4 !w-full max-w-full p-2 pb-4 px-3 bg-white !textPrimary'>
-                                <Link href={'/'} className='w-max relative transition-all duration-300 after:contents-[""] after:absolute after:left-0 after:-bottom-1 after:primaryBg after:h-[3px] after:w-0 after:transition-all after:duration-300 hover:after:w-full'>
+                                <Link href={'/services/web-development'} className='w-max relative transition-all duration-300 after:contents-[""] after:absolute after:left-0 after:-bottom-1 after:primaryBg after:h-[3px] after:w-0 after:transition-all after:duration-300 hover:after:w-full'>
                                     Web Development
                                 </Link>
-                                <Link href={'/'} className='w-max relative transition-all duration-300 after:contents-[""] after:absolute after:left-0 after:-bottom-1 after:primaryBg after:h-[3px] after:w-0 after:transition-all after:duration-300 hover:after:w-full'>
+                                <Link href={'/app-development'} className='w-max relative transition-all duration-300 after:contents-[""] after:absolute after:left-0 after:-bottom-1 after:primaryBg after:h-[3px] after:w-0 after:transition-all after:duration-300 hover:after:w-full'>
                                     App Development
                                 </Link>
                                 <Link href={'/'} className='w-max relative transition-all duration-300 after:contents-[""] after:absolute after:left-0 after:-bottom-1 after:primaryBg after:h-[3px] after:w-0 after:transition-all after:duration-300 hover:after:w-full'>

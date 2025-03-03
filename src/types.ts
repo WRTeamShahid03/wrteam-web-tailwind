@@ -27,6 +27,24 @@ export interface workChainData {
     id: number,
     img: StaticImageData,
     title: string,
-    description: string
+    desc: string
+    alt: string
+}
+export interface servicesBenefitsData {
+    id: number,
+    icon: StaticImageData,
+    title: string,
+}
+export interface servicesProcessData {
+    id: number,
+    icon: StaticImageData,
+    title: string,
+    desc: string,
+}
+export interface servicesBuildData {
+    id: number,
+    icon: StaticImageData,
+    hoverIcon: StaticImageData,
+    title: string,
     alt: string
 }
