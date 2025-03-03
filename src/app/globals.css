@@ -12,11 +12,19 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: var(--font-montserrat) !important;
 }
 
 html {
   scroll-behavior: smooth;
 }
+
+/* this one is added to prevent scollbar hide on shadcn select is active */
+html body[data-scroll-locked] {
+  overflow: visible !important;
+  margin-right: 0 !important;
+}
+
 
 @layer utilities {
   .primaryBg {
@@ -84,7 +92,7 @@ html {
   }
 
   .fillTextAnimation {
-    @apply text-[40px] sm:text-[60px] md:text-[89px] font-[800] !relative md:!absolute md:left-24 lg:left-20 md:top-0 bottom-0 m-auto md:-rotate-[89deg];
+    @apply text-[40px] sm:text-[60px] md:text-[89px] font-[800] !relative md:!absolute md:left-24 lg:left-20 md:top-0 bottom-0 m-auto md:-rotate-[89deg] !font-poppins;
   }
 
   .fillTextAnimationAchievement {
@@ -131,6 +139,26 @@ footer .commonBtn {
 header .commonBtn:after {
   background-color: var(--primary-color);
 }
+
+.stickky {
+  -webkit-animation: headerSlideDown 0.95s ease forwards;
+  animation: headerSlideDown 0.95s ease forwards;
+}
+
+
+
+@keyframes headerSlideDown {
+  0% {
+      -webkit-transform: translateY(-100%);
+      transform: translateY(-100%);
+  }
+
+  100% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+  }
+}
+
 footer .commonBtn:after {
   background-color: #fff;
 }
@@ -293,8 +321,7 @@ footer .commonBtn:after {
 }
 
 .workchainImg:hover {
-  filter: invert(30%) sepia(134%) saturate(6126%) hue-rotate(221deg)
-    brightness(136%) contrast(200%);
+  filter: invert(30%) sepia(134%) saturate(6126%) hue-rotate(221deg) brightness(136%) contrast(200%);
 }
 
 @media screen and (max-width: 1024px) {
@@ -304,8 +331,7 @@ footer .commonBtn:after {
 }
 
 .testimonialCard:hover img {
-  filter: invert(48%) sepia(29%) saturate(6045%) hue-rotate(181deg)
-    brightness(80%) contrast(200%);
+  filter: invert(48%) sepia(29%) saturate(6045%) hue-rotate(181deg) brightness(80%) contrast(200%);
 }
 
 #renderBullets {
@@ -318,114 +344,123 @@ footer .commonBtn:after {
   }
 }
 
-/* global.css */
-html body[data-scroll-locked] {
-  overflow: visible !important;
-  margin-right: 0 !important;
+
+
+.leftDivshapes .crossShape {
+  animation: visionDotts 6s ease-in-out 1s infinite alternate-reverse forwards;
 }
 
-.devSlider {
-  margin-top: 100px;
+.leftDivshapes .dottsShape {
+  animation: dotts 6s ease-in-out 1s infinite alternate-reverse forwards;
 }
 
-.devSlider .sliderWrapper {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 500px;
-  border-radius: 16px;
-  margin-top: -70px;
+.rightDivshapes .circleShape {
+  animation: circle 6s ease-in-out 1s infinite alternate-reverse forwards;
 }
 
-.devSlider .sidebar {
-  height: 100%;
-  width: 50%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: transform 0.5s ease-in-out;
+.rightDivshapes .triangleShape {
+  animation: triangel 8s ease-in-out 1s infinite alternate-reverse forwards;
 }
 
-.devSlider .sidebar > div {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #000000;
-  padding: 0px 70px;
+@keyframes visionDotts {
+  0% {
+    top: 24%;
+  }
+
+  50% {
+    top: 18%;
+  }
+
+  100% {
+    top: 24%;
+  }
+
 }
 
-.devSlider .sidebar .newSliderTitle {
-  font: normal normal bold 30px/37px Montserrat;
-  text-align: center;
-  color: #212121;
-  margin-bottom: 20px;
-  margin-top: -30px;
+@keyframes circle {
+  0% {
+    right: 5%;
+  }
+
+  50% {
+    right: -2%;
+    top: -4%;
+  }
+
+  100% {
+    top: 20%;
+    right: -2%;
+  }
 }
 
-.devSlider .sidebar p {
-  text-align: center;
-  font: 16px/32px Montserrat;
-  color: #212121;
+@keyframes dotts {
+  0% {
+    left: -6%;
+  }
+
+  50% {
+    left: 2%;
+  }
+
+  100% {
+    left: 10%;
+  }
 }
 
-.devSlider .main-slide {
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  transition: transform 0.5s ease-in-out;
-  /* overflow: hidden; */
+@keyframes triangel {
+  0% {
+    right: 14%;
+  }
+
+  50% {
+    right: 8%;
+  }
+
+  100% {
+    right: 22%;
+  }
 }
 
-.devSlider .main-slide > div {
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-  height: 100%;
-  width: 100%;
+.breadcrumbLine::before {
+  animation: breadLines 6s infinite linear;
 }
 
-.devSlider .buttn {
-  background-color: #fff;
-  border: none;
-  color: #aaa;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 15px;
+.line1::before {
+  animation-delay: 2s;
 }
 
-.devSlider .buttn:hover {
-  color: #222;
+.line2::before {
+  animation-delay: 3s;
 }
 
-.devSlider .buttn:focus {
-  outline: none;
+.line3::before {
+  animation-delay: 2s;
 }
 
-.devSlider .sliderWrapper .controls .buttn {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 12;
-  background-color: var(--primary-color);
+.line4::before {
+  animation-delay: 4s;
 }
 
-.devSlider .sliderWrapper .controls .buttn svg {
-  color: white;
-  font-size: 18px;
+.line5::before {
+  animation-delay: 3s;
 }
 
-.devSlider .sliderWrapper .controls .down-button {
-  transform: translateX(-100%);
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
+@keyframes breadLines {
+  0% {
+    opacity: 0;
+    top: -250px;
+  }
 
-.devSlider .sliderWrapper .controls .up-button {
-  transform: translateY(-100%);
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  10% {
+    opacity: 0.7;
+  }
+
+  90% {
+    opacity: 0.7;
+  }
+
+  100% {
+    top: 87%;
+    opacity: 0;
+  }
 }

@@ -47,7 +47,7 @@ const Products = () => {
           </div>
           <div className='flex items-center gap-4 md:gap-6 flex-wrap'>
             <div className='flex items-center gap-2'>
-              <span className='font-[200] textSecondary hidden lg:block'>Sort By Categories :</span>
+              <span className='textSecondary hidden lg:block'>Sort By Categories :</span>
               <div className=''>
                 <Select>
                   <SelectTrigger className="w-[135px] sm:w-[180px]">
@@ -65,7 +65,7 @@ const Products = () => {
               </div>
             </div>
             <div className='flex items-center gap-2'>
-              <span className='font-[200] textSecondary hidden lg:block'>Sort By :</span>
+              <span className='textSecondary hidden lg:block'>Sort By :</span>
               <div className=''>
 
                 <Select>
@@ -98,7 +98,7 @@ const Products = () => {
                 renderStars(4.5)
               }
               </div>
-              <span className='text-sm secondaryColor'>(4.82)</span>
+              <span className='text-sm secondaryColor font-semibold'>(4.82)</span>
               </div>
             </div>
             <div>
@@ -107,7 +107,7 @@ const Products = () => {
 
             <div className='flex items-center justify-between relative after:contents-[""] after:absolute after:top-0 after:-left-2.5 after:w-[120%] after:h-[1px] after:border-dashed after:border-[2px] after:border-[#545a6830] pt-4 md:pt-6'>
               <div className='flex flex-col gap-1'>
-                <span className='font-thin textSecondary'>Price</span>
+                <span className='textSecondary'>Price</span>
                 <span className='font-extrabold text-2xl md:text-3xl text-[#22a869]'>$69</span>
               </div>
               <div className='flexCenter textSecondary p-1 rounded-sm transition-all duration-300 group-hover:bg-[#22a869] group-hover:text-white'>
@@ -128,7 +128,7 @@ const Products = () => {
                 renderStars(4.5)
               }
               </div>
-              <span className='text-sm secondaryColor'>(4.82)</span>
+              <span className='text-sm secondaryColor font-semibold'>(4.82)</span>
               </div>
             </div>
             <div>
@@ -137,7 +137,7 @@ const Products = () => {
 
             <div className='flex items-center justify-between relative after:contents-[""] after:absolute after:top-0 after:-left-2.5 after:w-[120%] after:h-[1px] after:border-dashed after:border-[2px] after:border-[#545a6830] pt-4 md:pt-6'>
               <div className='flex flex-col gap-1'>
-                <span className='font-thin textSecondary'>Price</span>
+                <span className='textSecondary'>Price</span>
                 <span className='font-extrabold text-2xl md:text-3xl text-[#22a869]'>$69</span>
               </div>
               <div className='flexCenter textSecondary p-1 rounded-sm transition-all duration-300 group-hover:bg-[#22a869] group-hover:text-white'>
@@ -158,7 +158,7 @@ const Products = () => {
                 renderStars(4.5)
               }
               </div>
-              <span className='text-sm secondaryColor'>(4.82)</span>
+              <span className='text-sm secondaryColor font-semibold'>(4.82)</span>
               </div>
             </div>
             <div>
@@ -167,7 +167,7 @@ const Products = () => {
 
             <div className='flex items-center justify-between relative after:contents-[""] after:absolute after:top-0 after:-left-2.5 after:w-[120%] after:h-[1px] after:border-dashed after:border-[2px] after:border-[#545a6830] pt-4 md:pt-6'>
               <div className='flex flex-col gap-1'>
-                <span className='font-thin textSecondary'>Price</span>
+                <span className='textSecondary'>Price</span>
                 <span className='font-extrabold text-2xl md:text-3xl text-[#22a869]'>$69</span>
               </div>
               <div className='flexCenter textSecondary p-1 rounded-sm transition-all duration-300 group-hover:bg-[#22a869] group-hover:text-white'>
@@ -188,7 +188,7 @@ const Products = () => {
                 renderStars(4.5)
               }
               </div>
-              <span className='text-sm secondaryColor'>(4.82)</span>
+              <span className='text-sm secondaryColor font-semibold'>(4.82)</span>
               </div>
             </div>
             <div>
@@ -197,7 +197,7 @@ const Products = () => {
 
             <div className='flex items-center justify-between relative after:contents-[""] after:absolute after:top-0 after:-left-2.5 after:w-[120%] after:h-[1px] after:border-dashed after:border-[2px] after:border-[#545a6830] pt-4 md:pt-6'>
               <div className='flex flex-col gap-1'>
-                <span className='font-thin textSecondary'>Price</span>
+                <span className='textSecondary'>Price</span>
                 <span className='font-extrabold text-2xl md:text-3xl text-[#22a869]'>$69</span>
               </div>
               <div className='flexCenter textSecondary p-1 rounded-sm transition-all duration-300 group-hover:bg-[#22a869] group-hover:text-white'>

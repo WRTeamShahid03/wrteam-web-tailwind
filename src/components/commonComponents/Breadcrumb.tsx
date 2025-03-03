@@ -13,7 +13,22 @@ interface BreadcrumbProps {
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ title,blueText,secondElement, thirdElement, fourthElement }) => {
 
     return (
-        <div className='flex items-center gap-2 commonBg pt-[120px] md:pt-[150px] pb-8 md:pb-12'>
+        <div className='flex items-center gap-2 commonBg pt-[120px] md:pt-[150px] pb-8 md:pb-12 relative overflow-hidden'>
+            <div className='line1 breadcrumbLine hidden lg:block after:contents-[""] after:absolute after:w-[2px] after:h-full after:left-36 after:top-0 after:bg-[#80808024]
+            before:contents-[""] before:absolute before:w-[2px] before:h-14 before:left-36 before:top-12 before:primaryBg
+            '></div>
+            <div className='line2 breadcrumbLine hidden lg:block after:contents-[""] after:absolute after:w-[2px] after:h-full after:left-[30%] after:top-0 after:bg-[#80808024]
+            before:contents-[""] before:absolute before:w-[2px] before:h-14 before:left-[30%] before:top-12 before:primaryBg
+            '></div>
+            <div className='line3 breadcrumbLine hidden lg:block after:contents-[""] after:absolute after:w-[2px] after:h-full after:right-[50%] after:top-0 after:bg-[#80808024]
+            before:contents-[""] before:absolute before:w-[2px] before:h-14 before:right-[50%] before:top-12 before:primaryBg
+            '></div>
+            <div className='line4 breadcrumbLine hidden lg:block after:contents-[""] after:absolute after:w-[2px] after:h-full after:right-[30%] after:top-0 after:bg-[#80808024]
+            before:contents-[""] before:absolute before:w-[2px] before:h-14 before:right-[30%] before:top-12 before:primaryBg
+            '></div>
+            <div className='line5 breadcrumbLine hidden lg:block after:contents-[""] after:absolute after:w-[2px] after:h-full after:right-36 after:top-0 after:bg-[#80808024]
+            before:contents-[""] before:absolute before:w-[2px] before:h-14 before:right-36 before:top-12 before:primaryBg
+            '></div>
             <div className="container space-y-3">
                 <h1 className='sectionTitle'>{title} <span>{blueText}</span></h1>
                 <div className='flex items-center gap-2 textSecondary font-semibold text-base md:text-lg flex-wrap sm:flex-nowrap'>

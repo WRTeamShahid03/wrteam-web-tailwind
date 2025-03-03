@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { Montserrat, Poppins, Roboto } from "next/font/google";
+import Head from "next/head";
 
 // Define the fonts with their respective weights
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["600", "800"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-montserrat",
   display: "swap",
 });
@@ -37,6 +38,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+      </Head>
       <body
         className={`${montserrat.variable} ${poppins.variable} ${roboto.variable} font-sans`}
       >

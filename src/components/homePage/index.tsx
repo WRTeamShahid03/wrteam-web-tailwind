@@ -1,5 +1,7 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Layout from '../layout/Layout'
 import HeroSection from './sections/HeroSection'
 import AboutWrteam from './sections/AboutWrteam'
@@ -13,6 +15,11 @@ import Exclusive from './sections/Exclusive'
 import Testimonials from './sections/Testimonials'
 
 const HomePage: React.FC = () => {
+
+    useEffect(() => {
+        AOS.init();
+    }, []);
+
     return (
         <Layout>
             <HeroSection />

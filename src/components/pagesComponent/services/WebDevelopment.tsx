@@ -1,3 +1,4 @@
+'use client'
 import Breadcrumb from '@/components/commonComponents/Breadcrumb'
 import Layout from '@/components/layout/Layout'
 import Image from 'next/image'
@@ -42,7 +43,7 @@ import reactJs from '../../../assets/images/services/web-development/icon/React.
 import reactJsHover from '../../../assets/images/services/web-development/icon/React_Hover.png'
 import ServicesSwiper from './ServicesSwiper'
 
-const WebDevelopment = () => {
+const WebDevelopment: React.FC = () => {
 
     const newSwiperData = [
         {
@@ -210,28 +211,19 @@ const WebDevelopment = () => {
 
                     <div className='flexCenter'>
                         <div className='flexCenter relative before:contents-[""] before:absolute before:top-[6px] before:left-0 before:right-0 before:bottom-0 before:m-auto before:w-[86%] before:h-[96%] before:primaryBg before:-z-[1] before:rotate-[185deg] before:rounded-[16px]'>
-                            <Image src={webDev} height={0} width={0} alt='web-dev' className='w-[85%] h-auto' />
+                            <Image src={webDev} height={0} width={0} alt='best web development company for startups, businesses,hotel,etc.' className='w-[85%] h-auto' />
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* swiper  */}
-            <section className='commonBg pt-16 pb-24 commonMT'>
+            <section className='commonBg pt-8 pb-12 md:pt-16 md:pb-24 commonMT'>
                 <div className="container space-y-10">
                     <div className='flexColCenter commonTextGap'>
                         <span className='sectionTag'><span>What</span> We Can Do <span>For You</span></span>
                         <h3 className='sectionTitle'>Services <span>We Can Help </span>You With</h3>
                     </div>
-                    {/* <div className='grid max-1199:grid-cols-1 grid-cols-2 bg-[#ededed] rounded-[16px] overflow-hidden'>
-                        <div className='flexColCenter text-center px-20 gap-5'>
-                            <span className='text-3xl font-bold'>Customization</span>
-                            <p className='text-base/[30px]'>Not only web development we also offer customization in source codes by WRTeam making it tailored to your needs, & our web development experts can also customize your existing website to make it personalized for your requirements and ensure a unique, userfriendly, & visually appealing online presence.</p>
-                        </div>
-                        <div>
-                            <Image src={frontendImg} height={0} width={0} alt='web-dev' />
-                        </div>
-                    </div> */}
                     <ServicesSwiper data={newSwiperData} />
                 </div>
             </section>
@@ -252,7 +244,7 @@ const WebDevelopment = () => {
                         benefitsCardData.map((item: servicesBenefitsData) => {
                             return <div className='flexColCenter !items-start gap-7 border-[2px] border-[#545A684D] rounded-[16px] p-5 group transition-all duration-300 hover:bg-white hover:shadow-[-16px_16px_46px_#2830421F] hover:border-transparent' key={item.id}>
                                 <div className='flexCenter primaryBg w-[60px] md:w-[74px] h-[56px] md:h-[74px] rounded-md shadow-[0px_8px_26px_#176BF15C]'>
-                                    <Image src={item.icon} height={0} width={0} alt='' className='w-[30px] md:w-[40px] h-auto' />
+                                    <Image src={item.icon} height={0} width={0} alt='benefitsImg' className='w-[30px] md:w-[40px] h-auto' />
                                 </div>
                                 <p className='font-bold text-lg'>{item.title}</p>
                             </div>
@@ -264,11 +256,11 @@ const WebDevelopment = () => {
 
             {/* process  */}
             <section className='container commonMT space-y-16'>
-                <ProcessSect data={processCardData.slice(0, 3)} isReverse={false} sectionImg={processImg} />
+                <ProcessSect data={processCardData.slice(0, 3)} isReverse={false} sectionTitle='How Does Our Web Development Team Create a Website?' blueText='Web Development' sectionImg={processImg} alt='work in progress with the best web-app development company WRTeam bhuj' />
                 <div className='container max-1199:hidden'>
                     <Image src={arrowImg} height={0} width={0} alt='arrowDown' className='w-[58%] 2xl:w-[62%] -mt-[40px] -mb-[40px] 2xl:-mb-[80px] mx-[-18px] 2xl:mx-[-60px] h-auto' />
                 </div>
-                <ProcessSect data={processCardData.slice(3, processCardData.length)} isReverse={true} sectionImg={processImg2} />
+                <ProcessSect data={processCardData.slice(3, processCardData.length)} isReverse={true} sectionTitle='' blueText='' sectionImg={processImg2} alt='work will never be on hold- with the best web-app development company WRTeam bhuj' />
             </section>
 
             {/* build  */}
