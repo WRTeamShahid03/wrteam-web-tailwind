@@ -154,7 +154,7 @@ export default function Careers() {
                 </div>
 
                 {/* Dots pattern - Using client component */}
-                <AnimatedDots />
+                <AnimatedDots data={false}/>
               </div>
             </div>
           </div>

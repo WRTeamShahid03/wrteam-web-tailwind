@@ -37,10 +37,6 @@ const Testimonials: React.FC = () => {
             slidesPerView: 2,
 
         },
-        992: {
-            slidesPerView: 3,
-
-        },
         1200: {
             slidesPerView: 3,
         },
@@ -74,7 +70,7 @@ const Testimonials: React.FC = () => {
     }, []);
 
     return (
-        <section className='container commonMT space-y-3 md:space-y-10'>
+        <section className='container commonMT space-y-3 md:space-y-10 commonMB'>
             <div className='flexColCenter commonTextGap text-center'>
                 <span className='sectionTag'>Our <span>Testimonials</span></span>
                 <h6 className="sectionTitle">Hear What Our<span> Clients </span> Have to <span>Say!</span></h6>
@@ -158,7 +154,7 @@ const Testimonials: React.FC = () => {
                     </SwiperSlide>
 
                 </Swiper>
-                <div className='hidden xl:block'>
+                <div className='hidden between-1200-1399:block xl:block'>
                     <div className="primaryBg w-max h-max rounded-sm absolute top-0 bottom-0 m-auto -left-14 cursor-pointer" onClick={handlePrev} >
                         <span><BiLeftArrowAlt color='white' size={42} /></span>
                     </div>

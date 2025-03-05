@@ -14,7 +14,7 @@ import curlArrow from '../../../assets/images/homePage/Arrow.svg'
 
 const HeroSection: React.FC = () => {
     return (
-        <section className='container mt-[100px] md:mt-[120px] lg:mt-[150px]'>
+        <section className='container commonMT'>
             <div className='bgLineDiv' style={{
             background: `url(${bgLine.src})`,
             backgroundSize: 'contain',

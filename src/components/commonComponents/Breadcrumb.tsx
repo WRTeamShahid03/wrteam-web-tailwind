@@ -13,7 +13,7 @@ interface BreadcrumbProps {
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ title,blueText,secondElement, thirdElement, fourthElement }) => {
 
     return (
-        <div className='flex items-center gap-2 commonBg pt-[120px] md:pt-[150px] pb-8 md:pb-12 relative overflow-hidden'>
+        <div className='flex items-center gap-2 commonBg pt-[120px] md:pt-[100px] pb-8 md:pb-12 relative overflow-hidden'>
             <div className='line1 breadcrumbLine hidden lg:block after:contents-[""] after:absolute after:w-[2px] after:h-full after:left-36 after:top-0 after:bg-[#80808024]
             before:contents-[""] before:absolute before:w-[2px] before:h-14 before:left-36 before:top-12 before:primaryBg
             '></div>

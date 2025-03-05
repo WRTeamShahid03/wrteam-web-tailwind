@@ -34,7 +34,7 @@ const Header = () => {
   };
 
   return (
-    <header className={`py-7 fixed top-0 w-full z-[10] ${scroll > (navRef.current?.offsetTop || 0) ? "stickky bg-white shadow-sm" : ""}`}>
+    <header className={`py-7 sticky top-0 w-full z-[10] ${scroll > (navRef.current?.offsetTop || 0) ? "stickky bg-white shadow-sm" : "!bg-none"}`}>
       <div className="container">
         <div ref={navRef} className='flex items-center justify-between nav'>
           <div>

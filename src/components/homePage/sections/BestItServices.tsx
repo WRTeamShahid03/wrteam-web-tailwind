@@ -73,7 +73,7 @@ const BestItServices: React.FC = () => {
                                 </div>
                                 <span className='md:text-xl lg:text-2xl font-[700]'>{item.title}</span>
                                 <p className='sectionPara text-sm md:text-base group-hover:text-white'>{item.desc}</p>
-                                <Link href={item.link} className='text-sm md:text-base flex items-center w-max gap-1 md:gap-2 primaryColor group-hover:text-white'>Explore Service <BsArrowRightCircle /></Link>
+                                <Link href={item.link} className='font-semibold text-sm md:text-base flex items-center w-max gap-1 md:gap-2 primaryColor group-hover:text-white'>Explore Service <BsArrowRightCircle /></Link>
                             </div>
                         })
                     }
