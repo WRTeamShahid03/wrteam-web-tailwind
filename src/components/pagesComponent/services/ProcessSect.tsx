@@ -37,7 +37,7 @@ const ProcessSect: React.FC<dataProps> = ({ data, isReverse, sectionTitle, secti
                             data.map((item) => {
                                 return <div className='grid grid-cols-12 gap-5' key={item.id} data-aos="fade-up" data-aos-once="true" data-aos-duration="800">
                                     <div className='flexCenter primaryBg rounded-md col-span-3 sm:col-span-2 w-[64px] sm:w-[100%] h-[64px] sm:h-[100%] m-auto transition-all duration-300 hover:secondaryBg'>
-                                        <Image src={item.icon} height={0} width={0} alt='' className='w-[35px] md:w-[35px] h-auto' />
+                                        <Image src={item.img} height={0} width={0} alt='' className='w-[35px] md:w-[35px] h-auto' />
                                     </div>
                                     <div className='col-span-9 sm:col-span-10 flex flex-col gap-1'>
                                         <span className='font-bold text-lg md:text-xl'>{item.title}</span>

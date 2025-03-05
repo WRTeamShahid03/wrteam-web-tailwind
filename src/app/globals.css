@@ -131,12 +131,12 @@ html body[data-scroll-locked] {
   transition: all 0.7s;
 }
 
-header .commonBtn,
+.commonBtnSecondaryBg,
 footer .commonBtn {
   background-color: var(--secondary-color);
 }
 
-header .commonBtn:after {
+.commonBtnSecondaryBg:after {
   background-color: var(--primary-color);
 }
 
@@ -149,13 +149,13 @@ header .commonBtn:after {
 
 @keyframes headerSlideDown {
   0% {
-      -webkit-transform: translateY(-100%);
-      transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
   }
 
   100% {
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
@@ -421,6 +421,7 @@ footer .commonBtn:after {
   }
 }
 
+
 .breadcrumbLine::before {
   animation: breadLines 6s infinite linear;
 }
@@ -433,31 +434,37 @@ footer .commonBtn:after {
   animation-delay: 3s;
 }
 
-.devSlider .sliderWrapper .controls .buttn {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 12;
-  background-color: var(--primary-color);
+.line3::before {
+  animation-delay: 2s;
 }
 
-.devSlider .sliderWrapper .controls .buttn svg {
-  color: white;
-  font-size: 18px;
+.line4::before {
+  animation-delay: 4s;
 }
 
-.devSlider .sliderWrapper .controls .down-button {
-  transform: translateX(-100%);
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+.line5::before {
+  animation-delay: 3s;
 }
 
-.devSlider .sliderWrapper .controls .up-button {
-  transform: translateY(-100%);
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
+@keyframes breadLines {
+  0% {
+    opacity: 0;
+    top: -250px;
+  }
 
+  10% {
+    opacity: 0.7;
+  }
+
+  90% {
+    opacity: 0.7;
+  }
+
+  100% {
+    top: 87%;
+    opacity: 0;
+  }
+}
 
 /* Phone Input Styling */
 .react-tel-input .form-control {

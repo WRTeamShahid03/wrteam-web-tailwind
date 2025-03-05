@@ -47,7 +47,7 @@ const MobileNav = () => {
                             </SheetClose>
                             <MorePagesDropdown />
                             <SheetClose>
-                                <Link href={'/hire-us'} className='commonBtn'>
+                                <Link href={'/hire-us'} className='commonBtn commonBtnSecondaryBg'>
                                     Hire Us
                                 </Link>
                             </SheetClose>

@@ -11,7 +11,7 @@ const Exclusive: React.FC = () => {
         <section className='secondaryBg commonMT py-12 md:py-20 lg:py-28'>
             <div className="container space-y-14 md:space-y-16 lg:space-y-20">
                 <div className='flexColCenter gap-6 md:gap-10 lg:w-[70%] xl:w-[58%] text-center m-auto'>
-                    <span className='bg-[#ffffff1f] text-white py-3 px-8 rounded-[8px] text-sm sm:text-base'>Exclusive on CodeCanyon</span>
+                    <span className='bg-[#ffffff1f] text-white py-3 px-8 rounded-[8px] text-sm sm:text-base font-semibold'>Exclusive on CodeCanyon</span>
                     <h5 className='text-xl md:text-2xl lg:text-3xl text-white font-[600]'>Your Gateway to <span className='bg-gradient-to-b from-[#e9b947] to-[#9d7b2d] bg-clip-text text-transparent'>Premium</span> Solutions</h5>
                     <p className='text-[#d1d1d1] text-sm sm:text-base'>Proudly recognised as an elite author on Codecanyon. Our premium, innovative customized applications, and website source code are prioritized and user-centric and undergo consistent updates to stay ahead of the competition.</p>
                 </div>

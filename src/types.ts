@@ -37,7 +37,7 @@ export interface servicesBenefitsData {
 }
 export interface servicesProcessData {
     id: number,
-    icon: StaticImageData,
+    img: StaticImageData,
     title: string,
     desc: string,
 }
@@ -47,4 +47,14 @@ export interface servicesBuildData {
     hoverIcon: StaticImageData,
     title: string,
     alt: string
+}
+
+export interface installationPackagesData {
+    id: number,
+    packageName: string,
+    setups: string,
+    cutPrice: number,
+    price: number,
+    services: Array<string>,
+    excludedServices: Array<string>
 }
