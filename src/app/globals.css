@@ -475,6 +475,10 @@ footer .commonBtn:after {
   padding-left: 48px !important;
 }
 
+.react-tel-input input{
+  padding-left: 60px;
+}
+
 .react-tel-input .flag-dropdown {
   border-top-left-radius: 0.375rem !important;
   border-bottom-left-radius: 0.375rem !important;

@@ -13,7 +13,7 @@ const Footer = () => {
     <footer className="secondaryBg text-[#ffffff87] pt-10 relative mt-[100px] md:mt-[120px] lg:mt-[150px]">
       <div className="container">
         <Newsletter />
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-y-12 lg:grid-cols-4 xl:grid-cols-5 gap-8 pt-12 md:pt-20 ">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-y-12 lg:grid-cols-4 xl:grid-cols-5 gap-8 pt-12 md:pt-20 font-semibold">
           {/* Company Info */}
           <div className="md:col-span-1 space-y-8">
             <div>
