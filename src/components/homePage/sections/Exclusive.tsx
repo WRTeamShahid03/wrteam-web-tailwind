@@ -18,13 +18,13 @@ const Exclusive: React.FC = () => {
 
                 <div className='flexCenter flex-wrap gap-10'>
                     <div>
-                        <Image src={eliteAuthor} height={0} width={0} alt='' className='m-auto w-[80%] h-auto' />
+                        <Image src={eliteAuthor} height={0} width={0} loading="lazy" alt='eliteAuthor' className='m-auto w-[80%] h-auto' />
                     </div>
                     <div>
-                        <Image src={winnerTeam} height={0} width={0} alt='' className='m-auto w-[80%] h-auto' />
+                        <Image src={winnerTeam} height={0} width={0} loading="lazy" alt='winnerTeam' className='m-auto w-[80%] h-auto' />
                     </div>
                     <div>
-                        <Image src={saleCount} height={0} width={0} alt='' className='m-auto w-[80%] h-auto' />
+                        <Image src={saleCount} height={0} width={0} loading="lazy" alt='saleCount' className='m-auto w-[80%] h-auto' />
                     </div>
                 </div>
 

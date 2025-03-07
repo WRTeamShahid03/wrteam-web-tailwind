@@ -13,7 +13,7 @@ interface BreadcrumbProps {
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ title, blueText, secondElement, thirdElement, fourthElement }) => {
 
     return (
-        <div className='flex items-center gap-2 commonBg pt-[120px] md:pt-[60px] pb-8 md:pb-12 relative overflow-hidden'>
+        <div className='flex items-center gap-2 commonBg pt-[30px] md:pt-[60px] pb-8 md:pb-12 relative overflow-hidden'>
             <div className='line1 breadcrumbLine hidden lg:block after:contents-[""] after:absolute after:w-[2px] after:h-full after:left-36 after:top-0 after:bg-[#80808024]
             before:contents-[""] before:absolute before:w-[2px] before:h-14 before:left-36 before:top-12 before:primaryBg
             '></div>
@@ -35,19 +35,19 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ title, blueText, secondElement,
                     <Link href={'/'} title='Home'>Home</Link>
                     <span><AiOutlineDoubleRight size={20} /></span>
                     {
-                        secondElement === 'Blogs' ? <Link href={'/blogs'} title='Blogs'>Blogs</Link> : <span>{secondElement}</span>
+                        secondElement === 'Blogs' ? <Link href={'/blogs'} title='Blogs'>Blogs</Link> : <span className='capitalize'>{secondElement}</span>
                     }
                     {
                         thirdElement && <span><AiOutlineDoubleRight size={20} /></span>
                     }
                     {
-                        thirdElement && <span>{thirdElement}</span>
+                        thirdElement && <span className='capitalize'>{thirdElement}</span>
                     }
                     {
                         fourthElement && <span><AiOutlineDoubleRight size={20} /></span>
                     }
                     {
-                        fourthElement && <span>{fourthElement}</span>
+                        fourthElement && <span className='capitalize'>{fourthElement}</span>
                     }
                 </div>
             </div>

@@ -6,7 +6,7 @@ import happy from '../../../assets/images/homePage/Happy Clients.svg'
 import projects from '../../../assets/images/homePage/Projects Done.svg'
 import reconnect from '../../../assets/images/homePage/Reconecct.svg'
 import satisfaction from '../../../assets/images/homePage/Satisfaction.svg'
-import { counterData } from '@/types'
+import { counterDataTypes } from '@/types'
 
 const Counter: React.FC = () => {
 
@@ -37,10 +37,10 @@ const Counter: React.FC = () => {
         <section className='container commonMT'>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-y-8 relative rounded-[30px] overflow-hidden px-6 sm:px-0 sm:justify-items-center py-6 md:py-12 after:contents-[''] after:absolute after:w-full after:h-full after:top-0 after:left-0 after:primaryBg after:opacity-[0.9]" style={{ background: `url(${bg.src})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
                 {
-                    data?.map((items: counterData, index: number) => {
+                    data?.map((items: counterDataTypes, index: number) => {
                         return <div className='flexCenter !justify-start gap-4 text-white relative z-[1]' key={index}>
                             <div className='bg-white rounded-full p-1 md:p-2 xl:p-3'>
-                                <Image src={items.img} width={0} height={0} alt={items.text} />
+                                <Image src={items.img} width={0} height={0} loading="lazy" alt={items.text} />
                             </div>
                             <div className='flex flex-col gap-2 font-[600]'>
                                 <span className='text-3xl md:text-4xl'>{items.counts}</span>

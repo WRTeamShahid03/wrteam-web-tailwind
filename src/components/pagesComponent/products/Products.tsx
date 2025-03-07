@@ -88,7 +88,7 @@ const Products = () => {
         <div className='sm:grid-cols-2 grid lg:grid-cols-3 xl:grid-cols-4 gap-6'>
           <div className='flex flex-col gap-4 p-3 rounded-[16px] border-dashed border-[2px] border-[#545a6870] overflow-hidden transition-all duration-300 group cursor-pointer'>
             <div>
-              <Image src={img} height={0} width={0} alt='product-img' className='rounded-t-[8px]'/>
+              <Image src={img} height={0} width={0} alt='product-img' loading="lazy" className='rounded-t-[8px]'/>
             </div>
             <div className='flex items-center justify-between'>
               <span className='p-1 sm:p-2 rounded-sm secondaryBg text-white text-sm font-semibold w-max'>4848 Sales</span>
@@ -118,7 +118,7 @@ const Products = () => {
           </div>
           <div className='flex flex-col gap-4 p-3 rounded-[16px] border-dashed border-[2px] border-[#545a6870] overflow-hidden transition-all duration-300 group'>
             <div>
-              <Image src={img} height={0} width={0} alt='product-img' className='rounded-t-[8px]'/>
+              <Image src={img} height={0} width={0} alt='product-img' loading="lazy" className='rounded-t-[8px]'/>
             </div>
             <div className='flex items-center justify-between'>
               <span className='p-1 sm:p-2 rounded-sm secondaryBg text-white text-sm font-semibold w-max'>4848 Sales</span>
@@ -148,7 +148,7 @@ const Products = () => {
           </div>
           <div className='flex flex-col gap-4 p-3 rounded-[16px] border-dashed border-[2px] border-[#545a6870] overflow-hidden transition-all duration-300 group'>
             <div>
-              <Image src={img} height={0} width={0} alt='product-img' className='rounded-t-[8px]'/>
+              <Image src={img} height={0} width={0} alt='product-img' loading="lazy" className='rounded-t-[8px]'/>
             </div>
             <div className='flex items-center justify-between'>
               <span className='p-1 sm:p-2 rounded-sm secondaryBg text-white text-sm font-semibold w-max'>4848 Sales</span>
@@ -178,7 +178,7 @@ const Products = () => {
           </div>
           <div className='flex flex-col gap-4 p-3 rounded-[16px] border-dashed border-[2px] border-[#545a6870] overflow-hidden transition-all duration-300 group'>
             <div>
-              <Image src={img} height={0} width={0} alt='product-img' className='rounded-t-[8px]'/>
+              <Image src={img} height={0} width={0} alt='product-img' loading="lazy" className='rounded-t-[8px]'/>
             </div>
             <div className='flex items-center justify-between'>
               <span className='p-1 sm:p-2 rounded-sm secondaryBg text-white text-sm font-semibold w-max'>4848 Sales</span>

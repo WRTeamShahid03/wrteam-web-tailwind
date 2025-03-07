@@ -1,5 +1,5 @@
 'use client'
-import { workChainData } from '@/types'
+import { workChainDataTypes } from '@/types'
 import Image from 'next/image'
 import React, { useEffect, useState, useRef } from 'react'
 import { BsArrowDownCircle, BsArrowUpCircle } from 'react-icons/bs'
@@ -12,7 +12,7 @@ import triangle from '../../../assets/images/services/icons/Shape_4.svg'
 
 
 interface dataProps {
-    data: workChainData[]
+    data: workChainDataTypes[]
 }
 
 const ServicesSwiper: React.FC<dataProps> = ({ data }) => {

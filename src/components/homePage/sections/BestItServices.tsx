@@ -7,7 +7,7 @@ import uiIcon from '../../../assets/images/homePage/ui.svg'
 import digitalIcon from '../../../assets/images/homePage/digital.svg'
 import Link from 'next/link';
 import { BsArrowRightCircle } from 'react-icons/bs';
-import { itServicesData } from '@/types';
+import { itServicesDataTypes } from '@/types';
 
 const BestItServices: React.FC = () => {
 
@@ -66,10 +66,10 @@ const BestItServices: React.FC = () => {
 
                 <div className='grid grid-cols-2 gap-2 md:gap-6 gap-y-4 md:gap-y-6'>
                     {
-                        servCardData?.map((item: itServicesData) => {
+                        servCardData?.map((item: itServicesDataTypes) => {
                             return <div key={item.id} className={`flexColCenter !items-start p-2 md:p-6 rounded-[16px] gap-3 md:gap-6 transition-all duration-300 group hover:text-white ${item.id === 1 ? item1bg : item.id === 2 ? item2bg : item.id === 3 ? item3bg: item4bg} ${item.id === 2 || item.id === 4 ? 'lg:!pt-8' : ''}`}>
                                 <div className={`transition-all duration-300 group-hover:bg-white ${item.id === 1 ? item1Classes : item.id === 2 ? item2Classes : item.id === 3 ? item3Classes: item4Classes} p-2 md:p-3 rounded-full`}>
-                                    <Image src={item.icon} height={0} width={0} alt='webIcon' className='w-auto h-auto filter brightness-0 invert group-hover:filter-none' />
+                                    <Image src={item.icon} height={0} width={0} loading="lazy" alt={item.alt} className='w-auto h-auto filter brightness-0 invert group-hover:filter-none' />
                                 </div>
                                 <span className='md:text-xl lg:text-2xl font-[700]'>{item.title}</span>
                                 <p className='sectionPara text-sm md:text-base group-hover:text-white'>{item.desc}</p>

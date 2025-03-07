@@ -37,9 +37,9 @@ const Header = () => {
     <header className={`py-6 sticky top-0 w-full z-[10] ${scroll > (navRef.current?.offsetTop || 0) ? "stickky bg-white shadow-sm" : "!bg-none"}`}>
       <div className="container">
         <div ref={navRef} className='flex items-center justify-between nav'>
-          <div>
+          <Link href={'/'}>
             <Image src={logo} width={0} height={0} className='w-[175px] md:w-[200px] xl:w-auto h-auto' alt='' />
-          </div>
+          </Link>
           <div className='hidden lg:block'>
             <ul className='flex items-center lg:gap-6 xl:gap-12 textPrimary font-semibold'>
               <Link href={'/'} className='relative transition-all duration-300 hover:primaryColor after:contents-[""] after:absolute after:-bottom-1 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:primaryBg'>

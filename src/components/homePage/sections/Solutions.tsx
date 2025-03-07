@@ -23,11 +23,11 @@ const Solutions: React.FC = () => {
                     <div className='grid lg:grid-cols-2 gap-12 !justify-items-center'>
                         <div className='flexCenter gap-8 flex-wrap xl:flex-nowrap'>
                             <div>
-                                <Image src={mobileApp} height={0} width={0} alt='mobileApp' className='w-auto h-auto rounded-[30px] shadow-[rgba(0,0,0,0.45)_0px_30px_20px_-20px]' />
+                                <Image src={mobileApp} height={0} width={0} loading="lazy" alt='create a mobile app for both Android & ios with WRTeam(bhuj) experts' className='w-auto h-auto rounded-[30px] shadow-[rgba(0,0,0,0.45)_0px_30px_20px_-20px]' />
                             </div>
                             <div className='flexColCenter xl:!items-start gap-6'>
                                 <div className='primaryBg p-4 rounded-full'>
-                                    <Image src={appProIcon} height={0} width={0} alt='appIcon' className='h-auto w-auto' />
+                                    <Image src={appProIcon} height={0} width={0} loading="lazy" alt='appIcon' className='h-auto w-auto' />
                                 </div>
                                 <span className='sectionTitle'>Mobile App Products</span>
                                 <Link href={'/products'} title='Discover More' className='flex items-center gap-2 commonBtn'>Discover More <BsArrowRightCircle /></Link>
@@ -35,11 +35,11 @@ const Solutions: React.FC = () => {
                         </div>
                         <div className='flexCenter gap-8 flex-wrap xl:flex-nowrap'>
                             <div>
-                                <Image src={webImg} height={0} width={0} alt='webImg' className='w-auto h-auto rounded-[30px] shadow-[rgba(0,0,0,0.45)_0px_30px_20px_-20px]' />
+                                <Image src={webImg} height={0} width={0} loading="lazy" alt='web development service for every type of website with WRTeam(bhuj) experts' className='w-auto h-auto rounded-[30px] shadow-[rgba(0,0,0,0.45)_0px_30px_20px_-20px]' />
                             </div>
                             <div className='flexColCenter xl:!items-start gap-6'>
                                 <div className='primaryBg p-4 rounded-full'>
-                                    <Image src={webIcon} height={0} width={0} alt='webIcon' className='h-auto w-auto' />
+                                    <Image src={webIcon} height={0} width={0} loading="lazy" alt='webIcon' className='h-auto w-auto' />
                                 </div>
                                 <span className='sectionTitle'>Web App Products</span>
                                 <Link href={'/products'} title='Discover More' className='flex items-center gap-2 commonBtn'>Discover More <BsArrowRightCircle /></Link>

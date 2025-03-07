@@ -211,7 +211,7 @@ const WebDevelopment: React.FC = () => {
 
                     <div className='flexCenter'>
                         <div className='flexCenter relative before:contents-[""] before:absolute before:top-[6px] before:left-0 before:right-0 before:bottom-0 before:m-auto before:w-[86%] before:h-[96%] before:primaryBg before:-z-[1] before:rotate-[185deg] before:rounded-[16px]'>
-                            <Image src={webDev} height={0} width={0} alt='best web development company for startups, businesses,hotel,etc.' className='w-[85%] h-auto' />
+                            <Image src={webDev} height={0} width={0} loading='lazy' alt='best web development company for startups, businesses,hotel,etc.' className='w-[85%] h-auto' />
                         </div>
                     </div>
                 </div>
@@ -244,7 +244,7 @@ const WebDevelopment: React.FC = () => {
                         benefitsCardData.map((item: servicesBenefitsData) => {
                             return <div className='flexColCenter !items-start gap-7 border-[2px] border-[#545A684D] rounded-[16px] p-5 group transition-all duration-300 hover:bg-white hover:shadow-[-16px_16px_46px_#2830421F] hover:border-transparent' key={item.id}>
                                 <div className='flexCenter primaryBg w-[60px] md:w-[74px] h-[56px] md:h-[74px] rounded-md shadow-[0px_8px_26px_#176BF15C]'>
-                                    <Image src={item.icon} height={0} width={0} alt='benefitsImg' className='w-[30px] md:w-[40px] h-auto' />
+                                    <Image src={item.icon} height={0} width={0} loading='lazy' alt={item.title} className='w-[30px] md:w-[40px] h-auto' />
                                 </div>
                                 <p className='font-bold text-lg'>{item.title}</p>
                             </div>
@@ -258,7 +258,7 @@ const WebDevelopment: React.FC = () => {
             <section className='container commonMT space-y-16'>
                 <ProcessSect data={processCardData.slice(0, 3)} isReverse={false} sectionTitle='How Does Our Web Development Team Create a Website?' blueText='Web Development' sectionImg={processImg} alt='work in progress with the best web-app development company WRTeam bhuj' />
                 <div className='container max-1199:hidden'>
-                    <Image src={arrowImg} height={0} width={0} alt='arrowDown' className='w-[58%] 2xl:w-[62%] -mt-[40px] -mb-[40px] 2xl:-mb-[80px] mx-[-18px] 2xl:mx-[-60px] h-auto' />
+                    <Image src={arrowImg} height={0} width={0} loading='lazy' alt='arrowDown' className='w-[58%] 2xl:w-[62%] -mt-[40px] -mb-[40px] 2xl:-mb-[80px] mx-[-18px] 2xl:mx-[-60px] h-auto' />
                 </div>
                 <ProcessSect data={processCardData.slice(3, processCardData.length)} isReverse={true} sectionTitle='' blueText='' sectionImg={processImg2} alt='work will never be on hold- with the best web-app development company WRTeam bhuj' />
             </section>
@@ -282,8 +282,8 @@ const WebDevelopment: React.FC = () => {
                                         buildCardData.map((item: servicesBuildData) => {
                                             return <div className="flexColCenter gap-4 group transition-all duration-300" key={item.id}>
                                                 <div className='commonBg rounded-md h-[90px] w-[90px] flexCenter group-hover:primaryBg transition-all duration-300'>
-                                                    <Image src={item.hoverIcon} height={0} width={0} alt={item.alt} className='w-[55px] h-auto group-hover:hidden block transition-all duration-300' />
-                                                    <Image src={item.icon} height={0} width={0} alt={item.alt} className='w-[55px] h-auto group-hover:block hidden transition-all duration-300' />
+                                                    <Image src={item.hoverIcon} height={0} width={0} loading='lazy' alt={item.alt} className='w-[55px] h-auto group-hover:hidden block transition-all duration-300' />
+                                                    <Image src={item.icon} height={0} width={0} loading='lazy' alt={item.alt} className='w-[55px] h-auto group-hover:block hidden transition-all duration-300' />
                                                 </div>
                                                 <span className='font-semibold md:text-lg'>{item.title}</span>
                                             </div>

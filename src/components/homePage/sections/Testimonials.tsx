@@ -95,7 +95,7 @@ const Testimonials: React.FC = () => {
                     <SwiperSlide>
                         <div className='border border-[#545a68] rounded-[16px] relative flex flex-col gap-4 testimonialCard group transition-all duration-300 hover:primaryBg hover:!text-white group-hover:shadow-[0_26px_36px_#2e71fe42]'>
                             <div className='primaryBg absolute -top-8 rounded-full p-3 shadow-[0_20px_36px_#2e71ef5c] group-hover:bg-white group-hover:shadow-[0_20px_36px_#ffffff5c]'>
-                                <Image src={dobleQuotes} height={0} width={0} alt='' className='w-[30px] h-[30px] md:w-auto md:h-auto' />
+                                <Image src={dobleQuotes} height={0} width={0} alt='QuotesIcon' className='w-[30px] h-[30px] md:w-auto md:h-auto' />
                             </div>
                             <div className='p-3 pt-14 sm:pt-16'>
                                 <p className='sectionPara group-hover:!text-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur qui at esse deleniti accusantium magnam consequatur magni odio sed architecto illum, fugit deserunt ad. In temporibus similique quidem officiis accusamus!</p>

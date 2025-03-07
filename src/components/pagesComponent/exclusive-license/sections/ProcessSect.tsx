@@ -5,6 +5,7 @@ import processIcon2 from '@/assets/images/exclusiveLicensePage/process2.png'
 import processIcon3 from '@/assets/images/exclusiveLicensePage/process3.png'
 import processIcon4 from '@/assets/images/exclusiveLicensePage/process4.png'
 import arrowImg from '@/assets/images/exclusiveLicensePage/arrowImg.png'
+import { servicesProcessDataTypes } from '@/types'
 
 const ProcessSect = () => {
 
@@ -47,7 +48,7 @@ const ProcessSect = () => {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {
-                        processData.map((data) => {
+                        processData.map((data: servicesProcessDataTypes) => {
                             return <div className='flexColCenter text-center gap-4' key={data.id}>
                                 <div className='relative'>
                                     <Image src={arrowImg} height={0} width={0} alt='arrowImg' className={`hidden lg:block absolute w-[94px] h-[72px] max-1199:left-[108%] left-44 top-6 ${data.id === 3 ? '!hidden' : ''}`} />

@@ -3,7 +3,7 @@ import ExclusiveLicenseForm from '../ExclusiveLicenseForm'
 
 const ContactUsSect = () => {
   return (
-    <section className='commonMT container commonMB'>
+    <section className='commonMT container'>
     <div className=" commonBg py-8 md:py-12 space-y-8 md:space-y-12 lg:space-y-20 px-6 md:px-20 lg:px-32 rounded-[16px] ">
       <div className="flexColCenter lg:w-[70%] mx-auto text-center commonTextGap">
         <span className='sectionTag'><span>Contact</span> Us</span>

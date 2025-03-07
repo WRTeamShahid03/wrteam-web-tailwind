@@ -6,7 +6,7 @@ import workImg2 from '../../../assets/images/homePage/work_chain_2.webp'
 import workImg3 from '../../../assets/images/homePage/work_chain_3.webp'
 import workImg4 from '../../../assets/images/homePage/work_chain_4.webp'
 import workLines from '../../../assets/images/homePage/Line.png'
-import { workChainData } from '@/types'
+import { workChainDataTypes } from '@/types'
 
 const WorkChain: React.FC = () => {
 
@@ -50,11 +50,11 @@ const WorkChain: React.FC = () => {
 
             <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16 lg:gap-4 xl:gap-6 workChain' style={{background: `url(${workLines.src})`,backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
                 {
-                    data?.map((item: workChainData) => {
+                    data?.map((item: workChainDataTypes) => {
                         return <div className={`flexColCenter gap-2 md:gap-4 text-center ease-in-out ${item.id === 2 || item.id === 4 ? 'lg:!flex-col-reverse lg:[&>.title]:mb-6' : ''}`} key={item.id}>
                             <div className='relative group transition-all duration-300'>
                                 <span className='bg-white rounded-full absolute -top-6  z-[1] left-0 right-0 w-[50px] h-[50px] m-auto flexCenter transition-all duration-300 ease-in-out translate-y-0 group-hover:translate-y-24 font-[500]'>{item.id}</span>
-                                <Image src={item.img} height={0} width={0} alt={item.alt} className='rounded-full filter brightness-[36%] invert-[8%] saturate-[100%] contrast-[96%] sepia-[8%] grayscale-[3%] workchainImg transition-all duration-300' />
+                                <Image src={item.img} height={0} width={0} loading="lazy" alt={item.alt} className='rounded-full filter brightness-[36%] invert-[8%] saturate-[100%] contrast-[96%] sepia-[8%] grayscale-[3%] workchainImg transition-all duration-300' />
                             </div>
                             <span className='text-base md:text-xl font-[600] title'>{item.title}</span>
                             <p className='sectionPara'>{item.desc}</p>

@@ -55,7 +55,7 @@ const AboutUs: React.FC = () => {
         <div className='grid grid-cols-12 gap-y-10 md:gap-y-32 between-1200-1399:gap-y-40 xl:gap-16'>
           <div className="max-1199:col-span-12 col-span-7 between-1200-1399:col-span-12 relative">
             <div className='relative'>
-              <Image src={knowMore} width={0} height={0} alt='' className='w-auto md:w-[92%] h-auto' />
+              <Image src={knowMore} width={0} height={0} loading='lazy' alt='know about the top marketers, developers, and experts at best wed development company-WRTeam' className='w-auto md:w-[92%] h-auto' />
 
               <div className='bg-[#212121] hidden md:flexColCenter !items-start text-white p-3 md:p-6 gap-6 md:gap-12 group transition-all duration-300 h-max border-white border-[8px] rounded-[20px] absolute right-4 md:-right-[34px] -bottom-[60px] md:-bottom-[86px] after:content-[""] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0 after:transition-all after:duration-300 group-hover:after:h-16 after:bg-gradient-to-b from-[hsla(0,8%,74%,0.427)] to-[hsla(0,8%,74%,0.427)] after:opacity-[0.4] overflow-hidden'>
                 <span className='bg-white rounded-full p-2 textPrimary shadow-[0_8px_36px_#ffffff5c]'><AiFillLike size={30} /></span>
@@ -108,7 +108,7 @@ const AboutUs: React.FC = () => {
           <div className="max-1199:col-span-12 col-span-6 between-1200-1399:col-span-12 relative">
             <div className='relative flex items-end justify-end'>
               <AnimatedDots data={false} ourVision={true} />
-              <Image src={vision} width={0} height={0} alt='' className='w-auto md:w-full between-1200-1399:w-[70%] h-auto' />
+              <Image src={vision} width={0} height={0} alt='our-vision' loading='lazy' className='w-auto md:w-full between-1200-1399:w-[70%] h-auto' />
               {/* Triangle pattern - Using client component */}
               <div className="absolute bottom-[-10%] 2xl:bottom-[-15%] xl:left-[10%] 2xl:left-[20%] hidden lg:block rotate-180">
                 <Image
@@ -136,7 +136,7 @@ const AboutUs: React.FC = () => {
           <div className="max-1199:order-2 max-1199:col-span-12 col-span-6 between-1200-1399:col-span-12 relative">
             <div className='relative flex '>
               <AnimatedDots data={true} ourMission={true} />
-              <Image src={mission} width={0} height={0} alt='' className='w-auto md:w-full between-1200-1399:w-[70%] h-auto' />
+              <Image src={mission} width={0} height={0} alt='our-mission' loading='lazy' className='w-auto md:w-full between-1200-1399:w-[70%] h-auto' />
               {/* Triangle pattern - Using client component */}
               <div className="absolute bottom-[-10%] 2xl:bottom-[-15%] xl:left-[10%] 2xl:left-[20%] hidden lg:block">
                 <Image
@@ -239,7 +239,7 @@ const AboutUs: React.FC = () => {
 
           <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
             <div className='relative rounded-[30px] overflow-hidden group transition-all duration-500'>
-              <Image src={teamImg} height={0} width={0} alt='team-img' />
+              <Image src={teamImg} height={0} width={0} alt='team-img' loading='lazy' />
               <div className='flex flex-col gap-2 bg-white w-[94%] m-auto rounded-[15px] bottom-4 py-2 px-6 absolute left-0 right-0 h-[44px] overflow-hidden transition-all duration-500 group-hover:h-[80px]'>
                 <span className='font-extrabold text-lg lg:text-xl'>Harish Vekariya</span>
                 <span className='textSecondary'>Co-Founder</span>

@@ -1,6 +1,7 @@
+import { comparisonDataTypes } from '@/types';
 import React from 'react'
 
-const ComparisionSect = () => {
+const ComparisonSect = () => {
 
     const comparisonData = [
         {
@@ -45,7 +46,7 @@ const ComparisionSect = () => {
                 </div>
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
                     {
-                        comparisonData.map((data) => {
+                        comparisonData.map((data: comparisonDataTypes) => {
                             return <div className='flexColCenter !items-start border border-[#545a684d] rounded-[16px] p-4 space-y-6' key={data.id}>
                                 <div className='border-b border-[#545a684d] pb-2 w-full'>
                                     <h6 className='font-bold text-lg'>{data.title}</h6>
@@ -77,4 +78,4 @@ const ComparisionSect = () => {
     )
 }
 
-export default ComparisionSect
+export default ComparisonSect

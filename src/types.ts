@@ -1,12 +1,12 @@
 import { StaticImageData } from "next/image"
 
-export interface counterData {
+export interface counterDataTypes {
     img: string,
     counts: string,
     text: string,
 }
 
-export interface itServicesData {
+export interface itServicesDataTypes {
     id: number,
     title: string,
     desc: string,
@@ -16,32 +16,32 @@ export interface itServicesData {
     link: string
 }
 
-export interface technologiesData {
+export interface technologiesDataTypes {
     id: number,
     title: string,
     icon: string,
     alt: string,
 }
 
-export interface workChainData {
+export interface workChainDataTypes {
     id: number,
     img: StaticImageData,
     title: string,
     desc: string
     alt: string
 }
-export interface servicesBenefitsData {
+export interface servicesBenefitsDataTypes {
     id: number,
     icon: StaticImageData,
     title: string,
 }
-export interface servicesProcessData {
+export interface servicesProcessDataTypes {
     id: number,
     img: StaticImageData,
     title: string,
     desc: string,
 }
-export interface servicesBuildData {
+export interface servicesBuildDataTypes {
     id: number,
     icon: StaticImageData,
     hoverIcon: StaticImageData,
@@ -49,7 +49,7 @@ export interface servicesBuildData {
     alt: string
 }
 
-export interface installationPackagesData {
+export interface installationPackagesDataTypes {
     id: number,
     packageName: string,
     setups: string,
@@ -57,4 +57,27 @@ export interface installationPackagesData {
     price: number,
     services: Array<string>,
     excludedServices: Array<string>
+}
+export interface comparisonDataTypes {
+    id: number,
+    title: string,
+    point1: string,
+    point1Text: string,
+    point2: string,
+    point2Text: string,
+    point3: string,
+    point3Text: string,
+}
+
+export interface faqsDataTypes {
+    id: number,
+    question: string,
+    answer: string,
+}
+export interface hireUsTechsDataTypes {
+    id: number,
+    img: StaticImageData,
+    title: string,
+    bg: string,
+    alt: string
 }

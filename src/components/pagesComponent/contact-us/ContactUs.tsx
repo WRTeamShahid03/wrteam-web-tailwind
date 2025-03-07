@@ -50,7 +50,7 @@ const ContactUs: React.FC = () => {
                             style={{ background: `url(${bgImg2.src})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundBlendMode: 'darken' }}>
                             <div className='primaryBg flexColCenter !items-start !justify-between h-full p-4 opacity-80'>
                                 <div>
-                                    <Image src={logo} height={0} width={0} alt='companyLogo' className='w-auto h-auto brightness-[2%] invert-[100%]' />
+                                    <Image src={logo} height={0} width={0} loading='lazy' alt='companyLogo' className='w-auto h-auto brightness-[2%] invert-[100%]' />
                                 </div>
 
                                 <div className='space-y-4'>

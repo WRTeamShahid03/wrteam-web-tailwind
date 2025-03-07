@@ -13,8 +13,8 @@ const AboutWrteam: React.FC = () => {
                     <h2 className='fillTextAnimation' data-fill-text="WRTEAM">WRTEAM</h2>
                     <div className='relative'>
 
-                        <Image src={aboutImg} width={0} height={0} alt='aboutImg' className='w-auto h-auto md:ml-16 xl:ml-24 2xl:ml-20' />
-                        <Image src={companyExp} width={0} height={0} alt='aboutImg' className='w-[140px] h-[140px] sm:w-[230px] sm:h-[210px] md:w-max md:h-max absolute top-0 bottom-0 -right-2 sm:-right-12 md:right-0 lg:right-36 xl:-right-44 2xl:-right-48 m-auto companyExp' />
+                        <Image src={aboutImg} width={0} height={0} loading="lazy" alt='expert, experienced & skilled  software developers for your business' className='w-auto h-auto md:ml-16 xl:ml-24 2xl:ml-20' />
+                        <Image src={companyExp} width={0} height={0} loading="lazy" alt='company-experience' className='w-[140px] h-[140px] sm:w-[230px] sm:h-[210px] md:w-max md:h-max absolute top-0 bottom-0 -right-2 sm:-right-12 md:right-0 lg:right-36 xl:-right-44 2xl:-right-48 m-auto companyExp' />
                     </div>
                 </div>
 

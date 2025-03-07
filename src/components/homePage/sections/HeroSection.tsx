@@ -31,7 +31,7 @@ const HeroSection: React.FC = () => {
                         <p className='sectionPara'>Upgrade your business administration with WRTeam. Create a customized and feature-loaded website or mobile app with expert and experienced developers at WRTeam, providing digital solutions tailored to your needs.</p>
 
                         <div className='flexCenter gap-4 md:gap-6'>
-                            <Link href={'/about-us'} className='commonBtn w-max h-max overflow-hidden'>About Us</Link>
+                            <Link href={'/about-us'} title='About Us' className='commonBtn w-max h-max overflow-hidden'>About Us</Link>
                             <div className='textSecondary'>
                                 <span>Follow Us</span>
                                 <div className='flexCenter gap-3 md:gap-4 mt-1'>
@@ -46,7 +46,7 @@ const HeroSection: React.FC = () => {
                 </div>
 
                 <div className='curlArrow absolute top-0 left-0 right-0 bottom-0 m-auto w-max h-max hidden lg:block'>
-                    <Image src={curlArrow} width={0} height={0} alt='curlArrow' className='w-auto h-auto '/>
+                    <Image src={curlArrow} width={0} loading="lazy" height={0} alt='curlArrow' className='w-auto h-auto '/>
                 </div>
 
                 <div className='relative'>
@@ -60,7 +60,7 @@ const HeroSection: React.FC = () => {
                         </div>
                     </div>
                     
-                    <Image src={heroImg} width={0} height={0} alt='heroImg' className='w-full h-auto lg:w-[135%] xl:w-[112%] max-w-[200%]' />
+                    <Image src={heroImg} width={0} height={0} loading="lazy" alt='heroImg' className='w-full h-auto lg:w-[135%] xl:w-[112%] max-w-[200%]' />
 
                     <div className='reviews hidden absolute top-[16%] right-40 md:flexCenter gap-4 bg-white w-max p-1 pr-4 rounded-[8px] shadow-[0_36px_60px_#545a681a]'>
                         <div className='secondaryBg p-2 rounded-sm text-white'>
@@ -75,7 +75,7 @@ const HeroSection: React.FC = () => {
                     <div className='team hidden commonKeyFramesDiv absolute bottom-28 lg:bottom-72 xl:bottom-24 right-12 md:flexColCenter !items-start gap-4 bg-white w-max p-2 pr-4 rounded-[8px] shadow-[0_36px_60px_#545a681a]'>
                         <span className='font-[700] text-[14px]'>Our Creative Team</span>
                         <div className='flexCenter'>
-                            <Image src={teamImg} width={0} height={0} alt='team-img' className='w-[180px] xl:w-[200px] h-auto' />
+                            <Image src={teamImg} width={0} height={0} loading="lazy" alt='team-img' className='w-[180px] xl:w-[200px] h-auto' />
                         </div>
                     </div>
 

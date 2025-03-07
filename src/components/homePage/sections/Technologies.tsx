@@ -10,7 +10,7 @@ import laravel from '../../../assets/images/homePage/Laravel.svg'
 import android from '../../../assets/images/homePage/Android.svg'
 import ios from '../../../assets/images/homePage/iOS.svg'
 import Image from 'next/image'
-import { technologiesData } from '@/types'
+import { technologiesDataTypes } from '@/types'
 
 const Technologies: React.FC = () => {
 
@@ -76,10 +76,10 @@ const Technologies: React.FC = () => {
                     <div className='secondaryBg p-6 md:p-14 shadow-[0_16px_36px_#2435525c] opacity-[0.9] rounded-[30px]'>
                         <div className='grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-8 md:gap-12 justify-self-center'>
                             {
-                                techCardData.map((data: technologiesData) => {
+                                techCardData.map((data: technologiesDataTypes) => {
                                     return <div className='flexColCenter gap-4 md:gap-6' key={data.id}>
                                         <div className='bg-white group transition-all duration-300 hover:primaryBg flexCenter rounded-[15px] p-[30px] relative z-[1] after:contents-[""] after:absolute after:-bottom-[70px] md:after:-bottom-[100px] after:left-0 after:right-0 after:bg-white after:h-[70px] md:after:h-[100px] after:w-[6px] after:m-auto'>
-                                            <Image src={data?.icon} width={0} height={0} alt={data.alt} className='w-full h-fw-full transition-all duration-300 group-hover:filter group-hover:brightness-0 group-hover:invert-[1]' />
+                                            <Image src={data?.icon} width={0} height={0} loading="lazy" alt={data.alt} className='w-full h-fw-full transition-all duration-300 group-hover:filter group-hover:brightness-0 group-hover:invert-[1]' />
                                         </div>
                                         <span className='bg-black border-[5px] border-white rounded-full p-1 text-center flexCenter font-[900] text-4xl mt-[50px] md:mt-[74px]'></span>
                                         <span className='text-white font-[600] text-lg'>{data.title}</span>

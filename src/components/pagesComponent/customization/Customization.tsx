@@ -10,7 +10,7 @@ import arrowImg from '@/assets/images/customization/arrow.svg'
 import line from '@/assets/images/customization/lines.svg'
 import formSideImg from '@/assets/images/customization/customizationImg.webp'
 
-import { servicesProcessData } from '@/types'
+import { servicesProcessDataTypes } from '@/types'
 import CustomizationForm from './CustomizationForm'
 
 const Customization: React.FC = () => {
@@ -49,13 +49,13 @@ const Customization: React.FC = () => {
 
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 commonBg rounded-[16px] py-[40px] md:py-[70px] between-1200-1399:px-[20px] px-[20px] md:px-[40px] relative gap-y-12 lg:gap-4 2xl:gap-6'>
                     {
-                        data.map((item: servicesProcessData) => {
+                        data.map((item: servicesProcessDataTypes) => {
                             return <div className='flexColCenter gap-4 text-center relative' key={item.id}>
                                 <div className='rounded-full border-[2px] border-[#2e71fe] p-2 relative'>
                                     <div className='primaryBg absolute top-0 right-10 z-[1] rounded-full p-0.5'>
                                         <span className='text-white border border-white border-dashed rounded-full w-[44px] h-[44px] flexCenter font-extrabold text-lg'>0{item.id}</span>
                                     </div>
-                                    <Image src={item.img} height={0} width={0} alt='' className='w-[206px] h-[206px] rounded-full object-cover brightness-[0.5]' />
+                                    <Image src={item.img} height={0} width={0} loading='lazy' alt={item.title} className='w-[206px] h-[206px] rounded-full object-cover brightness-[0.5]' />
                                 </div>
                                 <span className='text-lg font-semibold'>{item.title}</span>
                                 <p className='sectionPara !text-sm md:w-[80%]'>{item.desc}</p>
@@ -63,11 +63,11 @@ const Customization: React.FC = () => {
                         })
                     }
 
-                    <Image src={arrowImg} height={0} width={0} alt='arrow' className='max-1199:hidden w-[140px] 2xl:w-[164px] h-auto absolute top-[24%] left-[28%] m-auto' />
-                    <Image src={arrowImg} height={0} width={0} alt='arrow' className='max-1199:hidden w-[140px] 2xl:w-[164px] h-auto absolute top-[24%] right-[28%] m-auto' />
+                    <Image src={arrowImg} height={0} width={0} loading='lazy' alt='arrow' className='max-1199:hidden w-[140px] 2xl:w-[164px] h-auto absolute top-[24%] left-[28%] m-auto' />
+                    <Image src={arrowImg} height={0} width={0} loading='lazy' alt='arrow' className='max-1199:hidden w-[140px] 2xl:w-[164px] h-auto absolute top-[24%] right-[28%] m-auto' />
 
-                    <Image src={line} height={0} width={0} alt='arrow' className='hidden md:block w-[28%] h-auto absolute top-[] right-0 m-auto rotate-180 -z-[1]' />
-                    <Image src={line} height={0} width={0} alt='arrow' className='hidden md:block w-[28%] h-auto absolute bottom-0 left-0 m-auto -z-[1]' />
+                    <Image src={line} height={0} width={0} loading='lazy' alt='line' className='hidden md:block w-[28%] h-auto absolute top-[] right-0 m-auto rotate-180 -z-[1]' />
+                    <Image src={line} height={0} width={0} loading='lazy' alt='line' className='hidden md:block w-[28%] h-auto absolute bottom-0 left-0 m-auto -z-[1]' />
                 </div>
             </section>
 
@@ -76,7 +76,7 @@ const Customization: React.FC = () => {
                     <div className="grid between-1200-1399:grid-cols-2 xl:grid-cols-2 gap-y-8 md:gap-y-12 between-1200-1399:gap-6 xl:gap-6">
                         <div className='flexColCenter commonTextGap'>
                             <p className='sectionPara'>After reviewing your customization requirements? we will provide an estimated timeframe for completing your project. Our standard rate for customization is $17 per hour.</p>
-                            <Image src={formSideImg} height={0} width={0} alt='form-side-img' className='w-auto h-auto rounded-[16px]' />
+                            <Image src={formSideImg} height={0} width={0} loading='lazy' alt='form-side-img' className='w-auto h-auto rounded-[16px]' />
                         </div>
 
                         <div className='shadow-[0_0_6px_#00000029] p-4 md:p-6 rounded-[16px]'>

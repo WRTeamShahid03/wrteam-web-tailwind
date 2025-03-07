@@ -21,7 +21,7 @@ const AchievementEnvanto: React.FC = () => {
                 <div className='relative lg:flexCenter'>
                     <h5 className='fillTextAnimation !fillTextAnimationAchievement' data-fill-text="WRTEAM">WRTEAM</h5>
                     <div className='relative'>
-                        <Image src={achievementImg} width={0} height={0} alt='achievementImg' className='md:w-[80%] lg:w-full max-w-full lg:h-full max-h-full md:-ml-6 lg:ml-8 xl:-ml-14' />
+                        <Image src={achievementImg} width={0} height={0} loading="lazy" alt='team of creative and innovative designers using most advanced tools & technology' className='md:w-[80%] lg:w-full max-w-full lg:h-full max-h-full md:-ml-6 lg:ml-8 xl:-ml-14' />
                     </div>
                 </div>
 

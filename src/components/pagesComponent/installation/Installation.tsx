@@ -7,7 +7,7 @@ import React from 'react'
 import { FaCheck } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import sideImg from "@/assets/images/installation/installationSideImg.svg";
-import { installationPackagesData } from '@/types';
+import { installationPackagesDataTypes } from '@/types';
 
 const Installation: React.FC = () => {
 
@@ -116,7 +116,7 @@ const Installation: React.FC = () => {
                     <h2 className='sectionTitle'>Flexible Packages to Match <span>Your Needs</span></h2>
                 </div>
                 <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-                    {packages.map((pkg: installationPackagesData, index) => (
+                    {packages.map((pkg: installationPackagesDataTypes, index) => (
                         <div
                             key={pkg.id}
                             className={`h-max p-4 border-[3px] border-[#2e71fe26] rounded-[16px] ${index === 3 ? "primaryBg text-white" : "bg-white"
@@ -185,7 +185,7 @@ const Installation: React.FC = () => {
                                 </div>
                             </div>
                             <div className='col-span-12 lg:col-span-5 flex items-end justify-end absolute bottom-0 right-0'>
-                                <Image src={sideImg} height={0} width={0} className='w-[180px] h-auto' alt='bg' />
+                                <Image src={sideImg} height={0} width={0} loading='lazy' className='w-[180px] h-auto' alt='bg' />
                             </div>
                         </div>
                     </div>

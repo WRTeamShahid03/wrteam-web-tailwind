@@ -15,7 +15,7 @@ import timelyUpdadtes from '../../../assets/images/services/icons/Benefits/Timel
 import quality from '../../../assets/images/services/icons/Benefits/Testing & Quality Assurance.png'
 import support from '../../../assets/images/services/icons/Benefits/Ongoing Support.png'
 import eliteAuthor from '../../../assets/images/services/icons/Benefits/Elite Author on Codecanyon – 1.png'
-import { servicesBenefitsData, servicesBuildData } from '@/types'
+import { servicesBenefitsDataTypes, servicesBuildDataTypes } from '@/types'
 
 import ProcessSect from './ProcessSect'
 import processImg from '../../../assets/images/services/app-development/10-10-05-Our_Work Process.webp'
@@ -46,28 +46,28 @@ const AppDevelopment: React.FC = () => {
       desc: `Our app development team has experience, knowledge, and expertise in Android mobile app development. We are committed to delivering unique interactive mobile applications that are perfectly tailored to our clients. Our Primary focus is on providing the best mobile application development service and making sure that our clients will have maximum satisfaction with our app development service.`,
       img: android,
       alt: 'top android mobile app development  service provider & experts'
-  },
-  {
+    },
+    {
       id: 1,
       title: 'iOS app development',
       desc: 'Due to the increase in the number of iOS device users, it become crucial to have a native iOS app & make it a huge market for iOS applications. Our app development team consists of iOS app development experts with experience of more than 6 years making us the best iOS app development service provider. We are committed to delivering unique interactive mobile applications that are perfectly tailored to our clients.',
       img: ios,
       alt: 'top IOS mobile app development  service provider & experts'
-  },
-  {
+    },
+    {
       id: 2,
       title: 'Flutter app development',
       desc: 'Flutter apps are continuously booming, it has revolutionized cross-platform app development that allows the creation of stunning and natively compiled applications for mobile, web, and desktop from a single codebase. Our app development team includes specialized experts for Flutter app development with 6+ years of experience making us a leading Flutter app development service provider.',
       img: flutter,
       alt: 'best fluter mobile app development service with WRTeam bhuj'
-  },
-  {
+    },
+    {
       id: 3,
       title: 'Customization',
       desc: `Not only app development we also offer customization in source codes by WRTeam making it tailored to your needs, & our mobile app development experts can also customize your existing application to make it personalized for your requirements and ensure a unique, user-friendly, & visually appealing online presence.`,
       img: completeSolution,
       alt: 'complete solution for all your digital problems with WRTeam bhuj'
-  },
+    },
   ];
 
 
@@ -151,22 +151,22 @@ const AppDevelopment: React.FC = () => {
       title: 'Android',
       alt: 'android app development service provider-WRTeam'
 
-  },
-  {
+    },
+    {
       id: 1,
       icon: flutterIcon,
       hoverIcon: flutterIconHover,
       title: 'Flutter',
       alt: 'bet flutter technology developers will work for you WRTeam bhuj'
 
-  },
-  {
+    },
+    {
       id: 2,
       icon: iosIcon,
       hoverIcon: iosIconHover,
       title: 'iOS',
       alt: 'ios app development service provider-WRTeam'
-  },
+    },
   ];
 
 
@@ -184,7 +184,7 @@ const AppDevelopment: React.FC = () => {
 
           <div className='flexCenter'>
             <div className='flexCenter relative before:contents-[""] before:absolute before:top-[6px] before:left-0 before:right-0 before:bottom-0 before:m-auto before:w-[86%] before:h-[96%] before:primaryBg before:-z-[1] before:rotate-[185deg] before:rounded-[16px]'>
-              <Image src={mainImg} height={0} width={0} alt='best android & ios app development company -WRTeam Bhuj- gujrat' className='w-[85%] h-auto' />
+              <Image src={mainImg} height={0} width={0} loading='lazy' alt='best android & ios app development company -WRTeam Bhuj- gujrat' className='w-[85%] h-auto' />
             </div>
           </div>
         </div>
@@ -214,10 +214,10 @@ const AppDevelopment: React.FC = () => {
         </div>
         <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
           {
-            benefitsCardData.map((item: servicesBenefitsData) => {
+            benefitsCardData.map((item: servicesBenefitsDataTypes) => {
               return <div className='flexColCenter !items-start gap-7 border-[2px] border-[#545A684D] rounded-[16px] p-5 group transition-all duration-300 hover:bg-white hover:shadow-[-16px_16px_46px_#2830421F] hover:border-transparent' key={item.id}>
                 <div className='flexCenter primaryBg w-[60px] md:w-[74px] h-[56px] md:h-[74px] rounded-md shadow-[0px_8px_26px_#176BF15C]'>
-                  <Image src={item.icon} height={0} width={0} alt='benefitsImg' className='w-[30px] md:w-[40px] h-auto' />
+                  <Image src={item.icon} height={0} width={0} loading='lazy' alt={item.title} className='w-[30px] md:w-[40px] h-auto' />
                 </div>
                 <p className='font-bold text-lg'>{item.title}</p>
               </div>
@@ -231,7 +231,7 @@ const AppDevelopment: React.FC = () => {
       <section className='container commonMT space-y-16'>
         <ProcessSect data={processCardData.slice(0, 3)} isReverse={false} sectionTitle='How Does Our App Development Team Create an App For You?' blueText='App Development' sectionImg={processImg} alt='every work is done in systematic way at best it company WRTeam bhuj' />
         <div className='container max-1199:hidden'>
-          <Image src={arrowImg} height={0} width={0} alt='arrowDown' className='w-[58%] 2xl:w-[62%] -mt-[40px] -mb-[40px] 2xl:-mb-[80px] mx-[-18px] 2xl:mx-[-60px] h-auto' />
+          <Image src={arrowImg} height={0} width={0} loading='lazy' alt='arrowDown' className='w-[58%] 2xl:w-[62%] -mt-[40px] -mb-[40px] 2xl:-mb-[80px] mx-[-18px] 2xl:mx-[-60px] h-auto' />
         </div>
         <ProcessSect data={processCardData.slice(3, processCardData.length)} isReverse={true} sectionTitle='' blueText='' sectionImg={processImg2} alt='work in progress with the best web-app development company WRTeam bhuj' />
       </section>
@@ -252,11 +252,11 @@ const AppDevelopment: React.FC = () => {
               <div className="max-1199:col-span-12 col-span-7 !p-[0px_25px] md:max-1199:!p-[0px_65px] lg:!p-[85px]">
                 <div className='grid grid-cols-2 sm:grid-cols-3 gap-12'>
                   {
-                    buildCardData.map((item: servicesBuildData) => {
+                    buildCardData.map((item: servicesBuildDataTypes) => {
                       return <div className="flexColCenter gap-4 group transition-all duration-300" key={item.id}>
                         <div className='commonBg rounded-md h-[90px] w-[90px] flexCenter group-hover:primaryBg transition-all duration-300'>
-                          <Image src={item.icon} height={0} width={0} alt={item.alt} className='w-[55px] h-auto group-hover:hidden block transition-all duration-300' />
-                          <Image src={item.hoverIcon} height={0} width={0} alt={item.alt} className='w-[55px] h-auto group-hover:block hidden transition-all duration-300' />
+                          <Image src={item.icon} height={0} width={0} loading='lazy' alt={item.alt} className='w-[55px] h-auto group-hover:hidden block transition-all duration-300' />
+                          <Image src={item.hoverIcon} height={0} width={0} loading='lazy' alt={item.alt} className='w-[55px] h-auto group-hover:block hidden transition-all duration-300' />
                         </div>
                         <span className='font-semibold md:text-lg'>{item.title}</span>
                       </div>
