@@ -12,18 +12,16 @@ export default function Careers() {
     <Layout>
       <section className="container mx-auto commonMT">
         {/* Work With Us section */}
-        <div className="flex flex-col items-center justify-center text-center pt-10">
-          <div className="bg-blue-50 text-blue-600 font-medium px-4 py-2 rounded-md mb-6 font-poppins">
-            Work With Us
-          </div>
+        <div className="flexColCenter commonTextGap">
+          <span className="sectionTag">Work <span>With Us</span></span>
 
           {/* Join Our Team heading */}
-          <h1 className="text-4xl md:text-5xl font-bold mb-8 font-montserrat">
-            Join Our <span className="text-blue-600">Team</span>
+          <h1 className="sectionTitle">
+            Join Our <span>Team</span>
           </h1>
 
           {/* Description paragraph */}
-          <p className="text-gray-500 font-medium max-w-3xl mx-auto text-center mb-16 font-poppins leading-relaxed">
+          <p className="sectionPara max-w-3xl mx-auto text-center leading-relaxed">
             WRTeam invites all aspiring and experienced IT professionals to join
             and become a part of our family and give the right direction to
             their careers. We&apos;re a leading web & mobile app development
@@ -34,24 +32,21 @@ export default function Careers() {
         </div>
       </section>
 
-      <section className="bg-[#2e71fe14]">
-        <div className="container mx-auto commonMT">
-          <div className="flex flex-col md:flex-row gap-8 items-center py-32">
-            <div className="w-full md:w-1/2 ">
-              {/* Career Growth Tag */}
-              <div className="bg-blue-50 text-blue-600 font-medium px-4 py-2 rounded-md mb-6 w-fit font-poppins">
-                Career Growth
+      <section className="commonBg">
+        <div className="container commonMT">
+          <div className="grid max-1199:grid-cols-1 grid-cols-2 gap-8 py-8 md:py-12 between-1200-1399:py-24 xl:py-24">
+            <div className="space-y-6">
+              <div className="flexColCenter !items-start commonTextGap">
+                <span className="sectionTag">
+                  Career Growth
+                </span>
+                <h2 className="sectionTitle">
+                  Why Work With <span>WRTeam</span>
+                </h2>
+                <p className="sectionPara">
+                  We value creativity, collaboration, and continuous learning
+                </p>
               </div>
-
-              {/* Section Title */}
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 font-montserrat">
-                Why Work With <span className="text-blue-600">WRTeam</span>
-              </h2>
-
-              {/* Subtitle */}
-              <p className="text-gray-600 mb-8 font-poppins">
-                We value creativity, collaboration, and continuous learning
-              </p>
 
               {/* Benefits List */}
               <div className="space-y-4">
@@ -128,7 +123,7 @@ export default function Careers() {
             </div>
 
             {/* Image Section */}
-            <div className="w-full md:w-1/2">
+            <div className="">
               <div className="relative">
                 {/* Main image */}
                 <Image
@@ -154,7 +149,7 @@ export default function Careers() {
                 </div>
 
                 {/* Dots pattern - Using client component */}
-                <AnimatedDots data={false}/>
+                <AnimatedDots data={false} />
               </div>
             </div>
           </div>
@@ -164,21 +159,23 @@ export default function Careers() {
       {/* Current Job Openings Section */}
       <section className="container mx-auto py-16">
         <div className="text-center mb-12">
-          <div className="bg-blue-50 text-blue-600 font-medium px-4 py-2 rounded-md mb-6 inline-block font-poppins">
-            Career Opportunities
+          <div className="flexColCenter commonTextGap">
+            <span className="sectionTag">
+              Career Opportunities
+            </span>
+
+            <h2 className="sectionTitle">
+              Current <span className="text-blue-600">Job Openings</span> At
+              WRTeam
+            </h2>
+
+            <p className="sectionPara max-w-3xl mx-auto mb-12 !font-medium">
+              Explore our current opportunities and fill in the necessary details
+              to apply for the desired profile. We&apos;ll be in touch with you
+              very soon. If you don&apos;t hear from us within 7 days, you can
+              reach us at <span className="font-bold text-black">hr@wrteam.in</span>
+            </p>
           </div>
-
-          <h2 className="text-4xl font-bold mb-8 font-montserrat">
-            Current <span className="text-blue-600">Job Openings</span> At
-            WRTeam
-          </h2>
-
-          <p className="text-gray-600 max-w-3xl mx-auto mb-12 font-poppins">
-            Explore our current opportunities and fill in the necessary details
-            to apply for the desired profile. We&apos;ll be in touch with you
-            very soon. If you don&apos;t hear from us within 7 days, you can
-            reach us at <span className="font-medium">hr@wrteam.in</span>
-          </p>
 
           {/* Job Cards Container */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -339,11 +336,11 @@ export default function Careers() {
           </div>
         </div>
       </section>
-      
+
       {/* Application Form Section */}
       <section className="bg-[#f1f5ff] py-16">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
+          <div className="flexColCenter commonTextGap text-center">
             <h2 className="text-4xl font-bold mb-6 font-montserrat">
               Apply <span className="text-blue-600">Now</span>
             </h2>

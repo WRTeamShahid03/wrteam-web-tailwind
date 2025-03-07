@@ -502,7 +502,7 @@ export default function CareerForm() {
       <div className="flex justify-center mt-8">
         <button
           type="submit"
-          className="bg-blue-600 text-white font-medium py-3 px-12 rounded-md hover:bg-blue-700 transition-colors flex items-center justify-center"
+          className="flexCenter commonBtn"
           disabled={formLoader}
         >
           {formLoader ? (

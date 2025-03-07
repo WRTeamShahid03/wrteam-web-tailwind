@@ -1,9 +1,13 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import { useRouter } from "next/router";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+
+  
+
   return (
     <div>
       <Header />

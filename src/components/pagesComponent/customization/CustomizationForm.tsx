@@ -5,7 +5,7 @@ import { z } from "zod";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { IoIosCloseCircle } from "react-icons/io";
-import { FiUpload, FiUploadCloud } from "react-icons/fi";
+import { FiUpload } from "react-icons/fi";
 
 // Define Zod schema for form validation
 const formSchema = z.object({
@@ -27,7 +27,7 @@ type FormData = z.infer<typeof formSchema> & {
 // Define a type for form errors
 type FormErrors = Partial<Record<keyof FormData, string>>;
 
-import { Check, ChevronsUpDown } from "lucide-react"
+import { Check } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import {
@@ -43,6 +43,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { FaChevronDown } from "react-icons/fa";
 
 const products = [
   {
@@ -449,7 +450,12 @@ const CustomizationForm = () => {
               >
                 {value
                   ? products.find((item) => item.value === value)?.label
-                  : "Product Name"}
+                  :
+                  <div className="flexCenter !justify-between">
+                    <span>Product Name</span>
+                    <span><FaChevronDown /></span>
+                  </div>
+                }
               </button>
             </PopoverTrigger>
             <PopoverContent className="w-[200px] p-0">

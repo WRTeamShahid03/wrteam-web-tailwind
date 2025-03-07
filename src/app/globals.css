@@ -60,7 +60,7 @@ html body[data-scroll-locked] {
   }
 
   .commonMT {
-    @apply mt-[36px] md:mt-[66px] lg:mt-[100px];
+    @apply mt-[36px] md:mt-[66px] lg:mt-[80px];
   }
 
   .flexCenter {

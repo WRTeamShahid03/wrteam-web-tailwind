@@ -23,7 +23,7 @@ const MobileNav = () => {
                     <SheetTitle className='hidden'>
                     </SheetTitle>
                     <div>
-                        <ul className='flex flex-col items-start gap-6 textPrimary'>
+                        <ul className='flex flex-col items-start gap-6 textPrimary font-semibold'>
                             <SheetClose>
                                 <Link href={'/'} className='relative transition-all duration-300 hover:primaryColor after:contents-[""] after:absolute after:-bottom-1 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:primaryBg'>
                                     Home
