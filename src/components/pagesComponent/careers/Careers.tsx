@@ -131,7 +131,6 @@ export default function Careers() {
                   height={400}
                   sizes="(max-width: 768px) 100vw, 600px"
                   priority
-                  loading="lazy"
                   src={ourValues}
                   alt="Team Collaboration"
                   className="w-full h-auto object-cover"
