@@ -81,3 +81,11 @@ export interface hireUsTechsDataTypes {
     bg: string,
     alt: string
 }
+
+export interface freeSourceCodeTestimonialsDataType {
+    id: number,
+    name: string,
+    reviewFor: string,
+    rating: string,
+    desc: string
+}
