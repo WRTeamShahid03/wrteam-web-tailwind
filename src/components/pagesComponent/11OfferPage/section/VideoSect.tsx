@@ -29,7 +29,7 @@ const VideoSect = () => {
                 <h1 className='text-2xl md:text-4xl lg:text-5xl/[55px] font-[500] [&_span]:primaryColor'>Fed Up with Coding from Scratch? Get 11 Ready-to-Use <span>Source Codes for Just $699!</span></h1>
                 <p className='text-sm sm:text-base md:text-lg'>Why start from zero? Use these ready-made Source codes and speed up your work instantly.</p>
 
-                <div className='videoPlayer w-100'>
+                <div className='videoPlayer w-full'>
                     {/* Wistia video embed */}
                     <div className="wistia_responsive_padding" style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
                         <div className="wistia_responsive_wrapper" style={{ height: '100%', position: 'absolute', top: 0, left: 0, width: '100%' }}>
