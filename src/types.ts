@@ -89,3 +89,25 @@ export interface freeSourceCodeTestimonialsDataType {
     rating: string,
     desc: string
 }
+
+export interface sourceCodeBundlesDataType {
+    id: number,
+    title: string,
+    value: string,
+    leftList: Array<string>,
+    rightList: Array<string>,
+}
+
+export interface offerPageBonusDataType {
+    id: number,
+    img: StaticImageData,
+    title: string,
+    text: string,
+    price: string,
+}
+
+export interface grabBundlesDataType {
+    id: number,
+    text: string,
+    worth: number
+}

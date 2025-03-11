@@ -519,3 +519,15 @@ footer .commonBtn:after {
   border-color: #3b82f6 !important;
   box-shadow: 0 0 0 1px #3b82f6 !important;
 }
+
+.videoSect .videoPlayer video {
+  height: 642px !important;
+  margin-top: 30px;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 767px) {
+  .videoSect .videoPlayer video {
+      height: 100% !important;
+  }
+}

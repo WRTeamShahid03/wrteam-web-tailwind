@@ -1,4 +1,4 @@
-import FreeSourceCode from '@/components/pagesComponent/free-source-code/FreeSourceCode'
+import FreeSourceCode from '@/components/pagesComponent/freeSourceCode/FreeSourceCode'
 import React from 'react'
 
 const Page = () => {
