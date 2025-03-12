@@ -111,3 +111,9 @@ export interface grabBundlesDataType {
     text: string,
     worth: number
 }
+
+export interface marqueTestimonialDataType{
+    id: number,
+    title: string,
+    name: string
+}
