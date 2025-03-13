@@ -1,8 +1,11 @@
-import React from 'react'
+import HeroSection from "./sections/HeroSection"
+
 
 const LayoutOne = () => {
   return (
-    <div>LayoutOne</div>
+    <>
+      <HeroSection />
+    </>
   )
 }
 

@@ -8,6 +8,7 @@
   --text-primary: #283042;
   --text-secondary: #545a68;
   --productPage-primary-color: #2e71fe;
+  --prodDet-primary-foreground: #0F172A
 }
 
 * {
@@ -104,19 +105,19 @@ html body[data-scroll-locked] {
     @apply mb-40 md:mb-48;
   }
 
-  .productPrimaryBg{
+  .productPrimaryBg {
     background: var(--productPage-primary-color);
   }
 
-  .productDetailPrimaryBg{
+  .productDetailPrimaryBg {
     @apply relative after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:productPrimaryBg after:opacity-[0.12] after:-z-[1]
   }
 
-  .productDetailPrimaryColor{
+  .productDetailPrimaryColor {
     color: var(--productPage-primary-color);
   }
 
-  .productDetailPrimaryBorder{
+  .productDetailPrimaryBorder {
     border-color: var(--productPage-primary-color);
   }
 
@@ -440,6 +441,7 @@ footer .commonBtn:after {
 }
 
 
+
 .breadcrumbLine::before {
   animation: breadLines 6s infinite linear;
 }
@@ -560,4 +562,41 @@ footer .commonBtn:after {
   border: none;
   font-weight: 500;
   padding: 8px;
+}
+
+@keyframes miniScreen1 {
+  0% {
+    top: 47%;
+  }
+
+  50% {
+    top: 46%;
+  }
+
+  100% {
+    top: 48%;
+  }
+}
+
+@keyframes miniScreen2 {
+  0% {
+    top: 7%;
+  }
+
+  50% {
+    top: 6%;
+  }
+
+  100% {
+    top: 8%;
+  }
+}
+
+
+
+.animateHeroImgOne {
+  animation: miniScreen1 4s ease-in-out 1s infinite alternate-reverse forwards;
+}
+.animateHeroImgTwo {
+  animation: miniScreen2 4s ease-in-out 1s infinite alternate-reverse forwards;
 }
