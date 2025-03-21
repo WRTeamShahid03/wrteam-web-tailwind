@@ -1,0 +1,96 @@
+import React from "react";
+
+const OrbitPaymentGateways = () => {
+  const data = {
+    payment_gateway_main_image_url: "/images/main-gateway.png",
+    gateways: [
+      { name: "PayPal", image_url: "/images/paypal.png" },
+      { name: "Stripe", image_url: "/images/stripe.png" },
+      { name: "Razorpay", image_url: "/images/razorpay.png" },
+      { name: "Payoneer", image_url: "/images/payoneer.png" },
+      { name: "Google Pay", image_url: "/images/googlepay.png" },
+      { name: "Apple Pay", image_url: "/images/applepay.png" },
+      { name: "Amazon Pay", image_url: "/images/amazonpay.png" },
+      { name: "Venmo", image_url: "/images/venmo.png" },
+    ],
+  };
+
+  // Function to position outer icons
+  const getOuterIconPosition = (index: number) => {
+    const positions = [
+      "top-[-40px] left-[50%]",
+      "top-[50%] right-[-54px]",
+      "bottom-[-54px] left-[50%]",
+      "top-[50%] left-[-40px]",
+    ];
+    return positions[index] || "";
+  };
+
+  // Function to position inner icons
+  const getInnerIconPosition = (index: number) => {
+    const positions = [
+      "top-[13%] left-0",
+      "top-[12%] right-0",
+      "bottom-[8%] left-0",
+      "bottom-[6%] right-0",
+    ];
+    return positions[index] || "";
+  };
+
+  return (
+
+    <section className="container commonMT overflow-hidden">
+      <div className="grid max-1199:grid-cols-1 max-1199:gap-y-16 grid-cols-2">
+        <div className="flexColCenter commonTextGap text-center">
+          <h5 className="sectionTitle">Secure Payment Gateway Integration for Classified Ads Marketplace</h5>
+          <p className="sectionPara">eClassify enables secure payment processing for your online classified marketplace. Accept payments easily using various gateways integrated into the platform.</p>
+        </div>
+        <div>
+          <div className="flex justify-center items-center mb-8 -mt-10">
+            <div className="relative w-[400px] h-[400px]">
+              {/* Center Image */}
+              <div className="absolute top-[46%] left-[46%] w-[100px] h-[100px] rounded-full bg-white flex flex-col justify-center items-center border border-gray-300">
+                <img src={data.payment_gateway_main_image_url} alt="Center" className="w-auto h-auto" />
+              </div>
+
+              {/* Outer Orbit */}
+              <div className="absolute top-[46%] left-[46%] w-[400px] h-[400px] -mt-[150px] -ml-[150px] border-2 border-dotted border-gray-300 rounded-full"></div>
+
+              {/* Inner Orbit */}
+              <div className="absolute top-[52%] left-[52%] w-[250px] h-[250px] -mt-[100px] -ml-[100px] border-2 border-dotted border-gray-300 rounded-full"></div>
+
+              {/* Outer Icons */}
+              <div className="absolute top-[50%] left-[50%] w-[350px] h-[350px] -mt-[150px] -ml-[150px] animate-spin-slow">
+                {data.gateways.slice(0, 4).map((item, index) => (
+                  <div
+                    key={index}
+                    className={`absolute w-[60px] h-[60px] rounded-full bg-white flex flex-col justify-center items-center border border-gray-300 animate-[orbitIcon-rotate_20s_linear_infinite] ${getOuterIconPosition(index)}`}
+                  >
+                    <img src={item.image_url} alt="gatewayIcon" className="w-6 h-6" />
+                    <span className="text-[8px] font-semibold text-center">{item.name}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Inner Icons */}
+              <div className="absolute top-[50%] left-[50%] w-[250px] h-[250px] -mt-[100px] -ml-[100px] animate-spin-slow">
+                {data.gateways.slice(4, 8).map((item, index) => (
+                  <div
+                    key={index}
+                    className={`absolute w-[60px] h-[60px] rounded-full bg-white flex flex-col justify-center items-center border border-gray-300 animate-[orbitIcon-rotate_20s_linear_infinite] ${getInnerIconPosition(index)}`}
+                  >
+                    <img src={item.image_url} alt="gatewayIcon" className="w-6 h-6" />
+                    <span className="text-[8px] font-semibold text-center">{item.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  );
+};
+
+export default OrbitPaymentGateways;

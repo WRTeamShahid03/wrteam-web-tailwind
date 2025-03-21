@@ -5,7 +5,7 @@ import android from '../../../../../assets/images/productDetailPage/layoutOne/An
 import heroSecImg from '../../../../../assets/images/productDetailPage/layoutOne/heroSectionImg.svg'
 
 
-const HeroSection = () => {
+const HeroSection: React.FC = () => {
     return (
         <section className='relative productDetailPrimaryBg pt-20'>
             <div className="flexColCenter">

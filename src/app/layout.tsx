@@ -6,6 +6,11 @@ import Head from "next/head";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+
 // Define the fonts with their respective weights
 const montserrat = Montserrat({
   subsets: ["latin"],

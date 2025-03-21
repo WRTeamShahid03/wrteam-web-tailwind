@@ -5,12 +5,13 @@ import img from '../../../../../assets/images/envatoTestimonial.png'
 import Image from 'next/image';
 import Marquee from "react-fast-marquee";
 import { usePathname } from 'next/navigation';
+import { marqueTestimonialDataType } from '@/types';
 
 const MarqueSect = () => {
 
     const slug = usePathname();
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState<marqueTestimonialDataType[]>([]);
 
     const eClassify = [
         {
@@ -192,17 +193,17 @@ const MarqueSect = () => {
                 play={true}
                 direction="left"
             >
-                <div className='flexCenter gap-6'>
+                <div className='flexCenter gap-6 py-6'>
                     {
                         data?.map((data, index) => {
                             return (
-                                <div key={data.id} className='flexCenter gap-4 shadow-[0_2px_4px_0_#0000001f]'>
-                                        <span className='imgWrapper'><Image src={img} height={0} width={0} alt='cardImg' className='w-[36px] h-[40px]' /></span>
-                                        <div className='flex flex-col gap-1'>
-                                            <span className='title'>{data.title}</span>
-                                            <span className='desc'>{data.name}</span>
-                                        </div>
+                                <div key={data.id} className='flexCenter gap-4 shadow-[0_2px_4px_0_#0000001f] p-3 rounded-[8px]'>
+                                    <Image src={img} height={0} width={0} alt='cardImg' className='w-[36px] h-[40px]' />
+                                    <div className='flex flex-col gap-1'>
+                                        <span className='title font-semibold'>{data.title}</span>
+                                        <span className='desc'>{data.name}</span>
                                     </div>
+                                </div>
                             )
                         })
                     }

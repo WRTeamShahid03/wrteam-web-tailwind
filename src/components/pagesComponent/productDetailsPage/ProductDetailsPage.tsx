@@ -7,8 +7,8 @@ const ProductDetailsPage = () => {
   return (
     <div className=''>
       <ProductDetailHeader />
-      <LayoutOne />
-      {/* <LayoutTwo /> */}
+      {/* <LayoutOne /> */}
+      <LayoutTwo />
     </div>
   )
 }

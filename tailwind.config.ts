@@ -39,7 +39,7 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			screens: {
-				'above-1800': { min: '1800px' },
+				// 'above-1800': { min: '1800px' },
 				'between-1200-1399': {
 					min: '1200px',
 					max: '1399px'
@@ -55,6 +55,14 @@ export default {
 				}
 			},
 			keyframes: {
+				rotate: {
+					from: { transform: "rotate(0deg)" },
+					to: { transform: "rotate(360deg)" },
+				},
+				orbitIconRotate: {
+					from: { transform: "rotate(360deg)" },
+					to: { transform: "rotate(0deg)" },
+				},
 				float: {
 					'0%, 100%': {
 						transform: 'translateY(0)'
@@ -84,7 +92,9 @@ export default {
 				float: 'float 2.5s ease-in-out infinite',
 				'float-delayed': 'float 2.5s ease-in-out 0.5s infinite',
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				"spin-slow": "rotate 20s linear infinite",
+				"orbitIcon-rotate": "orbitIconRotate 20s linear infinite",
 			}
 		},
 		container: {

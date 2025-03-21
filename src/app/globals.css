@@ -8,6 +8,7 @@
   --text-primary: #283042;
   --text-secondary: #545a68;
   --productPage-primary-color: #2e71fe;
+  --productPage-secondary-color: #212121;
   --prodDet-primary-foreground: #0F172A
 }
 
@@ -108,6 +109,13 @@ html body[data-scroll-locked] {
   .productPrimaryBg {
     background: var(--productPage-primary-color);
   }
+  .productSecondaryBg {
+    background: var(--productPage-secondary-color);
+  }
+
+  .productPrimaryColor{
+    color: var(--productPage-primary-color);
+  }
 
   .productDetailPrimaryBg {
     @apply relative after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:productPrimaryBg after:opacity-[0.12] after:-z-[1]
@@ -120,6 +128,7 @@ html body[data-scroll-locked] {
   .productDetailPrimaryBorder {
     border-color: var(--productPage-primary-color);
   }
+  
 
 }
 
@@ -361,6 +370,10 @@ footer .commonBtn:after {
   #renderBullets {
     display: inline-block !important;
   }
+
+  .comesWithSwiper #renderBullets{
+    display: none !important;
+  }
 }
 
 
@@ -599,4 +612,29 @@ footer .commonBtn:after {
 }
 .animateHeroImgTwo {
   animation: miniScreen2 4s ease-in-out 1s infinite alternate-reverse forwards;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitIcon-rotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-rotate {
+  animation: rotate 20s linear infinite;
+}
+.orbit-icon {
+  animation: orbitIcon-rotate 20s linear infinite;
 }
