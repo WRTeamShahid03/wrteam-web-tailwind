@@ -9,10 +9,9 @@ import MorePagesDropdown from '../commonComponents/dropdowns/MorePagesDropdown'
 
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { usePathname } from 'next/navigation'
+import PortfolioPagesDropdown from '../commonComponents/dropdowns/PortfolioPagesDropdown'
 
 const Header = () => {
-  const router = usePathname();
   const navRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(0);
 
@@ -49,9 +48,7 @@ const Header = () => {
                 Products
               </Link>
               <ServicesDropdown />
-              <Link href={'/portfolio'} className='relative transition-all duration-300 hover:primaryColor after:contents-[""] after:absolute after:-bottom-1 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:primaryBg'>
-                Portfolio
-              </Link>
+              <PortfolioPagesDropdown />
               <Link href={'/about-us'} className='relative transition-all duration-300 hover:primaryColor after:contents-[""] after:absolute after:-bottom-1 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:primaryBg'>
                 About Us
               </Link>
