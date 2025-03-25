@@ -85,6 +85,10 @@ const Products = () => {
           </div>
         </div>
 
+        <Link href={'/new-product-details'}>
+        
+        </Link>
+
         <div className='sm:grid-cols-2 grid lg:grid-cols-3 xl:grid-cols-4 gap-6'>
           <div className='flex flex-col gap-4 p-3 rounded-[16px] border-dashed border-[2px] border-[#545a6870] overflow-hidden transition-all duration-300 group cursor-pointer'>
             <div>
