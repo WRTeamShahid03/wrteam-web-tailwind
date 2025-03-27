@@ -11,6 +11,9 @@ import SliderSection from "@/components/pagesComponent/productDetailsPage/newUIP
 import SuccessStatics from "@/components/pagesComponent/productDetailsPage/newUIProductDetailpageLayoutOne/SuccessStatics";
 import WhyChooseUs from "@/components/pagesComponent/productDetailsPage/newUIProductDetailpageLayoutOne/WhyChooseUs";
 import PerfectPlan from "@/components/pagesComponent/productDetailsPage/newUIProductDetailpageLayoutOne/PerfectPlan";
+import FaqSection from "@/components/pagesComponent/productDetailsPage/newUIProductDetailpageLayoutOne/FaqSection";
+import HelpAndSupport from "@/components/pagesComponent/productDetailsPage/newUIProductDetailpageLayoutOne/HelpAndSupport";
+import ReadyToPower from "@/components/pagesComponent/productDetailsPage/newUIProductDetailpageLayoutOne/ReadyToPower";
 export default function Page() {
   return (
     <Layout>
@@ -27,6 +30,9 @@ export default function Page() {
       <ProcessPurchase />
       <ClientReview />
       <PerfectPlan />
+      <FaqSection />
+      <HelpAndSupport />
+      <ReadyToPower />
     </Layout>
   );
 }

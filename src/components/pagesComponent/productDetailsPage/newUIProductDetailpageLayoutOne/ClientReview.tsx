@@ -95,7 +95,7 @@ export default function ClientReview() {
               <SwiperSlide key={review.id} className="h-auto pb-6">
                 <div className="bg-white text-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-full md:h-[250px] relative mb-6">
                   {/* Rating and Category */}
-                  <div className="flex items-center mb-4">
+                  <div className="flex items-center mb-4 flex-wrap">
                     <div className="flex mr-1">
                       {[...Array(5)].map((_, i) => (
                         <FaStar key={i} className="text-yellow-400 text-lg" />
