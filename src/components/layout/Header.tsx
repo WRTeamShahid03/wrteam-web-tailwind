@@ -33,7 +33,7 @@ const Header = () => {
   };
 
   return (
-    <header className={`py-6 sticky top-0 w-full z-[10] ${scroll > (navRef.current?.offsetTop || 0) ? "stickky bg-white shadow-sm" : "!bg-none"}`}>
+    <header className={`py-6 sticky top-0 w-full z-[10] ${scroll > (navRef.current?.offsetTop || 0) ? "stickky !bg-white shadow-sm" : "!bg-none"}`}>
       <div className="container">
         <div ref={navRef} className='flex items-center justify-between nav'>
           <Link href={'/'}>

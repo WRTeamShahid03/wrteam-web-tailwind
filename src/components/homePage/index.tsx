@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
       <Technologies />
       <WorkChain />
       <Exclusive />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Creative />
       <ExclusiveCounter />
       <SuccessStories />

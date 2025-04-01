@@ -1,6 +1,11 @@
+'use client'
 import { Star, StarHalf } from "lucide-react";
 import Image from "next/image";
 import UserIcon from "../../../assets/images/homePage/Icon.svg";
+import { useEffect, useState } from "react";
+import { axiosClient } from "@/lib/api";
+import { Testimonial } from "@/types/testimonial";
+
 // Star rating component to display ratings
 const StarRating = ({ rating }: { rating: number }) => {
   const fullStars = Math.floor(rating);
@@ -24,6 +29,34 @@ const StarRating = ({ rating }: { rating: number }) => {
         />
       ))}
       <span className="ml-1.5 text-sm font-medium">{rating.toFixed(1)}</span>
+    </div>
+  );
+};
+
+// Skeleton loader for review card
+const ReviewCardSkeleton = () => {
+  return (
+    <div className="flex flex-col h-full p-5 bg-white rounded-lg shadow-sm border border-gray-100 animate-pulse">
+      <div className="flex items-center justify-between mb-3">
+        {/* Blue user icon placeholder */}
+        <div className="bg-blue-300 rounded-full w-8 h-8 flex items-center justify-center shrink-0"></div>
+        {/* Stars placeholder */}
+        <div className="bg-gray-200 h-4 w-20 rounded"></div>
+      </div>
+      {/* Text content placeholders */}
+      <div className="space-y-2 mb-5">
+        <div className="bg-gray-200 h-3 w-full rounded"></div>
+        <div className="bg-gray-200 h-3 w-full rounded"></div>
+        <div className="bg-gray-200 h-3 w-full rounded"></div>
+        <div className="bg-gray-200 h-3 w-3/4 rounded"></div>
+      </div>
+      <div className="mt-auto">
+        <div className="border-t border-gray-200 pt-3 mb-2"></div>
+        <div className="space-y-2">
+          <div className="bg-gray-200 h-4 w-24 rounded"></div>
+          <div className="bg-gray-200 h-3 w-32 rounded"></div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -67,71 +100,40 @@ const ReviewCard = ({
 };
 
 export default function ClientReviewSection() {
-  const reviews = [
-    {
-      name: "Akam_Barznji",
-      role: "Code Quality",
-      rating: 4.8,
-      testimonial:
-        "Amazing! The team is amazing. The professionalism is high level. They respond to you whenever you want. They are the high discipline team I have worked with so far. Our plan is building ICS app for this as well.",
-    },
-    {
-      name: "Johnepse",
-      role: "Customer Support",
-      rating: 4.7,
-      testimonial:
-        "I would say WRTeam is one of the most professional teams I dealt with, they do their best to help you with your problems in a short time. Also, the code quality is incredible, I am not a fluent flutter developer and it was easy for me to edit the code.",
-    },
-    {
-      name: "Ajayambaliya",
-      role: "Customer Support",
-      rating: 4.9,
-      testimonial:
-        "Best app ever I seen on codecanyon, and best part is the service..they provide best services.. keep it up team.",
-    },
-    {
-      name: "Abdul Samad",
-      role: "Customer Support",
-      rating: 4.7,
-      testimonial:
-        "I recently had the pleasure of engaging with the customer support team at WRTeam, and I am compelled to share the outstanding experience I had. WRTeam's commitment to providing top-notch customer support.",
-    },
-    {
-      name: "Sanjay",
-      role: "Customer Support",
-      rating: 4.8,
-      testimonial:
-        "The organization with Great post sale customer support. The team are really supportive and expert. I would like to recommend them with open heart.",
-    },
-    {
-      name: "Dafrii",
-      role: "Customer Support",
-      rating: 4.6,
-      testimonial:
-        "I would like to give 10 stars to these guys for the good work they are doing but unfortunately, the Codecanyon only allows me to give up to 5 stars wherever WRTeam deserves more than 5 stars because they are doing a great job.",
-    },
-    {
-      name: "musharoz.kck",
-      role: "Code Quality & Support",
-      rating: 5.0,
-      testimonial:
-        "I'm very satisfied with both the code quality and support. I can easily say that they have the fastest support team I have ever seen here.",
-    },
-    {
-      name: "TPM",
-      role: "Customer Support",
-      rating: 5.0,
-      testimonial:
-        "Can explain of these guys. They are so talented and customer support is beyond the limit. Recommended them to all. They work professionally. Awesome!!",
-    },
-    {
-      name: "ckkapet",
-      role: "Customer Support",
-      rating: 4.7,
-      testimonial:
-        "WRTeam, we are continually impressed by the robustness, performance and scalability of the code developed for our app. Your rigorous standards and best practices deliver optimized, bug-free code of the highest quality.",
-    },
-  ];
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        setIsLoading(true);
+        
+        const response = await axiosClient.get('/api/testimonials', {
+          timeout: 10000
+        });
+        
+        if (response?.data?.data?.data && Array.isArray(response.data.data.data)) {
+          setTestimonials(response.data.data.data);
+        }
+      } catch (error) {
+        // Fallback to empty array is already set in initial state
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
+
+  // Use API data if available, otherwise use fallback data
+  const displayTestimonials = testimonials.length > 0 
+    ? testimonials.map(item => ({
+        name: item.name,
+        role: item.rating_for,
+        rating: item.ratings, 
+        testimonial: item.description
+      }))
+    : [];
 
   return (
     <section className="py-16 bg-gray-50">
@@ -146,15 +148,23 @@ export default function ClientReviewSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {reviews.map((review, index) => (
-            <ReviewCard
-              key={index}
-              name={review.name}
-              role={review.role}
-              rating={review.rating}
-              testimonial={review.testimonial}
-            />
-          ))}
+          {isLoading ? (
+            // Show skeleton cards while loading (same layout as actual cards)
+            [...Array(6)].map((_, index) => (
+              <ReviewCardSkeleton key={`skeleton-${index}`} />
+            ))
+          ) : (
+            // Show actual testimonial cards when data is loaded
+            displayTestimonials.map((review, index) => (
+              <ReviewCard
+                key={index}
+                name={review.name}
+                role={review.role}
+                rating={Number(review.rating)}
+                testimonial={review.testimonial}
+              />
+            ))
+          )}
         </div>
 
         <div className="flex justify-center mt-12">
