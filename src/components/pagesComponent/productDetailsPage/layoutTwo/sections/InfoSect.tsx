@@ -35,7 +35,7 @@ const InfoSect: React.FC = () => {
             desc: 'Fully Customizable'
         },
         {
-            id: 3,
+            id: 4,
             img: buy,
             title: 'One Time Buy',
             desc: 'No Monthly Fees'

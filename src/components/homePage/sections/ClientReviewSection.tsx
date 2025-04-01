@@ -1,6 +1,6 @@
 import { Star, StarHalf } from "lucide-react";
 import Image from "next/image";
-import UserIcon from "@/assets/images/homePage/icon.svg";
+import UserIcon from "../../../assets/images/homePage/Icon.svg";
 // Star rating component to display ratings
 const StarRating = ({ rating }: { rating: number }) => {
   const fullStars = Math.floor(rating);
