@@ -1,4 +1,5 @@
 import { StaticImageData } from "next/image"
+import { ReactNode } from "react"
 
 export interface counterDataTypes {
     img: string,
@@ -112,8 +113,102 @@ export interface grabBundlesDataType {
     worth: number
 }
 
-export interface marqueTestimonialDataType{
+export interface marqueTestimonialDataType {
     id: number,
     title: string,
     name: string
+}
+
+export interface ProductDetails {
+    id: number;
+    theme_color: string;
+    secondary_color: string;
+    style: number;
+    icon_image: string;
+    product_description: [{
+        intro_section: IntroSection;
+        technology_section: TechnologySection;
+        product_element_section: ProductElementSection;
+        feature_section: FeatureSection;
+    }];
+}
+
+// Layout One Types
+export interface IntroSection {
+    title: string;
+    description: string;
+    image: string;
+    image_url: string;
+    other_images: string[];
+    other_images_url: string[];
+}
+
+  
+export interface TechnologySection {
+    title: string;
+    technologies: {
+        image_url: string;
+        name: string;
+    }[];
+}
+
+export interface ProductElementSection {
+    title: string;
+    description: string;
+    elements: ProductElement[];
+}
+
+export interface ProductElement {
+    name: string;             // Element name/title  
+    type: string;             // 'app' or 'panel'
+    details?: string;         // HTML description
+    image: string;            // Image file path  
+    image_url: string;        // Full image URL
+    style: string;            // Style identifier
+    link?: string | null;     // Optional link
+    android_link?: string;    // Optional Android app link
+    ios_link?: string;        // Optional iOS app link
+    panel_link?: string;      // Optional panel link
+}
+ 
+export interface FeatureSection {
+    title: string;
+    description: string;
+    main_image_url: string;
+    features: Feature[];
+}
+
+export interface Feature {
+    name: string;
+    detail: string;
+    image: string;
+    image_url: string;
+}
+
+// Interface for feature data
+export interface FeatureItem {
+    id: number;
+    title: string;
+    description: string;
+    icon: ReactNode;
+  }
+  
+  
+  export interface WhyChooseUsProps {
+    title?: string;
+    description?: string;
+    features?: Feature[];
+    mainImage?: string;
+    data?: FeatureItem[]; // Keep old format for backward compatibility
+  }
+
+export interface LayoutOneProps {
+    productDetails: {
+        product_description: [{
+            intro_section: IntroSection;
+            technology_section: TechnologySection;
+            product_element_section: ProductElementSection;
+            feature_section: FeatureSection;
+        }];
+    };
 }

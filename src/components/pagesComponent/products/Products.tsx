@@ -66,7 +66,7 @@ const ProductsPage = () => {
         setIsLoading(true);
         // Reset to page 1 when filters change
         setCurrentPage(1);
-        
+
         // Add filter parameter to the API call
         const response = await axiosClient.get('/api/products', {
           timeout: 10000,
@@ -76,7 +76,7 @@ const ProductsPage = () => {
             page: 1 // Always start with page 1 on filter changes
           }
         });
-        
+
         if (response?.data?.data?.data && Array.isArray(response.data.data.data)) {
           setProducts(response.data.data.data);
           setTotalProducts(response.data.data.total || 0);
@@ -95,11 +95,11 @@ const ProductsPage = () => {
   // Function to load more products
   const loadMoreProducts = async () => {
     if (currentPage >= lastPage || loadingMore) return;
-    
+
     try {
       setLoadingMore(true);
       const nextPage = currentPage + 1;
-      
+
       const response = await axiosClient.get('/api/products', {
         timeout: 10000,
         params: {
@@ -108,7 +108,7 @@ const ProductsPage = () => {
           page: nextPage
         }
       });
-      
+
       if (response?.data?.data?.data && Array.isArray(response.data.data.data)) {
         // Append the new products to the existing ones
         setProducts(prevProducts => [...prevProducts, ...response.data.data.data]);
@@ -149,53 +149,62 @@ const ProductsPage = () => {
     setCategory(value as CategoryOption);
   };
 
+  // Handle external link click without bubbling to parent
+  const handleBuyClick = (e: React.MouseEvent, url: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <Layout>
       <Breadcrumb title={category} blueText='Products' secondElement='Products' />
       <section className='container mt-8 md:mt-12 space-y-8 commonMB'>
-        <div className='flex items-center justify-between flex-wrap gap-y-4'>
-          <div>
-            <h2 className='font-bold text-xl md:text-2xl'>We found <span className='primaryColor'>{totalProducts}</span> Products</h2>
-          </div>
-          <div className='flex items-center gap-4 md:gap-6 flex-wrap'>
-            <div className='flex items-center gap-2'>
-              <span className='textSecondary hidden lg:block'>Sort By Categories :</span>
-              <div className=''>
-                <Select value={category} onValueChange={handleCategoryChange}>
-                  <SelectTrigger className="w-[135px] sm:w-[180px]">
-                    <SelectValue placeholder="All Products" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value="all">All Products</SelectItem>
-                      <SelectItem value="web">Web</SelectItem>
-                      <SelectItem value="app">App</SelectItem>
-                      <SelectItem value="combo">App + Web (Combined)</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
+        {!isLoading && (
+          <div className='flex items-center justify-between flex-wrap gap-y-4'>
+            <div>
+              <h2 className='font-bold text-xl md:text-2xl'>We found <span className='primaryColor'>{totalProducts}</span> Products</h2>
+            </div>
+            <div className='flex items-center gap-4 md:gap-6 flex-wrap'>
+              <div className='flex items-center gap-2'>
+                <span className='textSecondary hidden lg:block'>Sort By Categories :</span>
+                <div className=''>
+                  <Select value={category} onValueChange={handleCategoryChange}>
+                    <SelectTrigger className="w-[135px] sm:w-[180px]">
+                      <SelectValue placeholder="All Products" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="all">All Products</SelectItem>
+                        <SelectItem value="web">Web</SelectItem>
+                        <SelectItem value="app">App</SelectItem>
+                        <SelectItem value="combo">App + Web (Combined)</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              <div className='flex items-center gap-2'>
+                <span className='textSecondary hidden lg:block'>Sort By :</span>
+                <div className=''>
+                  <Select value={filter} onValueChange={handleFilterChange}>
+                    <SelectTrigger className="w-[135px] sm:w-[180px]">
+                      <SelectValue placeholder="Select Filter" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="default">Select Filter</SelectItem>
+                        <SelectItem value="1">Price: Low To High</SelectItem>
+                        <SelectItem value="2">Price: High To Low</SelectItem>
+                        <SelectItem value="3">Most Popular</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
             </div>
-            <div className='flex items-center gap-2'>
-              <span className='textSecondary hidden lg:block'>Sort By :</span>
-              <div className=''>
-                <Select value={filter} onValueChange={handleFilterChange}>
-                  <SelectTrigger className="w-[135px] sm:w-[180px]">
-                    <SelectValue placeholder="Select Filter" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value="default">Select Filter</SelectItem>
-                      <SelectItem value="1">Price: Low To High</SelectItem>
-                      <SelectItem value="2">Price: High To Low</SelectItem>
-                      <SelectItem value="3">Most Popular</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
           </div>
-        </div>
+        )}
 
         <div className='sm:grid-cols-2 grid lg:grid-cols-3 xl:grid-cols-4 gap-6'>
           {isLoading ? (
@@ -208,18 +217,23 @@ const ProductsPage = () => {
             products.length > 0 ? (
               products.map((product) => (
                 <div key={product?.id} className='flex flex-col gap-4 p-3 rounded-[16px] border-dashed border-[2px] border-[#545a6870] overflow-hidden transition-all duration-300 group cursor-pointer'>
-                  <div>
-                    <Image 
-                      src={product?.banner_image} 
-                      alt={product?.name || 'Product Image'} 
-                      width={500}
-                      height={300}
-                      loader={({ src }) => src}
-                      unoptimized={true}
-                      loading="lazy" 
-                      className='rounded-t-[8px] w-full h-auto aspect-[16/10] object-fill'
-                    />
-                  </div>
+                  {/* Product Main Image - Clickable */}
+                  <Link href={`/product-details/${product?.slug}`}>
+                    <div>
+                      <Image
+                        src={product?.banner_image}
+                        alt={product?.name || 'Product Image'}
+                        width={500}
+                        height={300}
+                        loader={({ src }) => src}
+                        unoptimized={true}
+                        loading="lazy"
+                        className='rounded-t-[8px] w-full h-auto aspect-[16/10] object-fill'
+                      />
+                    </div>
+                  </Link>
+                  
+                  {/* Product Details */}
                   <div className='flex items-center justify-between'>
                     <span className='p-1 sm:p-2 rounded-sm secondaryBg text-white text-sm font-semibold w-max'>
                       {product?.sales} Sales
@@ -233,11 +247,13 @@ const ProductsPage = () => {
                       </span>
                     </div>
                   </div>
-                  <div>
+                  
+                  {/* Product Name - Clickable */}
+                  <Link href={`/product-details/${product?.slug}`}>
                     <h3 className='md:text-lg font-bold line-clamp-2'>
                       {product?.name}
                     </h3>
-                  </div>
+                  </Link>
 
                   <div className='flex items-center justify-between relative after:contents-[""] after:absolute after:top-0 after:-left-2.5 after:w-[120%] after:h-[1px] after:border-dashed after:border-[2px] after:border-[#545a6830] pt-4 md:pt-6'>
                     <div className='flex flex-col gap-1'>
@@ -247,15 +263,14 @@ const ProductsPage = () => {
                       </span>
                     </div>
                     <div className='flexCenter textSecondary p-1 rounded-sm transition-all duration-300 group-hover:bg-[#22a869] group-hover:text-white'>
-                      <a 
-                        href={product?.codecanyon_link} 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title='Buy product' 
+                      {/* Buy Button - Uses custom handler */}
+                      <button
+                        onClick={(e) => handleBuyClick(e, product?.codecanyon_link)}
+                        title='Buy product'
                         className='flexCenter gap-2'
-                      > 
+                      >
                         <span><RiShoppingCartFill /></span>Buy
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -270,8 +285,8 @@ const ProductsPage = () => {
 
         {products.length > 0 && currentPage < lastPage && (
           <div className='flexCenter !mt-12'>
-            <button 
-              className={`commonBtn ${loadingMore ? 'opacity-70' : ''}`} 
+            <button
+              className={`commonBtn ${loadingMore ? 'opacity-70' : ''}`}
               onClick={loadMoreProducts}
               disabled={loadingMore}
             >

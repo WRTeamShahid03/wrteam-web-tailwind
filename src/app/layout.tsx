@@ -2,8 +2,8 @@
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { Montserrat, Poppins, Roboto } from "next/font/google";
-import Head from "next/head";
-import { usePathname, useRouter } from "next/navigation";
+import Script from "next/script";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 // Import Swiper styles
@@ -33,15 +33,10 @@ const roboto = Roboto({
   display: "swap",
 });
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-
+// Client component for initializing background colors
+function BackgroundInitializer() {
   const pathname = usePathname();
-  const [loading, setLoading] = useState<boolean>(false);
-
+  
   useEffect(() => {
     if (pathname === '/free-source-code' || pathname === '/11-offer-page') {
       document.body.style.backgroundColor = "#090909";
@@ -51,21 +46,29 @@ export default function RootLayout({
     } else {
       document.body.style.backgroundColor = "initial";
     }
-
-    if (pathname === '/') {
-      setLoading(false)
-    }
-
   }, [pathname]);
+  
+  return null;
+}
 
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en">
-      <Head>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <title>WR Team</title>
+        <meta name="description" content="WRTeam" />
+        <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-      </Head>
+      </head>
       <body
         className={`${montserrat.variable} ${poppins.variable} ${roboto.variable} font-sans`}
+        suppressHydrationWarning
       >
+        <BackgroundInitializer />
         <Toaster position="top-center" reverseOrder={false} />
         {children}
       </body>

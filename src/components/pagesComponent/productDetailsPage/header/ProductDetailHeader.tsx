@@ -10,7 +10,11 @@ import { usePathname } from 'next/navigation'
 import ServicesDropdown from './dropdowns/ServicesDropdown'
 import MorePagesDropdown from './dropdowns/MorePagesDropdown'
 
-const ProductDetailHeader = () => {
+interface ProductDetailHeaderProps {
+  icon_image?: string;
+}
+
+const ProductDetailHeader = ({ icon_image }: ProductDetailHeaderProps) => {
     const router = usePathname();
     const navRef = useRef<HTMLDivElement | null>(null);
     const [scroll, setScroll] = useState(0);
@@ -37,7 +41,25 @@ const ProductDetailHeader = () => {
             <div className="container">
                 <div ref={navRef} className='flex items-center justify-between nav'>
                     <Link href={'/'}>
-                        <Image src={logo} width={0} height={0} className='w-[175px] md:w-[200px] xl:w-auto h-auto' alt='' />
+                        {icon_image ? (
+                            <Image 
+                                src={icon_image}
+                                width={250}
+                                height={100}
+                                className='!w-[175px] md:!w-[200px] xl:!w-[250px] h-auto' 
+                                alt="WRTeam Logo"
+                                unoptimized={true}
+                                loader={({ src }) => src}
+                            />
+                        ) : (
+                            <Image 
+                                src={logo}
+                                width={250}
+                                height={100}
+                                className='!w-[175px] md:!w-[200px] xl:!w-[250px] h-auto' 
+                                alt="WRTeam Logo"
+                            />
+                        )}
                     </Link>
                     <div className='hidden lg:block'>
                         <ul className='flex items-center lg:gap-6 xl:gap-12 textPrimary font-semibold'>

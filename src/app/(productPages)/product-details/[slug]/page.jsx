@@ -1,12 +1,12 @@
 import React from 'react'
-import ProductDetailsPage from '../../../../components/pagesComponent/productDetailsPage/ProductDetailsPage.tsx'
+import ProductDetailsPage from '@/components/pagesComponent/productDetailsPage/ProductDetailsPage'
 
-const Page = () => {
+export default async function Page({ 
+  params 
+}) {
   return (
     <div>
-      <ProductDetailsPage/>
+      <ProductDetailsPage slug={await params.slug} />
     </div>
-  )
+  );
 }
-
-export default Page
