@@ -30,7 +30,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ title, blueText, secondElement,
             before:contents-[""] before:absolute before:w-[2px] before:h-14 before:right-36 before:top-12 before:primaryBg
             '></div>
             <div className="container space-y-3">
-                <h1 className='sectionTitle'>{title} <span>{blueText}</span></h1>
+                <h1 className='sectionTitle capitalize'>{title} <span>{blueText}</span></h1>
                 <div className='flex items-center gap-2 textSecondary font-semibold text-base md:text-lg flex-wrap sm:flex-nowrap'>
                     <Link href={'/'} title='Home'>Home</Link>
                     <span><AiOutlineDoubleRight size={20} /></span>
