@@ -16,19 +16,19 @@ const StarRating = ({ rating }: { rating: number }) => {
       {[...Array(fullStars)].map((_, i) => (
         <Star
           key={`full-${i}`}
-          className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400 mr-0.5"
+          className="text-[#e2a52d] fill-[#e2a52d] w-5 mr-0.5"
         />
       ))}
       {hasHalfStar && (
-        <StarHalf className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400 mr-0.5" />
+        <StarHalf className="text-[#e2a52d] fill-[#e2a52d] w-5 mr-0.5" />
       )}
       {[...Array(5 - fullStars - (hasHalfStar ? 1 : 0))].map((_, i) => (
         <Star
           key={`empty-${i}`}
-          className="w-3.5 h-3.5 text-yellow-400 mr-0.5"
+          className="text-yellow-400 mr-0.5"
         />
       ))}
-      <span className="ml-1.5 text-sm font-medium">{rating.toFixed(1)}</span>
+      <span className="ml-1.5 font-semibold bg-[#2e71fe1f] py-1 px-4 rounded-full">{rating.toFixed(1)}</span>
     </div>
   );
 };
@@ -74,10 +74,10 @@ const ReviewCard = ({
   testimonial: string;
 }) => {
   return (
-    <div className="flex flex-col h-full p-5 bg-white rounded-lg shadow-sm border border-gray-100">
+    <div className="break-inside-avoid mb-5 flex flex-col h-full p-5 bg-white rounded-2xl border border-[#d8deef]">
       <div className="flex items-center justify-between mb-3">
         {/* Blue user icon at top left */}
-        <div className="bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center shrink-0">
+        <div className="primaryBg rounded-full w-8 h-8 flex items-center justify-center shrink-0">
           <Image src={UserIcon} alt="User Icon" width={15} height={15} />
         </div>
         {/* Stars displayed on the right side */}
@@ -85,14 +85,14 @@ const ReviewCard = ({
           <StarRating rating={rating} />
         </div>
       </div>
-      <p className="text-gray-700 mb-5 text-sm leading-relaxed">
+      <p className="text-gray-700 mb-5 mt-4 leading-relaxed">
         {testimonial}
       </p>
       <div className="mt-auto">
         <div className="border-t border-gray-200 pt-3 mb-2"></div>
-        <div>
-          <h4 className="font-bold text-sm">{name}</h4>
-          <p className="text-xs text-gray-600">For {role}</p>
+        <div className="flex flex-col gap-2">
+          <h4 className="font-semibold text-xl">{name}</h4>
+          <p className="font-medium text-gray-600">For {role}</p>
         </div>
       </div>
     </div>
@@ -107,11 +107,11 @@ export default function ClientReviewSection() {
     const fetchTestimonials = async () => {
       try {
         setIsLoading(true);
-        
+
         const response = await axiosClient.get('/api/testimonials', {
           timeout: 10000
         });
-        
+
         if (response?.data?.data?.data && Array.isArray(response.data.data.data)) {
           setTestimonials(response.data.data.data);
         }
@@ -126,28 +126,24 @@ export default function ClientReviewSection() {
   }, []);
 
   // Use API data if available, otherwise use fallback data
-  const displayTestimonials = testimonials.length > 0 
+  const displayTestimonials = testimonials.length > 0
     ? testimonials.map(item => ({
-        name: item.name,
-        role: item.rating_for,
-        rating: item.ratings, 
-        testimonial: item.description
-      }))
+      name: item.name,
+      role: item.rating_for,
+      rating: item.ratings,
+      testimonial: item.description
+    }))
     : [];
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container">
-        <div className="text-center mb-10">
-          <h2 className="inline-block text-sm font-medium uppercase text-blue-800 bg-blue-50 px-4 py-1 rounded-full mb-2">
-            Read Their Experiences
-          </h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Client Reviews – Hear It in Their Words
-          </h3>
+    <section className="py-16">
+      <div className="container space-y-12 md:space-y-16 lg:space-y-20'">
+        <div className='flexColCenter gap-4 md:gap-6'>
+          <span className='sectionTag text-black'>Read Their Experiences</span>
+          <h3 className='sectionTitle'>Client Reviews - Hear It in Their Words</h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="columns-3 gap-6 md:gap-8">
           {isLoading ? (
             // Show skeleton cards while loading (same layout as actual cards)
             [...Array(6)].map((_, index) => (
