@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
-import Footer from "./Footer";
+// import Footer from "./Footer";
+import NewFooter from "../Footer";
 import { useRouter } from "next/router";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -12,7 +13,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <div>
       <Header />
       {children}
-      <Footer />
+      {/* <Footer /> */}
+      <NewFooter />
     </div>
   );
 };

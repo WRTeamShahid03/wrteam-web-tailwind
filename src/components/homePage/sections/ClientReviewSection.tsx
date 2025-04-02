@@ -143,7 +143,7 @@ export default function ClientReviewSection() {
           <h3 className='sectionTitle'>Client Reviews - Hear It in Their Words</h3>
         </div>
 
-        <div className="columns-3 gap-6 md:gap-8">
+        <div className="max-479:columns-1 max-1199:columns-2 columns-3 gap-6 md:gap-8">
           {isLoading ? (
             // Show skeleton cards while loading (same layout as actual cards)
             [...Array(6)].map((_, index) => (
