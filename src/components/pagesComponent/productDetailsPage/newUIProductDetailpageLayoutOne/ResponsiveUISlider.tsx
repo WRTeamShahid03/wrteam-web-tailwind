@@ -14,6 +14,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { AppWiseFeatureSection } from "@/types";
 
 // Type definitions
 type AppType = "student" | "parents" | "teacher" | "staff";
@@ -61,9 +62,16 @@ const screenLabels: Record<ScreenType, string> = {
  * with tabs for different app UIs (Student, Parents, Teacher, Staff)
  * and a slider showing different screens for each app type
  */
-export default function ResponsiveUISlider() {
-  // State for tracking active tab
-  const [activeTab, setActiveTab] = useState<AppType>("student");
+export default function ResponsiveUISlider({ appFeatures }: { appFeatures?: AppWiseFeatureSection }) {
+  // Get the available apps from the data or use an empty array as fallback
+  const appTabs = appFeatures?.tabs || [];
+  
+  // State for tracking active tab index (default to first tab)
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  
+  // Get the active tab and its features
+  const activeTab = appTabs[activeTabIndex] || null;
+  const features = activeTab?.features || [];
 
   // Swiper ref for controlling slides
   const sliderRef = useRef<SwiperRef>(null);
@@ -79,9 +87,6 @@ export default function ResponsiveUISlider() {
     sliderRef.current.swiper.slideNext();
   }, []);
 
-  // Get current mockups based on active tab
-  const currentMockups = mockupImages[activeTab];
-
   return (
     <div className="bg-[#57cc99] py-16 relative overflow-hidden">
       <div className="container commonMT">
@@ -94,13 +99,14 @@ export default function ResponsiveUISlider() {
           {/* Title and Navigation - Stack on mobile, row on desktop */}
           <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-4 mb-4">
             <h2 className="text-3xl md:text-4xl font-bold text-white text-center md:text-left">
-              Take a Look At Responsive UI design
+              {appFeatures?.title || "Take a Look At Responsive UI design"}
             </h2>
 
             {/* Navigation buttons - Centered on mobile */}
-            <div className="flex items-center justify-center w-full md:w-auto gap-2">
-              <button
-                className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md"
+            {features.length > 3 && (
+              <div className="flex items-center justify-center w-full md:w-auto gap-2">
+                <button
+                  className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md"
                 onClick={handlePrev}
                 aria-label="Previous slide"
               >
@@ -114,51 +120,25 @@ export default function ResponsiveUISlider() {
                 <GrFormNext size={20} />
               </button>
             </div>
+            )}
           </div>
 
           {/* App type tabs - Horizontal scrollable on mobile */}
           <div className="relative mt-4">
             <div className="flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-3 pb-2 md:pb-0 scrollbar-hide">
-              <button
-                className={`px-4 py-3 rounded-md text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
-                  activeTab === "student"
-                    ? "bg-white text-green-600"
-                    : "border-2 border-white bg-transparent text-white hover:bg-green-600/40"
-                }`}
-                onClick={() => setActiveTab("student")}
-              >
-                Student App UI
-              </button>
-              <button
-                className={`px-4 py-3 rounded-md text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
-                  activeTab === "parents"
-                    ? "bg-white text-green-600"
-                    : "border-2 border-white bg-transparent text-white hover:bg-green-600/40"
-                }`}
-                onClick={() => setActiveTab("parents")}
-              >
-                Parents App UI
-              </button>
-              <button
-                className={`px-4 py-3 rounded-md text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
-                  activeTab === "teacher"
-                    ? "bg-white text-green-600"
-                    : "border-2 border-white bg-transparent text-white hover:bg-green-600/40"
-                }`}
-                onClick={() => setActiveTab("teacher")}
-              >
-                Teacher App UI
-              </button>
-              <button
-                className={`px-4 py-3 rounded-md text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
-                  activeTab === "staff"
-                    ? "bg-white text-green-600"
-                    : "border-2 border-white bg-transparent text-white hover:bg-green-600/40"
-                }`}
-                onClick={() => setActiveTab("staff")}
-              >
-                Staff App UI
-              </button>
+              {appTabs.map((tab, index) => (
+                <button
+                  key={index}
+                  className={`px-4 py-3 rounded-md text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
+                    activeTabIndex === index
+                      ? "bg-white text-green-600"
+                      : "border-2 border-white bg-transparent text-white hover:bg-green-600/40"
+                  }`}
+                  onClick={() => setActiveTabIndex(index)}
+                >
+                  {tab.app_name}
+                </button>
+              ))}
             </div>
           </div>
         </div>
@@ -178,22 +158,22 @@ export default function ResponsiveUISlider() {
             modules={[Pagination, Navigation]}
             className="pb-12"
           >
-            {screenTypes.map((type) => (
-              <SwiperSlide key={type} className="h-auto">
+            {features.map((feature, index) => (
+              <SwiperSlide key={index} className="h-auto">
                 <div className="flex flex-col items-center">
                   {/* Mockup image */}
-                  <div className="bg-white rounded-lg p-1 shadow-lg mb-4 w-full  mx-auto">
+                  <div className="bg-white rounded-lg p-1 shadow-lg mb-4 w-full mx-auto">
                     <div className="relative aspect-[9/19] w-full overflow-hidden rounded-md">
                       <Image
-                        src={currentMockups[type]}
-                        alt={`${activeTab} ${type} UI`}
+                        src={feature.image_url}
+                        alt={feature.title}
                         fill
                         className="object-cover"
                       />
                     </div>
                   </div>
                   {/* Label */}
-                  <p className="text-white font-medium">{screenLabels[type]}</p>
+                  <p className="text-white font-medium">{feature.title}</p>
                 </div>
               </SwiperSlide>
             ))}

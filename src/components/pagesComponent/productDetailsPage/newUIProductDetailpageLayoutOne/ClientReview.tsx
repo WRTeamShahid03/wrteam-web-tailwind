@@ -6,6 +6,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
+import { ProductTestimonial } from "@/types";
 
 // Updated review data to match the image
 const reviewsData = [
@@ -46,7 +47,7 @@ const reviewsData = [
   },
 ];
 
-export default function ClientReview() {
+export default function ClientReview({ testimonials }: { testimonials: ProductTestimonial[] }) {
   // Create a ref for the Swiper instance
   const swiperRef = useRef<SwiperType | null>(null);
 
@@ -91,7 +92,7 @@ export default function ClientReview() {
             }}
             className="py-8 pb-24 md:pb-12"
           >
-            {reviewsData.map((review) => (
+            {testimonials.map((review) => (
               <SwiperSlide key={review.id} className="h-auto pb-6">
                 <div className="bg-white text-gray-800 p-6 rounded-lg shadow-lg flex flex-col h-full md:h-[250px] relative mb-6">
                   {/* Rating and Category */}
@@ -102,13 +103,13 @@ export default function ClientReview() {
                       ))}
                     </div>
                     <span className="ml-2 text-sm font-bold text-black">
-                      {review.category}
+                      {review.rating_for}
                     </span>
                   </div>
 
                   {/* Review Text */}
                   <div className="flex-grow">
-                    <p className="text-gray-800 text-base">{review.text}</p>
+                    <p className="text-gray-800 text-base line-clamp-5">{review.review}</p>
                   </div>
 
                   {/* Reviewer Name */}

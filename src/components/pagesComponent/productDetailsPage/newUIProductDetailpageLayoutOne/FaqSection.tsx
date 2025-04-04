@@ -1,60 +1,15 @@
 import { useState, useRef, useEffect } from "react";
+import { ProductFaqs } from "@/types";
 
-// FAQ data structure for better maintainability
-const faqData = [
-  {
-    id: 1,
-    question: "What is recommended server?",
-    answer:
-      "VPS server is required to efficiently manage the multi-tenancy feature, as the system creates and handles separate databases for each school.",
-    category: 1, // Product category
-  },
-  {
-    id: 2,
-    question: "Does it have fee feature and instalment feature?",
-    answer:
-      "Yes, our system includes comprehensive fee management with instalment options, allowing schools to set up flexible payment plans for students.",
-    category: 1, // Product category
-  },
-  {
-    id: 3,
-    question: "What are the payment gateways for fee and subscription payment?",
-    answer:
-      "We support multiple payment gateways including PayPal, Stripe, Razorpay, and other regional payment processors to facilitate easy fee collection.",
-    category: 1, // Product category
-  },
-  {
-    id: 4,
-    question: "Does this system have bank transfer feature?",
-    answer:
-      "Yes, the system supports manual bank transfer options. Administrators can record and verify bank transfers made by parents/students.",
-    category: 2, // Customization category
-  },
-  {
-    id: 5,
-    question: "Does it have live class feature?",
-    answer:
-      "Yes, our platform includes integrated live class functionality with video conferencing capabilities, screen sharing, and recording options.",
-    category: 2, // Customization category
-  },
-];
-
-// Category data
-const categories = [
-  { id: 1, name: "Product", active: true },
-  { id: 2, name: "Customization of products", active: false },
-  // Add more categories as needed
-];
-
-// FAQ Item component for better organization
+// FAQ Item component - keeping the original UI
 const FaqItem = ({
   faq,
   isExpanded,
   toggleFaq,
 }: {
-  faq: (typeof faqData)[0];
+  faq: { id: string; question: string; answer: string };
   isExpanded: boolean;
-  toggleFaq: (id: number) => void;
+  toggleFaq: (id: string) => void;
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -65,7 +20,7 @@ const FaqItem = ({
         onClick={() => toggleFaq(faq.id)}
       >
         <h3 className="font-medium text-gray-800">{faq.question}</h3>
-        <button className="text-green-500 bg-green-50 rounded-full p-1">
+        <button className="productDetailPrimaryColor bg-[--productPage-primary-color]/10 rounded-full p-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -110,42 +65,72 @@ const FaqItem = ({
   );
 };
 
-export default function FaqSection() {
+export default function FaqSection({ faqs }: { faqs?: ProductFaqs }) {
+
   // State to track which FAQ is expanded
-  const [expandedId, setExpandedId] = useState<number>(1);
+  const [expandedId, setExpandedId] = useState<string>("");
   // State to track active category
-  const [activeCategory, setActiveCategory] = useState<number>(1);
+  const [activeCategory, setActiveCategory] = useState<string>("");
   // Filtered FAQs based on category
-  const [filteredFaqs, setFilteredFaqs] = useState(faqData);
+  const [filteredFaqs, setFilteredFaqs] = useState<{id: string; question: string; answer: string}[]>([]);
+  // Categories derived from faqs
+  const [categories, setCategories] = useState<{id: string; name: string}[]>([]);
+
+  // Process the incoming faqs data
+  useEffect(() => {
+    if (!faqs) return;
+
+    // Extract categories and create category objects
+    const categoryList = Object.keys(faqs).map(categoryName => ({
+      id: categoryName,
+      name: categoryName
+    }));
+    
+    setCategories(categoryList);
+    
+    // Set default active category to first one if not set
+    if (!activeCategory && categoryList.length > 0) {
+      setActiveCategory(categoryList[0].id);
+    }
+  }, [faqs, activeCategory]);
 
   // Filter FAQs whenever category changes
   useEffect(() => {
-    let result = faqData;
-
-    // Filter by category
-    if (activeCategory > 0) {
-      result = result.filter((faq) => faq.category === activeCategory);
-    }
-
-    setFilteredFaqs(result);
-
-    // If current expanded FAQ is no longer in filtered list, collapse it
-    if (expandedId > 0 && !result.some((faq) => faq.id === expandedId)) {
-      setExpandedId(0);
-    }
-  }, [activeCategory, expandedId]);
+    if (!faqs || !activeCategory) return;
+    
+    // Get FAQs for the active category
+    const categoryFaqs = faqs[activeCategory];
+    if (!categoryFaqs) return;
+    
+    // Flatten the nested structure and create unique IDs
+    const flattened = categoryFaqs.flat().flat().map((faq, index) => ({
+      id: `${activeCategory}-${index}`,
+      question: faq.question,
+      answer: faq.answer
+    }));
+    
+    setFilteredFaqs(flattened);
+  }, [faqs, activeCategory]);
 
   // Toggle expanded state of FAQ items
-  const toggleFaq = (id: number) => {
-    setExpandedId(expandedId === id ? 0 : id);
+  const toggleFaq = (id: string) => {
+    setExpandedId(expandedId === id ? "" : id);
   };
 
   // Set active category
-  const setCategory = (id: number) => {
-    setActiveCategory(id);
+  const setCategory = (categoryId: string) => {
+    setActiveCategory(categoryId);
     // Reset expanded FAQ when changing category
-    setExpandedId(0);
+    setExpandedId("");
   };
+
+  // Fallback data if needed
+  const fallbackCategories = [
+    { id: "1", name: "Product" },
+    { id: "2", name: "Customization of products" },
+  ];
+
+  const displayCategories = categories.length > 0 ? categories : fallbackCategories;
 
   return (
     <section className="py-16 px-4 md:px-8 lg:px-16 bg-gray-50">
@@ -164,23 +149,12 @@ export default function FaqSection() {
         {/* Mobile Categories (horizontal scrollable tabs) */}
         <div className="md:hidden mb-6 overflow-x-auto pb-2 no-scrollbar">
           <div className="flex whitespace-nowrap">
-            <div
-              className={`p-3 mx-1 rounded-md inline-block cursor-pointer transition-all duration-300 ${
-                activeCategory === 0
-                  ? "bg-green-500 text-white shadow-md"
-                  : "bg-white hover:bg-green-50"
-              }`}
-              onClick={() => setCategory(0)}
-            >
-              <span className="font-medium text-sm">All Categories</span>
-            </div>
-
-            {categories.map((category) => (
+            {displayCategories.map((category) => (
               <div
                 key={category.id}
                 className={`p-3 mx-1 rounded-md inline-block cursor-pointer transition-all duration-300 ${
                   activeCategory === category.id
-                    ? "bg-green-500 text-white shadow-md"
+                    ? "productPrimaryColor text-white shadow-md"
                     : "bg-white hover:bg-green-50"
                 }`}
                 onClick={() => setCategory(category.id)}
@@ -195,25 +169,13 @@ export default function FaqSection() {
         <div className="flex flex-col md:flex-row gap-6">
           {/* Desktop Categories - hidden on mobile */}
           <div className="hidden md:block md:w-1/4">
-            {/* All Categories option */}
-            <div
-              className={`p-4 rounded-md mb-2 cursor-pointer transition-all duration-300 ${
-                activeCategory === 0
-                  ? "bg-green-500 text-white shadow-md"
-                  : "bg-white hover:bg-green-50"
-              }`}
-              onClick={() => setCategory(0)}
-            >
-              <h3 className="font-medium">All Categories</h3>
-            </div>
-
-            {categories.map((category) => (
+            {displayCategories.map((category) => (
               <div
                 key={category.id}
                 className={`p-4 rounded-md mb-2 cursor-pointer transition-all duration-300 ${
                   activeCategory === category.id
-                    ? "bg-green-500 text-white shadow-md"
-                    : "bg-white hover:bg-green-50"
+                    ? "productPrimaryBg text-white shadow-md"
+                    : "bg-white hover:productPrimaryBg hover:text-white"
                 }`}
                 onClick={() => setCategory(category.id)}
               >

@@ -54,7 +54,7 @@ const ProductsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false); // New state for "load more" loading
   const [totalProducts, setTotalProducts] = useState(0);
-  const [filter, setFilter] = useState<FilterOption>("3"); // Default to Most Popular
+  const [filter, setFilter] = useState<FilterOption>("default"); // Default to Most Popular
   const [category, setCategory] = useState<CategoryOption>("all"); // Default to All Products
   const [currentPage, setCurrentPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
@@ -232,7 +232,7 @@ const ProductsPage = () => {
                       />
                     </div>
                   </Link>
-                  
+
                   {/* Product Details */}
                   <div className='flex items-center justify-between'>
                     <span className='p-1 sm:p-2 rounded-sm secondaryBg text-white text-sm font-semibold w-max'>
@@ -247,7 +247,7 @@ const ProductsPage = () => {
                       </span>
                     </div>
                   </div>
-                  
+
                   {/* Product Name - Clickable */}
                   <Link href={`/product-details/${product?.slug}`}>
                     <h3 className='md:text-lg font-bold line-clamp-2'>

@@ -91,26 +91,26 @@ export default function SliderSection({ title, description, elements }: { title:
         <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
           {title}
         </h1>
-        <p className="text-lg text-gray-700 max-w-3xl">
-          {description}
-        </p>
+        <div className="text-lg text-gray-700 max-w-3xl" dangerouslySetInnerHTML={{ __html: description }} />
       </div>
 
       {/* Navigation Buttons - Desktop version (hidden on mobile) */}
-      <div className="hidden md:flex items-center justify-end gap-4 mb-8">
-        <button
-          className="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
-          onClick={handlePrev}
-        >
-          <GrFormPrevious size={24} className="text-white" />
-        </button>
-        <button
-          className="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
-          onClick={handleNext}
-        >
-          <GrFormNext size={24} className="text-white" />
-        </button>
-      </div>
+      {elements?.length > 4 && (
+        <div className="hidden md:flex items-center justify-end gap-4 mb-8">
+          <button
+            className="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
+            onClick={handlePrev}
+          >
+            <GrFormPrevious size={24} className="text-white" />
+          </button>
+          <button
+            className="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
+            onClick={handleNext}
+          >
+            <GrFormNext size={24} className="text-white" />
+          </button>
+        </div>
+      )}
 
 
 
@@ -172,9 +172,9 @@ export default function SliderSection({ title, description, elements }: { title:
                     {card?.type === "app" ? (
                       <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-[160px] sm:max-w-[200px]">
                         {card?.android_link && (
-                          <a 
+                          <a
                             href={card?.android_link}
-                            target="_blank" 
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="w-full py-2 sm:py-3 text-sm sm:text-base bg-green-500 text-white font-medium rounded text-center hover:bg-green-400 transition-colors duration-300"
                           >
@@ -182,9 +182,9 @@ export default function SliderSection({ title, description, elements }: { title:
                           </a>
                         )}
                         {card?.ios_link && (
-                          <a 
+                          <a
                             href={card?.ios_link}
-                            target="_blank" 
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="w-full py-2 sm:py-3 text-sm sm:text-base bg-gray-100 text-gray-800 font-medium rounded text-center hover:bg-white transition-colors duration-300"
                           >
@@ -198,7 +198,7 @@ export default function SliderSection({ title, description, elements }: { title:
                         {(card?.link || card?.panel_link) && (
                           <a
                             href={card?.link || card?.panel_link}
-                            target="_blank" 
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="w-full py-2 sm:py-3 text-sm sm:text-base bg-gray-100 text-gray-800 font-medium rounded text-center hover:bg-white transition-colors duration-300"
                           >

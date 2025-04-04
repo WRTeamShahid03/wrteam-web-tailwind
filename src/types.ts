@@ -119,6 +119,122 @@ export interface marqueTestimonialDataType {
     name: string
 }
 
+// Payment Gateway types
+export interface PaymentGateway {
+    name: string;
+    image: string;
+    image_url: string;
+}
+
+export interface PaymentGatewaySection {
+    title: string;
+    description: string;
+    gateways: PaymentGateway[];
+    image?: string;
+    image_url?: string;
+    payment_gateway_main_image?: string;
+    payment_gateway_main_image_url?: string;
+}
+
+export interface PanelWiseFeatureSection {
+    title: string;
+    description: string;
+    tabs: Tab[];
+}
+
+export interface Tab {
+    tab_name: string;
+    description: string;
+    details: {
+        title: string;
+        short_description: string;
+        image_url: string;
+    }[];
+}
+
+// Panel-wise feature section types
+export interface FeatureDetail {
+    image: string;
+    title: string;
+    short_description: string;
+    image_url: string;
+}
+
+export interface FeatureTab {
+    tab_name: string;
+    details: FeatureDetail[];
+}
+
+export interface ProductHighlightSection {
+    title: string;
+    short_description: string;
+    icon: string;
+    icon_url: string;
+}
+
+// App-wise feature section types
+export interface AppFeature {
+    image: string;
+    title: string;
+    image_url: string;
+}
+
+export interface AppTab {
+    app_name: string;
+    features: AppFeature[];
+}
+
+export interface AppWiseFeatureSection {
+    title: string;
+    tabs: AppTab[];
+}
+
+// Product testimonials types
+export interface ProductTestimonial {
+    id: number;
+    name: string;
+    review: string;
+    ratings: number;
+    product_id: number;
+    created_at: string;
+    updated_at: string;
+    rating_for: string;
+}
+
+// FAQ types
+export interface ProductFaq {
+    question: string;
+    answer: string;
+    category: string;
+}
+
+export interface ProductFaqs {
+    [category: string]: ProductFaq[][][];
+}
+
+export interface HelpAndSupportSection {
+    title: string;
+    description: string;
+    image: string;
+    image_url: string;
+}
+
+// Help section types
+export interface HelpSectionItem {
+    icon?: string;
+    icon_url?: string;
+    name: string;
+    detail: string;
+    link: string;
+}
+
+export interface HelpSection {
+    title: string;
+    description: string;
+    sections: HelpSectionItem[];
+}
+
+// Update ProductDetails to include product_faqs and help_section
 export interface ProductDetails {
     id: number;
     theme_color: string;
@@ -130,7 +246,48 @@ export interface ProductDetails {
         technology_section: TechnologySection;
         product_element_section: ProductElementSection;
         feature_section: FeatureSection;
+        payment_gateway_section: PaymentGatewaySection;
+        panel_wise_feature_section: PanelWiseFeatureSection;
+        product_highlight_section: ProductHighlightSection[];
+        app_wise_feature_section: AppWiseFeatureSection;
+        help_and_support_section: HelpAndSupportSection;
+        help_section: HelpSection;
     }];
+    product_testimonials: ProductTestimonial[];
+    product_faqs: ProductFaqs;
+}
+
+// WhyChooseUs props
+export interface WhyChooseUsProps {
+    title?: string;
+    description?: string;
+    features?: Feature[];
+    mainImage?: string;
+}
+
+// Feature section types
+export interface Feature {
+    name: string;
+    detail: string;
+    image: string;
+    image_url: string;
+}
+
+export interface FeatureSection {
+    title: string;
+    description: string;
+    features: Feature[];
+    main_image?: string;
+    main_image_url?: string;
+}
+
+// PaymentGateway props
+export interface PaymentGatewayProps {
+    title?: string;
+    description?: string;
+    gateways?: PaymentGateway[];
+    image?: string;
+    image_url?: string;
 }
 
 // Layout One Types
@@ -143,7 +300,6 @@ export interface IntroSection {
     other_images_url: string[];
 }
 
-  
 export interface TechnologySection {
     title: string;
     technologies: {
@@ -170,37 +326,13 @@ export interface ProductElement {
     ios_link?: string;        // Optional iOS app link
     panel_link?: string;      // Optional panel link
 }
- 
-export interface FeatureSection {
-    title: string;
-    description: string;
-    main_image_url: string;
-    features: Feature[];
-}
 
-export interface Feature {
-    name: string;
-    detail: string;
-    image: string;
-    image_url: string;
-}
-
-// Interface for feature data
 export interface FeatureItem {
     id: number;
     title: string;
     description: string;
     icon: ReactNode;
-  }
-  
-  
-  export interface WhyChooseUsProps {
-    title?: string;
-    description?: string;
-    features?: Feature[];
-    mainImage?: string;
-    data?: FeatureItem[]; // Keep old format for backward compatibility
-  }
+}
 
 export interface LayoutOneProps {
     productDetails: {

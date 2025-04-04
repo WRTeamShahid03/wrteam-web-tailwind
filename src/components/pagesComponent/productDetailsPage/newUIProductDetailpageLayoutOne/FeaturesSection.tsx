@@ -9,112 +9,12 @@ import type { Swiper as SwiperType } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import { PanelWiseFeatureSection } from "@/types";
 
-// Feature card interface for type safety
-interface FeatureCard {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  bgColor: string;
-  category: string; // Added category field to filter features by tab
-}
+const FeaturesSection = ({ panelFeatures }: { panelFeatures: PanelWiseFeatureSection }) => {
 
-// Sample feature data
-const features: FeatureCard[] = [
-  {
-    id: 1,
-    title: "Exam Timetable",
-    description:
-      "Accessible app exam timetable enables effortless planning and preparation for students and parents.",
-    image:
-      "https://placehold.co/250x200/e0f2fe/1e40af?text=Exam+Timetable&font=roboto",
-    bgColor: "bg-blue-50",
-    category: "student",
-  },
-  {
-    id: 2,
-    title: "Result View",
-    description:
-      "Instantly access exam results in the app, eliminating the need to wait for mailed copies. Check grades conveniently and swiftly.",
-    image:
-      "https://placehold.co/250x200/fee2e2/be123c?text=Result+View&font=roboto",
-    bgColor: "bg-red-50",
-    category: "student",
-  },
-  {
-    id: 3,
-    title: "Elective Subjects",
-    description:
-      "The app lets students choose their elective subjects based on their interests.",
-    image:
-      "https://placehold.co/250x200/fef3c7/92400e?text=Elective+Subjects&font=roboto",
-    bgColor: "bg-amber-50",
-    category: "student",
-  },
-  {
-    id: 4,
-    title: "Attendance Tracking",
-    description:
-      "Teachers can easily mark and track student attendance with our intuitive interface.",
-    image:
-      "https://placehold.co/250x200/d1fae5/065f46?text=Attendance+Tracking&font=roboto",
-    bgColor: "bg-green-50",
-    category: "student",
-  },
-  {
-    id: 5,
-    title: "Class Management",
-    description:
-      "Teachers can easily manage and track student classes with our intuitive interface.",
-    image:
-      "https://placehold.co/250x200/d1fae5/065f46?text=Class+Management&font=roboto",
-    bgColor: "bg-green-50",
-    category: "teacher",
-  },
-  {
-    id: 6,
-    title: "Grade Management",
-    description:
-      "Comprehensive tools for managing and recording student grades and academic progress.",
-    image:
-      "https://placehold.co/250x200/f3e8ff/7e22ce?text=Grade+Management&font=roboto",
-    bgColor: "bg-purple-50",
-    category: "teacher",
-  },
-  {
-    id: 7,
-    title: "School Analytics",
-    description:
-      "Access detailed reports and analytics on school performance and operations.",
-    image:
-      "https://placehold.co/250x200/fef9c3/854d0e?text=School+Analytics&font=roboto",
-    bgColor: "bg-yellow-50",
-    category: "admin",
-  },
-  {
-    id: 8,
-    title: "Multi-School Management",
-    description:
-      "Oversee multiple schools from a central dashboard with comprehensive reporting.",
-    image:
-      "https://placehold.co/250x200/e0e7ff/4338ca?text=Multi-School&font=roboto",
-    bgColor: "bg-indigo-50",
-    category: "superadmin",
-  },
-];
-
-// Tab categories
-const tabs = [
-  { id: "student", label: "Student & Parents App" },
-  { id: "teacher", label: "Teacher & Staff App" },
-  { id: "admin", label: "Admin panel" },
-  { id: "superadmin", label: "Super Admin" },
-];
-
-const FeaturesSection = () => {
-  // State to track the active tab
-  const [activeTab, setActiveTab] = useState("student");
+  // State to track the active tab index
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
   // State to track navigation button status
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
@@ -142,18 +42,9 @@ const FeaturesSection = () => {
     return () => window.removeEventListener("resize", checkIfMobile);
   }, []);
 
-  // Filter features based on active tab
-  const filteredFeatures = features.filter(
-    (feature) => feature.category === activeTab
-  );
-
-  // Get active tab label
-  const activeTabLabel =
-    tabs.find((tab) => tab.id === activeTab)?.label || "Select App";
-
   // Handle tab change - reset swiper and navigation states
-  const handleTabChange = (tabId: string) => {
-    setActiveTab(tabId);
+  const handleTabChange = (tabIndex: number) => {
+    setActiveTabIndex(tabIndex);
     setIsBeginning(true);
     setIsEnd(false);
     setIsDropdownOpen(false);
@@ -164,34 +55,37 @@ const FeaturesSection = () => {
     }
   };
 
+  // Get current tab details
+  const currentTab = panelFeatures?.tabs?.[activeTabIndex] || null;
+  const features = currentTab?.details || [];
+
   return (
     <section className="py-8 md:py-16 bg-emerald-500">
       <div className="container">
         {/* Heading */}
         <div className="text-center mb-8 md:mb-10">
           <h2 className="text-2xl md:text-4xl font-bold text-white mb-2 md:mb-3">
-            Check Out All the Cool Features of eSchool SaaS
+            {panelFeatures?.title || "Check Out All the Cool Features"}
           </h2>
-          <p className="text-white text-sm md:text-base max-w-3xl mx-auto">
-            See how this online school management system makes school life
-            easier! Manage student data, classroom activities, and teacher
-            workflows all in one place.
-          </p>
+          <div 
+            className="text-white text-sm md:text-base max-w-3xl mx-auto"
+            dangerouslySetInnerHTML={{ __html: panelFeatures?.description || "" }}
+          />
         </div>
 
         {/* Tab buttons - Desktop */}
         <div className="hidden md:flex flex-wrap justify-center gap-4 mb-12">
-          {tabs.map((tab) => (
+          {panelFeatures?.tabs?.map((tab, index) => (
             <button
-              key={tab.id}
-              onClick={() => handleTabChange(tab.id)}
+              key={index}
+              onClick={() => handleTabChange(index)}
               className={`font-medium py-2.5 px-6 rounded-md transition-colors ${
-                activeTab === tab.id
+                activeTabIndex === index
                   ? "bg-white text-gray-800"
                   : "bg-transparent text-white border border-white hover:bg-emerald-600"
               }`}
             >
-              {tab.label}
+              {tab.tab_name}
             </button>
           ))}
         </div>
@@ -202,7 +96,7 @@ const FeaturesSection = () => {
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             className="w-full flex items-center justify-between bg-white text-gray-800 font-medium py-3 px-4 rounded-md shadow"
           >
-            <span>{activeTabLabel}</span>
+            <span>{currentTab?.tab_name || "Select Tab"}</span>
             <svg
               className={`w-5 h-5 transition-transform ${
                 isDropdownOpen ? "rotate-180" : ""
@@ -223,15 +117,15 @@ const FeaturesSection = () => {
 
           {isDropdownOpen && (
             <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-md shadow-lg z-20">
-              {tabs.map((tab) => (
+              {panelFeatures?.tabs?.map((tab, index) => (
                 <button
-                  key={tab.id}
-                  onClick={() => handleTabChange(tab.id)}
+                  key={index}
+                  onClick={() => handleTabChange(index)}
                   className={`w-full text-left py-3 px-4 hover:bg-gray-100 transition-colors ${
-                    activeTab === tab.id ? "bg-gray-100 font-medium" : ""
+                    activeTabIndex === index ? "bg-gray-100 font-medium" : ""
                   }`}
                 >
-                  {tab.label}
+                  {tab.tab_name}
                 </button>
               ))}
             </div>
@@ -279,16 +173,16 @@ const FeaturesSection = () => {
               setIsEnd(swiper.isEnd);
             }}
           >
-            {filteredFeatures.length > 0 ? (
-              filteredFeatures.map((feature) => (
-                <SwiperSlide key={feature.id} className="h-auto">
+            {features.length > 0 ? (
+              features.map((feature, index) => (
+                <SwiperSlide key={index} className="h-auto">
                   <div
-                    className={`rounded-lg overflow-hidden ${feature.bgColor} shadow-md w-full`}
+                    className="rounded-lg overflow-hidden bg-gray-50 shadow-md w-full"
                     style={{ height: isMobile ? "320px" : "350px" }}
                   >
                     <div className="h-36 md:h-48 p-4 md:p-6 flex items-center justify-center">
                       <Image
-                        src={feature.image}
+                        src={feature.image_url}
                         alt={feature.title}
                         width={isMobile ? 200 : 250}
                         height={isMobile ? 160 : 200}
@@ -303,7 +197,7 @@ const FeaturesSection = () => {
                         {feature.title}
                       </h3>
                       <p className="text-gray-700 text-xs md:text-sm overflow-hidden line-clamp-3">
-                        {feature.description}
+                        {feature.short_description}
                       </p>
                     </div>
                   </div>
