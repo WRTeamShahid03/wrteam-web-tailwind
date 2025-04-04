@@ -20,7 +20,6 @@ interface LayoutOneProps {
 }
 
 const LayoutOne = ({ productDetails }: LayoutOneProps) => {
-  console.log("productDetails", productDetails)
   const productDescription = productDetails.product_description[0]
   const productTestimonial = productDetails.product_testimonials
   const layoutOneDetails = productDescription
@@ -32,7 +31,6 @@ const LayoutOne = ({ productDetails }: LayoutOneProps) => {
   const panelWiseFeatureSection = layoutOneDetails?.panel_wise_feature_section
   const productHighlightSection = layoutOneDetails?.product_highlight_section
   const appWiseFeatureSection = layoutOneDetails?.app_wise_feature_section
-  const helpAndSupportSection = layoutOneDetails?.help_and_support_section
   const helpSection = layoutOneDetails?.help_section
 
   const productTestimonials = productTestimonial || []
