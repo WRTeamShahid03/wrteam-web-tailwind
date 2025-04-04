@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, FormEvent, useRef } from "react";
-import { z } from "zod";
+import React, { useState, FormEvent, useRef } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import {
@@ -11,51 +10,45 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
+import { toast } from "react-hot-toast";
+import axios from "axios";
 
-// Define Zod schema for form validation
-const formSchema = z.object({
-    fullName: z.string().min(1, "Full name is required"),
-    email: z.string().min(1, "Email is required").email("Invalid email format"),
-    contactNumber: z
-        .string()
-        .min(8, "Contact number is too short")
-        .max(20, "Contact number is too long"),
-    message: z.string().min(1, "Message is required"),
-    budget: z.string().min(1, "Please select a budget"),
-});
+// Form data interface
+interface FormData {
+    name: string;
+    email: string;
+    phone: string;
+    budget: string;
+    message: string;
+}
 
-// Define a type for form data based on the schema
-type FormData = z.infer<typeof formSchema>
-
-// Define a type for form errors
-type FormErrors = Partial<Record<keyof FormData, string>>;
-
-import { FaChevronDown } from "react-icons/fa";
+// Form errors interface
+interface FormErrors {
+    name?: string;
+    email?: string;
+    phone?: string;
+    budget?: string;
+    message?: string;
+}
 
 const HireUsForm = () => {
     // Form state
     const [formData, setFormData] = useState<FormData>({
-        fullName: "",
+        name: "",
         email: "",
-        contactNumber: "",
+        phone: "",
         budget: "",
         message: "",
     });
 
     // Form errors state
     const [errors, setErrors] = useState<FormErrors>({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitSuccess, setSubmitSuccess] = useState(false);
 
     // State for country code
     const [selectedCountryCode, setSelectedCountryCode] = useState("");
-
-    // State for file upload
-    const [fileDataUrl, setFileDataUrl] = useState<string | null>(null);
-    const [inputKey, setInputKey] = useState<number>(Date.now());
-    const [formLoader, setFormLoader] = useState<boolean>(false);
-
-    const [open, setOpen] = useState<boolean>(false)
-    const [value, setValue] = useState<string>("")
 
     // Form ref
     const form = useRef<HTMLFormElement>(null);
@@ -90,104 +83,122 @@ const HireUsForm = () => {
     ) => {
         setFormData({
             ...formData,
-            contactNumber: value,
+            phone: value,
         });
 
         setSelectedCountryCode(country?.dialCode || "");
 
         // Clear error when user types
-        if (errors.contactNumber) {
+        if (errors.phone) {
             setErrors({
                 ...errors,
-                contactNumber: "",
+                phone: "",
             });
         }
     };
 
-    // Function to return formatted phone number
-    const getFormattedPhoneNumber = () => {
-        if (formData.contactNumber.startsWith(selectedCountryCode)) {
-            return formData.contactNumber.slice(selectedCountryCode.length);
-        }
-        return formData.contactNumber;
-    };
-
-    // Validate form using Zod
+    // Validate form
     const validateForm = () => {
-        try {
-            // Get formatted phone number for submission
-            const formattedPhoneNumber = getFormattedPhoneNumber();
-            const finalNum = `+${selectedCountryCode} ${formattedPhoneNumber}`;
-
-            // Create a copy of form data with formatted phone number
-            const formDataToValidate = {
-                ...formData,
-                contactNumber: finalNum,
-            };
-
-            // Validate form data with Zod schema
-            formSchema.parse(formDataToValidate);
-
-            // Clear all errors if validation passes
-            setErrors({});
-            return true;
-        } catch (error) {
-            if (error instanceof z.ZodError) {
-                // Convert Zod errors to our error format
-                const newErrors: FormErrors = {};
-                error.errors.forEach((err) => {
-                    if (err.path) {
-                        const fieldName = err.path[0] as keyof FormErrors;
-                        newErrors[fieldName] = err.message;
-                    }
-                });
-
-                setErrors(newErrors);
-            }
-            return false;
+        const newErrors: FormErrors = {};
+        
+        // Validate name
+        if (!formData.name.trim()) {
+            newErrors.name = "Name is required";
         }
+        
+        // Validate email
+        if (!formData.email.trim()) {
+            newErrors.email = "Email is required";
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            newErrors.email = "Invalid email format";
+        }
+        
+        // Validate phone
+        if (!formData.phone.trim()) {
+            newErrors.phone = "Phone number is required";
+        } else if (formData.phone.length < 8) {
+            newErrors.phone = "Phone number is too short";
+        }
+        
+        // Validate budget
+        if (!formData.budget) {
+            newErrors.budget = "Please select a budget";
+        }
+        
+        // Validate message
+        if (!formData.message.trim()) {
+            newErrors.message = "Message is required";
+        }
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
     };
 
     // Handle form submission
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
+        console.log(formData,'formData');
+
         if (validateForm()) {
-            setFormLoader(true);
+            try {
+                setIsSubmitting(true);
+                
+                // Format phone with country code if needed
+                const formattedPhone = formData.phone.startsWith('+') 
+                    ? formData.phone 
+                    : `+${formData.phone}`;
+                
+                // Create form data for submission
+                const formDataToSubmit = new FormData();
+                formDataToSubmit.append('name', formData.name);
+                formDataToSubmit.append('email', formData.email);
+                formDataToSubmit.append('phone', formattedPhone);
+                formDataToSubmit.append('budget', formData.budget);
+                formDataToSubmit.append('message', formData.message);
 
-            // Get formatted phone number for submission
-            const formattedPhoneNumber = getFormattedPhoneNumber();
-            const finalNum = `+${selectedCountryCode} ${formattedPhoneNumber}`;
+                console.log(formDataToSubmit,'formDataToSubmit');
+                
+                // Submit form data to API
+                const response = await axios.post('/api/hire-us', formDataToSubmit);
 
-            // Create a copy of form data with formatted phone number for submission
-            const formDataToSubmit = {
-                ...formData,
-                contactNumber: finalNum,
-            };
-
-            // Form is valid, submit data
-            console.log("Form submitted:", formDataToSubmit);
-
-            // Here you would typically make an API call to submit the form
-            // Similar to your careerMailApi call in the old code
-
-            // Simulate API call with timeout
-            setTimeout(() => {
-                // Reset form after submission
-                setFormData({
-                    fullName: "",
-                    email: "",
-                    contactNumber: "",
-                    message: "",
-                    budget: "",
-                });
-
-                // Show success message
-                alert("Application submitted successfully!");
-
-                // Reset loader
-                setFormLoader(false);
-            }, 1000);
+                console.log(response,'response');
+                
+                if (response.data.error === false) {
+                    // Show success message
+                    setSubmitSuccess(true);
+                    toast.success("Your request has been submitted successfully!");
+                    
+                    // Reset form
+                    setFormData({
+                        name: "",
+                        email: "",
+                        phone: "",
+                        budget: "",
+                        message: "",
+                    });
+                    
+                    // Reset form fields
+                    if (form.current) {
+                        form.current.reset();
+                    }
+                } else {
+                    toast.error("Something went wrong. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                toast.error("Failed to submit your request. Please try again later.");
+            } finally {
+                setIsSubmitting(false);
+            }
+        } else {
+            // Scroll to the first error
+            const firstErrorField = Object.keys(errors)[0];
+            const element = document.getElementById(firstErrorField);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                element.focus();
+            }
         }
     };
 
@@ -198,16 +209,15 @@ const HireUsForm = () => {
                 <div>
                     <input
                         type="text"
-                        id="fullName"
-                        name="fullName"
-                        value={formData.fullName}
+                        id="name"
+                        name="name"
+                        value={formData.name}
                         onChange={handleChange}
                         placeholder="Your Full Name"
-                        className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.fullName ? "border-red-500" : "border-gray-300"
-                            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+                        className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.name ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500`}
                     />
-                    {errors.fullName && (
-                        <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
+                    {errors.name && (
+                        <p className="text-red-500 text-sm mt-1">{errors.name}</p>
                     )}
                 </div>
 
@@ -220,8 +230,7 @@ const HireUsForm = () => {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="Your Email"
-                        className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.email ? "border-red-500" : "border-gray-300"
-                            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+                        className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.email ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500`}
                     />
                     {errors.email && (
                         <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -232,38 +241,34 @@ const HireUsForm = () => {
                 <div>
                     <PhoneInput
                         country={"in"} // Default country
-                        value={formData.contactNumber}
+                        value={formData.phone}
                         onChange={handlePhoneChange}
                         inputProps={{
-                            name: "contactNumber",
-                            id: "contactNumber",
+                            name: "phone",
+                            id: "phone",
                             required: true,
-                            className: `w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.contactNumber ? "border-red-500" : "border-gray-300"
-                                } focus:outline-none focus:ring-1 focus:ring-blue-500`,
+                            className: `w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.phone ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500`,
                         }}
-                        containerClass={`${errors.contactNumber ? "phone-input-error" : ""
-                            }`}
-                        // Add custom styles to match your form design
+                        containerClass={`${errors.phone ? "phone-input-error" : ""}`}
                         containerStyle={{ width: "100%" }}
                         inputStyle={{ width: "100%", height: "48px" }}
                     />
-                    {errors.contactNumber && (
-                        <p className="text-red-500 text-sm mt-1">{errors.contactNumber}</p>
+                    {errors.phone && (
+                        <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
                     )}
                 </div>
 
-                {/* Buget Field */}
+                {/* Budget Field */}
                 <div>
                     <Select onValueChange={(value) => handleChange({ name: "budget", value })}>
-                        <SelectTrigger className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.message ? "border-red-500" : "border-gray-300"
-                            } focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-none`}>
+                        <SelectTrigger className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.budget ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-none`}>
                             <SelectValue placeholder="Your Budget" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectGroup >
-                                <SelectItem value="Below-$1000">Below-$1000</SelectItem>
+                            <SelectGroup>
+                                <SelectItem value="Below-$1000">Below $1000</SelectItem>
                                 <SelectItem value="$1000-$5000">$1000-$5000</SelectItem>
-                                <SelectItem value="Above-$5000">Above-$5000</SelectItem>
+                                <SelectItem value="Above-$5000">Above $5000</SelectItem>
                             </SelectGroup>
                         </SelectContent>
                     </Select>
@@ -272,9 +277,7 @@ const HireUsForm = () => {
                     )}
                 </div>
 
-
-
-                {/* message Field */}
+                {/* Message Field */}
                 <div>
                     <textarea
                         id="message"
@@ -283,24 +286,22 @@ const HireUsForm = () => {
                         rows={10}
                         onChange={handleChange}
                         placeholder="Your message"
-                        className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.message ? "border-red-500" : "border-gray-300"
-                            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+                        className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.message ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500`}
                     />
                     {errors.message && (
                         <p className="text-red-500 text-sm mt-1">{errors.message}</p>
                     )}
                 </div>
-
             </div>
 
             {/* Submit Button */}
-            <div className="flex justify-center mt-8">
+            <div className="flex justify-center mt-8 w-full">
                 <button
                     type="submit"
-                    className="commonBtn commonBtnSecondaryBg !w-full"
-                    disabled={formLoader}
+                    className="commonBtn !w-full"
+                    disabled={isSubmitting}
                 >
-                    {formLoader ? (
+                    {isSubmitting ? (
                         <span className="flexCenter">
                             <svg
                                 className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
@@ -325,12 +326,19 @@ const HireUsForm = () => {
                             Processing...
                         </span>
                     ) : (
-                        "Submit"
+                        "Submit Request"
                     )}
                 </button>
             </div>
+
+            {/* Success Message */}
+            {submitSuccess && (
+                <div className="bg-green-100 text-green-800 p-4 rounded-md">
+                    Thank you for your interest in hiring us! Your request has been received, and we'll get back to you shortly.
+                </div>
+            )}
         </form>
     );
-}
+};
 
-export default HireUsForm
+export default HireUsForm;

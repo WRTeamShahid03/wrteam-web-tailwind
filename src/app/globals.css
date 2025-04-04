@@ -638,3 +638,41 @@ footer .commonBtn:after {
 .orbit-icon {
   animation: orbitIcon-rotate 20s linear infinite;
 }
+
+
+
+/* In your global CSS file */
+.rich-text-content {
+  width: 100%;
+}
+
+/* Reset Tailwind's default styling for HTML elements within rich-text-content */
+.rich-text-content h1,
+.rich-text-content h2,
+.rich-text-content h3,
+.rich-text-content h4,
+.rich-text-content h5,
+.rich-text-content h6,
+.rich-text-content p,
+.rich-text-content ul,
+.rich-text-content ol,
+.rich-text-content li,
+.rich-text-content blockquote,
+.rich-text-content pre,
+.rich-text-content table,
+.rich-text-content tr,
+.rich-text-content td,
+.rich-text-content th {
+  all: revert; /* This resets all properties to their natural values */
+}
+
+/* Ensure images don't exceed container width */
+.rich-text-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure proper spacing between elements */
+.rich-text-content > *:not(:last-child) {
+  margin-bottom: 1em;
+}

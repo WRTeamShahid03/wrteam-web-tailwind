@@ -215,7 +215,7 @@ const NewFooter = () => {
             <h3 className="text-white font-medium mb-4">Hire & Trust - Available on Top Platforms with Verified Reviews</h3>
             <div className="flex flex-wrap gap-3 items-center">
               <div className='bg-[#2a2e35] rounded-[12px] p-3'>
-                <Image src={fiver} width={80} height={24} />
+                <Image src={fiver} width={80} height={24} alt='fiverr'/>
               </div>
 
               <div className='bg-[#2a2e35] rounded-[12px] p-3'>

@@ -1,35 +1,16 @@
 "use client";
 
-import { useState, FormEvent, useRef } from "react";
-import { z } from "zod";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
-import { IoIosCloseCircle } from "react-icons/io";
+import React, { useState, useRef, FormEvent } from 'react'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 import { FiUpload } from "react-icons/fi";
-
-// Define Zod schema for form validation
-const formSchema = z.object({
-  fullName: z.string().min(1, "Full name is required"),
-  email: z.string().min(1, "Email is required").email("Invalid email format"),
-  contactNumber: z
-    .string()
-    .min(8, "Contact number is too short")
-    .max(20, "Contact number is too long"),
-  explanation: z.string().min(1, "Explanation is required"),
-  product: z.string().min(1, "Please select a product"),
-});
-
-// Define a type for form data based on the schema
-type FormData = z.infer<typeof formSchema> & {
-  img: File | null;
-};
-
-// Define a type for form errors
-type FormErrors = Partial<Record<keyof FormData, string>>;
-
-import { Check } from "lucide-react"
-
-import { cn } from "@/lib/utils"
+import { IoIosCloseCircle } from "react-icons/io";
+import { FaChevronDown } from "react-icons/fa";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Command,
   CommandEmpty,
@@ -37,14 +18,33 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
-import { FaChevronDown } from "react-icons/fa";
+} from "@/components/ui/command";
+import { Check } from "lucide-react";
+import { cn } from "@/lib/utils";
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
+// Form data types
+interface FormData {
+  user_name: string;
+  email: string;
+  contact: string;
+  requirement_explanation: string;
+  product_name: string;
+  requirement_file: File | null;
+}
+
+// Form errors interface
+interface FormErrors {
+  user_name?: string;
+  email?: string;
+  contact?: string;
+  requirement_explanation?: string;
+  product_name?: string;
+  requirement_file?: string;
+}
+
+// Product options for dropdown
 const products = [
   {
     value: 'eSchool SAAS',
@@ -167,12 +167,12 @@ const products = [
 const CustomizationForm = () => {
   // Form state
   const [formData, setFormData] = useState<FormData>({
-    fullName: "",
+    user_name: "",
     email: "",
-    contactNumber: "",
-    explanation: "",
-    product: "",
-    img: null,
+    contact: "",
+    requirement_explanation: "",
+    product_name: "",
+    requirement_file: null,
   });
 
   // Form errors state
@@ -185,6 +185,7 @@ const CustomizationForm = () => {
   const [fileDataUrl, setFileDataUrl] = useState<string | null>(null);
   const [inputKey, setInputKey] = useState<number>(Date.now());
   const [formLoader, setFormLoader] = useState<boolean>(false);
+  const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
 
   const [open, setOpen] = useState<boolean>(false)
   const [value, setValue] = useState<string>("")
@@ -222,69 +223,70 @@ const CustomizationForm = () => {
   ) => {
     setFormData({
       ...formData,
-      contactNumber: value,
+      contact: value,
     });
 
     setSelectedCountryCode(country?.dialCode || "");
 
     // Clear error when user types
-    if (errors.contactNumber) {
+    if (errors.contact) {
       setErrors({
         ...errors,
-        contactNumber: "",
+        contact: "",
       });
     }
   };
 
-  // Function to return formatted phone number
-  const getFormattedPhoneNumber = () => {
-    if (formData.contactNumber.startsWith(selectedCountryCode)) {
-      return formData.contactNumber.slice(selectedCountryCode.length);
-    }
-    return formData.contactNumber;
-  };
-
-  // Handle file upload
+  // Handle file change
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
 
-      // Check if a file is selected
-      if (file) {
-        const fileType = file.type;
+    const file = files[0];
+    const maxSize = 5 * 1024 * 1024; // 5MB
 
-        // Check if file type is allowed
-        if (
-          fileType === "image/png" ||
-          fileType === "image/jpeg" ||
-          fileType === "application/pdf"
-        ) {
-          const reader = new FileReader();
+    // Check file size
+    if (file.size > maxSize) {
+      setErrors({
+        ...errors,
+        requirement_file: "File size must be less than 5MB",
+      });
+      return;
+    }
 
-          reader.onloadend = () => {
-            // After reading the file, set it in the state
+    // Check file type
+    const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+    if (!allowedTypes.includes(file.type)) {
+      setErrors({
+        ...errors,
+        requirement_file: "File must be an image (JPG, PNG) or PDF",
+      });
+      return;
+    }
+
+    // Set file to form data
             setFormData({
               ...formData,
-              img: file,
+      requirement_file: file,
             });
-            setFileDataUrl(reader.result as string);
 
-            // Clear error
+    // Clear errors
+    if (errors.requirement_file) {
             setErrors({
               ...errors,
-              img: "",
-            });
-          };
+        requirement_file: "",
+      });
+    }
 
-          // Read the file as a data URL
+    // Preview image if it's an image
+    if (file.type.includes('image')) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setFileDataUrl(reader.result as string);
+      };
           reader.readAsDataURL(file);
         } else {
-          setErrors({
-            ...errors,
-            img: "Only PNG, JPG and PDF files are supported",
-          });
-        }
-      }
+      setFileDataUrl(null);
     }
   };
 
@@ -292,105 +294,102 @@ const CustomizationForm = () => {
   const handleFileRemove = () => {
     setFormData({
       ...formData,
-      img: null,
+      requirement_file: null,
     });
     setFileDataUrl(null);
-    setInputKey(Date.now()); // Reset the file input
-    setErrors({
-      ...errors,
-      img: "",
-    });
+    setInputKey(Date.now()); // Reset file input
   };
 
-  // Validate form using Zod
+  // Form validation
   const validateForm = () => {
-    try {
-      // Get formatted phone number for submission
-      const formattedPhoneNumber = getFormattedPhoneNumber();
-      const finalNum = `+${selectedCountryCode} ${formattedPhoneNumber}`;
+    const newErrors: FormErrors = {};
 
-      // Create a copy of form data with formatted phone number
-      const formDataToValidate = {
-        ...formData,
-        contactNumber: finalNum,
-      };
-
-      // Validate form data with Zod schema
-      formSchema.parse(formDataToValidate);
-
-      // Additional validation for img
-      if (!formData.img) {
-        setErrors({
-          ...errors,
-          img: "Please upload your img",
-        });
-        return false;
-      }
-
-      // Clear all errors if validation passes
-      setErrors({});
-      return true;
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        // Convert Zod errors to our error format
-        const newErrors: FormErrors = {};
-        error.errors.forEach((err) => {
-          if (err.path) {
-            const fieldName = err.path[0] as keyof FormErrors;
-            newErrors[fieldName] = err.message;
-          }
-        });
-
-        setErrors(newErrors);
-      }
-      return false;
+    // Validate user name
+    if (!formData.user_name.trim()) {
+      newErrors.user_name = "Name is required";
     }
+
+    // Validate email
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email is invalid";
+    }
+
+    // Validate contact
+    if (!formData.contact.trim()) {
+      newErrors.contact = "Contact number is required";
+    } else if (formData.contact.length < 10) {
+      newErrors.contact = "Contact number is invalid";
+    }
+
+    // Validate product
+    if (!formData.product_name.trim()) {
+      newErrors.product_name = "Please select a product";
+    }
+
+    // Validate explanation
+    if (!formData.requirement_explanation.trim()) {
+      newErrors.requirement_explanation = "Explanation is required";
+    } else if (formData.requirement_explanation.length < 20) {
+      newErrors.requirement_explanation = "Please provide more details (at least 20 characters)";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   // Handle form submission
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (validateForm()) {
       setFormLoader(true);
+      setSubmitSuccess(false);
 
-      // Get formatted phone number for submission
-      const formattedPhoneNumber = getFormattedPhoneNumber();
-      const finalNum = `+${selectedCountryCode} ${formattedPhoneNumber}`;
+      try {
+        // Create form data for API call
+        const submitFormData = new FormData();
+        submitFormData.append('user_name', formData.user_name);
+        submitFormData.append('email', formData.email);
+        submitFormData.append('contact', formData.contact);
+        submitFormData.append('product_name', formData.product_name);
+        submitFormData.append('requirement_explanation', formData.requirement_explanation);
+        
+        if (formData.requirement_file) {
+          submitFormData.append('requirement_file', formData.requirement_file);
+        }
 
-      // Create a copy of form data with formatted phone number for submission
-      const formDataToSubmit = {
-        ...formData,
-        contactNumber: finalNum,
-      };
-
-      // Form is valid, submit data
-      console.log("Form submitted:", formDataToSubmit);
-
-      // Here you would typically make an API call to submit the form
-      // Similar to your careerMailApi call in the old code
-
-      // Simulate API call with timeout
-      setTimeout(() => {
-        // Reset form after submission
-        setFormData({
-          fullName: "",
-          email: "",
-          contactNumber: "",
-          explanation: "",
-          product: "",
-          img: null,
+        // Submit form data to API
+        const response = await axios.post('/api/customization-requirements', submitFormData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }
         });
 
-        // Reset file upload
+        if (response.data && !response.data.error) {
+          // Reset form on success
+          setFormData({
+            user_name: "",
+            email: "",
+            contact: "",
+            requirement_explanation: "",
+            product_name: "",
+            requirement_file: null,
+          });
+          setValue("");
         handleFileRemove();
-
-        // Show success message
-        alert("Application submitted successfully!");
-
-        // Reset loader
+          setSubmitSuccess(true);
+          toast.success("Your customization request has been submitted successfully!");
+        } else {
+          toast.error(response.data.message || "Failed to submit form. Please try again.");
+        }
+      } catch (error) {
+        console.error("Form submission error:", error);
+        toast.error("Something went wrong. Please try again later.");
+      } finally {
         setFormLoader(false);
-      }, 1000);
+      }
     }
   };
 
@@ -401,16 +400,15 @@ const CustomizationForm = () => {
         <div>
           <input
             type="text"
-            id="fullName"
-            name="fullName"
-            value={formData.fullName}
+            id="user_name"
+            name="user_name"
+            value={formData.user_name}
             onChange={handleChange}
             placeholder="Enter Your Full Name"
-            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.fullName ? "border-red-500" : "border-gray-300"
-              } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.user_name ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
-          {errors.fullName && (
-            <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
+          {errors.user_name && (
+            <p className="text-red-500 text-sm mt-1">{errors.user_name}</p>
           )}
         </div>
 
@@ -418,35 +416,32 @@ const CustomizationForm = () => {
         <div>
           <PhoneInput
             country={"in"} // Default country
-            value={formData.contactNumber}
+            value={formData.contact}
             onChange={handlePhoneChange}
             inputProps={{
-              name: "contactNumber",
-              id: "contactNumber",
+              name: "contact",
+              id: "contact",
               required: true,
-              className: `w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.contactNumber ? "border-red-500" : "border-gray-300"
-                } focus:outline-none focus:ring-1 focus:ring-blue-500`,
+              className: `w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.contact ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500`,
             }}
-            containerClass={`${errors.contactNumber ? "phone-input-error" : ""
-              }`}
-            // Add custom styles to match your form design
+            containerClass={`${errors.contact ? "phone-input-error" : ""}`}
             containerStyle={{ width: "100%" }}
             inputStyle={{ width: "100%", height: "48px" }}
           />
-          {errors.contactNumber && (
-            <p className="text-red-500 text-sm mt-1">{errors.contactNumber}</p>
+          {errors.contact && (
+            <p className="text-red-500 text-sm mt-1">{errors.contact}</p>
           )}
         </div>
 
-        {/* product */}
+        {/* Product */}
         <div>
           <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
               <button
-                id="product"
-                name="product"
-                className={`w-full text-start textSecondary px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.product ? "border-red-500" : "border-gray-300"
-                  } focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none bg-white`}
+                type="button"
+                id="product_name"
+                name="product_name"
+                className={`w-full text-start textSecondary px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.product_name ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none bg-white`}
               >
                 {value
                   ? products.find((item) => item.value === value)?.label
@@ -458,7 +453,7 @@ const CustomizationForm = () => {
                 }
               </button>
             </PopoverTrigger>
-            <PopoverContent className="w-[200px] p-0">
+            <PopoverContent className="w-[300px] p-0">
               <Command>
                 <CommandInput placeholder="Search product..." className="h-9" />
                 <CommandList>
@@ -469,13 +464,13 @@ const CustomizationForm = () => {
                         key={item.value}
                         value={item.value}
                         onSelect={(currentValue) => {
-                          // Use handleChange to update form data
+                          // Update form data
                           handleChange({
-                            name: "product",
+                            name: "product_name",
                             value: currentValue === value ? "" : currentValue
                           });
 
-                          // Update the displayed value
+                          // Update displayed value
                           setValue(currentValue === value ? "" : currentValue);
                           setOpen(false);
                         }}
@@ -494,8 +489,8 @@ const CustomizationForm = () => {
               </Command>
             </PopoverContent>
           </Popover>
-          {errors.product && (
-            <p className="text-red-500 text-sm mt-1">{errors.product}</p>
+          {errors.product_name && (
+            <p className="text-red-500 text-sm mt-1">{errors.product_name}</p>
           )}
         </div>
 
@@ -508,8 +503,7 @@ const CustomizationForm = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter Your Email"
-            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.email ? "border-red-500" : "border-gray-300"
-              } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.email ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -519,13 +513,12 @@ const CustomizationForm = () => {
         {/* Upload File Field */}
         <div>
           <div
-            className={` bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.img ? "border-red-500" : "border-gray-300"
-              } rounded-md  text-center`}
+            className={`bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.requirement_file ? "border-red-500" : "border-gray-300"} rounded-md text-center`}
           >
-            {formData.img ? (
-              <div className="flex flex-col items-center justify-center">
+            {formData.requirement_file ? (
+              <div className="flex flex-col items-center justify-center p-4">
                 <p className="text-lg text-gray-700 mb-2">
-                  Uploaded File: {formData.img.name}
+                  Uploaded File: {formData.requirement_file.name}
                 </p>
                 <button
                   type="button"
@@ -536,7 +529,7 @@ const CustomizationForm = () => {
                   <IoIosCloseCircle className="ml-1" size={20} />
                 </button>
 
-                {fileDataUrl && formData.img.type.includes("image") && (
+                {fileDataUrl && formData.requirement_file.type.includes("image") && (
                   <div className="mt-4 max-w-xs">
                     <img
                       src={fileDataUrl}
@@ -546,16 +539,15 @@ const CustomizationForm = () => {
                   </div>
                 )}
 
-                {fileDataUrl && formData.img.type === "application/pdf" && (
+                {formData.requirement_file.type === "application/pdf" && (
                   <div className="mt-4">
                     <p className="text-gray-600">PDF file selected</p>
-                    {/* You can add PDF preview here if needed */}
                   </div>
                 )}
               </div>
             ) : (
               <label
-                htmlFor="img"
+                htmlFor="requirement_file"
                 className="cursor-pointer flex items-center justify-between"
               >
                 <span className="textSecondary pl-2">Upload File</span>
@@ -567,76 +559,55 @@ const CustomizationForm = () => {
 
             <input
               type="file"
-              id="img"
-              name="img"
+              id="requirement_file"
+              name="requirement_file"
               key={inputKey}
               onChange={handleFileChange}
               className="hidden"
               accept=".png,.jpg,.jpeg,.pdf"
             />
           </div>
-          {errors.img && (
-            <p className="text-red-500 text-sm mt-1">{errors.img}</p>
+          {errors.requirement_file && (
+            <p className="text-red-500 text-sm mt-1">{errors.requirement_file}</p>
           )}
         </div>
 
-        {/* explanation Field */}
+        {/* Explanation Field */}
         <div>
           <textarea
-            id="explanation"
-            name="explanation"
-            value={formData.explanation}
-            rows={10}
+            id="requirement_explanation"
+            name="requirement_explanation"
+            value={formData.requirement_explanation}
             onChange={handleChange}
-            placeholder="Requirements Explanation"
-            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.explanation ? "border-red-500" : "border-gray-300"
-              } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            placeholder="Explain what you need for customization..."
+            rows={10}
+            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.requirement_explanation ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
-          {errors.explanation && (
-            <p className="text-red-500 text-sm mt-1">{errors.explanation}</p>
+          {errors.requirement_explanation && (
+            <p className="text-red-500 text-sm mt-1">{errors.requirement_explanation}</p>
           )}
-        </div>
-
       </div>
 
       {/* Submit Button */}
-      <div className="flex justify-center mt-8">
+        <div className='w-full'>
         <button
           type="submit"
-          className="commonBtn commonBtnSecondaryBg !w-full"
           disabled={formLoader}
-        >
-          {formLoader ? (
-            <span className="flexCenter">
-              <svg
-                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              Processing...
-            </span>
-          ) : (
-            "Submit"
-          )}
-        </button>
+            className={`!w-full commonBtn ${formLoader ? 'opacity-70 cursor-not-allowed' : ''}`}
+          >
+            {formLoader ? 'Submitting...' : 'Submit Request'}
+          </button>
+        </div>
+
+        {/* Success Message */}
+        {submitSuccess && (
+          <div className="bg-green-100 text-green-800 p-4 rounded-md">
+            Thank you! Your customization request has been received. We'll get back to you shortly.
+          </div>
+        )}
       </div>
     </form>
   );
-}
+};
 
-export default CustomizationForm
+export default CustomizationForm;

@@ -12,8 +12,8 @@ import Counter from '@/components/homePage/sections/Counter'
 import { FaRegCircleCheck } from 'react-icons/fa6'
 import Link from 'next/link'
 import WorkChain from '@/components/homePage/sections/WorkChain'
-import teamImg from '@/assets/images/aboutUs/Harish Vekariya.jpg'
 import Testimonials from '@/components/homePage/sections/Testimonials'
+import Team from './Team'
 
 
 interface valuesList {
@@ -230,24 +230,7 @@ const AboutUs: React.FC = () => {
       <WorkChain />
 
       {/* expert team  */}
-      <section className='commonBg commonMT py-8 md:py-20'>
-        <div className='container space-y-12 md:space-y-20'>
-          <div className="flexColCenter commonTextGap lg:w-[70%] xl:w-[50%] text-center m-auto">
-            <span className='sectionTag'>Expert <span>Team</span></span>
-            <h5 className='sectionTitle'>Catalyzing Global Reach The <span>Expert Team Powering IT Solutions Worldwide</span></h5>
-          </div>
-
-          <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-            <div className='relative rounded-[30px] overflow-hidden group transition-all duration-500'>
-              <Image src={teamImg} height={0} width={0} alt='team-img' loading='lazy' />
-              <div className='flex flex-col gap-2 bg-white w-[94%] m-auto rounded-[15px] bottom-4 py-2 px-6 absolute left-0 right-0 h-[44px] overflow-hidden transition-all duration-500 group-hover:h-[80px]'>
-                <span className='font-extrabold text-lg lg:text-xl'>Harish Vekariya</span>
-                <span className='textSecondary'>Co-Founder</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Team />
 
       {/* testimonials  */}
       <Testimonials />
