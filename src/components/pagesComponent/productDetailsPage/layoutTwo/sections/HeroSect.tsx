@@ -2,13 +2,22 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import img from '../../../../../assets/images/productDetailPage/layoutTwo/heroSect.webp'
+import { ProductDetails } from '@/types'
 
-const HeroSect = () => {
+interface HeroSectProps {
+    title: string;
+    description: string;
+    imageUrl: string;
+    // buttonText: string;
+    // buttonLink: string;
+}
+
+const HeroSect: React.FC<HeroSectProps> = ({ title, description, imageUrl }) => {
     return (
         <section className='productDetailPrimaryBg py-10 md:py-16 lg:py-20'>
             <div className='flexColCenter commonTextGap lg:w-[35%] mx-auto text-center'>
-                <h1 className='sectionTitle !font-bold'>Build Your Own Classified Marketplace with Prebuilt Classified Ads Script</h1>
-                <p className='sectionPara'>eClassify is a ready-made classified ads marketplace that lets you create a buy-and-sell marketplace app and website without starting from scratch. It's the ideal solution for launching your PHP-based classified marketplace platform affordably and effortlessly</p>
+                <h1 className='sectionTitle !font-bold'>{title}</h1>
+                <p className='sectionPara' dangerouslySetInnerHTML={{ __html: description || '' }} />
                 <div className='flexCenter gap-6 font-semibold'>
                     <Link href={''} title='Explore Demo' className='productPrimaryBg rounded-full h-[48px] flexCenter w-[140px] text-white'>
                         Explore Demo
@@ -18,7 +27,7 @@ const HeroSect = () => {
                     </Link>
                 </div>
                 <div className='w-full h-full relative z-[1]'>
-                    <Image src={img} height={0} width={0} alt='product-img' className='w-full h-auto'/>
+                    <Image src={imageUrl} height={0} width={0} alt='product-img' className='w-full h-auto' />
                 </div>
             </div>
         </section>

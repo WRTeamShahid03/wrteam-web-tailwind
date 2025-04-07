@@ -66,7 +66,7 @@ const ProcessSect = () => {
                 <Image src={arrIcon} height={0} width={0} alt='process-icon' className='w-auto h-auto absolute top-0 left-[22%] hidden lg:block max-1199:left-[24%] between-1200-1399:left-[25%]' />
                 <Image src={arrIcon} height={0} width={0} alt='process-icon' className='w-auto h-auto absolute top-0 right-[30%] hidden lg:block max-1199:right-[24%] between-1200-1399:right-[25%]' />
                 {
-                    cardsdata.map((item: servicesProcessDataTypes, index) => (
+                    cardsdata.map((item: servicesProcessDataTypes, index: number): React.ReactNode => (
                         <div key={index} className="flex flex-col items-center text-center mb-12 md:mb-0 max-w-xs">
                             <div className="relative">
                                 <div className="">

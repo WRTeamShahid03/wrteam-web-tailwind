@@ -7,8 +7,9 @@ import { GrFormNext, GrFormPrevious } from 'react-icons/gr'
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import required modules
 import { FreeMode, Pagination } from 'swiper/modules';
+import { FeatureSection } from '@/types';
 
-const FeatureSection: React.FC = () => {
+const FeatureSections: React.FC<FeatureSection> = ({ title, description, features }) => {
 
     const sliderRef = useRef<any>(null);
 
@@ -55,7 +56,7 @@ const FeatureSection: React.FC = () => {
             <div className="container">
                 <div className="grid grid-cols-12 gap-y-12 lg:gap-10">
                     <div className='col-span-12 lg:col-span-5 flexColCenter !items-start gap-8'>
-                        <h1 className='sectionTitle text-white'>Features That Put Power in eClassify</h1>
+                        <h1 className='sectionTitle text-white'>{title}</h1>
                         <div className='flexCenter gap-4'>
                             <div className="w-[40px] h-[40px] flexCenter rounded-full cursor-pointer bg-white" onClick={handlePrev} >
                                 <span className='productPrimaryColor'><GrFormPrevious size={30} /></span>
@@ -73,43 +74,21 @@ const FeatureSection: React.FC = () => {
                             loop={true}
                             spaceBetween={20}
                             freeMode={true}
-                            modules={[FreeMode]}                           
-                            navigation
+                            modules={[FreeMode]}
+
                             className='comesWithSwiper'
                             breakpoints={breakpoints}
                         >
-                            <SwiperSlide>
-                                <div className='flexColCenter commonTextGap h-[250px] max-399:p-3 p-6 rounded-[8px] overflow-hidden w-full relative after:content-[""] after:absolute after:top-0 after:left-0 after:h-full after:w-full after:productPrimaryBg after:brightness-[0.75] after:-z-[1]'>
-                                    <div className='bg-white p-3 rounded-full'>
-                                        <Image src={img} height={40} width={40} alt='feature-img' />
+                            {features.map((feature, index) => (
+                                <SwiperSlide key={index}>
+                                    <div className='flexColCenter commonTextGap h-[250px] max-399:p-3 p-6 rounded-[8px] overflow-hidden w-full relative after:content-[""] after:absolute after:top-0 after:left-0 after:h-full after:w-full after:productPrimaryBg after:brightness-[0.75] after:-z-[1]'>
+                                        <div className='bg-white p-3 rounded-full'>
+                                            <Image src={feature.image_url} height={40} width={40} alt='feature-img' />
+                                        </div>
+                                        <span className='font-semibold text-white'>{feature.name}</span>
                                     </div>
-                                    <span className='font-semibold text-white'>Subcription Modal</span>
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className='flexColCenter commonTextGap h-[250px] max-399:p-3 p-6 rounded-[8px] overflow-hidden w-full relative after:content-[""] after:absolute after:top-0 after:left-0 after:h-full after:w-full after:productPrimaryBg after:brightness-[0.75] after:-z-[1]'>
-                                    <div className='bg-white p-3 rounded-full'>
-                                        <Image src={img} height={40} width={40} alt='feature-img' />
-                                    </div>
-                                    <span className='font-semibold text-white'>Subcription Modal</span>
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className='flexColCenter commonTextGap h-[250px] max-399:p-3 p-6 rounded-[8px] overflow-hidden w-full relative after:content-[""] after:absolute after:top-0 after:left-0 after:h-full after:w-full after:productPrimaryBg after:brightness-[0.75] after:-z-[1]'>
-                                    <div className='bg-white p-3 rounded-full'>
-                                        <Image src={img} height={40} width={40} alt='feature-img' />
-                                    </div>
-                                    <span className='font-semibold text-white'>Subcription Modal</span>
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className='flexColCenter commonTextGap h-[250px] max-399:p-3 p-6 rounded-[8px] overflow-hidden w-full relative after:content-[""] after:absolute after:top-0 after:left-0 after:h-full after:w-full after:productPrimaryBg after:brightness-[0.75] after:-z-[1]'>
-                                    <div className='bg-white p-3 rounded-full'>
-                                        <Image src={img} height={40} width={40} alt='feature-img' />
-                                    </div>
-                                    <span className='font-semibold text-white'>Subcription Modal</span>
-                                </div>
-                            </SwiperSlide>
+                                </SwiperSlide>
+                            ))}
                         </Swiper>
                     </div>
 
@@ -120,4 +99,4 @@ const FeatureSection: React.FC = () => {
     )
 }
 
-export default FeatureSection
+export default FeatureSections

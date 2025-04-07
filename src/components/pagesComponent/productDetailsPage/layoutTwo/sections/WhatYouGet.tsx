@@ -11,8 +11,11 @@ import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import required modules
 import { FreeMode, Pagination } from 'swiper/modules';
+import { ProductElementSection } from '@/types'
 
-const WhatYouGet = () => {
+
+
+const WhatYouGet: React.FC<ProductElementSection> = ({ title, description, elements }) => {
 
     const breakpoints = {
         0: {
@@ -69,8 +72,8 @@ const WhatYouGet = () => {
             <div className='container space-y-8 md:space-y-12 lg:space-y-16'>
 
                 <div className='flexColCenter commonTextGap lg:w-[50%] mx-auto text-center commonMT'>
-                    <h2 className='sectionTitle !font-bold'>What Will You Get With eClassify?</h2>
-                    <p className='sectionPara'>With eClassify, you get everything needed to build a classified ads website and app. It comes with full flutter & laravel source code for the app, website, and admin panel, ensuring you can get started quickly and efficiently.</p>
+                    <h2 className='sectionTitle !font-bold'>{title}</h2>
+                    <p className='sectionPara' dangerouslySetInnerHTML={{ __html: description || '' }} />
                 </div>
 
                 <div className="relative">
@@ -85,95 +88,43 @@ const WhatYouGet = () => {
                             clickable: true,
                             renderBullet: renderBullet
                         }}
-                        navigation
+                        // navigation
                         className='comesWithSwiper'
                         breakpoints={breakpoints}
                     >
-                        <SwiperSlide>
 
-                            <div className="flexColCenter commonTextGap text-center border-2 border-[#d8e0e6] rounded-[8px] py-4 px-4 md:py-8 md:px-6">
-                                <div className='p-3 md:p-5 rounded-full commonBg flexCenter'>
-                                    <Image src={playIcon} height={0} width={0} alt='icon' className='w-[25px] md:w-[35px] h-[25px] md:h-[35px]' />
+                        {elements.map((element, index) => (
+                            <SwiperSlide key={index}>
+
+                                <div className="flexColCenter commonTextGap text-center border-2 border-[#d8e0e6] rounded-[8px] py-4 px-4 md:py-8 md:px-6">
+                                    <div className='p-3 md:p-5 rounded-full commonBg flexCenter'>
+                                        <Image src={element.image_url} height={0} width={0} alt='icon' className='w-[25px] md:w-[35px] h-[25px] md:h-[35px]' />
+                                    </div>
+                                    <span className='md:text-lg lg:text-xl font-bold'>{element.name}</span>
+                                    <p
+                                        className='text-sm md:text-base text-[#5c788c] font-medium'
+                                        dangerouslySetInnerHTML={{ __html: element.details || '' }}
+                                    />
+                                    <Link href={element.link || ''} title='Explore Demo' className='productPrimaryColor flexCenter gap-1 font-medium'>
+                                        <span>Explore Demo</span>
+                                        <BiRightArrowAlt />
+                                    </Link>
                                 </div>
-                                <span className='md:text-lg lg:text-xl font-bold'>Customer App (Android)</span>
-                                <p className='text-sm md:text-base text-[#5c788c] font-medium'>Classified marketplace for customers on Android</p>
-                                <Link href={''} title='Explore Demo' className='productPrimaryColor flexCenter gap-1 font-medium'>
-                                    <span>Explore Demo</span>
-                                    <BiRightArrowAlt />
-                                </Link>
-                            </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-
-                            <div className="flexColCenter commonTextGap text-center border-2 border-[#d8e0e6] rounded-[8px] py-4 px-4 md:py-8 md:px-6">
-                                <div className='p-3 md:p-5 rounded-full commonBg flexCenter'>
-                                    <Image src={playIcon} height={0} width={0} alt='icon' className='w-[25px] md:w-[35px] h-[25px] md:h-[35px]' />
-                                </div>
-                                <span className='md:text-lg lg:text-xl font-bold'>Customer App (Android)</span>
-                                <p className='text-sm md:text-base text-[#5c788c] font-medium'>Classified marketplace for customers on Android</p>
-                                <Link href={''} title='Explore Demo' className='productPrimaryColor flexCenter gap-1 font-medium'>
-                                    <span>Explore Demo</span>
-                                    <BiRightArrowAlt />
-                                </Link>
-                            </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-
-                            <div className="flexColCenter commonTextGap text-center border-2 border-[#d8e0e6] rounded-[8px] py-4 px-4 md:py-8 md:px-6">
-                                <div className='p-3 md:p-5 rounded-full commonBg flexCenter'>
-                                    <Image src={playIcon} height={0} width={0} alt='icon' className='w-[25px] md:w-[35px] h-[25px] md:h-[35px]' />
-                                </div>
-                                <span className='md:text-lg lg:text-xl font-bold'>Customer App (Android)</span>
-                                <p className='text-sm md:text-base text-[#5c788c] font-medium'>Classified marketplace for customers on Android</p>
-                                <Link href={''} title='Explore Demo' className='productPrimaryColor flexCenter gap-1 font-medium'>
-                                    <span>Explore Demo</span>
-                                    <BiRightArrowAlt />
-                                </Link>
-                            </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-
-                            <div className="flexColCenter commonTextGap text-center border-2 border-[#d8e0e6] rounded-[8px] py-4 px-4 md:py-8 md:px-6">
-                                <div className='p-3 md:p-5 rounded-full commonBg flexCenter'>
-                                    <Image src={playIcon} height={0} width={0} alt='icon' className='w-[25px] md:w-[35px] h-[25px] md:h-[35px]' />
-                                </div>
-                                <span className='md:text-lg lg:text-xl font-bold'>Customer App (Android)</span>
-                                <p className='text-sm md:text-base text-[#5c788c] font-medium'>Classified marketplace for customers on Android</p>
-                                <Link href={''} title='Explore Demo' className='productPrimaryColor flexCenter gap-1 font-medium'>
-                                    <span>Explore Demo</span>
-                                    <BiRightArrowAlt />
-                                </Link>
-                            </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-
-                            <div className="flexColCenter commonTextGap text-center border-2 border-[#d8e0e6] rounded-[8px] py-4 px-4 md:py-8 md:px-6">
-                                <div className='p-3 md:p-5 rounded-full commonBg flexCenter'>
-                                    <Image src={playIcon} height={0} width={0} alt='icon' className='w-[25px] md:w-[35px] h-[25px] md:h-[35px]' />
-                                </div>
-                                <span className='md:text-lg lg:text-xl font-bold'>Customer App (Android)</span>
-                                <p className='text-sm md:text-base text-[#5c788c] font-medium'>Classified marketplace for customers on Android</p>
-                                <Link href={''} title='Explore Demo' className='productPrimaryColor flexCenter gap-1 font-medium'>
-                                    <span>Explore Demo</span>
-                                    <BiRightArrowAlt />
-                                </Link>
-                            </div>
-                        </SwiperSlide>
+                            </SwiperSlide>
+                        ))}
 
 
                     </Swiper>
-                    <div className='mt-6 sm:mt-0 flexCenter gap-4 sm:!block'>
-                        <div className="primaryBg w-max h-max rounded-full relative sm:absolute top-0 bottom-0 sm:m-auto -left-4 z-[1] cursor-pointer" onClick={handlePrev} >
-                            <span><GrFormPrevious color='white' size={30}/></span>
+                    {elements.length > 4 && (
+                        <div className='mt-6 sm:mt-0 flexCenter gap-4 sm:!block'>
+                            <div className="primaryBg w-max h-max rounded-full relative sm:absolute top-0 bottom-0 sm:m-auto -left-4 z-[1] cursor-pointer" onClick={handlePrev} >
+                                <span><GrFormPrevious color='white' size={30} /></span>
+                            </div>
+                            <div className="primaryBg w-max h-max rounded-full relative sm:absolute top-0 bottom-0 sm:m-auto -right-4 z-[1] cursor-pointer" onClick={handleNext}>
+                                <span><GrFormNext color='white' size={30} /></span>
+                            </div>
                         </div>
-                        <div className="primaryBg w-max h-max rounded-full relative sm:absolute top-0 bottom-0 sm:m-auto -right-4 z-[1] cursor-pointer" onClick={handleNext}>
-                            <span><GrFormNext color='white' size={30}/></span>
-                        </div>
-                    </div>
+                    )}
                 </div>
             </div>
 

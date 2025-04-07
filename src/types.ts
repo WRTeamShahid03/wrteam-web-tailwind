@@ -302,6 +302,7 @@ export interface IntroSection {
 
 export interface TechnologySection {
     title: string;
+    description: string | null;
     technologies: {
         image_url: string;
         name: string;

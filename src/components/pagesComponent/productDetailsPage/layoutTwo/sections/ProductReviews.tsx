@@ -6,20 +6,24 @@ import { FaChevronLeft } from "react-icons/fa6";
 import { FaChevronRight } from 'react-icons/fa';
 import { FaRegCheckCircle } from "react-icons/fa";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
+import { Testimonial } from '@/types/testimonial';
+import { ProductTestimonial } from '@/types';
 
+interface ProductReviewsProps {
+    testimonials: ProductTestimonial[];
+}
 
-const ProductReviews = () => {
+const ProductReviews: React.FC<ProductReviewsProps> = ({ testimonials }): React.ReactNode => {
 
-    const sliderRef = useRef<any>(null);
+    const sliderRef = useRef<SwiperRef | null>(null);
 
-    const handlePrev = useCallback(() => {
+    const handlePrev = useCallback((): void => {
         if (!sliderRef.current) return;
-
         sliderRef.current.swiper.slidePrev();
     }, []);
 
-    const handleNext = useCallback(() => {
+    const handleNext = useCallback((): void => {
         if (!sliderRef.current) return;
         sliderRef.current.swiper.slideNext();
     }, []);
@@ -35,45 +39,27 @@ const ProductReviews = () => {
                             loop={true}
                             spaceBetween={20}
                             freeMode={true}
-                            // autoplay={{ delay: 5000 }}
-                            // modules={[Autoplay]}
-                            navigation
                             className='layoutTwoTestimonials'
                         >
-                            <SwiperSlide>
-                                <div className='flex flex-col gap-8 relative'>
-                                    <div className='flex gap-3 items-center border-b-2 border-[#6c757d1f] pb-8'>
-                                        <div>
-                                            <Image src={envatoIcon} height={41} width={41} alt='envatoIcon' />
+                            {testimonials.map((testimonial: ProductTestimonial) => (
+                                <SwiperSlide key={testimonial.id}>
+                                    <div className='flex flex-col gap-8 relative'>
+                                        <div className='flex gap-3 items-center border-b-2 border-[#6c757d1f] pb-8'>
+                                            <div>
+                                                <Image src={envatoIcon} height={41} width={41} alt='envatoIcon' />
+                                            </div>
+                                            <div className='flex flex-col gap-2'>
+                                                <span className='font-[600]'>{testimonial.name}</span>
+                                                <span className='font-[600]'>{testimonial.rating_for}</span>
+                                            </div>
                                         </div>
-                                        <div className='flex flex-col gap-2'>
-                                            <span className='font-[600]'>ashaqhussain</span>
-                                            <span className='font-[600]'>Customer Support</span>
+                                        <div className=''>
+                                            <p className='sectionPara'>{testimonial.review}</p>
                                         </div>
                                     </div>
-                                    <div className=''>
-                                        <p className='sectionPara'>I purchased eClassify code from WRTeam on CodeCanyon, and I must say, they exceeded all my expectations! The quality of the code is outstanding, well-organized, and very easy to work with.</p>
-                                    </div>
-                                </div>
 
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className='flex flex-col gap-8 relative'>
-                                    <div className='flex gap-3 items-center border-b-2 border-[#6c757d1f] pb-8'>
-                                        <div>
-                                            <Image src={envatoIcon} height={41} width={41} alt='envatoIcon' />
-                                        </div>
-                                        <div className='flex flex-col gap-2'>
-                                            <span className='font-[600]'>ashaqhussain</span>
-                                            <span className='font-[600]'>Customer Support</span>
-                                        </div>
-                                    </div>
-                                    <div className=''>
-                                        <p className='sectionPara'>I purchased eClassify code from WRTeam on CodeCanyon, and I must say, they exceeded all my expectations! The quality of the code is outstanding, well-organized, and very easy to work with.</p>
-                                    </div>
-                                </div>
-
-                            </SwiperSlide>
+                                </SwiperSlide>
+                            ))}
                         </Swiper>
                         {/* <div className='flex flex-col gap-8 relative'>
                                 <div className='flex gap-3 items-center border-b-2 border-[#6c757d1f] pb-8'>

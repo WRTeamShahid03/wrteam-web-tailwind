@@ -20,6 +20,7 @@ interface LayoutOneProps {
 }
 
 const LayoutOne = ({ productDetails }: LayoutOneProps) => {
+  console.log("productDetails", productDetails)
   const productDescription = productDetails.product_description[0]
   const productTestimonial = productDetails.product_testimonials
   const layoutOneDetails = productDescription
@@ -35,7 +36,7 @@ const LayoutOne = ({ productDetails }: LayoutOneProps) => {
 
   const productTestimonials = productTestimonial || []
   const productFaqs = productDetails.product_faqs
-  
+
   return (
     <>
       <HeroSection
@@ -61,28 +62,28 @@ const LayoutOne = ({ productDetails }: LayoutOneProps) => {
       />
 
       {/* Payment Gateway Section with proper data */}
-      <PaymentGateway 
+      <PaymentGateway
         title={paymentGatewaySection?.title || ""}
         description={paymentGatewaySection?.description || ""}
         gateways={paymentGatewaySection?.gateways || []}
         image_url={paymentGatewaySection?.payment_gateway_main_image_url || ""}
       />
-      
+
       <SuccessStatics />
-      
+
       {/* FeaturesSection with panel-wise features */}
       <FeaturesSection panelFeatures={panelWiseFeatureSection} />
-      
+
       <MoneyTimeSection productHighlightSection={productHighlightSection || []} />
-      
+
       {/* Pass app-wise feature data to ResponsiveUISlider */}
       <ResponsiveUISlider appFeatures={appWiseFeatureSection} />
-      
+
       <ProcessPurchase />
-      
+
       {/* Pass testimonials data to ClientReview */}
       <ClientReview testimonials={productTestimonials} />
-      
+
       <PerfectPlan />
 
       <FaqSection faqs={productFaqs} />
