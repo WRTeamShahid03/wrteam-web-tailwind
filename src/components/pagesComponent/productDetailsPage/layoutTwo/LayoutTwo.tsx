@@ -30,6 +30,7 @@ const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails }) => {
                 title={productDetails.product_description[0].product_element_section.title}
                 description={productDetails.product_description[0].product_element_section.description}
                 elements={productDetails.product_description[0].product_element_section.elements}
+                testimonials={productDetails.product_testimonials}
             />
             {/* TODO: Don't know property of data which get from api */}
             <BuyNow />

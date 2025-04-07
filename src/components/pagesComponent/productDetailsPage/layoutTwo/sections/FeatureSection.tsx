@@ -81,11 +81,11 @@ const FeatureSections: React.FC<FeatureSection> = ({ title, description, feature
                         >
                             {features.map((feature, index) => (
                                 <SwiperSlide key={index}>
-                                    <div className='flexColCenter commonTextGap h-[250px] max-399:p-3 p-6 rounded-[8px] overflow-hidden w-full relative after:content-[""] after:absolute after:top-0 after:left-0 after:h-full after:w-full after:productPrimaryBg after:brightness-[0.75] after:-z-[1]'>
+                                    <div className='flexColCenter commonTextGap h-[250px] max-399:p-3 p-6 rounded-[8px] overflow-hidden w-full relative after:content-[""] after:absolute after:top-0 after:left-0 after:h-full after:w-full after:productPrimaryBg after:brightness-[0.75] after:-z-[1] '>
                                         <div className='bg-white p-3 rounded-full'>
                                             <Image src={feature.image_url} height={40} width={40} alt='feature-img' />
                                         </div>
-                                        <span className='font-semibold text-white'>{feature.name}</span>
+                                        <span className='font-semibold text-white text-center'>{feature.name}</span>
                                     </div>
                                 </SwiperSlide>
                             ))}

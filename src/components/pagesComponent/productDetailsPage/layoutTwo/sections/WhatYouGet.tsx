@@ -2,20 +2,24 @@
 import React, { useRef, useCallback } from 'react'
 import MarqueSect from './MarqueSect'
 import Image from 'next/image'
-import playIcon from '../../../../../assets/images/portfolio/playstore.svg'
 import Link from 'next/link'
-import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
+import { BiRightArrowAlt } from 'react-icons/bi';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import required modules
 import { FreeMode, Pagination } from 'swiper/modules';
-import { ProductElementSection } from '@/types'
+import { ProductElement, ProductTestimonial } from '@/types'
 
+interface WhatYouGetProps {
+    title: string;
+    description: string;
+    elements: ProductElement[];
+    testimonials: ProductTestimonial[];
+}
 
-
-const WhatYouGet: React.FC<ProductElementSection> = ({ title, description, elements }) => {
+const WhatYouGet: React.FC<WhatYouGetProps> = ({ title, description, elements, testimonials }) => {
 
     const breakpoints = {
         0: {
@@ -67,7 +71,7 @@ const WhatYouGet: React.FC<ProductElementSection> = ({ title, description, eleme
 
     return (
         <section className='relative -mt-60 bg-white pt-48'>
-            <MarqueSect />
+            <MarqueSect testimonials={testimonials} />
 
             <div className='container space-y-8 md:space-y-12 lg:space-y-16'>
 
