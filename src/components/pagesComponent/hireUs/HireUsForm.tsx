@@ -138,56 +138,61 @@ const HireUsForm = () => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
-        console.log(formData,'formData');
-
         if (validateForm()) {
             try {
                 setIsSubmitting(true);
                 
-                // Format phone with country code if needed
-                const formattedPhone = formData.phone.startsWith('+') 
-                    ? formData.phone 
-                    : `+${formData.phone}`;
+                // Create FormData for submission to API
+                const apiFormData = new FormData();
+                apiFormData.append('name', formData.name);
+                apiFormData.append('email', formData.email);
+                apiFormData.append('phone', formData.phone);
+                apiFormData.append('budget', formData.budget);
+                apiFormData.append('message', formData.message);
                 
-                // Create form data for submission
-                const formDataToSubmit = new FormData();
-                formDataToSubmit.append('name', formData.name);
-                formDataToSubmit.append('email', formData.email);
-                formDataToSubmit.append('phone', formattedPhone);
-                formDataToSubmit.append('budget', formData.budget);
-                formDataToSubmit.append('message', formData.message);
-
-                console.log(formDataToSubmit,'formDataToSubmit');
-                
-                // Submit form data to API
-                const response = await axios.post('/api/hire-us', formDataToSubmit);
-
-                console.log(response,'response');
-                
-                if (response.data.error === false) {
-                    // Show success message
-                    setSubmitSuccess(true);
-                    toast.success("Your request has been submitted successfully!");
-                    
-                    // Reset form
-                    setFormData({
-                        name: "",
-                        email: "",
-                        phone: "",
-                        budget: "",
-                        message: "",
+                try {
+                    // First try the API endpoint
+                    const response = await fetch('/api/hire-us', {
+                        method: 'POST',
+                        body: apiFormData,
                     });
                     
-                    // Reset form fields
-                    if (form.current) {
-                        form.current.reset();
+                    const responseData = await response.json();
+                    
+                    // Check if the response is successful
+                    if (response.ok && responseData && responseData.error === false) {
+                        // Success scenario
+                        handleSuccess();
+                        return;
+                    } else {
+                        // API returned an error response
+                        console.error("API error response:", responseData);
+                        
+                        // Show a specific error message if available
+                        if (responseData.details && responseData.details.includes("405")) {
+                            toast.error("The server doesn't support this request method. We'll use the email option instead.");
+                        } else if (responseData.status === 404) {
+                            toast.error("The API endpoint couldn't be found. We'll use the email option instead.");
+                        } else {
+                            toast.error(responseData.message || "There was an error submitting your request.");
+                        }
+                        
+                        // Use email fallback
+                        handleEmailFallback(formData);
                     }
-                } else {
-                    toast.error("Something went wrong. Please try again.");
+                } catch (apiError) {
+                    console.error("API request failed:", apiError);
+                    toast.error("We couldn't connect to our server. We'll use the email option instead.");
+                    
+                    // Use email fallback on API failure
+                    handleEmailFallback(formData);
                 }
             } catch (error) {
-                console.error("Error submitting form:", error);
-                toast.error("Failed to submit your request. Please try again later.");
+                console.error("Error in form submission:", error);
+                toast.error("We're experiencing technical difficulties. Please use the email option.");
+                
+                // Always fall back to email option on any error
+                handleEmailFallback(formData);
             } finally {
                 setIsSubmitting(false);
             }
@@ -199,6 +204,71 @@ const HireUsForm = () => {
                 element.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 element.focus();
             }
+        }
+    };
+
+    // Handle successful submission
+    const handleSuccess = () => {
+        setSubmitSuccess(true);
+        toast.success("Your request has been submitted successfully!");
+        
+        // Reset form
+        setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            budget: "",
+            message: "",
+        });
+        
+        // Reset form fields
+        if (form.current) {
+            form.current.reset();
+        }
+    };
+
+    // Email fallback method when API fails
+    const handleEmailFallback = (data: any) => {
+        // Update support email to match your actual support email
+        const supportEmail = "support@wrteam.in";
+        
+        try {
+            // Create a mailto link as fallback
+            const mailtoLink = `mailto:${supportEmail}?subject=Hire%20Us%20Request%20from%20${encodeURIComponent(data.name)}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\nBudget: ${data.budget}\nMessage: ${data.message}`)}`;
+            
+            // Open mailto link
+            window.open(mailtoLink, '_blank');
+            
+            toast.success("We've opened an email window for you to send your request directly to our team. Please send the email to complete your request.");
+            
+            // Show a message explaining what to do if the email client doesn't open
+            toast(`If your email client didn't open, please send an email to ${supportEmail} with your details.`, {
+                duration: 8000 // Show this message longer
+            });
+            
+            // Still mark as success since we provided an alternative
+            setSubmitSuccess(true);
+            
+            // Reset form
+            setFormData({
+                name: "",
+                email: "",
+                phone: "",
+                budget: "",
+                message: "",
+            });
+            
+            if (form.current) {
+                form.current.reset();
+            }
+        } catch (emailError) {
+            console.error("Email fallback error:", emailError);
+            
+            // Give the user direct instructions for manual contact
+            toast.error(
+                `Please contact us directly at ${supportEmail} with the following information: Your name, email, phone, budget, and message.`,
+                { duration: 10000 } // Keep this message visible longer
+            );
         }
     };
 
@@ -260,7 +330,10 @@ const HireUsForm = () => {
 
                 {/* Budget Field */}
                 <div>
-                    <Select onValueChange={(value) => handleChange({ name: "budget", value })}>
+                    <Select 
+                        value={formData.budget} 
+                        onValueChange={(value) => handleChange({ name: "budget", value })}
+                    >
                         <SelectTrigger className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.budget ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-none`}>
                             <SelectValue placeholder="Your Budget" />
                         </SelectTrigger>
