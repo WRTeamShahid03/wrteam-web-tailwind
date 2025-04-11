@@ -52,6 +52,7 @@ export interface servicesBuildDataTypes {
 
 export interface installationPackagesDataTypes {
     id: number,
+    icon: StaticImageData,
     packageName: string,
     setups: string,
     cutPrice: number,

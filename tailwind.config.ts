@@ -37,6 +37,9 @@ export default {
         "max-1199": {
           max: "1199px",
         },
+        "max-575": {
+          max: "575px",
+        },
         "max-479": {
           max: "479px",
         },

@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     
     // Send the form data to the backend API
     const response = await axios.post(
-      "http://backend.wrteam.in/api/customisation-requirement/submit",
+      "https://backend.wrteam.in/api/customisation-requirement",
       apiFormData,
       {
         headers: {

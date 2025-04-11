@@ -3,18 +3,43 @@ import Breadcrumb from '@/components/commonComponents/Breadcrumb'
 import Layout from '@/components/layout/Layout'
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react'
+import React, { useState } from 'react'
 import { FaCheck } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import sideImg from "@/assets/images/installation/installationSideImg.svg";
 import { installationPackagesDataTypes } from '@/types';
+import basicIcon from "@/assets/images/installation/basicIcon.svg";
+import standardIcon from "@/assets/images/installation/standardIcon.svg";
+import advanceIcon from "@/assets/images/installation/advanceIcon.svg";
+import premiumIcon from "@/assets/images/installation/premiumIcon.svg";
+import fullSetup from "@/assets/images/installation/fullSetupIcon.svg";
 
 const Installation: React.FC = () => {
+    // State for currency selection (USD is default)
+    const [currency, setCurrency] = useState<'USD' | 'INR'>('USD');
+
+    // Exchange rate (1 USD to INR)
+    const exchangeRate = 75;
+
+    // Toggle currency function
+    const toggleCurrency = () => {
+        setCurrency(prev => prev === 'USD' ? 'INR' : 'USD');
+    };
+
+    // Function to convert price based on selected currency
+    const convertPrice = (usdPrice: number) => {
+        const convertedPrice = currency === 'USD' ? usdPrice : Math.round(usdPrice * exchangeRate);
+        return convertedPrice.toLocaleString('en-US');
+    };
+
+    // Currency symbol
+    const currencySymbol = currency === 'USD' ? '$' : '₹';
 
     const packages = [
         {
             id: 0,
             packageName: "Basic",
+            icon: basicIcon,
             setups: "Web Setup",
             cutPrice: 299,
             price: 199,
@@ -25,18 +50,21 @@ const Installation: React.FC = () => {
                 "Configuration Firebase",
                 "Setup Admin panel",
                 "Live Website on Server",
+                "VPS or Server Setup (if needed)",
+                "DNS Setup",
             ],
             excludedServices: [
-                "Change App Name (Re-Brand)",
-                "Package Name",
-                "Configuration Advertisement",
-                "In-app Purchase Configuration",
-                "Live over PlayStore",
+                "Logo Design",
+                "Domain & Hosting",
+                "Content Writing",
+                "Google Analytics Setup",
+                "Third-party API Integration",
             ],
         },
         {
             id: 1,
             packageName: "Standard",
+            icon: standardIcon,
             setups: "Android OR iOS Setup",
             cutPrice: 499,
             price: 399,
@@ -57,6 +85,7 @@ const Installation: React.FC = () => {
         {
             id: 2,
             packageName: "Advance",
+            icon: advanceIcon,
             setups: "Android + iOS Setup (Combo)",
             cutPrice: 998,
             price: 599,
@@ -78,6 +107,7 @@ const Installation: React.FC = () => {
         {
             id: 3,
             packageName: "Premium",
+            icon: premiumIcon,
             setups: "Android + iOS + Web Setup",
             cutPrice: 1297,
             price: 699,
@@ -112,35 +142,81 @@ const Installation: React.FC = () => {
         <Layout>
             <Breadcrumb title='Installtion &' blueText='Setup' secondElement='Services' thirdElement='Installtion' />
             <section className='container commonMT space-y-8 md:space-y-12 lg:space-y-20'>
-                <div className='flexCenter'>
-                    <h2 className='sectionTitle'>Flexible Packages to Match <span>Your Needs</span></h2>
+                <div className='flexCenter flex-col gap-6'>
+
+                    <div className='flexCenter flex-col gap-4 text-center lg:w-[60%] m-auto'>
+                        <span className='sectionTag !text-black'>Flexible Pricing, Maximum Value</span>
+                        <h2 className='sectionTitle'>Choose the Perfect Plan for Your Needs</h2>
+                        <p className='sectionPara'>Get expert app and web development services at competitive prices. Whether you're starting
+                            small or need a full setup, we have a plan that fits your vision and budget.</p>
+                    </div>
+
+
+                    {/* Currency Switch Toggle */}
+                    <div className="flex items-center gap-3 mt-6">
+                        <span>Switch Between USD & INR : </span>
+                        <button
+                            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white ${currency === 'INR' ? "bg-[#2e71fe46]" : "bg-gray-200"}`}
+                            onClick={toggleCurrency}
+                            role="switch"
+                            aria-checked={currency === 'INR'}
+                        >
+                            <span
+                                className={`${currency === 'INR' ? 'translate-x-6 primaryBg' : 'translate-x-1 bg-gray-500'
+                                    } inline-block h-4 w-4 transform rounded-full transition-transform`}
+                            />
+                        </button>
+                    </div>
                 </div>
                 <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
                     {packages.map((pkg: installationPackagesDataTypes, index) => (
                         <div
                             key={pkg.id}
-                            className={`h-max p-4 border-[3px] border-[#2e71fe26] rounded-[16px] ${index === 3 ? "primaryBg text-white" : "bg-white"
+                            className={`h-max p-4 border-[1.5px] rounded-[16px] relative bg-white ${index === 3 ? "primaryBorder" : "border-[#2E71FE29]"
                                 }`}
                         >
-                            <div className='flexColCenter gap-3'>
+                            {
+                                index === 3 && (
+                                    <div className='absolute -top-9 right-0  gap-2 primaryBg text-white w-full text-center pt-2 pb-8 px-2 rounded-t-[16px] rounded-b-[16px] flexCenter -z-[1]'>
+                                        <Image src={fullSetup} height={15} width={15} loading='lazy' className='' alt='full-setup-icon' />
+                                        <span className='text-sm font-semibold'>Full Setup</span>
+                                        <Image src={fullSetup} height={15} width={15} loading='lazy' className='' alt='full-setup-icon' />
+                                    </div>
+                                )
+                            }
+                            <div className='flex flex-col gap-3 border-b pb-4 border-dashed border-black'>
 
-                                <h3 className="text-2xl font-extrabold text-center">{pkg.packageName}</h3>
-                                <p className="text-center font-semibold">{pkg.setups}</p>
-                                <div className='flexCenter gap-2 font-extrabold !items-end'>
-                                    <span className={`text-center text-lg sm:text-xl line-through ${index === 3 ? 'text-[#ffffffcc]' : 'text-[#21212166]'}`}>${pkg.cutPrice}</span>
-                                    <span className={`text-center text-2xl sm:text-3xl ${index === 3 ? 'text-white' : 'primaryColor'}`}>${pkg.price}</span>
+                                <div className='flex gap-4'>
+                                    <div className='bg-[#181C2414] rounded-[6px] p-2 flexCenter h-[72px] w-[72px]'>
+                                        <Image src={pkg.icon} height={42} width={42} loading='lazy' className='' alt='bg' />
+                                    </div>
+                                    <div className='flex flex-col gap-1'>
+                                        <h3 className="text-2xl font-semibold">{pkg.packageName}</h3>
+                                        <p className="text-[#545A68] font-semibold">{pkg.setups}</p>
+                                    </div>
+                                </div>
+
+                                <div className='bg-[#2E71FE14] rounded-[8px] p-4 flexCenter gap-2 font-extrabold !items-end'>
+                                    <span className={`text-center text-lg sm:text-xl line-through font-semibold`}>
+                                        {currencySymbol}{convertPrice(pkg.cutPrice)}
+                                    </span>
+                                    <span className={`text-center text-2xl sm:text-3xl font-bold primaryColor`}>
+                                        {currencySymbol}{convertPrice(pkg.price)}
+                                    </span>
                                 </div>
                             </div>
-                            <ul className="mt-4 space-y-3 [&>li-las]">
+                            
+                            <ul className="mt-4 space-y-8 [&>li-las]">
+                                <span className='font-semibold'>What's included :</span>
                                 {pkg.services.map((service, i) => (
-                                    <li key={i} className={`flex items-center gap-2 justify-between border-b last:border-transparent border-[#d3d3d3] py-3`}>
-                                        <span className='text-sm font-semibold inline-block w-[84%]'>{service}</span>
+                                    <li key={i} className={`flex items-center gap-2 justify-between`}>
+                                        <span className='text-sm font-medium inline-block w-[84%]'>{service}</span>
                                         <span className='w-[22px] h-[22px] flexCenter bg-[#48b02c] text-white rounded-full'><FaCheck size={12} /></span>
                                     </li>
                                 ))}
                                 {pkg.excludedServices.map((service, i) => (
-                                    <li key={i} className={`flex items-center gap-2 justify-between border-b last:border-transparent border-[#d3d3d3] py-3`}>
-                                        <span className='text-sm font-semibold inline-block w-[84%]'>{service}</span>
+                                    <li key={i} className={`flex items-center gap-2 justify-between`}>
+                                        <span className='text-sm font-medium inline-block w-[84%]'>{service}</span>
                                         <span className='w-[22px] h-[22px] flexCenter bg-[#ff4141] text-white rounded-full'><IoMdClose /></span>
                                     </li>
                                 ))}
