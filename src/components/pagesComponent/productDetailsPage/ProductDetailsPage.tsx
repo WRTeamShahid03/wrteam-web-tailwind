@@ -5,7 +5,8 @@ import LayoutOne from './layoutOne/LayoutOne'
 import LayoutTwo from './layoutTwo/LayoutTwo'
 import { axiosClient } from '@/lib/api'
 import Loader from '@/components/commonComponents/Loader/Loader'
-import { ProductDetails } from '@/types'
+import Script from 'next/script'
+import { ProductDetails as ProductDetailsType } from '@/types'
 
 interface Props {
   slug: string;
@@ -14,7 +15,7 @@ interface Props {
 const ProductDetailsPage = ({ slug }: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [layoutType, setLayoutType] = useState<1 | 2>(2);
-  const [productDetails, setProductDetails] = useState<ProductDetails | null>(null);
+  const [productDetails, setProductDetails] = useState<ProductDetailsType | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -61,11 +62,46 @@ const ProductDetailsPage = ({ slug }: Props) => {
     return <Loader />;
   }
 
-
-
+  // Only render product schema if we have product details
+  const generateProductSchema = () => {
+    if (!productDetails) return '';
+    
+    // Create structured data for product
+    const productSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      'name': productDetails.product_description?.[0]?.intro_section?.title || 'WRTeam Software',
+      'image': productDetails.product_description?.[0]?.intro_section?.image_url || productDetails.icon_image,
+      'description': productDetails.product_description?.[0]?.intro_section?.description || '',
+      'applicationCategory': 'Application',
+      'operatingSystem': 'Android, iOS',
+      'offers': {
+        '@type': 'Offer',
+        'price': '69',
+        'priceCurrency': 'USD',
+        'url': `https://wrteam.in/product-details/${slug}`
+      },
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': '4.5',
+        'ratingCount': '100'
+      }
+    };
+    
+    return JSON.stringify(productSchema);
+  };
 
   return (
     <div className=''>
+      {/* JSON-LD structured data for product */}
+      {productDetails && (
+        <Script
+          id="product-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: generateProductSchema() }}
+        />
+      )}
+      
       <ProductDetailHeader
         icon_image={productDetails?.icon_image}
       />

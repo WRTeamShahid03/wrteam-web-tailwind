@@ -1,15 +1,12 @@
-'use client'
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { Montserrat, Poppins, Roboto } from "next/font/google";
 import Script from "next/script";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
+import ClientBackgroundInitializer from "@/components/ClientBackgroundInitializer";
+import { Metadata } from "next";
 
 // Define the fonts with their respective weights
 const montserrat = Montserrat({
@@ -33,23 +30,17 @@ const roboto = Roboto({
   display: "swap",
 });
 
-// Client component for initializing background colors
-function BackgroundInitializer() {
-  const pathname = usePathname();
-  
-  useEffect(() => {
-    if (pathname === '/free-source-code' || pathname === '/11-offer-page') {
-      document.body.style.backgroundColor = "#090909";
-    }
-    else if (pathname === '/thank-you') {
-      document.body.style.backgroundColor = "#0e1422";
-    } else {
-      document.body.style.backgroundColor = "initial";
-    }
-  }, [pathname]);
-  
-  return null;
-}
+// Default metadata (will be overridden by page-specific metadata)
+export const metadata: Metadata = {
+  title: {
+    template: '%s | WRTeam',
+    default: 'WRTeam - Web and Mobile App Development',
+  },
+  description: 'WRTeam specializes in creating custom web and mobile applications for businesses of all sizes.',
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
 
 export default function RootLayout({
   children,
@@ -59,16 +50,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <title>WR Team</title>
-        <meta name="description" content="WRTeam" />
-        <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
       </head>
       <body
         className={`${montserrat.variable} ${poppins.variable} ${roboto.variable} font-sans`}
         suppressHydrationWarning
       >
-        <BackgroundInitializer />
+        <ClientBackgroundInitializer />
         <Toaster position="top-center" reverseOrder={false} />
         {children}
       </body>
