@@ -91,7 +91,7 @@ const NewFooter = () => {
               <h3 className="text-white font-medium text-lg mb-4 bg-[#2a2e35] py-2 px-4 rounded-md">Company</h3>
               <ul className="space-y-3 text-gray-300">
                 <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
-                <li><Link href="/careers" className="hover:text-white transition">Careers</Link></li>
+                <li><Link href="/career" className="hover:text-white transition">Careers</Link></li>
                 <li><Link href="/blogs" className="hover:text-white transition">Blogs</Link></li>
                 <li><Link href="/license" className="hover:text-white transition">Exclusive License</Link></li>
               </ul>

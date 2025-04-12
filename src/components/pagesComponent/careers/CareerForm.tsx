@@ -1,11 +1,21 @@
 "use client";
 
-import { useState, FormEvent, useRef } from "react";
+import { useState, FormEvent, useRef, useEffect, ChangeEvent } from "react";
 import { z } from "zod";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { IoIosCloseCircle } from "react-icons/io";
 import { FiUploadCloud } from "react-icons/fi";
+import { useDropzone } from 'react-dropzone';
+
+// Import Shadcn Select components
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // Define Zod schema for form validation
 const formSchema = z.object({
@@ -28,7 +38,13 @@ type FormData = z.infer<typeof formSchema> & {
 // Define a type for form errors
 type FormErrors = Partial<Record<keyof FormData, string>>;
 
-export default function CareerForm() {
+interface Vacancy {
+  id: number;
+  title: string;
+  experience: string;
+}
+
+export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy[] }) {
   // Form state
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
@@ -51,12 +67,38 @@ export default function CareerForm() {
   const [inputKey, setInputKey] = useState<number>(Date.now());
   const [formLoader, setFormLoader] = useState<boolean>(false);
 
+  // Replace the direct drag and drop implementation with react-dropzone
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept: {
+      'image/png': ['.png'],
+      'image/jpeg': ['.jpg', '.jpeg'],
+      'application/pdf': ['.pdf']
+    },
+    onDrop: acceptedFiles => {
+      if (acceptedFiles && acceptedFiles.length > 0) {
+        const file = acceptedFiles[0];
+        console.log("File dropped with react-dropzone:", file.name, file.type);
+
+        // Handle the file upload
+        handleUploadedFile(file);
+      }
+    },
+    onDropRejected: (rejectedFiles) => {
+      console.log("Rejected files:", rejectedFiles);
+      setErrors({
+        ...errors,
+        resume: "Only PNG, JPG and PDF files are supported"
+      });
+    },
+    multiple: false
+  });
+
   // Form ref
   const form = useRef<HTMLFormElement>(null);
 
   // Handle input change
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData({
@@ -103,7 +145,7 @@ export default function CareerForm() {
   };
 
   // Handle file upload
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
 
@@ -160,6 +202,69 @@ export default function CareerForm() {
     });
   };
 
+  // Function to handle uploaded file
+  const handleUploadedFile = (file: File) => {
+    // Check if file type is allowed
+    if (
+      file.type === "image/png" ||
+      file.type === "image/jpeg" ||
+      file.type === "application/pdf"
+    ) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setFormData({
+          ...formData,
+          resume: file,
+        });
+        setFileDataUrl(reader.result as string);
+
+        setErrors({
+          ...errors,
+          resume: "",
+        });
+      };
+
+      reader.readAsDataURL(file);
+    } else {
+      console.log("Invalid file type:", file.type);
+      setErrors({
+        ...errors,
+        resume: "Only PNG, JPG and PDF files are supported",
+      });
+    }
+  };
+
+  // Handle Shadcn select change for Apply For
+  const handleApplyForChange = (value: string) => {
+    setFormData({
+      ...formData,
+      applyFor: value,
+    });
+
+    if (errors.applyFor) {
+      setErrors({
+        ...errors,
+        applyFor: "",
+      });
+    }
+  };
+
+  // Handle Shadcn select change for Experience
+  const handleExperienceChange = (value: string) => {
+    setFormData({
+      ...formData,
+      experience: value,
+    });
+
+    if (errors.experience) {
+      setErrors({
+        ...errors,
+        experience: "",
+      });
+    }
+  };
+
   // Validate form using Zod
   const validateForm = () => {
     try {
@@ -206,31 +311,45 @@ export default function CareerForm() {
   };
 
   // Handle form submission
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (validateForm()) {
       setFormLoader(true);
 
-      // Get formatted phone number for submission
-      const formattedPhoneNumber = getFormattedPhoneNumber();
-      const finalNum = `+${selectedCountryCode} ${formattedPhoneNumber}`;
+      try {
+        // Create FormData for API submission
+        const apiFormData = new FormData();
 
-      // Create a copy of form data with formatted phone number for submission
-      const formDataToSubmit = {
-        ...formData,
-        contactNumber: finalNum,
-      };
+        // Map form fields to API field names
+        apiFormData.append('full_name', formData.fullName);
+        apiFormData.append('email', formData.email);
+        apiFormData.append('qualification', formData.qualification);
+        apiFormData.append('contact', formData.contactNumber);
+        apiFormData.append('apply_for', formData.applyFor);
+        apiFormData.append('experience', formData.experience);
 
-      // Form is valid, submit data
-      console.log("Form submitted:", formDataToSubmit);
+        // Append the resume file if it exists
+        if (formData.resume) {
+          apiFormData.append('resume', formData.resume);
+        }
 
-      // Here you would typically make an API call to submit the form
-      // Similar to your careerMailApi call in the old code
+        // Send data to API
+        const response = await fetch('/api/send-career-email', {
+          method: 'POST',
+          body: apiFormData,
+        });
 
-      // Simulate API call with timeout
-      setTimeout(() => {
-        // Reset form after submission
+        const result = await response.json();
+
+        if (result.error) {
+          throw new Error(result.message || 'Something went wrong');
+        }
+
+        // Show success message
+        alert("Application submitted successfully!");
+
+        // Reset form after successful submission
         setFormData({
           fullName: "",
           email: "",
@@ -244,12 +363,12 @@ export default function CareerForm() {
         // Reset file upload
         handleFileRemove();
 
-        // Show success message
-        alert("Application submitted successfully!");
-
-        // Reset loader
+      } catch (error) {
+        console.error('Form submission error:', error);
+        alert(`Error: ${error instanceof Error ? error.message : 'Failed to submit application'}`);
+      } finally {
         setFormLoader(false);
-      }, 1000);
+      }
     }
   };
 
@@ -271,9 +390,8 @@ export default function CareerForm() {
             value={formData.fullName}
             onChange={handleChange}
             placeholder="Enter Your Full Name"
-            className={`w-full px-4 py-3 rounded-md border ${
-              errors.fullName ? "border-red-500" : "border-gray-300"
-            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full px-4 py-3 rounded-md border ${errors.fullName ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.fullName && (
             <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
@@ -295,9 +413,8 @@ export default function CareerForm() {
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter Your Email"
-            className={`w-full px-4 py-3 rounded-md border ${
-              errors.email ? "border-red-500" : "border-gray-300"
-            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full px-4 py-3 rounded-md border ${errors.email ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -320,13 +437,11 @@ export default function CareerForm() {
               name: "contactNumber",
               id: "contactNumber",
               required: true,
-              className: `w-full px-4 py-3 rounded-md border ${
-                errors.contactNumber ? "border-red-500" : "border-gray-300"
-              } focus:outline-none focus:ring-1 focus:ring-blue-500`,
+              className: `w-full px-4 py-3 rounded-md border ${errors.contactNumber ? "border-red-500" : "border-gray-300"
+                } focus:outline-none focus:ring-1 focus:ring-blue-500`,
             }}
-            containerClass={`${
-              errors.contactNumber ? "phone-input-error" : ""
-            }`}
+            containerClass={`${errors.contactNumber ? "phone-input-error" : ""
+              }`}
             // Add custom styles to match your form design
             containerStyle={{ width: "100%" }}
             inputStyle={{ width: "100%", height: "48px" }}
@@ -351,16 +466,15 @@ export default function CareerForm() {
             value={formData.qualification}
             onChange={handleChange}
             placeholder="Enter Your Qualification"
-            className={`w-full px-4 py-3 rounded-md border ${
-              errors.qualification ? "border-red-500" : "border-gray-300"
-            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full px-4 py-3 rounded-md border ${errors.qualification ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.qualification && (
             <p className="text-red-500 text-sm mt-1">{errors.qualification}</p>
           )}
         </div>
 
-        {/* Apply For Field */}
+        {/* Apply For Field - Shadcn Select */}
         <div>
           <label
             htmlFor="applyFor"
@@ -368,32 +482,43 @@ export default function CareerForm() {
           >
             Apply For
           </label>
-          <select
-            id="applyFor"
-            name="applyFor"
-            value={formData.applyFor}
-            onChange={handleChange}
-            className={`w-full px-4 py-3 rounded-md border ${
-              errors.applyFor ? "border-red-500" : "border-gray-300"
-            } focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none bg-white`}
-          >
-            <option value="" disabled>
-              Select Apply For
-            </option>
-            <option value="flutter">Flutter Developer</option>
-            <option value="laravel">Laravel Developer</option>
-            <option value="seo">SEO Expert</option>
-            <option value="digital">Digital Marketer</option>
-            <option value="social">
-              Social Media Manager + Content Writer
-            </option>
-          </select>
+          <div className={errors.applyFor ? "border border-red-500 rounded-md" : ""}>
+            <Select 
+              value={formData.applyFor}
+              onValueChange={handleApplyForChange}
+            >
+              <SelectTrigger className={`w-full px-4 py-3 h-auto rounded-md bg-white ${
+                errors.applyFor ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-0`}>
+                <SelectValue placeholder="Select Apply For" />
+              </SelectTrigger>
+              <SelectContent>
+                {currentVacancy && currentVacancy.length > 0 ? (
+                  currentVacancy.map((vacancy: Vacancy) => (
+                    <SelectItem key={vacancy.id} value={vacancy.title}>
+                      {vacancy.title}
+                    </SelectItem>
+                  ))
+                ) : (
+                  <>
+                    <SelectItem value="Flutter Developer">Flutter Developer</SelectItem>
+                    <SelectItem value="Laravel Developer">Laravel Developer</SelectItem>
+                    <SelectItem value="SEO Expert">SEO Expert</SelectItem>
+                    <SelectItem value="Digital Marketer">Digital Marketer</SelectItem>
+                    <SelectItem value="Social Media Manager + Content Writer">
+                      Social Media Manager + Content Writer
+                    </SelectItem>
+                  </>
+                )}
+              </SelectContent>
+            </Select>
+          </div>
           {errors.applyFor && (
             <p className="text-red-500 text-sm mt-1">{errors.applyFor}</p>
           )}
         </div>
 
-        {/* Experience Field */}
+        {/* Experience Field - Shadcn Select */}
         <div>
           <label
             htmlFor="experience"
@@ -401,30 +526,31 @@ export default function CareerForm() {
           >
             Experience
           </label>
-          <select
-            id="experience"
-            name="experience"
-            value={formData.experience}
-            onChange={handleChange}
-            className={`w-full px-4 py-3 rounded-md border ${
-              errors.experience ? "border-red-500" : "border-gray-300"
-            } focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none bg-white`}
-          >
-            <option value="" disabled>
-              Select Your Experience
-            </option>
-            <option value="Fresher">Fresher</option>
-            <option value="1+ Years">1+ Years</option>
-            <option value="3+ Years">3+ Years</option>
-            <option value="5+ Years">5+ Years</option>
-          </select>
+          <div className={errors.experience ? "border border-red-500 rounded-md" : ""}>
+            <Select 
+              value={formData.experience}
+              onValueChange={handleExperienceChange}
+            >
+              <SelectTrigger className={`w-full px-4 py-3 h-auto rounded-md bg-white ${
+                errors.experience ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-0`}>
+                <SelectValue placeholder="Select Your Experience" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Fresher">Fresher</SelectItem>
+                <SelectItem value="1+ Years">1+ Years</SelectItem>
+                <SelectItem value="3+ Years">3+ Years</SelectItem>
+                <SelectItem value="5+ Years">5+ Years</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
           {errors.experience && (
             <p className="text-red-500 text-sm mt-1">{errors.experience}</p>
           )}
         </div>
       </div>
 
-      {/* Upload File Field */}
+      {/* Upload File Field with React Dropzone */}
       <div>
         <label
           htmlFor="resume"
@@ -433,10 +559,17 @@ export default function CareerForm() {
           Upload File
         </label>
         <div
-          className={`border-2 border-dashed ${
-            errors.resume ? "border-red-500" : "border-gray-300"
-          } rounded-md p-8 text-center`}
+          {...getRootProps()}
+          className={`border-2 border-dashed rounded-md p-8 text-center transition-colors duration-200 ${isDragActive
+              ? "border-blue-500 bg-blue-50"
+              : errors.resume
+                ? "border-red-500"
+                : "border-gray-300"
+            }`}
+          style={{ position: 'relative', minHeight: '150px' }}
         >
+          <input {...getInputProps()} id="resume" name="resume" key={inputKey} />
+
           {formData.resume ? (
             <div className="flex flex-col items-center justify-center">
               <p className="text-lg text-gray-700 mb-2">
@@ -444,7 +577,10 @@ export default function CareerForm() {
               </p>
               <button
                 type="button"
-                onClick={handleFileRemove}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleFileRemove();
+                }}
                 className="flex items-center text-red-500 hover:text-red-700 transition-colors"
               >
                 Remove Selected File{" "}
@@ -464,34 +600,43 @@ export default function CareerForm() {
               {fileDataUrl && formData.resume.type === "application/pdf" && (
                 <div className="mt-4">
                   <p className="text-gray-600">PDF file selected</p>
-                  {/* You can add PDF preview here if needed */}
                 </div>
               )}
             </div>
           ) : (
-            <label
-              htmlFor="resume"
-              className="cursor-pointer flex flex-col items-center justify-center"
-            >
-              <FiUploadCloud className="h-12 w-12 text-gray-400 mb-4" />
-              <p className="text-lg text-gray-500 mb-2">
-                Choose A File Or Drag It Here.
-              </p>
-              <p className="text-sm text-gray-400">
-                (Only PNG, JPG and PDF Files are supported)
-              </p>
-            </label>
+            <div>
+              {isDragActive ? (
+                <div className="flex flex-col items-center justify-center">
+                  <FiUploadCloud className="h-12 w-12 text-blue-500 mb-4" />
+                  <p className="text-lg text-blue-500 mb-2">
+                    Drop your file here
+                  </p>
+                </div>
+              ) : (
+                <div 
+                  className="cursor-pointer flex flex-col items-center justify-center"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    document.getElementById('resume')?.click();
+                  }}
+                >
+                  <FiUploadCloud className="h-12 w-12 text-gray-400 mb-4" />
+                  <p className="text-lg text-gray-500 mb-2">
+                    Choose A File Or Drag It Here.
+                  </p>
+                  <p className="text-sm text-gray-400 mb-4">
+                    (Only PNG, JPG and PDF Files are supported)
+                  </p>
+                  <button
+                    type="button"
+                    className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                  >
+                    Select File
+                  </button>
+                </div>
+              )}
+            </div>
           )}
-
-          <input
-            type="file"
-            id="resume"
-            name="resume"
-            key={inputKey}
-            onChange={handleFileChange}
-            className="hidden"
-            accept=".png,.jpg,.jpeg,.pdf"
-          />
         </div>
         {errors.resume && (
           <p className="text-red-500 text-sm mt-1">{errors.resume}</p>

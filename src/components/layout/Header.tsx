@@ -13,7 +13,7 @@ import { FaArrowRight } from 'react-icons/fa'
 import { LucidePhoneCall } from 'lucide-react'
 import OurWorkDropdown from '../commonComponents/dropdowns/OurWorkDropdown'
 import { usePathname } from 'next/navigation'
-import TopBar from './Topbar'
+import TopBar from './TopBar'
 
 const Header = () => {
 

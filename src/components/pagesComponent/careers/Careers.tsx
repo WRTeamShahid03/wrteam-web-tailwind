@@ -1,13 +1,48 @@
+'use client'
 import Layout from "@/components/layout/Layout";
 import Image from "next/image";
 import ourValues from "@/assets/images/career/our-values.webp";
 import trianglePattern from "@/assets/images/career/triangle-pattern.png";
 import AnimatedDots from "./AnimatedDots";
 import CareerForm from "./CareerForm";
+import React, { useState, useEffect } from "react";
 
 // Import the CareerForm component with dynamic import to ensure client-side rendering
 
+interface Vacancy {
+  id: number;
+  title: string;
+  experience: string;
+}
+
 export default function Careers() {
+  const [vacancies, setVacancies] = useState<Vacancy[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchVacancies = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/get-vacancies');
+        const data = await response.json();
+        
+        if (data.error) {
+          throw new Error(data.message);
+        }
+        
+        setVacancies(data.data || []);
+      } catch (err) {
+        console.error("Error fetching vacancies:", err);
+        setError(err instanceof Error ? err.message : 'An unknown error occurred');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchVacancies();
+  }, []);
+
   return (
     <Layout>
       <section className="container mx-auto commonMT">
@@ -157,188 +192,99 @@ export default function Careers() {
       </section>
 
       {/* Current Job Openings Section */}
-      <section className="container mx-auto py-16">
-        <div className="text-center mb-12">
-          <div className="flexColCenter commonTextGap">
-            <span className="sectionTag">
-              Career Opportunities
-            </span>
-
-            <h2 className="sectionTitle">
-              Current <span className="text-blue-600">Job Openings</span> At
-              WRTeam
-            </h2>
-
-            <p className="sectionPara max-w-3xl mx-auto mb-12 !font-medium">
-              Explore our current opportunities and fill in the necessary details
-              to apply for the desired profile. We&apos;ll be in touch with you
-              very soon. If you don&apos;t hear from us within 7 days, you can
-              reach us at <span className="font-bold text-black">hr@wrteam.in</span>
-            </p>
-          </div>
-
-          {/* Job Cards Container */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Flutter Developer Card */}
-            <div className="border border-gray-200 rounded-lg p-8 text-left hover:shadow-md transition-shadow">
-              <div className="flex items-center mb-4">
-                <div className="w-4 h-4 min-w-[16px] min-h-[16px] bg-blue-600 rounded-full mr-2 flex-shrink-0"></div>
-                <h3 className="text-xl font-bold font-montserrat">
-                  Flutter Developer
-                </h3>
-              </div>
-              <p className="text-gray-600 mb-8 font-poppins">
-                Experience: Freshers , 1+ Years
-              </p>
-              <a
-                href="#"
-                className="inline-flex items-center text-blue-600 font-medium border border-blue-600 rounded-md px-6 py-2 hover:bg-blue-50 transition-colors"
-              >
-                Apply Now
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 ml-2"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
+      {isLoading ? (
+        <section className="container mx-auto py-16">
+          <div className="text-center mb-12">
+            <div className="flexColCenter commonTextGap">
+              <span className="sectionTag">
+                Career Opportunities
+              </span>
+              <h2 className="sectionTitle">
+                Current <span className="text-blue-600">Job Openings</span>
+              </h2>
             </div>
 
-            {/* Laravel Developer Card */}
-            <div className="border border-gray-200 rounded-lg p-8 text-left hover:shadow-md transition-shadow">
-              <div className="flex items-center mb-4">
-                <div className="w-4 h-4 min-w-[16px] min-h-[16px] bg-blue-600 rounded-full mr-2 flex-shrink-0"></div>
-                <h3 className="text-xl font-bold font-montserrat">
-                  Laravel Developer
-                </h3>
-              </div>
-              <p className="text-gray-600 mb-8 font-poppins">
-                Experience: 1+ Years
-              </p>
-              <a
-                href="#"
-                className="inline-flex items-center text-blue-600 font-medium border border-blue-600 rounded-md px-6 py-2 hover:bg-blue-50 transition-colors"
-              >
-                Apply Now
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 ml-2"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
-            </div>
-
-            {/* SEO Expert Card */}
-            <div className="border border-gray-200 rounded-lg p-8 text-left hover:shadow-md transition-shadow">
-              <div className="flex items-center mb-4">
-                <div className="w-4 h-4 min-w-[16px] min-h-[16px] bg-blue-600 rounded-full mr-2 flex-shrink-0"></div>
-                <h3 className="text-xl font-bold font-montserrat">
-                  SEO Expert
-                </h3>
-              </div>
-              <p className="text-gray-600 mb-8 font-poppins">
-                Experience: 1+ Years
-              </p>
-              <a
-                href="#"
-                className="inline-flex items-center text-blue-600 font-medium border border-blue-600 rounded-md px-6 py-2 hover:bg-blue-50 transition-colors"
-              >
-                Apply Now
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 ml-2"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
-            </div>
-
-            {/* Digital Marketer Card */}
-            <div className="border border-gray-200 rounded-lg p-8 text-left hover:shadow-md transition-shadow">
-              <div className="flex items-center mb-4">
-                <div className="w-4 h-4 min-w-[16px] min-h-[16px] bg-blue-600 rounded-full mr-2 flex-shrink-0"></div>
-                <h3 className="text-xl font-bold font-montserrat">
-                  Digital marketer
-                </h3>
-              </div>
-              <p className="text-gray-600 mb-8 font-poppins">
-                Experience: 1+ Years
-              </p>
-              <a
-                href="#"
-                className="inline-flex items-center text-blue-600 font-medium border border-blue-600 rounded-md px-6 py-2 hover:bg-blue-50 transition-colors"
-              >
-                Apply Now
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 ml-2"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
-            </div>
-
-            {/* Social Media Manager Card */}
-            <div className="border border-gray-200 rounded-lg p-8 text-left hover:shadow-md transition-shadow">
-              <div className="flex items-center mb-4">
-                <div className="w-4 h-4 min-w-[16px] min-h-[16px] bg-blue-600 rounded-full mr-2 flex-shrink-0"></div>
-                <h3 className="text-xl font-bold font-montserrat">
-                  Social Media Manager + Content Writer
-                </h3>
-              </div>
-              <p className="text-gray-600 mb-8 font-poppins">
-                Experience: 1 Year
-              </p>
-              <a
-                href="#"
-                className="inline-flex items-center text-blue-600 font-medium border border-blue-600 rounded-md px-6 py-2 hover:bg-blue-50 transition-colors"
-              >
-                Apply Now
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 ml-2"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
+            {/* Skeleton Cards Container */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Generate 6 skeleton cards */}
+              {[...Array(6)].map((_, index) => (
+                <div key={index} className="border border-gray-200 rounded-lg p-8 text-left">
+                  <div className="flex items-center mb-4">
+                    <div className="w-4 h-4 min-w-[16px] min-h-[16px] bg-gray-200 rounded-full mr-2 flex-shrink-0 animate-pulse"></div>
+                    {/* Title skeleton */}
+                    <div className="h-6 bg-gray-200 rounded w-3/4 animate-pulse"></div>
+                  </div>
+                  {/* Experience text skeleton */}
+                  <div className="h-4 bg-gray-200 rounded w-1/2 mb-8 animate-pulse"></div>
+                  
+                  {/* Apply button skeleton */}
+                  <div className="h-10 bg-gray-200 rounded w-32 animate-pulse"></div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : vacancies.length > 0 ? (
+        <section className="container mx-auto py-16">
+          <div className="text-center mb-12">
+            <div className="flexColCenter commonTextGap">
+              <span className="sectionTag">
+                Career Opportunities
+              </span>
+
+              <h2 className="sectionTitle">
+                Current <span className="text-blue-600">Job Openings</span> At
+                WRTeam
+              </h2>
+
+              <p className="sectionPara max-w-3xl mx-auto mb-12 !font-medium">
+                Explore our current opportunities and fill in the necessary details
+                to apply for the desired profile. We&apos;ll be in touch with you
+                very soon. If you don&apos;t hear from us within 7 days, you can
+                reach us at <span className="font-bold text-black">hr@wrteam.in</span>
+              </p>
+            </div>
+
+            {/* Job Cards Container */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {vacancies.map((job) => (
+                <div key={job.id} className="border border-gray-200 rounded-lg p-8 text-left hover:shadow-md transition-shadow">
+                  <div className="flex items-center mb-4">
+                    <div className="w-4 h-4 min-w-[16px] min-h-[16px] bg-blue-600 rounded-full mr-2 flex-shrink-0"></div>
+                    <h3 className="text-xl font-bold font-montserrat">
+                      {job.title}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 mb-8 font-poppins">
+                    Experience: {job.experience}
+                  </p>
+                  <a
+                    href="#applySection"
+                    className="inline-flex items-center text-blue-600 font-medium border border-blue-600 rounded-md px-6 py-2 hover:bg-blue-50 transition-colors"
+                  >
+                    Apply Now
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 ml-2"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* Application Form Section */}
-      <section className="bg-[#f1f5ff] py-16">
+      <section className="bg-[#f1f5ff] py-16" id="applySection">
         <div className="container mx-auto">
           <div className="flexColCenter commonTextGap text-center">
             <h2 className="text-4xl font-bold mb-6 font-montserrat">
@@ -355,7 +301,7 @@ export default function Careers() {
           </div>
 
           {/* Application Form - Using Client Component */}
-          <CareerForm />
+          <CareerForm currentVacancy={vacancies} />
         </div>
       </section>
     </Layout>

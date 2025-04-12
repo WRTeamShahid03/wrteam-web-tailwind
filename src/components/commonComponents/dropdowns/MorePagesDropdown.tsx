@@ -9,7 +9,7 @@ const MorePagesDropdown = () => {
   const router = usePathname();
   const [showDrop, setShowDrop] = useState<boolean>(false)
 
-  const activeDrop = router === '/about-us' || router === '/careers' || router === '/blogs';
+  const activeDrop = router === '/about-us' || router === '/career' || router === '/blogs';
 
   return (
     <div className="max-1199:relative">
@@ -29,7 +29,7 @@ const MorePagesDropdown = () => {
         >
           <div className="flex flex-col p-4 gap-1">
             <DropdownLink href="/about-us" title="About Us" router={router}/>
-            <DropdownLink href="/careers" title="Careers" router={router}/>
+            <DropdownLink href="/career" title="Career" router={router}/>
             <DropdownLink href="/blogs" title="Blogs" router={router}/>
           </div>
         </div>
