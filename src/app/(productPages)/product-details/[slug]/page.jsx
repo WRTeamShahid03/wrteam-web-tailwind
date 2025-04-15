@@ -1,6 +1,7 @@
 import React from 'react'
 import ProductDetailsPage from '@/components/pagesComponent/productDetailsPage/ProductDetailsPage'
 import { Metadata } from 'next'
+import OldProductDetailPage from '@/components/pagesComponent/productDetailsPage/oldUi/OldProductDetailPage'
 
 // Function to fetch product data from the API
 async function fetchProductData(slug) {
@@ -72,10 +73,21 @@ export async function generateMetadata({ params }) {
 export default async function Page({
   params
 }) {
+
+  // Fetch product data
+  const productData = await fetchProductData(params.slug);
+
+  const isNewUI = productData?.data?.display_new_ui;
+
   // Pass the slug to the ProductDetailsPage component
   return (
     <div>
-      <ProductDetailsPage slug={params.slug} />
+      {
+        isNewUI === 1 ?
+          <ProductDetailsPage slug={params.slug}  />
+          :
+          <OldProductDetailPage slug={params.slug} productData={productData?.data}/>
+      }
     </div>
   );
 }

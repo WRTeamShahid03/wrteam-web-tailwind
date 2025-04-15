@@ -33,7 +33,7 @@ const Blogs = () => {
                 };
                 
                 // Add optional filters if they exist
-                if (categoryIdFromUrl) params.category_id = categoryIdFromUrl;
+                // if (categoryIdFromUrl) params.category_id = categoryIdFromUrl;
                 if (categorySlugFromUrl) params.category_slug = categorySlugFromUrl;
 
                 const response = await axiosClient.get('/api/blogs', {

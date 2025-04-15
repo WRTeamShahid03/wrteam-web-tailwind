@@ -1,4 +1,7 @@
-export default function Creative() {
+import Image from "next/image";
+import teamImg from '../../../assets/images/homePage/teamImg.png'
+
+const HeroSection: React.FC = () => {
   return (
     <section className="bg-blue-50 py-10">
       <div className="container">
@@ -34,12 +37,7 @@ export default function Creative() {
               </div>
               <div className="flex items-center gap-1">
                 <div className="flex -space-x-4">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <div
-                      key={i}
-                      className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white"
-                    ></div>
-                  ))}
+                 <Image src={teamImg} alt="teamImg" width={0} height={0} className="w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center text-xs" />  
                 </div>
                 <div className="w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center text-xs">
                   50+
@@ -53,4 +51,6 @@ export default function Creative() {
       </div>
     </section>
   );
-}
+};
+
+export default HeroSection;

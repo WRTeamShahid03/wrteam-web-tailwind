@@ -22,6 +22,7 @@ import trustpilot from '../assets/images/footerLogos/Trustpilo.svg'
 import upwork from '../assets/images/footerLogos/Upwork.svg'
 
 import { FaStar } from "react-icons/fa";
+import FeedbackDialog from './commonComponents/FeedbackDialog';
 
 const NewFooter = () => {
 
@@ -68,7 +69,7 @@ const NewFooter = () => {
   ];
 
   return (
-    <footer className="bg-[#181c24] text-white">
+    <footer className="bg-[#181c24] text-white relative z-[2]">
       {/* Main footer content */}
       <div className="max-1680:container 2xl:max-w-[1620px] mx-auto pt-12 grid grid-cols-12 gap-y-12">
         {/* Left section - Logo and description */}
@@ -90,10 +91,11 @@ const NewFooter = () => {
             <div>
               <h3 className="text-white font-medium text-lg mb-4 bg-[#2a2e35] py-2 px-4 rounded-md">Company</h3>
               <ul className="space-y-3 text-gray-300">
-                <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
-                <li><Link href="/career" className="hover:text-white transition">Careers</Link></li>
-                <li><Link href="/blogs" className="hover:text-white transition">Blogs</Link></li>
-                <li><Link href="/license" className="hover:text-white transition">Exclusive License</Link></li>
+                <li><Link href="/about-us" className="hover:text-white transition" title='About Us'>About Us</Link></li>
+                <li><Link href="/career" className="hover:text-white transition" title='Careers'>Careers</Link></li>
+                <li><Link href="/blogs" className="hover:text-white transition" title='Blogs'>Blogs</Link></li>
+                <li><Link href="/contact-us" className="hover:text-white transition" title='Contact Us'>Contact Us</Link></li>
+                <li><Link href="/exclusive-license" className="hover:text-white transition" title='Exclusive License'>Exclusive License</Link></li>
               </ul>
             </div>
 
@@ -101,12 +103,12 @@ const NewFooter = () => {
             <div>
               <h3 className="text-white font-medium text-lg mb-4 bg-[#2a2e35] py-2 px-4 rounded-md">Our Services</h3>
               <ul className="space-y-3 text-gray-300">
-                <li><Link href="/services/web" className="hover:text-white transition">Web Development</Link></li>
-                <li><Link href="/services/app" className="hover:text-white transition">App Development</Link></li>
-                <li><Link href="/services/ui-ux" className="hover:text-white transition">UI / UX Design</Link></li>
-                <li><Link href="/services/marketing" className="hover:text-white transition">Digital Marketing</Link></li>
-                <li><Link href="/services/customization" className="hover:text-white transition">Customization</Link></li>
-                <li><Link href="/services/installation" className="hover:text-white transition">Installation</Link></li>
+                <li><Link href="/services/web-development" title='Web Development' className="hover:text-white transition">Web Development</Link></li>
+                <li><Link href="/services/app-development" title='App Development' className="hover:text-white transition">App Development</Link></li>
+                <li><Link href="/services/ui-ux-design" title='UI / UX Design' className="hover:text-white transition">UI / UX Design</Link></li>
+                <li><Link href="/services/digital-marketing" title='Digital Marketing' className="hover:text-white transition">Digital Marketing</Link></li>
+                <li><Link href="/services/customization" title='Customization' className="hover:text-white transition">Customization</Link></li>
+                <li><Link href="/services/installation" title='Installation' className="hover:text-white transition">Installation</Link></li>
               </ul>
             </div>
 
@@ -114,9 +116,8 @@ const NewFooter = () => {
             <div>
               <h3 className="text-white font-medium text-lg mb-4 bg-[#2a2e35] py-2 px-4 rounded-md">Our Work</h3>
               <ul className="space-y-3 text-gray-300">
-                <li><Link href="/work/case-study" className="hover:text-white transition">Case Study</Link></li>
-                <li><Link href="/work/development" className="hover:text-white transition">Development</Link></li>
-                <li><Link href="/work/design" className="hover:text-white transition">Design</Link></li>
+                <li><Link href="/our-work/development" className="hover:text-white transition" title='Development'>Development</Link></li>
+                <li><Link href="/our-work/design" className="hover:text-white transition" title='Design'>Design</Link></li>
               </ul>
             </div>
           </div>
@@ -157,7 +158,7 @@ const NewFooter = () => {
               </div>
               <div>
                 <h4 className="font-medium">Phone</h4>
-                <p className="text-gray-300">+91 97979 45459</p>
+                <Link href={'tel:+91 97979 45459'} className="text-gray-300">+91 97979 45459</Link>
               </div>
             </div>
 
@@ -170,7 +171,7 @@ const NewFooter = () => {
               </div>
               <div>
                 <h4 className="font-medium">Mail Us</h4>
-                <p className="text-gray-300">Support@wrteam.in</p>
+                <Link href={'mailto:support@wrteam.in'} className="text-gray-300">Support@wrteam.in</Link>
               </div>
             </div>
 
@@ -199,44 +200,44 @@ const NewFooter = () => {
                 Share your thoughts with us to help improve your experience!
               </p>
             </div>
-            <Link
-              href="/feedback"
-              className="inline-flex items-center bg-white text-[#171B26] px-4 py-2 rounded-md font-medium text-sm transition hover:bg-gray-200"
-            >
-              Feedback
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </Link>
+            <FeedbackDialog />
           </div>
 
           {/* Trust Badges */}
-          <div className='sm:pl-6 mt-16 pb-6'>
+          <div className='sm:pl-6 between-1200-1399:!mt-6 !mt-16 pb-6'>
             <h3 className="text-white font-medium mb-4">Hire & Trust - Available on Top Platforms with Verified Reviews</h3>
             <div className="flex flex-wrap gap-3 items-center">
-              <div className='bg-[#2a2e35] rounded-[12px] p-3'>
-                <Image src={fiver} width={80} height={24} alt='fiverr'/>
-              </div>
-
-              <div className='bg-[#2a2e35] rounded-[12px] p-3'>
-                <Image src={upwork} alt="Upwork" width={80} height={24} />
-              </div>
-
-              <div className="flex items-center bg-[#2a2e35] rounded-[12px] p-3 gap-1">
-                <div className='flex items-center gap-2 border-r pr-2 border-[#ffffff3d]'>
-                  <FaStar color='#f38844' />
-                  <span className="font-bold"> 5.0</span>
+              <Link href={process.env.NEXT_PUBLIC_FIVER} title='Fiver' target='_blank'>
+                <div className='bg-[#2a2e35] rounded-[12px] p-3'>
+                  <Image src={fiver} width={80} height={24} alt='fiverr' />
                 </div>
-                <Image src={clutch} alt="Clutch" width={80} height={24} className='pl-1'/>
-              </div>
+              </Link>
 
-              <div className="flex items-center bg-[#2a2e35] rounded-[12px] p-3 gap-1">
-                <div className='flex items-center gap-2 border-r pr-2 border-[#ffffff3d]'>
-                  <FaStar color='#f38844' />
-                  <span className="font-bold">4.2</span>
+              <Link href={process.env.NEXT_PUBLIC_UPWORK} title='Upwork' target='_blank'>
+                <div className='bg-[#2a2e35] rounded-[12px] p-3'>
+                  <Image src={upwork} alt="Upwork" width={80} height={24} />
                 </div>
-                <Image src={trustpilot} alt="Trustpilot" width={98} height={24} className='pl-1'/>
-              </div>
+              </Link>
+
+              <Link href={process.env.NEXT_PUBLIC_CLUTCH} title='Clutch' target='_blank'>
+                <div className="flex items-center bg-[#2a2e35] rounded-[12px] p-3 gap-1">
+                  <div className='flex items-center gap-2 border-r pr-2 border-[#ffffff3d]'>
+                    <FaStar color='#f38844' />
+                    <span className="font-bold"> 5.0</span>
+                  </div>
+                  <Image src={clutch} alt="Clutch" width={80} height={24} className='pl-1' />
+                </div>
+              </Link>
+
+              <Link href={process.env.NEXT_PUBLIC_TRUSHTPILOT} title='Trushtpilot' target='_blank'>
+                <div className="flex items-center bg-[#2a2e35] rounded-[12px] p-3 gap-1">
+                  <div className='flex items-center gap-2 border-r pr-2 border-[#ffffff3d]'>
+                    <FaStar color='#f38844' />
+                    <span className="font-bold">4.2</span>
+                  </div>
+                  <Image src={trustpilot} alt="Trustpilot" width={98} height={24} className='pl-1' />
+                </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -244,19 +245,19 @@ const NewFooter = () => {
 
 
       {/* Copyright bar */}
-      <div className="bg-[#171B26] border-t border-[#ffffff3d] py-4">
+      <div className="bg-[#171B26] border-t border-[#ffffff3d] py-4 text-[14px]">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-y-2 text-sm sm:text-base">
           <div>
-          Copyright ©️ 2025 All Rights Reserved & Designed by 💕 <Link href="https://wrteam.in" title='WRTeam' className="primaryColor">WRTeam</Link>.
+            Copyright ©️ 2025 All Rights Reserved & Designed by 💕 <Link href="https://wrteam.in" title='WRTeam' className="primaryColor">WRTeam</Link>.
           </div>
-          <div className="flex space-x-4 mt-4 md:mt-0 flex-wrap gap-y-2">
-            <Link href="/terms" className="hover:text-white">Terms of use</Link>
+          <div className="flex mt-4 md:mt-0 flex-wrap gap-2 between-1200-1399:gap-1">
+            <Link href="/terms-of-use" title='Terms of use'>Terms of use</Link>
             <span>|</span>
-            <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
+            <Link href="/privacy-policy" title='Privacy Policies'>Privacy Policies</Link>
             <span>|</span>
-            <Link href="/disclaimer" className="hover:text-white">Copyright & Disclaimer</Link>
+            <Link href="/copyright-and-disclaimer" title='Copyright & Disclaimer'>Copyright & Disclaimer</Link>
             <span>|</span>
-            <Link href="/refund" className="hover:text-white">Refund Policy</Link>
+            <Link href="/refund-policy" title='Refund Policy'>Refund Policy</Link>
           </div>
         </div>
       </div>

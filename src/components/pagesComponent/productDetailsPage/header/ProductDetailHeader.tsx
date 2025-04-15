@@ -37,16 +37,16 @@ const ProductDetailHeader = ({ icon_image }: ProductDetailHeaderProps) => {
     };
 
     return (
-        <header className={`py-6 sticky top-0 w-full z-[10] ${scroll > (navRef.current?.offsetTop || 0) ? "stickky bg-white shadow-sm" : "!bg-none"}`}>
+        <header className={`py-4 sticky top-0 w-full z-[10] ${scroll > (navRef.current?.offsetTop || 0) ? "stickky bg-white shadow-sm" : "!bg-none"}`}>
             <div className="container">
                 <div ref={navRef} className='flex items-center justify-between nav'>
                     <Link href={'/'}>
                         {icon_image ? (
                             <Image 
                                 src={icon_image}
-                                width={250}
-                                height={100}
-                                className='!w-[175px] md:!w-[200px] xl:!w-[250px] h-auto' 
+                                width={162}
+                                height={46}
+                                className='object-cover' 
                                 alt="WRTeam Logo"
                                 unoptimized={true}
                                 loader={({ src }) => src}

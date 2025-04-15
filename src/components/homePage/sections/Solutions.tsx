@@ -10,7 +10,7 @@ import { BsArrowRightCircle } from 'react-icons/bs'
 
 const Solutions: React.FC = () => {
     return (
-        <section className='commonBg pt-[120px] sm:pt-[140px] xl:pt-[180px] pb-12 md:pb-16 lg:pb-20 mt-[-80px]'>
+        <section className='commonBg py-12 md:py-16 lg:py-20 commonMT'>
 
             <div className='container space-y-12 md:space-y-16 lg:space-y-20'>
                 <div className='flexColCenter commonTextGap lg:w-[70%] xl:w-[50%] text-center m-auto'>

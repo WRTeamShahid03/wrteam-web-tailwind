@@ -47,20 +47,20 @@ const Header = () => {
 
         <div ref={navRef} className='flex items-center justify-between nav'>
           <Link href={'/'}>
-            <Image src={logo} width={0} height={0} className='w-[175px] md:w-[200px] xl:w-auto h-auto' alt='' />
+            <Image src={logo} width={0} height={0} className='w-[175px] between-1200-1399:w-[175px] md:w-[200px] xl:w-auto h-auto' alt='' />
           </Link>
           <div className='max-1199:hidden block'>
-            <ul className='flex items-center lg:gap-6 between-1200-1399:gap-4 between-1200-1399:text-[15px] max-1680:gap-5 xl:gap-12 textPrimary'>
-              <Link href={'/'} className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === '/' && 'after:bg-black font-semibold'}`}>
+            <ul className='flex items-center lg:gap-6 between-1200-1399:gap-4 between-1200-1399:text-[15px] between-1400-1680:gap-5 xl:gap-12 textPrimary'>
+              <Link href={'/'} className={`relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === '/' && 'after:!bg-black font-semibold'}`}>
                 Home
               </Link>
-              <Link href={'/products'} className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === '/products' && 'after:bg-black font-semibold'}`}>
+              <Link href={'/products'} className={`relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === '/products' && 'after:!bg-black font-semibold'}`}>
                 Products
               </Link>
               <ServicesDropdown />
               <MorePagesDropdown />
               <OurWorkDropdown />
-              <Link href={'/exclusive-license'} className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === '/exclusive-license' && 'after:bg-black font-semibold'}`}>
+              <Link href={'/exclusive-license'} className={`relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === '/exclusive-license' && 'after:!bg-black font-semibold'}`}>
                 Exclusive License
               </Link>
               <Link href={'/hire-us'} className='secondaryBg text-white max-1680:py-2 max-1680:px-4 py-4 px-8 rounded-[8px] flexCenter gap-2'>

@@ -38,11 +38,12 @@ const RightSideContent = () => {
             // Reset to all blogs
             router.push('/blogs');
         } else {
-            router.push(`/blogs?category_id=${categoryId}&category_slug=${slug}`);
+            router.push(`/blogs?category_slug=${slug}`);
         }
     };
 
     const currentCategoryId = searchParams.get('category_id');
+    const currentCategorySlug = searchParams.get('category_slug');
 
     return (
         <div className="max-1199:col-span-12 col-span-4">
@@ -69,7 +70,7 @@ const RightSideContent = () => {
                 ) : (
                     <div className='flexColCenter !items-start gap-6'>
                         <div 
-                            className={`flexCenter !justify-between w-full font-semibold border-b border-[#51535892] pb-4 cursor-pointer hover:text-[#DF5200] ${!currentCategoryId ? 'primaryColor' : 'textSecondary'}`}
+                            className={`flexCenter !justify-between w-full font-semibold border-b border-[#51535892] pb-4 cursor-pointer hover:text-[#DF5200] ${!currentCategorySlug ? 'primaryColor' : 'textSecondary'}`}
                             onClick={() => handleCategoryClick(0, '')}
                         >
                             <span>All Categories</span>
@@ -79,7 +80,7 @@ const RightSideContent = () => {
                         {categories.map((category) => (
                             <div 
                                 key={category.id} 
-                                className={`flexCenter !justify-between w-full font-semibold border-b border-[#51535892] last:border-b-0 pb-4 last:pb-0 cursor-pointer hover:text-[#DF5200] ${currentCategoryId === category.id.toString() ? 'primaryColor' : 'textSecondary'}`}
+                                className={`flexCenter !justify-between w-full font-semibold border-b border-[#51535892] last:border-b-0 pb-4 last:pb-0 cursor-pointer hover:text-[#DF5200] ${currentCategorySlug === category.slug.toString() ? 'primaryColor' : 'textSecondary'}`}
                                 onClick={() => handleCategoryClick(category.id, category.slug)}
                             >
                                 <span>{category.name}</span>

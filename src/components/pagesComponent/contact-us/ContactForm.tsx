@@ -6,6 +6,8 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { IoIosCloseCircle } from "react-icons/io";
 import { FiUpload, FiUploadCloud } from "react-icons/fi";
+import { toast } from "react-hot-toast";
+import axios from "axios";
 
 // Define Zod schema for form validation
 const formSchema = z.object({
@@ -41,7 +43,8 @@ const ContactForm = () => {
   // State for country code
   const [selectedCountryCode, setSelectedCountryCode] = useState("");
 
-  const [formLoader, setFormLoader] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
 
   // Form ref
   const form = useRef<HTMLFormElement>(null);
@@ -98,7 +101,6 @@ const ContactForm = () => {
     return formData.contactNumber;
   };
 
-
   // Validate form using Zod
   const validateForm = () => {
     try {
@@ -135,46 +137,148 @@ const ContactForm = () => {
     }
   };
 
+  // Handle successful submission
+  const handleSuccess = () => {
+    setSubmitSuccess(true);
+    toast.success("Your message has been submitted successfully!");
+
+    // Reset form
+    setFormData({
+      fullName: "",
+      email: "",
+      contactNumber: "",
+      subject: "",
+      msg: "",
+    });
+
+    // Reset form fields
+    if (form.current) {
+      form.current.reset();
+    }
+  };
+
+  // Email fallback method when API fails
+  const handleEmailFallback = (data: FormData) => {
+    // Update support email to match your actual support email
+    const supportEmail = "support@wrteam.in";
+
+    try {
+      // Create a mailto link as fallback
+      const mailtoLink = `mailto:${supportEmail}?subject=${encodeURIComponent(`Contact Form: ${data.subject}`)}&body=${encodeURIComponent(`Name: ${data.fullName}\nEmail: ${data.email}\nPhone: ${data.contactNumber}\nSubject: ${data.subject}\nMessage: ${data.msg}`)}`;
+
+      // Open mailto link
+      window.open(mailtoLink, '_blank');
+
+      toast.success("We've opened an email window for you to send your message directly to our team. Please send the email to complete your request.");
+
+      // Show a message explaining what to do if the email client doesn't open
+      toast(`If your email client didn't open, please send an email to ${supportEmail} with your details.`, {
+        duration: 8000 // Show this message longer
+      });
+
+      // Still mark as success since we provided an alternative
+      setSubmitSuccess(true);
+
+      // Reset form
+      setFormData({
+        fullName: "",
+        email: "",
+        contactNumber: "",
+        subject: "",
+        msg: "",
+      });
+
+      if (form.current) {
+        form.current.reset();
+      }
+    } catch (emailError) {
+      console.error("Email fallback error:", emailError);
+
+      // Give the user direct instructions for manual contact
+      toast.error(
+        `Please contact us directly at ${supportEmail} with your name, email, phone, subject, and message.`,
+        { duration: 10000 } // Keep this message visible longer
+      );
+    }
+  };
+
   // Handle form submission
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (validateForm()) {
-      setFormLoader(true);
+      console.log('valide Form')
+      try {
+        setIsSubmitting(true);
 
-      // Get formatted phone number for submission
-      const formattedPhoneNumber = getFormattedPhoneNumber();
-      const finalNum = `+${selectedCountryCode} ${formattedPhoneNumber}`;
+        // Get formatted phone number for submission
+        const formattedPhoneNumber = getFormattedPhoneNumber();
+        const finalNum = `+${selectedCountryCode} ${formattedPhoneNumber}`;
 
-      // Create a copy of form data with formatted phone number for submission
-      const formDataToSubmit = {
-        ...formData,
-        contactNumber: finalNum,
-      };
+        // Create FormData for submission to API
+        const apiFormData = new FormData();
+        apiFormData.append('name', formData.fullName);
+        apiFormData.append('email', formData.email);
+        apiFormData.append('phone', finalNum);
+        apiFormData.append('subject', formData.subject);
+        apiFormData.append('message', formData.msg);
 
-      // Form is valid, submit data
-      console.log("Form submitted:", formDataToSubmit);
+        try {
+          // First try the API endpoint
+          const response = await fetch('../api/contact-us', {
+            method: 'POST',
+            body: apiFormData,
+          });
 
-      // Here you would typically make an API call to submit the form
-      // Similar to your careerMailApi call in the old code
+          const responseData = await response.json();
 
-      // Simulate API call with timeout
-      setTimeout(() => {
-        // Reset form after submission
-        setFormData({
-          fullName: "",
-          email: "",
-          contactNumber: "",
-          subject: "",
-          msg: "",
-        });
+          console.log('responseData =>', responseData)
 
-        // Show success message
-        alert("Application submitted successfully!");
+          // Check if the response is successful
+          if (response.ok && responseData && responseData.error === false) {
+            // Success scenario
+            handleSuccess();
+            return;
+          } else {
+            // API returned an error response
+            console.error("API error response:", responseData);
 
-        // Reset loader
-        setFormLoader(false);
-      }, 1000);
+            // Show a specific error message if available
+            if (responseData.details && responseData.details.includes("405")) {
+              toast.error("The server doesn't support this request method. We'll use the email option instead.");
+            } else if (responseData.status === 404) {
+              toast.error("The API endpoint couldn't be found. We'll use the email option instead.");
+            } else {
+              toast.error(responseData.message || "There was an error submitting your request.");
+            }
+
+            // Use email fallback
+            handleEmailFallback(formData);
+          }
+        } catch (apiError) {
+          console.error("API request failed:", apiError);
+          toast.error("We couldn't connect to our server. We'll use the email option instead.");
+
+          // Use email fallback on API failure
+          handleEmailFallback(formData);
+        }
+      } catch (error) {
+        console.error("Error in form submission:", error);
+        toast.error("We're experiencing technical difficulties. Please use the email option.");
+
+        // Always fall back to email option on any error
+        handleEmailFallback(formData);
+      } finally {
+        setIsSubmitting(false);
+      }
+    } else {
+      // Scroll to the first error
+      const firstErrorField = Object.keys(errors)[0];
+      const element = document.getElementById(firstErrorField);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        element.focus();
+      }
     }
   };
 
@@ -239,7 +343,7 @@ const ContactForm = () => {
           )}
         </div>
 
-        {/* subject Field */}
+        {/* Subject Field */}
         <div className="max-479:col-span-12 col-span-6">
           <input
             type="text"
@@ -248,7 +352,7 @@ const ContactForm = () => {
             value={formData.subject}
             onChange={handleChange}
             placeholder="Your Subject"
-            className={`w-full px-2 py-1.5 rounded-md border ${errors.subject ? "border-red-500" : "border-gray-300"
+            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.subject ? "border-red-500" : "border-gray-300"
               } focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.subject && (
@@ -256,9 +360,7 @@ const ContactForm = () => {
           )}
         </div>
 
-
-
-        {/* subject Field */}
+        {/* Message Field */}
         <div className="col-span-12">
           <textarea
             id="msg"
@@ -274,7 +376,6 @@ const ContactForm = () => {
             <p className="text-red-500 text-sm mt-1">{errors.msg}</p>
           )}
         </div>
-
       </div>
 
       {/* Submit Button */}
@@ -282,9 +383,9 @@ const ContactForm = () => {
         <button
           type="submit"
           className="commonBtn commonBtnSecondaryBg !w-full"
-          disabled={formLoader}
+          disabled={isSubmitting}
         >
-          {formLoader ? (
+          {isSubmitting ? (
             <span className="flexCenter">
               <svg
                 className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
@@ -313,8 +414,15 @@ const ContactForm = () => {
           )}
         </button>
       </div>
+
+      {/* Success Message */}
+      {submitSuccess && (
+        <div className="bg-green-100 text-green-800 p-4 rounded-md mt-4">
+          Thank you for your message! We have received your inquiry and will get back to you shortly.
+        </div>
+      )}
     </form>
   );
 }
 
-export default ContactForm
+export default ContactForm;

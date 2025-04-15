@@ -26,17 +26,14 @@ const HomePage: React.FC = () => {
   return (
     <Layout>
       <HeroSection />
+      <ExclusiveCounter />
       <AboutWrteam />
       <AchievementEnvanto />
-      <Counter />
       <Solutions />
       <BestItServices />
       <Technologies />
       <WorkChain />
-      <Exclusive />
       {/* <Testimonials /> */}
-      <Creative />
-      <ExclusiveCounter />
       <SuccessStories />
       <ClientReviewSection />
     </Layout>

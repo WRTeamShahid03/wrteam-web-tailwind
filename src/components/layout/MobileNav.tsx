@@ -31,16 +31,16 @@ const MobileNav = () => {
                     </SheetTitle>
                     <div className=''>
                         <ul className='flex flex-col items-start gap-6 textPrimary font-semibold'>
-                            <Link href={'/'} className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === '/' && 'after:bg-black font-semibold'}`}>
+                            <Link href={'/'} className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === '/' && 'after:!bg-black font-semibold'}`}>
                                 Home
                             </Link>
-                            <Link href={'/products'} className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === '/products' && 'after:bg-black font-semibold'}`}>
+                            <Link href={'/products'} className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === '/products' && 'after:!bg-black font-semibold'}`}>
                                 Products
                             </Link>
                             <ServicesDropdown />
                             <MorePagesDropdown />
                             <OurWorkDropdown />
-                            <Link href={'/exclusive-license'} className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === '/exclusive-license' && 'after:bg-black font-semibold'}`}>
+                            <Link href={'/exclusive-license'} className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === '/exclusive-license' && 'after:!bg-black font-semibold'}`}>
                                 Exclusive License
                             </Link>
                             <Link href={'/hire-us'} className='secondaryBg text-white max-1680:py-2 max-1680:px-4 py-4 px-8 rounded-[8px] flexCenter gap-2'>

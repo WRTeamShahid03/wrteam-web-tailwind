@@ -31,6 +31,10 @@ export default {
           min: "1200px",
           max: "1399px",
         },
+        "between-1400-1680": {
+          min: "1400px",
+          max: "1680px",
+        },
         "max-1680": {
           max: "1680px",
         },

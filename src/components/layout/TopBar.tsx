@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Link from 'next/link'
 import { LuPhoneCall } from 'react-icons/lu'
@@ -7,8 +8,8 @@ import { AiFillInstagram } from 'react-icons/ai'
 
 const TopBar:React.FC = () => {
   return (
-    <div className="bg-[#181C24] text-white">
-      <div className="container mx-auto">
+    <div className="bg-[#181C24] text-white lg:block hidden">
+      <div className="max-1680:container 2xl:max-w-[1620px] mx-auto">
         <div className="flex items-center justify-between py-2">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-1 pr-3 border-r border-[#4C5B79]">

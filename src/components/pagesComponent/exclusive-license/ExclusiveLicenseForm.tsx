@@ -5,6 +5,7 @@ import { z } from "zod";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { Check } from "lucide-react"
+import { toast } from "react-hot-toast";
 
 import { cn } from "@/lib/utils"
 import {
@@ -176,7 +177,8 @@ export default function ExclusiveLicenseForm() {
 
     const [open, setOpen] = useState<boolean>(false)
     const [value, setValue] = useState<string>("")
-    const [formLoader, setFormLoader] = useState<boolean>(false);
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+    const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
 
     // Form ref
     const form = useRef<HTMLFormElement>(null);
@@ -269,45 +271,148 @@ export default function ExclusiveLicenseForm() {
         }
     };
 
+    // Handle successful submission
+    const handleSuccess = () => {
+        setSubmitSuccess(true);
+        toast.success("Your exclusive license request has been submitted successfully!");
+        
+        // Reset form
+        setFormData({
+            fullName: "",
+            email: "",
+            contactNumber: "",
+            product: "",
+        });
+        
+        // Reset form fields
+        if (form.current) {
+            form.current.reset();
+        }
+        
+        // Reset product selection UI
+        setValue("");
+    };
+
+    // Email fallback method when API fails
+    const handleEmailFallback = (data: FormData) => {
+        // Update support email to match your actual support email
+        const supportEmail = "licenses@wrteam.in";
+        
+        try {
+            // Create a mailto link as fallback
+            const mailtoLink = `mailto:${supportEmail}?subject=${encodeURIComponent(`Exclusive License Request for ${data.product}`)}&body=${encodeURIComponent(`Name: ${data.fullName}\nEmail: ${data.email}\nPhone: ${data.contactNumber}\nProduct: ${data.product}`)}`;
+            
+            // Open mailto link
+            window.open(mailtoLink, '_blank');
+            
+            toast.success("We've opened an email window for you to send your license request directly to our team. Please send the email to complete your request.");
+            
+            // Show a message explaining what to do if the email client doesn't open
+            toast(`If your email client didn't open, please send an email to ${supportEmail} with your details.`, {
+                duration: 8000 // Show this message longer
+            });
+            
+            // Still mark as success since we provided an alternative
+            setSubmitSuccess(true);
+            
+            // Reset form
+            setFormData({
+                fullName: "",
+                email: "",
+                contactNumber: "",
+                product: "",
+            });
+            
+            // Reset product selection UI
+            setValue("");
+            
+            if (form.current) {
+                form.current.reset();
+            }
+        } catch (emailError) {
+            console.error("Email fallback error:", emailError);
+            
+            // Give the user direct instructions for manual contact
+            toast.error(
+                `Please contact us directly at ${supportEmail} with your name, email, phone, and the product you're interested in.`,
+                { duration: 10000 } // Keep this message visible longer
+            );
+        }
+    };
+
     // Handle form submission
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
         if (validateForm()) {
-            setFormLoader(true);
-
-            // Get formatted phone number for submission
-            const formattedPhoneNumber = getFormattedPhoneNumber();
-            const finalNum = `+${selectedCountryCode} ${formattedPhoneNumber}`;
-
-            // Create a copy of form data with formatted phone number for submission
-            const formDataToSubmit = {
-                ...formData,
-                contactNumber: finalNum,
-            };
-
-            // Form is valid, submit data
-            console.log("Form submitted:", formDataToSubmit);
-
-            // Here you would typically make an API call to submit the form
-            // Similar to your careerMailApi call in the old code
-
-            // Simulate API call with timeout
-            setTimeout(() => {
-                // Reset form after submission
-                setFormData({
-                    fullName: "",
-                    email: "",
-                    contactNumber: "",
-                    product: ""
-                });
-
-                // Show success message
-                alert("Application submitted successfully!");
-
-                // Reset loader
-                setFormLoader(false);
-            }, 1000);
+            try {
+                setIsSubmitting(true);
+                
+                // Get formatted phone number for submission
+                const formattedPhoneNumber = getFormattedPhoneNumber();
+                const finalNum = `+${selectedCountryCode} ${formattedPhoneNumber}`;
+                
+                // Create FormData for submission to API
+                const apiFormData = new FormData();
+                apiFormData.append('name', formData.fullName);
+                apiFormData.append('email', formData.email);
+                apiFormData.append('phone', finalNum);
+                apiFormData.append('product', formData.product);
+                
+                try {
+                    // First try the API endpoint
+                    const response = await fetch('/api/contact-us', {
+                        method: 'POST',
+                        body: apiFormData,
+                    });
+                    
+                    const responseData = await response.json();
+                    
+                    // Check if the response is successful
+                    if (response.ok && responseData && responseData.error === false) {
+                        // Success scenario
+                        handleSuccess();
+                        return;
+                    } else {
+                        // API returned an error response
+                        console.error("API error response:", responseData);
+                        
+                        // Show a specific error message if available
+                        if (responseData.details && responseData.details.includes("405")) {
+                            toast.error("The server doesn't support this request method. We'll use the email option instead.");
+                        } else if (responseData.status === 404) {
+                            toast.error("The API endpoint couldn't be found. We'll use the email option instead.");
+                        } else {
+                            toast.error(responseData.message || "There was an error submitting your request.");
+                        }
+                        
+                        // Use email fallback
+                        handleEmailFallback(formData);
+                    }
+                } catch (apiError) {
+                    console.error("API request failed:", apiError);
+                    toast.error("We couldn't connect to our server. We'll use the email option instead.");
+                    
+                    // Use email fallback on API failure
+                    handleEmailFallback(formData);
+                }
+            } catch (error) {
+                console.error("Error in form submission:", error);
+                toast.error("We're experiencing technical difficulties. Please use the email option.");
+                
+                // Always fall back to email option on any error
+                handleEmailFallback(formData);
+            } finally {
+                setIsSubmitting(false);
+            }
+        } else {
+            // Scroll to the first error
+            const firstErrorField = Object.keys(errors)[0];
+            const element = document.getElementById(firstErrorField);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                element.focus();
+            }
         }
     };
 
@@ -393,7 +498,7 @@ export default function ExclusiveLicenseForm() {
                 {/* product */}
                 <div>
                     <label
-                        htmlFor="fullName"
+                        htmlFor="product"
                         className="block font-medium mb-2"
                     >
                         Product
@@ -456,8 +561,6 @@ export default function ExclusiveLicenseForm() {
                         <p className="text-red-500 text-sm mt-1">{errors.product}</p>
                     )}
                 </div>
-
-
             </div>
 
             {/* Submit Button */}
@@ -465,9 +568,9 @@ export default function ExclusiveLicenseForm() {
                 <button
                     type="submit"
                     className="flexCenter commonBtn"
-                    disabled={formLoader}
+                    disabled={isSubmitting}
                 >
-                    {formLoader ? (
+                    {isSubmitting ? (
                         <span className="flexCenter">
                             <svg
                                 className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
@@ -496,6 +599,13 @@ export default function ExclusiveLicenseForm() {
                     )}
                 </button>
             </div>
+
+            {/* Success Message */}
+            {submitSuccess && (
+                <div className="bg-green-100 text-green-800 p-4 rounded-md mt-4">
+                    Thank you for your exclusive license request! We have received your inquiry and will get back to you shortly with pricing and licensing details.
+                </div>
+            )}
         </form>
     );
 }

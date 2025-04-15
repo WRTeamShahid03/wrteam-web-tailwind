@@ -9,7 +9,7 @@ const MorePagesDropdown = () => {
   const router = usePathname();
   const [showDrop, setShowDrop] = useState<boolean>(false)
 
-  const activeDrop = router === '/about-us' || router === '/career' || router === '/blogs';
+  const activeDrop = router === '/about-us' || router === '/career' || router === '/blogs' || router === '/contact-us'; 
 
   return (
     <div className="max-1199:relative">
@@ -17,20 +17,21 @@ const MorePagesDropdown = () => {
         className="flex items-center gap-1 cursor-pointer"
         onClick={() => setShowDrop(true)}
       >
-        <span className={`flex items-center gap-1 relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${activeDrop && '!after:bg-black font-semibold'}`}>
+        <span className={`flex items-center gap-1 relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${activeDrop && 'after:!bg-black font-semibold'}`}>
           Company <FaAngleDown />
         </span>
       </div>
 
       {showDrop && (
         <div
-          className="absolute max-[350px]:w-[250px] max-1199:!top-[28px] max-1680:!top-[96px] top-[104px] bg-white rounded-b-2xl shadow-md z-50"
+          className="absolute max-[350px]:w-[250px] max-1199:!top-[28px] max-1680:top-[137px] top-[144px] bg-white rounded-b-2xl shadow-md z-50"
           onMouseLeave={() => setShowDrop(false)}
         >
           <div className="flex flex-col p-4 gap-1">
-            <DropdownLink href="/about-us" title="About Us" router={router}/>
-            <DropdownLink href="/career" title="Career" router={router}/>
-            <DropdownLink href="/blogs" title="Blogs" router={router}/>
+            <DropdownLink href="/about-us" title="About Us" router={router} />
+            <DropdownLink href="/career" title="Career" router={router} />
+            <DropdownLink href="/blogs" title="Blogs" router={router} />
+            <DropdownLink href="/contact-us" title="Contact Us" router={router} />
           </div>
         </div>
       )}

@@ -42,8 +42,8 @@ export default function SuccessStories() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-[#0D0E12] py-16 overflow-hidden">
-      <div className="container-fluid max-w-[1400px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
+    <section className="bg-[#0D0E12] py-16 overflow-hidden commonMT">
+      <div className="container">
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="inline-block px-4 py-1 rounded-md text-white text-sm mb-3 bg-[#262829]">
@@ -61,38 +61,28 @@ export default function SuccessStories() {
             <Swiper
               ref={sliderRef}
               slidesPerView={1}
-              centeredSlides={true}
+              // centeredSlides={true}
               spaceBetween={10}
               loop={true}
               initialSlide={1}
               onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
               breakpoints={{
-                640: {
-                  slidesPerView: 1.5,
-                  spaceBetween: 20,
-                },
                 768: {
-                  slidesPerView: 1.8,
-                  spaceBetween: 30,
+                  slidesPerView: 2,
                 },
-                1024: {
-                  slidesPerView: 2.2,
-                  spaceBetween: 40,
-                },
-                1280: {
-                  slidesPerView: 2.7,
-                  spaceBetween: 40,
-                },
+                992: {
+                  slidesPerView: 3,
+                }
               }}
               modules={[Pagination]}
-              className="!overflow-visible mb-12 py-6"
+              className="mb-12 py-6"
             >
-              {clientData.map((client) => (
-                <SwiperSlide key={client.id} className="!overflow-visible">
+              {clientData.map((client, index) => (
+                <SwiperSlide key={client.id} className={`!overflow-visible ${activeIndex + 1 === index ? 'active-slide' : ''}`}>
                   {({ isActive }) => (
                     <div
                       className={`overflow-hidden relative transition-all duration-300 border-2 rounded-xl  ${
-                        isActive
+                        activeIndex + 1 === index
                           ? "transform scale-105 shadow-xl z-10 border-gray-500/50 ring-1 ring-white/50"
                           : "opacity-70 scale-95 border-gray-500/50"
                       }`}

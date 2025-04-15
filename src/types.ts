@@ -346,3 +346,46 @@ export interface LayoutOneProps {
         }];
     };
 }
+
+interface CategoryType {
+    name: string;
+    [key: string]: any; // For any additional properties
+  }
+
+export interface OldUiProductData {
+    id: number;
+    codecanyon_product_code: string;
+    name: string;
+    product_title: string;
+    slug: string;
+    price: number;
+    sale_price: number | null;
+    extended_sale_price: number | null;
+    trending: string;
+    icon_image: string;
+    icon_image2: string;
+    category: CategoryType | null;
+    banner_image: string;
+    codecanyon_link: string;
+    sales: number;
+    rating: number;
+    description: string;
+    checkout_url: string;
+    content_id: string;
+    seo_title: string | null;
+    seo_keywords: string | null;
+    seo_description: string | null;
+    seo_image: string | null;
+    codecanyon_other_data: string;
+    rank: number;
+    theme_color: string;
+    secondary_color: string;
+    extended_license_link: string;
+    extended_license_price: number;
+    style: number;
+    display_new_ui: number;
+    created_at: string;
+    updated_at: string;
+    deleted_at: string | null;
+    subcategory: CategoryType | null;
+  }
