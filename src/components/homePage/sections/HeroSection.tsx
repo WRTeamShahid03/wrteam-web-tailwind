@@ -2,6 +2,7 @@
 import Image from "next/image";
 import teamImg from '../../../assets/images/homePage/teamImg.png'
 import { FaArrowRight } from 'react-icons/fa'
+import heroImg from '../../../assets/images/homePage/heroSectImg.svg'
 
 const HeroSection: React.FC = () => {
     return (
@@ -40,7 +41,9 @@ const HeroSection: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full h-64 bg-gray-200 rounded-lg mt-16"></div>
+                <div className="w-full flexCenter mt-16">
+                    <Image src={heroImg} alt="heroImg" width={0} height={0} className="w-full h-auto" loading="lazy"/>
+                </div>
             </div>
         </section>
     );

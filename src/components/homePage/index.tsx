@@ -15,8 +15,8 @@ import Exclusive from "./sections/Exclusive";
 import Testimonials from "./sections/Testimonials";
 import Creative from "./sections/Creative";
 import ExclusiveCounter from "./sections/ExclusiveCounter";
-import SuccessStories from "./sections/SuccessStories";
 import ClientReviewSection from "./sections/ClientReviewSection";
+import VideoTestimonials from "./sections/VideoTestimonials";
 
 const HomePage: React.FC = () => {
   useEffect(() => {
@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
       <Technologies />
       <WorkChain />
       {/* <Testimonials /> */}
-      <SuccessStories />
+      <VideoTestimonials />
       <ClientReviewSection />
     </Layout>
   );
