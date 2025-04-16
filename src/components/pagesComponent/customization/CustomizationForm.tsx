@@ -463,7 +463,7 @@ const CustomizationForm = () => {
                       <CommandItem
                         key={item.value}
                         value={item.value}
-                        onSelect={(currentValue) => {
+                        onSelect={(currentValue: string) => {
                           // Update form data
                           handleChange({
                             name: "product_name",
