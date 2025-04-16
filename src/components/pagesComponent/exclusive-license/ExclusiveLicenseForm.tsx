@@ -354,10 +354,12 @@ export default function ExclusiveLicenseForm() {
                 
                 // Create FormData for submission to API
                 const apiFormData = new FormData();
-                apiFormData.append('name', formData.fullName);
                 apiFormData.append('email', formData.email);
+                apiFormData.append('message', "Exclusive License");
+                apiFormData.append('name', formData.fullName);
                 apiFormData.append('phone', finalNum);
                 apiFormData.append('product', formData.product);
+                apiFormData.append('subject', "Exclusive License");
                 
                 try {
                     // First try the API endpoint

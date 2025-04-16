@@ -217,11 +217,12 @@ const ContactForm = () => {
 
         // Create FormData for submission to API
         const apiFormData = new FormData();
-        apiFormData.append('name', formData.fullName);
         apiFormData.append('email', formData.email);
-        apiFormData.append('phone', finalNum);
-        apiFormData.append('subject', formData.subject);
         apiFormData.append('message', formData.msg);
+        apiFormData.append('name', formData.fullName);
+        apiFormData.append('phone', finalNum);
+        apiFormData.append('product', "");
+        apiFormData.append('subject', formData.subject);
 
         try {
           // First try the API endpoint
@@ -253,21 +254,21 @@ const ContactForm = () => {
             }
 
             // Use email fallback
-            handleEmailFallback(formData);
+            // handleEmailFallback(formData);
           }
         } catch (apiError) {
           console.error("API request failed:", apiError);
           toast.error("We couldn't connect to our server. We'll use the email option instead.");
 
           // Use email fallback on API failure
-          handleEmailFallback(formData);
+          // handleEmailFallback(formData);
         }
       } catch (error) {
         console.error("Error in form submission:", error);
         toast.error("We're experiencing technical difficulties. Please use the email option.");
 
         // Always fall back to email option on any error
-        handleEmailFallback(formData);
+        // handleEmailFallback(formData);
       } finally {
         setIsSubmitting(false);
       }

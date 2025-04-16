@@ -9,14 +9,13 @@ export async function POST(request: Request) {
     
     // Create a new FormData object for the backend API
     const apiFormData = new FormData();
-    
     // Add the requested fields to the form data
-    apiFormData.append('name', formData.get('name') || '');
     apiFormData.append('email', formData.get('email') || '');
-    apiFormData.append('subject', formData.get('subject') || '');
-    apiFormData.append('phone', formData.get('phone') || '');
     apiFormData.append('message', formData.get('message') || '');
+    apiFormData.append('name', formData.get('name') || '');
+    apiFormData.append('phone', formData.get('phone') || '');
     apiFormData.append('product', formData.get('product') || '');
+    apiFormData.append('subject', formData.get('subject') || '');
     
     // Try to fetch the API URL structure or company website to determine proper endpoint
     try {
@@ -33,12 +32,12 @@ export async function POST(request: Request) {
     // NOTE: Changed to use JSON format instead of form-data since 405 suggests method not allowed
     const jsonData = {
 
-      name: formData.get('name'),
       email: formData.get('email'),
-      budget: formData.get('subject'),
-      phone: formData.get('phone'),
       message: formData.get('message'),
-      product: formData.get('product')
+      name: formData.get('name'),
+      phone: formData.get('phone'),
+      product: formData.get('product'),
+      subject: formData.get('subject'),
     };
     
     // First try with JSON format
