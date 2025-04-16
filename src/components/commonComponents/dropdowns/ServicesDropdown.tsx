@@ -4,6 +4,11 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import { FaAngleDown } from 'react-icons/fa6'
 import webDev from '../../../assets/images/serviceDropdown/Web Development.svg'
+import appDev from '../../../assets/images/serviceDropdown/App Development.svg'
+import uiux from '../../../assets/images/serviceDropdown/UX Design.svg'
+import marketing from '../../../assets/images/serviceDropdown/Digital Marketing.svg'
+import customization from '../../../assets/images/serviceDropdown/Customization.svg'
+import installation from '../../../assets/images/serviceDropdown/Installation.svg'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -24,31 +29,31 @@ const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav }) => {
             link: '/services/web-development',
         },
         {
-            img: webDev,
+            img: appDev,
             title: 'App Development',
             desc: 'Creating seamless, high-performing mobile and web apps.',
             link: '/services/app-development',
         },
         {
-            img: webDev,
+            img: uiux,
             title: 'UI/UX Design',
             desc: 'Designing intuitive, engaging, and user-centric experiences.',
             link: '/services/ui-ux-design',
         },
         {
-            img: webDev,
+            img: marketing,
             title: 'Digital Marketing',
             desc: 'Boosting your brand with data-driven marketing strategies.',
             link: '/services/digital-marketing',
         },
         {
-            img: webDev,
+            img: customization,
             title: 'Customization',
             desc: 'Tailoring solutions to fit your unique business needs.',
             link: '/services/customization',
         },
         {
-            img: webDev,
+            img: installation,
             title: 'Installation',
             desc: 'Seamless setup and integration for your systems.',
             link: '/services/installation',
@@ -80,9 +85,9 @@ const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav }) => {
                                 {dropData.slice(0, 4).map((data, index) => (
                                     <div key={index} className={`${isMobileNav ? 'w-full' : 'lg:w-1/2'} max-1199:px-0 px-2`}>
                                         <Link href={data.link} title={data.title}>
-                                            <div className="flex gap-3 max-1199:px-0 p-3 max-1199:pb-0 rounded-lg hover:bg-[#EFF2FA] transition-all text-[#181C24] max-1199:flex-col max-1199:hover:bg-transparent">
-                                                <div className="bg-[#EFF2FA] hover:bg-primary h-[60px] w-[60px] p-3 rounded-[10px] flex items-center justify-center transition-all">
-                                                    <Image src={data.img} alt="webDev-icon" height={0} width={0} className="h-full w-full hover:filter hover:invert" />
+                                            <div className="flex gap-3 max-1199:px-0 p-3 max-1199:pb-0 rounded-lg hover:bg-[#EFF2FA] transition-all text-[#181C24] max-1199:flex-col max-1199:hover:bg-transparent group">
+                                                <div className="bg-[#EFF2FA] group-hover:primaryBg h-[60px] w-[60px] p-3 rounded-[10px] flex items-center justify-center transition-all">
+                                                    <Image src={data.img} alt="webDev-icon" height={0} width={0} className="h-full w-full group-hover:filter group-hover:invert" />
                                                 </div>
                                                 <div className="flex flex-col gap-[2px]">
                                                     <span className="font-bold max-1199:text-sm">{data.title}</span>
@@ -104,9 +109,9 @@ const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav }) => {
                                 {dropData.slice(4, 6).map((data, index) => (
                                     <div key={index} className="w-full px-2">
                                         <Link href={data.link} title={data.title}>
-                                            <div className="flex gap-3 max-1199:px-0 p-3 max-1199:pb-0 rounded-lg hover:bg-[#EFF2FA] transition-all text-[#181C24] max-1199:flex-col max-1199:hover:bg-transparent">
-                                                <div className="bg-[#EFF2FA] hover:bg-primary h-[60px] w-[60px] p-3 rounded-[10px] flex items-center justify-center transition-all">
-                                                    <Image src={data.img} alt="webDev-icon" height={0} width={0} className="h-full w-full hover:filter hover:invert" />
+                                            <div className="flex gap-3 max-1199:px-0 p-3 max-1199:pb-0 rounded-lg hover:bg-[#EFF2FA] transition-all text-[#181C24] max-1199:flex-col max-1199:hover:bg-transparent group">
+                                                <div className="bg-[#EFF2FA] group-hover:primaryBg h-[60px] w-[60px] p-3 rounded-[10px] flex items-center justify-center transition-all">
+                                                    <Image src={data.img} alt="webDev-icon" height={0} width={0} className="h-full w-full group-hover:filter group-hover:invert" />
                                                 </div>
                                                 <div className="flex flex-col gap-[2px]">
                                                     <span className="font-bold max-1199:text-sm">{data.title}</span>
