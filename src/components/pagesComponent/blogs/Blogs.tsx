@@ -1,6 +1,6 @@
 'use client'
 import Layout from '@/components/layout/Layout'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense } from 'react'
 import RightSideContent from './RightSideContent'
 import { Blog } from '@/types/blogs'
 import { axiosClient } from '@/lib/api'
@@ -128,7 +128,9 @@ const Blogs = () => {
                         )}
                     </div>
 
-                    <RightSideContent />
+                    <Suspense fallback={<div className="col-span-12 lg:col-span-4">Loading categories...</div>}>
+                        <RightSideContent />
+                    </Suspense>
                 </div>
             </section>
         </Layout>
