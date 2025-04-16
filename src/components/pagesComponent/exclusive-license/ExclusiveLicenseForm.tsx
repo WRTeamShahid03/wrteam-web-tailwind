@@ -533,7 +533,7 @@ export default function ExclusiveLicenseForm() {
                                             <CommandItem
                                                 key={item.value}
                                                 value={item.value}
-                                                onSelect={(currentValue) => {
+                                                onSelect={(currentValue: string) => {
                                                     // Use handleChange to update form data
                                                     handleChange({
                                                         name: "product",
