@@ -8,8 +8,9 @@ import { Search } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 
+// Use a more specific type for the ref to avoid issues
 const Command = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive>,
+  HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive>
 >(({ className, ...props }, ref) => (
   <CommandPrimitive
@@ -21,10 +22,10 @@ const Command = React.forwardRef<
     {...props}
   />
 ))
-Command.displayName = CommandPrimitive.displayName
+Command.displayName = CommandPrimitive.displayName || "Command"
 
 type CommandDialogProps = DialogProps & {
-  children: React.ReactElement | React.ReactElement[]
+  children: React.ReactNode
 }
 
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
@@ -39,8 +40,9 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   )
 }
 
+// Fix type issues by using HTMLInputElement for Input
 const CommandInput = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Input>,
+  HTMLInputElement,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
   <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
@@ -55,11 +57,11 @@ const CommandInput = React.forwardRef<
     />
   </div>
 ))
+CommandInput.displayName = "CommandInput"
 
-CommandInput.displayName = CommandPrimitive.Input.displayName
-
+// Fix type issues by using HTMLDivElement for List
 const CommandList = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.List>,
+  HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.List>
 >(({ className, ...props }, ref) => (
   <CommandPrimitive.List
@@ -68,11 +70,11 @@ const CommandList = React.forwardRef<
     {...props}
   />
 ))
+CommandList.displayName = "CommandList"
 
-CommandList.displayName = CommandPrimitive.List.displayName
-
+// Fix type issues by using HTMLDivElement for Empty
 const CommandEmpty = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Empty>,
+  HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>
 >((props, ref) => (
   <CommandPrimitive.Empty
@@ -81,11 +83,11 @@ const CommandEmpty = React.forwardRef<
     {...props}
   />
 ))
+CommandEmpty.displayName = "CommandEmpty"
 
-CommandEmpty.displayName = CommandPrimitive.Empty.displayName
-
+// Fix type issues by using HTMLDivElement for Group
 const CommandGroup = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Group>,
+  HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Group>
 >(({ className, ...props }, ref) => (
   <CommandPrimitive.Group
@@ -97,11 +99,11 @@ const CommandGroup = React.forwardRef<
     {...props}
   />
 ))
+CommandGroup.displayName = "CommandGroup"
 
-CommandGroup.displayName = CommandPrimitive.Group.displayName
-
+// Fix type issues by using HTMLDivElement for Separator
 const CommandSeparator = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Separator>,
+  HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Separator>
 >(({ className, ...props }, ref) => (
   <CommandPrimitive.Separator
@@ -110,10 +112,11 @@ const CommandSeparator = React.forwardRef<
     {...props}
   />
 ))
-CommandSeparator.displayName = CommandPrimitive.Separator.displayName
+CommandSeparator.displayName = "CommandSeparator"
 
+// Fix type issues by using HTMLDivElement for Item
 const CommandItem = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive.Item>,
+  HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item>
 >(({ className, ...props }, ref) => (
   <CommandPrimitive.Item
@@ -125,8 +128,7 @@ const CommandItem = React.forwardRef<
     {...props}
   />
 ))
-
-CommandItem.displayName = CommandPrimitive.Item.displayName
+CommandItem.displayName = "CommandItem"
 
 const CommandShortcut = ({
   className,
