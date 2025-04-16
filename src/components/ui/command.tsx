@@ -15,7 +15,10 @@ type CommandPrimitiveType = React.FC<React.ComponentProps<typeof CommandPrimitiv
   Empty: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>
   Group: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>
   Separator: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>
-  Item: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>
+  Item: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & { 
+    onselect?: (event: any) => void;
+    value?: string;
+  } & React.RefAttributes<HTMLDivElement>>
 }
 
 // Cast CommandPrimitive to our augmented type
@@ -127,20 +130,39 @@ const CommandSeparator = React.forwardRef<
 ))
 CommandSeparator.displayName = "CommandSeparator"
 
-// Fix type issues by using HTMLDivElement for Item
+// Fix type issues by using HTMLDivElement for Item and properly typing onSelect
 const CommandItem = React.forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<typeof CommandWithProps.Item>
->(({ className, ...props }, ref) => (
-  <CommandWithProps.Item
-    ref={ref}
-    className={cn(
-      "relative flex cursor-default gap-2 select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled=true]:pointer-events-none data-[selected=true]:bg-neutral-100 data-[selected=true]:text-neutral-900 data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 dark:data-[selected=true]:bg-neutral-800 dark:data-[selected=true]:text-neutral-50",
-      className
-    )}
-    {...props}
-  />
-))
+  Omit<React.ComponentPropsWithoutRef<typeof CommandWithProps.Item>, "onSelect"> & {
+    onSelect?: (value: string) => void;
+  }
+>(({ className, onSelect, ...props }, ref) => {
+  const { value } = props as { value?: string };
+  
+  // Create a prop object that includes our custom lowercase onselect
+  const itemProps = {
+    ...props,
+    onselect: (event: any) => {
+      if (props.onselect) {
+        props.onselect(event);
+      }
+      if (onSelect && value) {
+        onSelect(value);
+      }
+    }
+  };
+  
+  return (
+    <CommandWithProps.Item
+      ref={ref}
+      {...itemProps}
+      className={cn(
+        "relative flex cursor-default gap-2 select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled=true]:pointer-events-none data-[selected=true]:bg-neutral-100 data-[selected=true]:text-neutral-900 data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 dark:data-[selected=true]:bg-neutral-800 dark:data-[selected=true]:text-neutral-50",
+        className
+      )}
+    />
+  );
+})
 CommandItem.displayName = "CommandItem"
 
 const CommandShortcut = ({
