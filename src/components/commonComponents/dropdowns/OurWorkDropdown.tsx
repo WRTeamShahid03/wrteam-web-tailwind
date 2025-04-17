@@ -49,7 +49,7 @@ const OurWorkDropdown = () => {
               <div key={index} className="w-full lg:w-1/2">
                 <div className="max-1199:p-0 p-5 rounded-xl h-full">
                   <span className="block max-1199:text-base text-xl font-semibold text-[#181C24] mb-3">{item.title}</span>
-                  <div className="w-full h-[180px] mb-3 overflow-hidden rounded-lg">
+                  <div className="w-full h-[280px] mb-3 overflow-hidden rounded-lg">
                     <Image
                       src={item.img}
                       alt={item.title}

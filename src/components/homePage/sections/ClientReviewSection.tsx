@@ -102,6 +102,7 @@ const ReviewCard = ({
 export default function ClientReviewSection() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [displayCount, setDisplayCount] = useState(6); // Number of testimonials to initially display
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -134,6 +135,14 @@ export default function ClientReviewSection() {
       testimonial: item.description
     }))
     : [];
+    
+  // Function to handle the "Load More" button click
+  const handleLoadMore = () => {
+    setDisplayCount(prevCount => prevCount + 6); // Load 6 more testimonials
+  };
+
+  // Determine if the "Load More" button should be displayed
+  const hasMoreToLoad = displayTestimonials.length > displayCount;
 
   return (
     <section className="py-16">
@@ -150,8 +159,8 @@ export default function ClientReviewSection() {
               <ReviewCardSkeleton key={`skeleton-${index}`} />
             ))
           ) : (
-            // Show actual testimonial cards when data is loaded
-            displayTestimonials.map((review, index) => (
+            // Show only the first 'displayCount' testimonials
+            displayTestimonials.slice(0, displayCount).map((review, index) => (
               <ReviewCard
                 key={index}
                 name={review.name}
@@ -163,11 +172,16 @@ export default function ClientReviewSection() {
           )}
         </div>
 
-        <div className="flex justify-center mt-12">
-          <button className="px-8 py-3 bg-black text-white font-medium rounded hover:bg-gray-800 transition duration-300">
-            Load More
-          </button>
-        </div>
+        {!isLoading && hasMoreToLoad && (
+          <div className="flex justify-center mt-12">
+            <button 
+              onClick={handleLoadMore}
+              className="px-8 py-3 bg-black text-white font-medium rounded hover:bg-gray-800 transition duration-300"
+            >
+              Load More
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -2,10 +2,10 @@
 import React from 'react'
 import Image from 'next/image'
 import bg from '../../../assets/images/homePage/CounterImg.webp'
-import happy from '../../../assets/images/homePage/Happy Clients.svg'
+import happy from '../../../assets/images/homePage/Happy Clients-AboutUs.svg'
 import projects from '../../../assets/images/homePage/Projects Done.svg'
-import reconnect from '../../../assets/images/homePage/Reconecct.svg'
-import satisfaction from '../../../assets/images/homePage/Satisfaction.svg'
+import reconnect from '../../../assets/images/homePage/ReconecctAboutUs.svg'
+import satisfaction from '../../../assets/images/homePage/SatisfactionAboutUs.svg'
 import { counterDataTypes } from '@/types'
 
 const Counter: React.FC = () => {

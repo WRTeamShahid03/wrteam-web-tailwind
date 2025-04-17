@@ -6,14 +6,10 @@ import Layout from "../layout/Layout";
 import HeroSection from "./sections/HeroSection";
 import AboutWrteam from "./sections/AboutWrteam";
 import AchievementEnvanto from "./sections/AchievementEnvanto";
-import Counter from "./sections/Counter";
 import Solutions from "./sections/Solutions";
 import BestItServices from "./sections/BestItServices";
 import Technologies from "./sections/Technologies";
 import WorkChain from "./sections/WorkChain";
-import Exclusive from "./sections/Exclusive";
-import Testimonials from "./sections/Testimonials";
-import Creative from "./sections/Creative";
 import ExclusiveCounter from "./sections/ExclusiveCounter";
 import ClientReviewSection from "./sections/ClientReviewSection";
 import VideoTestimonials from "./sections/VideoTestimonials";
@@ -33,7 +29,6 @@ const HomePage: React.FC = () => {
       <BestItServices />
       <Technologies />
       <WorkChain />
-      {/* <Testimonials /> */}
       <VideoTestimonials />
       <ClientReviewSection />
     </Layout>

@@ -3,6 +3,7 @@ import PageHeader from "@/components/commonComponents/PageHeader";
 import SectionHeading from "@/components/commonComponents/SectionHeading";
 import Layout from "@/components/layout/Layout";
 import { useState, useRef, useEffect } from "react";
+import { FaArrowRight } from "react-icons/fa6";
 
 export default function DesignPortfolio() {
   // State to track which filter is active
@@ -152,7 +153,7 @@ export default function DesignPortfolio() {
           {filteredItems.map((item) => (
             <div
               key={item.id}
-              className="rounded-2xl overflow-hidden bg-blue-50/30 p-2 sm:p-3"
+              className="rounded-2xl overflow-hidden  p-2 sm:p-3 bg-[#2E71FE0A] border border-[#2E71FE1F]"
               onMouseEnter={() => setHoveredCardId(item.id)}
               onMouseLeave={() => setHoveredCardId(null)}
             >
@@ -160,7 +161,7 @@ export default function DesignPortfolio() {
                 <div className="bg-gray-200 h-40 sm:h-48 lg:h-52 w-full"></div>
               </div>
 
-              <div className="bg-white rounded-lg p-3 sm:p-4 relative">
+              <div className={`bg-white rounded-lg p-3 sm:p-4 relative ${hoveredCardId === item.id ? "shadow-[0px_8px_12px_0px_#4D545414]" : ""}`}>
                 <div className="flex justify-between items-center">
                   <div>
                     <p className="text-xs text-gray-600">{item.category}</p>
@@ -168,23 +169,8 @@ export default function DesignPortfolio() {
                   </div>
 
                   {hoveredCardId === item.id && (
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-100">
-                      <svg
-                        width="14"
-                        height="14"
-                        className="sm:w-4 sm:h-4"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M9 6L15 12L9 18"
-                          stroke="black"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center shadow-sm border border-[#2A2E35]">
+                      <FaArrowRight />
                     </div>
                   )}
                 </div>

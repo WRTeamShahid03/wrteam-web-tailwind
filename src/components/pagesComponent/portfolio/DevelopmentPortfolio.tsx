@@ -203,10 +203,10 @@ export default function DevelopmentPortfolio() {
             {filteredItems.map((item) => (
               <motion.div
                 key={item.id}
-                className="bg-gray-50 rounded-xl p-4 sm:p-6 shadow-sm relative overflow-hidden cursor-pointer"
+                className="bg-[#2E71FE0A] rounded-xl p-4 sm:p-6 shadow-sm relative overflow-hidden cursor-pointer border border-[#2E71FE1F]"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ all: 0.3 }}
                 onHoverStart={() => setHoveredCard(item.id)}
                 onHoverEnd={() => setHoveredCard(null)}
               >
@@ -214,7 +214,7 @@ export default function DevelopmentPortfolio() {
                   <motion.span
                     className={`text-lg sm:text-xl font-bold transition-colors duration-200 flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-md ${
                       hoveredCard === item.id
-                        ? "bg-blue-600 text-white"
+                        ? "primaryBg text-white"
                         : "bg-white"
                     }`}
                   >
@@ -233,7 +233,7 @@ export default function DevelopmentPortfolio() {
                 {/* Placeholder image with demo popup on hover */}
                 <div
                   className={`h-48 sm:h-64 w-full rounded-md mb-4 sm:mb-5 relative overflow-hidden ${
-                    hoveredCard === item.id ? "bg-gray-600" : "bg-gray-300"
+                    hoveredCard === item.id ? "bg-[#00000066]" : "bg-[#D9D9D9]"
                   }`}
                 >
                   {/* Demo popup appears only inside the image container */}
@@ -244,7 +244,7 @@ export default function DevelopmentPortfolio() {
                         initial={{ y: 100, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: 100, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ all: 0.3 }}
                       >
                         <p className="text-xs sm:text-sm font-medium mb-3 sm:mb-4">
                           Experience the Demo
@@ -328,9 +328,9 @@ export default function DevelopmentPortfolio() {
                   {item.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className={`inline-block px-2 py-1 sm:px-4 sm:py-2 ${
-                        hoveredCard === item.id ? "bg-slate-100" : "bg-white"
-                      } text-[10px] sm:text-xs rounded-full border`}
+                      className={`inline-block px-3 py-2 sm:px-4 sm:py-2 ${
+                        hoveredCard === item.id ? "bg-white" : "bg-white"
+                      } text-[10px] sm:text-xs rounded-full border border-[#2A2E35] font-medium`}
                     >
                       {tag === "App UI"
                         ? "App UI"

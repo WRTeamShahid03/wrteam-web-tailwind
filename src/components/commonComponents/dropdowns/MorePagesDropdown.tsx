@@ -46,7 +46,7 @@ const DropdownLink = ({ href, title, router }: { href: string; title: string, ro
     <Link
       href={href}
       title={title}
-      className={`flex items-center justify-between px-4 py-3 w-[250px] rounded-lg text-black transition-all duration-300 hover:bg-[#EFF2FA] ${router === href && 'bg-[#EFF2FA]'}`}
+      className={`flex items-center justify-between px-4 py-3 w-[250px] rounded-lg font-semibold text-black transition-all duration-300 hover:bg-[#EFF2FA] ${router === href && 'bg-[#EFF2FA]'}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >

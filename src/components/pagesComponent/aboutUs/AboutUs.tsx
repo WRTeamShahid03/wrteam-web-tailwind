@@ -12,7 +12,7 @@ import Counter from '@/components/homePage/sections/Counter'
 import { FaRegCircleCheck } from 'react-icons/fa6'
 import Link from 'next/link'
 import WorkChain from '@/components/homePage/sections/WorkChain'
-import Testimonials from '@/components/homePage/sections/Testimonials'
+import ClientReviewSection from '@/components/homePage/sections/ClientReviewSection'
 import Team from './Team'
 
 
@@ -233,7 +233,7 @@ const AboutUs: React.FC = () => {
       <Team />
 
       {/* testimonials  */}
-      <Testimonials />
+      <ClientReviewSection />
 
     </Layout>
   )
