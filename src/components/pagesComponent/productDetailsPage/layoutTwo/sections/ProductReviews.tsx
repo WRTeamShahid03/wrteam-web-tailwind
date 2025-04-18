@@ -7,7 +7,6 @@ import { FaChevronRight } from 'react-icons/fa';
 import { FaRegCheckCircle } from "react-icons/fa";
 // Import Swiper React components
 import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
-import { Testimonial } from '@/types/testimonial';
 import { ProductTestimonial } from '@/types';
 
 interface ProductReviewsProps {
@@ -60,30 +59,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ testimonials }): React.
 
                                 </SwiperSlide>
                             ))}
-                        </Swiper>
-                        {/* <div className='flex flex-col gap-8 relative'>
-                                <div className='flex gap-3 items-center border-b-2 border-[#6c757d1f] pb-8'>
-                                    <div>
-                                        <Image src={envatoIcon} height={41} width={41} alt='envatoIcon' />
-                                    </div>
-                                    <div className='flex flex-col gap-2'>
-                                        <span className='font-[600]'>ashaqhussain</span>
-                                        <span className='font-[600]'>Customer Support</span>
-                                    </div>
-                                </div>
-                                <div className=''>
-                                    <p className='sectionPara'>I purchased eClassify code from WRTeam on CodeCanyon, and I must say, they exceeded all my expectations! The quality of the code is outstanding, well-organized, and very easy to work with.</p>
-                                </div>
-
-                                <div className='flex items-center gap-4 absolute top-0 right-0'>
-                                    <span className='productDetailPrimaryBg productPrimaryColor p-4 rounded-full after:!z-[1] overflow-hidden'>
-                                        <FaChevronLeft />
-                                    </span>
-                                    <span className='productDetailPrimaryBg productPrimaryColor p-4 rounded-full after:!z-[1] overflow-hidden'>
-                                        <FaChevronRight />
-                                    </span>
-                                </div>
-                            </div> */}
+                        </Swiper>                        
                         <div className='flex items-center gap-4 absolute top-[30px] right-[30px] bg-white z-[1] p-5'>
                             <span className='productDetailPrimaryBg productPrimaryColor p-4 rounded-full after:!z-[1] overflow-hidden cursor-pointer' onClick={handlePrev}>
                                 <FaChevronLeft />

@@ -218,7 +218,7 @@ const ProductsPage = () => {
               products.map((product) => (
                 <div key={product?.id} className='flex flex-col gap-4 p-3 rounded-[16px] border-dashed border-[2px] border-[#545a6870] overflow-hidden transition-all duration-300 group cursor-pointer'>
                   {/* Product Main Image - Clickable */}
-                  <Link href={`/product-details/${product?.slug}`}>
+                  <Link href={`/product-details/${product?.slug}`} title='Product Details' target='_blank'>
                     <div>
                       <Image
                         src={product?.banner_image}

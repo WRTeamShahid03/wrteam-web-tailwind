@@ -686,3 +686,24 @@ footer .commonBtn:after {
 .textLinearBg {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0), #000);
 }
+
+.helpSectIcons svg,
+.helpSectIcons svg path,
+.helpSectIcons svg g,
+.ideaIconsSvg svg,
+.ideaIconsSvg svg path,
+.ideaIconsSvg svg g {
+    fill: var(--productPage-primary-color) !important;
+}
+
+.helpSupportCard:hover .helpSectIcons svg,
+.helpSupportCard:hover .helpSectIcons svg path,
+.helpSectIcons svg g {
+    fill: #fff !important;
+}
+
+.helpSupportCard:hover .imgWrapper svg,
+.helpSupportCard:hover .imgWrapper svg path,
+.helpSupportCard:hover .imgWrapper svg g {
+    filter: brightness(1);
+}

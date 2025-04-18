@@ -16,7 +16,7 @@ const MarqueSect: React.FC<MarqueSectProps> = ({ testimonials }): React.ReactNod
 
     const slug = usePathname();
 
-    // const [data, setData] = useState<ProductTestimonial[]>([]);
+    const [data, setData] = useState<ProductTestimonial[]>([]);
 
     const eClassify = [
         {

@@ -13,6 +13,7 @@ import ResponsiveUISlider from "../newUIProductDetailpageLayoutOne/ResponsiveUIS
 import HelpAndSupport from "../newUIProductDetailpageLayoutOne/HelpAndSupport"
 import ReadyToPower from "../newUIProductDetailpageLayoutOne/ReadyToPower"
 import { ProductDetails } from "@/types"
+import InnerPagesSect from "../layoutTwo/sections/InnerPagesSect"
 
 
 interface LayoutOneProps {
@@ -72,7 +73,9 @@ const LayoutOne = ({ productDetails }: LayoutOneProps) => {
       <SuccessStatics />
 
       {/* FeaturesSection with panel-wise features */}
-      <FeaturesSection panelFeatures={panelWiseFeatureSection} />
+      {/* <FeaturesSection panelFeatures={panelWiseFeatureSection} /> */}
+
+      <InnerPagesSect title={productDetails.product_description[0].panel_wise_feature_section.title} description={productDetails.product_description[0].panel_wise_feature_section.description} tabs={productDetails.product_description[0].panel_wise_feature_section.tabs} layoutOne={true}/>
 
       <MoneyTimeSection productHighlightSection={productHighlightSection || []} />
 

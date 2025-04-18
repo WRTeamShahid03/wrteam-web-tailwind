@@ -141,6 +141,7 @@ export interface PanelWiseFeatureSection {
     title: string;
     description: string;
     tabs: Tab[];
+    layoutOne?: boolean;
 }
 
 export interface Tab {
