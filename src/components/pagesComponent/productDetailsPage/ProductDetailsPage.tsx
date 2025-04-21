@@ -72,8 +72,8 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
     }
   };
 
-  if (!isLoading) {
-    return <LoaderTwo />;
+  if (isLoading) {
+    return <LoaderThree />;
   }
 
   // Only render product schema if we have product details
