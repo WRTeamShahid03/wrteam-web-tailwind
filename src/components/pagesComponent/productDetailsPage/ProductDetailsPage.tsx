@@ -6,17 +6,31 @@ import LayoutTwo from './layoutTwo/LayoutTwo'
 import { axiosClient } from '@/lib/api'
 import Loader from '@/components/commonComponents/Loader/Loader'
 import Script from 'next/script'
-import { ProductDetails as ProductDetailsType } from '@/types'
+import { HelpSection, OldUiProductData, ProductDetails as ProductDetailsType } from '@/types'
+import LoaderTwo from '@/components/commonComponents/Loader/LoaderTwo'
+import LoaderThree from '@/components/commonComponents/Loader/LoaderThree'
+import ProductDetailFooter from './footer/ProductDetailFooter'
 
 interface Props {
   slug: string;
+  productData: OldUiProductData;
 }
 
-const ProductDetailsPage = ({ slug }: Props) => {
+const ProductDetailsPage = ({ slug, productData }: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [layoutType, setLayoutType] = useState<1 | 2>(2);
   const [productDetails, setProductDetails] = useState<ProductDetailsType | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  console.log('productData =>', productData)
+
+  const productName = productData?.product_title;
+  const checkoutUrl = productData?.checkout_url;
+  const codecanyonLink = productData?.codecanyon_link;
+  const footerLogo = productData?.icon_image2;
+  const supportData = productDetails?.product_description[0]?.help_section
+
+
 
   useEffect(() => {
     if (slug) {
@@ -39,7 +53,7 @@ const ProductDetailsPage = ({ slug }: Props) => {
 
         // Set theme colors using CSS variables
         document.documentElement.style.setProperty('--productPage-primary-color', productData.theme_color);
-        document.documentElement.style.setProperty('--productPage-secondry-color', productData.secondary_color);
+        document.documentElement.style.setProperty('--productPage-secondary-color', productData.secondary_color);
 
         setLayoutType(productData.style === 1 ? 1 : 2);
         setProductDetails(productData);
@@ -58,14 +72,14 @@ const ProductDetailsPage = ({ slug }: Props) => {
     }
   };
 
-  if (isLoading) {
-    return <Loader />;
+  if (!isLoading) {
+    return <LoaderTwo />;
   }
 
   // Only render product schema if we have product details
   const generateProductSchema = () => {
     if (!productDetails) return '';
-    
+
     // Create structured data for product
     const productSchema = {
       '@context': 'https://schema.org',
@@ -87,7 +101,7 @@ const ProductDetailsPage = ({ slug }: Props) => {
         'ratingCount': '100'
       }
     };
-    
+
     return JSON.stringify(productSchema);
   };
 
@@ -101,17 +115,18 @@ const ProductDetailsPage = ({ slug }: Props) => {
           dangerouslySetInnerHTML={{ __html: generateProductSchema() }}
         />
       )}
-      
+
       <ProductDetailHeader
         icon_image={productDetails?.icon_image}
       />
       {productDetails && (
         layoutType === 1 ? (
-          <LayoutOne productDetails={productDetails} />
+          <LayoutOne productDetails={productDetails} checkoutUrl={checkoutUrl}/>
         ) : (
-          <LayoutTwo productDetails={productDetails} />
+          <LayoutTwo productDetails={productDetails} codecanyonLink={codecanyonLink} checkoutUrl={checkoutUrl}/>
         )
       )}
+      <ProductDetailFooter icon_image={footerLogo} codecanyonLink={codecanyonLink}  supportData={supportData as HelpSection}/>
     </div>
   )
 }

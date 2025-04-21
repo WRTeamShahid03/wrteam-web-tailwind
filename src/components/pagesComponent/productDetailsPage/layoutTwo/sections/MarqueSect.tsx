@@ -5,18 +5,13 @@ import img from '../../../../../assets/images/envatoTestimonial.png'
 import Image from 'next/image';
 import Marquee from "react-fast-marquee";
 import { usePathname } from 'next/navigation';
-import { ProductTestimonial } from '@/types';
+import { marqueTestimonialDataType } from '@/types';
 
-interface MarqueSectProps {
-    testimonials: ProductTestimonial[];
-
-}
-
-const MarqueSect: React.FC<MarqueSectProps> = ({ testimonials }): React.ReactNode => {
+const MarqueSect: React.FC = () => {
 
     const slug = usePathname();
 
-    const [data, setData] = useState<ProductTestimonial[]>([]);
+    const [data, setData] = useState<marqueTestimonialDataType[]>([]);
 
     const eClassify = [
         {
@@ -170,20 +165,20 @@ const MarqueSect: React.FC<MarqueSectProps> = ({ testimonials }): React.ReactNod
         },
     ];
 
-    // useEffect(() => {
-    //     if (slug.startsWith('ebroker')) {
-    //         setData(eBroker)
-    //     }
-    //     else if (slug.startsWith('eclassify')) {
-    //         setData(eClassify)
-    //     }
-    //     else if (slug.startsWith('erestro')) {
-    //         setData(eRestroSingle)
-    //     }
-    //     else {
-    //         setData(eSchoolRegular)
-    //     }
-    // }, [slug])
+    useEffect(() => {
+        if (slug.startsWith('ebroker')) {
+            setData(eBroker)
+        }
+        else if (slug.startsWith('eclassify')) {
+            setData(eClassify)
+        }
+        else if (slug.startsWith('erestro')) {
+            setData(eRestroSingle)
+        }
+        else {
+            setData(eSchoolRegular)
+        }
+    }, [slug])
 
 
 
@@ -200,12 +195,12 @@ const MarqueSect: React.FC<MarqueSectProps> = ({ testimonials }): React.ReactNod
             >
                 <div className='flexCenter gap-6 py-6'>
                     {
-                        testimonials?.map((data: ProductTestimonial): React.ReactNode => {
+                        data?.map((data, index) => {
                             return (
-                                <div key={data.id} className='flexCenter gap-4 shadow-[0_2px_4px_0_#0000001f] p-3 rounded-[8px] w-full max-w-[600px] min-h-[150px] h-full'>
+                                <div key={data.id} className='flexCenter gap-4 shadow-[0_2px_4px_0_#0000001f] p-3 rounded-[8px]'>
                                     <Image src={img} height={0} width={0} alt='cardImg' className='w-[36px] h-[40px]' />
-                                    <div className='flex flex-col gap-1 justify-between h-full'>
-                                        <span className='title font-semibold line-clamp-3'>{data.review}</span>
+                                    <div className='flex flex-col gap-1'>
+                                        <span className='title font-semibold'>{data.title}</span>
                                         <span className='desc'>{data.name}</span>
                                     </div>
                                 </div>

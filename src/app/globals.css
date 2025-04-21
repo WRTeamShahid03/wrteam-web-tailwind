@@ -128,6 +128,42 @@ html body[data-scroll-locked] {
   .productDetailPrimaryBorder {
     border-color: var(--productPage-primary-color);
   }
+
+  .productCommonAfterBg{
+    position: relative;
+  }
+
+  .productCommonAfterBg::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--productPage-primary-color);
+      opacity: .12;
+      z-index: -1;
+  }
+
+  .productDetailLightPrimaryBorder{
+    border: 6px solid rgb(from var(--productPage-primary-color) r g b / 0.5);
+  }
+
+  .commonBgAndShape{
+    position: relative;
+  }
+
+  .commonBgAndShape:after {
+    content: "";
+    background-color: var(--productPage-primary-color);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    filter: brightness(.9);
+    z-index: -1;
+}
   
 
 }
@@ -267,7 +303,9 @@ footer .commonBtn:after {
   position: absolute;
   width: 0%;
   height: 100%;
-  color: #2e71fe;
+  color: transparent;
+  background: linear-gradient(to right, #8cc63f, #f7941d, #00a5cd);
+  -webkit-background-clip: text;
   -webkit-text-stroke: 0px transparent;
   overflow: hidden;
   animation: text-fill 2s ease-in-out 1s infinite alternate-reverse forwards;
@@ -706,4 +744,76 @@ footer .commonBtn:after {
 .helpSupportCard:hover .imgWrapper svg path,
 .helpSupportCard:hover .imgWrapper svg g {
     filter: brightness(1);
+}
+
+
+.loaderFillTextAnimation {
+  @apply text-[34px] sm:text-[44px] md:text-[64px] font-[800] !relative !font-poppins;
+}
+
+.loaderFillTextAnimation {
+  position: absolute;
+  color: transparent;
+  /* Removed hardcoded font-family */
+  /* margin-left: 110px; */
+  -webkit-text-stroke: 0.3px var(--secondary-color);
+}
+
+.loaderFillTextAnimation::before {
+  content: attr(data-fill-text);
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  color: transparent;
+  background: linear-gradient(to right, #869E11, #EC8C25,#E5016F, #43A2A1);
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 0px transparent;
+  overflow: hidden;
+  animation: text-fill-loader 2s ease-in-out 1s infinite alternate forwards;
+  transition: width 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes text-fill-loader {
+  0% {
+    width: 0%;
+  }
+  
+  50% {
+    width: 60%;
+  }
+  
+  100% {
+    width: 100%;
+  }
+}
+
+.layoutOneTestimonials::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 114px;
+  background: #ffffff12;
+  width: 90%;
+  height: 260%;
+  border-radius: 100%;
+  right: 0;
+  bottom: 0;
+  display: block;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+  .layoutOneTestimonials::after {
+      height: 220%;
+  }
+
+  .layoutOneTestimonials {
+      padding-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .layoutOneTestimonials::after {
+      background: transparent;
+  }
 }

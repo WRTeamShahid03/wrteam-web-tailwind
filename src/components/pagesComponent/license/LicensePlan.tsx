@@ -31,8 +31,8 @@ const LicensePlan = () => {
   }));
 
   return (
-    <section className="container mx-auto p-4">
-      <Table className="w-full border">
+    <section className="container mx-auto p-2 md:p-4">
+      <Table className="w-full border bg-white">
         <TableHeader className="">
           <TableRow className="font-semibold text-xl md:text-2xl">
             <TableHead className="text-left font-semibold p-4 border-r text-black">Product Plans</TableHead>

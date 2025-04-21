@@ -6,27 +6,27 @@ export default function PaymentGateway({ title, description, image_url, gateways
   return (
     <div className="container commonMT">
       {/* Title Section */}
-      <div className="text-center mb-8">
-        <h2 className="text-4xl font-bold mb-4">
+      <div className="flexColCenter !items-start commonTextGap text-center lg:w-[70%] xl:w-[58%] mb-8 mx-auto">
+        <h2 className="sectionTitle !font-bold">
           {title}
         </h2>
-        <div className="text-gray-600 max-w-3xl mx-auto" dangerouslySetInnerHTML={{ __html: description }} />
+        <div className="sectionPara !font-medium max-w-3xl" dangerouslySetInnerHTML={{ __html: description }} />
       </div>
 
       {/* Main Content Section */}
-      <div className="p-8 rounded-lg productDetailPrimaryBg overflow-hidden flex flex-col md:flex-row">
+      <div className="p-4 md:p-8 rounded-lg productDetailPrimaryBg flex flex-col lg:flex-row gap-y-3">
         {/* Payment Options */}
         <div className="flex-1 flex items-center justify-center md:justify-start">
-          <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+          <div className="flex gap-2 sm:gap-4 justify-center md:justify-start">
             {/* Stripe Payment Option */}
             {gateways.map((gateway, index) => (
               <div className="flex flex-col items-center" key={index}>
-                <div className="bg-white rounded-full p-4 w-24 h-24 flex items-center justify-center shadow-sm">
+                <div className="bg-white rounded-[8px] lg:rounded-full p-4 w-[80px] sm:w-[120px] h-[80px] sm:h-[120px] flex items-center justify-center shadow-sm border-[7px] border-[#0383fe17]">
                   <div className="flex flex-col items-center justify-center">
                     <div className="mb-1">
-                      <Image src={gateway.image_url} alt={gateway.name} width={40} height={40} className="min-w-[40px] min-h-[40px]"/>
+                      <Image src={gateway.image_url} alt={gateway.name} width={40} height={40} className="w-[24px] sm:w-[40px] h-[24px] sm:h-[40px]"/>
                     </div>
-                    <span className="font-medium text-sm text-gray-700">{gateway.name}</span>
+                    <span className="text-[10px] sm:text-sm text-gray-700 text-center font-bold">{gateway.name}</span>
                   </div>
                 </div>
               </div>
@@ -38,14 +38,11 @@ export default function PaymentGateway({ title, description, image_url, gateways
 
         {/* Mobile Device Image */}
         <div className="flex-1 flex justify-center md:justify-end items-center mt-8 md:mt-0">
-          <div className="relative w-64">
+          <div className="relative">
             <img
               src={image_url}
               alt={title}
-              className="w-full h-auto rounded-3xl"
-              style={{
-                filter: "drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.1))",
-              }}
+              className="max-575:w-[337px] w-[400px] lg:w-[500px] max-575:h-[337px] h-[400px] lg:h-[512px] rounded-3xl object-cover"
             />
           </div>
         </div>

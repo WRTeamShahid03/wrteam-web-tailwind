@@ -13,8 +13,6 @@ interface ProductDetailPageProps {
 
     const data = JSON.parse(productData?.codecanyon_other_data);
 
-    console.log(data)
-
     const landscape_preview = data?.previews?.landscape_preview?.landscape_url;
 
     return (

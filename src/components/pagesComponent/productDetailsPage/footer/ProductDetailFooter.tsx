@@ -1,68 +1,90 @@
+'use client'
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import logo from '../../../../assets/images/logo.svg'
+import codecanyon from '../../../../assets/images/productDetailPage/Codecanyon.png'
+import envato from '../../../../assets/images/productDetailPage/Envato.png'
+import { HelpSection } from '@/types';
 
-const ProductDetailFooter: React.FC = () => {
+
+interface ProductDetailFooterProps {
+  icon_image?: string;
+  codecanyonLink: string;
+  supportData: HelpSection
+}
+
+const ProductDetailFooter: React.FC<ProductDetailFooterProps> = ({ icon_image, codecanyonLink, supportData }) => {
   return (
-    <footer className="bg-black text-white">
-      <div className="container mx-auto px-4 py-10">
+    <footer className="productSecondaryBg text-white commonMT">
+      <div className="container py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and marketplace section */}
           <div className="space-y-6">
-            <div className="flex items-center">
-              <span className="text-2xl font-bold text-teal-400">e</span>
-              <span className="text-2xl font-bold">Classify</span>
-            </div>
-            <div className="space-y-4">
-              <Link href="#" className="inline-block bg-white text-black px-4 py-2 rounded">
-                <div className="flex items-center">
-                  <span className="mr-2">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M11.9995 24C5.3765 24 0 18.6235 0 12.0005C0 5.3775 5.3765 0 11.9995 0C18.6235 0 24 5.3775 24 12.0005C24 18.6235 18.6235 24 11.9995 24Z" />
-                    </svg>
-                  </span>
-                  <span className="font-bold">codecanyon</span>
-                </div>
+            {icon_image ? (
+              <Link href={codecanyonLink}>
+                <Image
+                  src={icon_image}
+                  width={162}
+                  height={46}
+                  className='object-cover'
+                  alt="WRTeam Logo"
+                  unoptimized={true}
+                  loader={({ src }) => src}
+                />
               </Link>
-              <Link href="#" className="inline-block bg-white text-black px-4 py-2 rounded">
-                <div className="flex items-center">
-                  <span className="text-green-500 mr-2">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M0 0h24v24H0z" fill="none" />
-                      <path d="M3 3h18v18H3z" />
-                    </svg>
-                  </span>
-                  <span className="font-bold">envato</span>
-                </div>
+            ) : (
+              <Link href={'/'}>
+                <Image
+                  src={logo}
+                  width={250}
+                  height={100}
+                  className='!w-[175px] md:!w-[200px] xl:!w-[250px] h-auto'
+                  alt="WRTeam Logo"
+                />
+              </Link>
+            )}
+            <div className="flex flex-col gap-6">
+              <Link href={codecanyonLink} title='codecanyonLink'>
+                <Image src={codecanyon} height={0} width={0} alt='codecanyonImg' className='w-auto h-auto' />
+              </Link>
+              <Link href={'https://codecanyon.net/user/wrteam/portfolio'} title='portfolioLink'>
+                <Image src={envato} height={0} width={0} alt='envatoImg' className='w-auto h-auto' />
               </Link>
             </div>
           </div>
 
           {/* Company section */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Company</h3>
+            <h3 className="text-xl font-bold mb-6 border-b-2 w-max border-white">Company</h3>
             <ul className="space-y-4">
-              <li><Link href="#" className="hover:text-gray-300 transition">About Us</Link></li>
-              <li><Link href="#" className="hover:text-gray-300 transition">Contact Us</Link></li>
-              <li><Link href="#" className="hover:text-gray-300 transition">Privacy Policy</Link></li>
-              <li><Link href="#" className="hover:text-gray-300 transition">Service Policy</Link></li>
+              <li><Link href={'/about-us'} title='About Us' className="hover:text-gray-300 transition">About Us</Link></li>
+              <li><Link href={'/contact-us'} title='Contact Us' className="hover:text-gray-300 transition">Contact Us</Link></li>
+              <li><Link href={'/privacy-policy'} title='Privacy Policy' className="hover:text-gray-300 transition">Privacy Policy</Link></li>
+              <li><Link href={'/privacy-policy'} title='Service Policy' className="hover:text-gray-300 transition">Service Policy</Link></li>
             </ul>
           </div>
 
           {/* Help Center section */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Help Center</h3>
+            <h3 className="text-xl font-bold mb-6 border-b-2 w-max border-white">Help Center</h3>
             <ul className="space-y-4">
-              <li><Link href="#" className="hover:text-gray-300 transition">Support</Link></li>
-              <li><Link href="#" className="hover:text-gray-300 transition">Documents</Link></li>
-              <li><Link href="#" className="hover:text-gray-300 transition">Contact Us</Link></li>
-              <li><Link href="#" className="hover:text-gray-300 transition">Hire Us</Link></li>
+              {
+                supportData && supportData &&
+                <li><Link href={supportData && supportData?.sections[0].link} className="hover:text-gray-300 transition">Support</Link></li>
+              }
+              {
+                supportData && supportData &&
+                <li><Link href={supportData && supportData?.sections[1].link} className="hover:text-gray-300 transition">Documents</Link></li>
+              }
+              <li><Link href={'/contact-us'} title='Contact Us' className="hover:text-gray-300 transition">Contact Us</Link></li>
+              <li><Link href={'/hire-us'} title='Hire Us' className="hover:text-gray-300 transition">Hire Us</Link></li>
             </ul>
           </div>
 
           {/* Contact Info section */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Contact Info</h3>
+            <h3 className="text-xl font-bold mb-6 border-b-2 w-max border-white">Contact Info</h3>
             <div className="space-y-5">
               <div className="flex items-start">
                 <div className="mt-1 mr-3">
@@ -72,8 +94,8 @@ const ProductDetailFooter: React.FC = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm">Email</p>
-                  <p className="text-gray-400">support@wrteam.in</p>
+                  <p className="font-bold">Email</p>
+                  <Link href={'mailto:support@wrteam.in'} className="text-gray-400 font-medium">support@wrteam.in</Link>
                 </div>
               </div>
 
@@ -84,8 +106,8 @@ const ProductDetailFooter: React.FC = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm">Contact Us</p>
-                  <p className="text-gray-400">+91 97979 45459</p>
+                  <p className="font-boldm">Contact Us</p>
+                  <Link href={'tel:+91 97979 45459'} className="text-gray-400 font-medium">+91 97979 45459</Link>
                 </div>
               </div>
 
@@ -97,8 +119,8 @@ const ProductDetailFooter: React.FC = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm">Address</p>
-                  <p className="text-gray-400">
+                  <p className="font-bold">Address</p>
+                  <p className="text-gray-400 font-medium">
                     #262-263, Time Square Empire, SH 42 Mirjapar Highway, Bhuj - Kutch 370001 Gujarat India.
                   </p>
                 </div>
@@ -107,11 +129,11 @@ const ProductDetailFooter: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Copyright section */}
-      <div className="py-4 border-t border-gray-800">
-        <div className="container mx-auto px-4 text-center text-gray-400 text-sm">
-          Copyright © 2025 WRTeam | Powered by WRTeam
+      <div className="py-4 border-t borderColor">
+        <div className="container text-center text-white font-medium text-sm">
+          Copyright © {new Date().getFullYear()} WRTeam | Powered by WRTeam
         </div>
       </div>
     </footer>

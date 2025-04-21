@@ -84,7 +84,7 @@ export default async function Page({
     <div>
       {
         isNewUI === 1 ?
-          <ProductDetailsPage slug={params.slug}  />
+          <ProductDetailsPage slug={params.slug} productData={productData?.data}/>
           :
           <OldProductDetailPage slug={params.slug} productData={productData?.data}/>
       }

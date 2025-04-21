@@ -14,7 +14,7 @@ const FaqItem = ({
   const contentRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="border rounded-md mb-4 overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md">
+    <div className="border rounded-md mb-4 overflow-hidden shadow-sm transition-all duration-300">
       <div
         className="flex justify-between items-center p-4 bg-white cursor-pointer"
         onClick={() => toggleFaq(faq.id)}
@@ -133,29 +133,29 @@ export default function FaqSection({ faqs }: { faqs?: ProductFaqs }) {
   const displayCategories = categories.length > 0 ? categories : fallbackCategories;
 
   return (
-    <section className="py-16 px-4 md:px-8 lg:px-16 bg-gray-50">
+    <section className="py-16 px-4 md:px-8 lg:px-16">
       <div className="max-w-6xl mx-auto">
         {/* FAQ Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <div className="flexColCenter commonTextGap lg:w-[70%] xl:w-[50%] text-center m-auto mb-6 md:mb-12">
+          <h2 className="sectionTitle !font-bold">
             Here Are Answers to Most Asked Questions from Our Customers
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto">
+          <p className="sectionPara">
             Curious about something? Get the information you need! Explore our
             most frequently asked questions.
           </p>
         </div>
 
         {/* Mobile Categories (horizontal scrollable tabs) */}
-        <div className="md:hidden mb-6 overflow-x-auto pb-2 no-scrollbar">
+        <div className="md:hidden mb-6 no-scrollbar flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-3 pb-2 md:pb-0 scrollbar-hide">
           <div className="flex whitespace-nowrap">
             {displayCategories.map((category) => (
               <div
                 key={category.id}
                 className={`p-3 mx-1 rounded-md inline-block cursor-pointer transition-all duration-300 ${
                   activeCategory === category.id
-                    ? "productPrimaryColor text-white shadow-md"
-                    : "bg-white hover:bg-green-50"
+                    ? "productPrimaryBg text-white"
+                    : "relative productDetailPrimaryBg overflow-hidden"
                 }`}
                 onClick={() => setCategory(category.id)}
               >
@@ -172,14 +172,14 @@ export default function FaqSection({ faqs }: { faqs?: ProductFaqs }) {
             {displayCategories.map((category) => (
               <div
                 key={category.id}
-                className={`p-4 rounded-md mb-2 cursor-pointer transition-all duration-300 ${
+                className={`py-3 px-4 rounded-[8px] mb-4 cursor-pointer !font-bold ${
                   activeCategory === category.id
-                    ? "productPrimaryBg text-white shadow-md"
-                    : "bg-white hover:productPrimaryBg hover:text-white"
+                    ? "productPrimaryBg text-white"
+                    : "relative productDetailPrimaryBg overflow-hidden"
                 }`}
                 onClick={() => setCategory(category.id)}
               >
-                <h3 className="font-medium">{category.name}</h3>
+                <h3 className="">{category.name}</h3>
               </div>
             ))}
           </div>

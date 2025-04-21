@@ -1,7 +1,37 @@
+'use client'
 import Link from 'next/link'
-import React from 'react'
+import { useParams } from 'next/navigation';
+import React, { useEffect, useState } from 'react'
 
-const TransformSect = () => {
+interface dataProps {
+  checkoutUrl: string;
+}
+
+const TransformSect:React.FC<dataProps> = ({ checkoutUrl }) => {
+
+  const [productName, setProductName] = useState<string>('');
+
+  const router = useParams();
+
+  const slug = router?.slug;
+  useEffect(() => {
+    if (slug && typeof slug === 'string') {
+      if (slug.startsWith('ebroker')) {
+        setProductName('eBroker')
+      }
+      else if (slug.startsWith('eclassify')) {
+        setProductName('eClassify')
+      }
+    }
+    else if (slug && typeof slug === 'string' && slug.startsWith('erestro')) {
+      setProductName('eRestroSingle')
+    }
+    else {
+      setProductName('eSchool')
+    }
+
+  }, [slug])
+
   return (
     <div className="container commonMT">
 
@@ -16,10 +46,10 @@ const TransformSect = () => {
         <div className="">
           <div className="max-w-2xl">
             <h1 className="sectionTitle text-white leading-tight mb-8">
-              Transform your project with eClassify, the perfect solution for fast and efficient development. Build smarter, not harder.
+             {` Transform your project with ${productName}, the perfect solution for fast and efficient development. Build smarter, not harder.`}
             </h1>
 
-            <Link href="/buy" className="inline-flex items-center px-6 py-3 productPrimaryBg transition-colors duration-200 text-white font-medium rounded-md group">
+            <Link href={checkoutUrl} target='_blank' title='Buy Now' className="inline-flex items-center px-6 py-3 productPrimaryBg transition-colors duration-200 text-white font-medium rounded-md group">
               Buy Now
               <svg
                 xmlns="http://www.w3.org/2000/svg"

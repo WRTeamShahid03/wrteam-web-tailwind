@@ -15,6 +15,7 @@ import { FreeMode } from "swiper/modules";
 import webIcon from "@/assets/images/portfolio/web.svg";
 import studentAppIcon from "@/assets/images/portfolio/playstore.svg";
 import teacherAppIcon from "@/assets/images/portfolio/iOS-Store.svg";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 // Feature cards data
 const featureCardsData = [
@@ -78,39 +79,43 @@ export default function SliderSection({ title, description, elements }: { title:
 
   // Swiper breakpoints for responsiveness
   const breakpoints = {
-    0: { slidesPerView: 1.2, spaceBetween: 10 },
-    480: { slidesPerView: 1.5, spaceBetween: 15 },
-    576: { slidesPerView: 2, spaceBetween: 20 },
-    768: { slidesPerView: 3, spaceBetween: 20 },
-    992: { slidesPerView: 4, spaceBetween: 25 },
-    1200: { slidesPerView: 4, spaceBetween: 30 },
+    0: { slidesPerView: 1.2 },
+    460: { slidesPerView: 1.8 },
+    576: { slidesPerView: 2 },
+    768: { slidesPerView: 3 },
+    992: { slidesPerView: 3 },
+    1200: { slidesPerView: 4 },
+    1400: { slidesPerView: 4 }
   };
+
   return (
     <div className="container commonMT">
-      <div className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-          {title}
-        </h1>
-        <div className="text-lg text-gray-700 max-w-3xl" dangerouslySetInnerHTML={{ __html: description }} />
+      <div className="mb-12 flex items-end justify-between">
+        <div className="flexColCenter !items-start commonTextGap max-399:text-center">
+          <h1 className="sectionTitle !font-bold">
+            {title}
+          </h1>
+          <div className="sectionPara !font-medium text-gray-700 max-w-3xl" dangerouslySetInnerHTML={{ __html: description }} />
+        </div>
+        {/* Navigation Buttons - Desktop version (hidden on mobile) */}
+        {elements?.length > 4 && (
+          <div className="hidden lg:flex items-end justify-end gap-4 mb-8">
+            <button
+              className="w-12 h-12 rounded-full productPrimaryBg text-white flex items-center justify-center"
+              onClick={handlePrev}
+            >
+              <FaArrowLeft size={24} className="text-white" />
+            </button>
+            <button
+              className="w-12 h-12 rounded-full productPrimaryBg text-white flex items-center justify-center"
+              onClick={handleNext}
+            >
+              <FaArrowRight size={24} className="text-white" />
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* Navigation Buttons - Desktop version (hidden on mobile) */}
-      {elements?.length > 4 && (
-        <div className="hidden md:flex items-center justify-end gap-4 mb-8">
-          <button
-            className="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
-            onClick={handlePrev}
-          >
-            <GrFormPrevious size={24} className="text-white" />
-          </button>
-          <button
-            className="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
-            onClick={handleNext}
-          >
-            <GrFormNext size={24} className="text-white" />
-          </button>
-        </div>
-      )}
 
 
 
@@ -137,10 +142,10 @@ export default function SliderSection({ title, description, elements }: { title:
                 <div className="absolute bottom-0 right-0 w-6 h-6 bg-white"></div>
 
                 {/* Primary circle gradient - smaller and visible first on hover */}
-                <div className="absolute -left-[30px] -top-[30px] h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] rounded-full bg-green-500 opacity-0 group-hover:opacity-100 transition-all duration-300 delay-100 z-10 group-hover:scale-[1.5]"></div>
+                <div className="absolute -left-[30px] -top-[30px] h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] rounded-full productPrimaryBg opacity-0 group-hover:opacity-100 transition-all duration-300 delay-100 z-10 group-hover:scale-[1.5]"></div>
 
                 {/* Secondary circle gradient - larger expansion on hover with delay */}
-                <div className="absolute -left-[80px] -top-[80px] h-[150px] w-[150px] sm:h-[220px] sm:w-[220px] rounded-full bg-blue-900 opacity-0 group-hover:opacity-90 transition-all duration-500 delay-200 z-0 group-hover:scale-[3.5]"></div>
+                <div className="absolute -left-[80px] -top-[80px] h-[150px] w-[150px] sm:h-full sm:w-full rounded-full bg-blue-900 opacity-0 group-hover:opacity-90 transition-all duration-500 delay-200 z-0 group-hover:scale-[3.5]"></div>
 
                 <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 sm:mb-6 flex items-center justify-center relative z-20">
                   {card?.image_url ? (
@@ -176,7 +181,7 @@ export default function SliderSection({ title, description, elements }: { title:
                             href={card?.android_link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full py-2 sm:py-3 text-sm sm:text-base bg-green-500 text-white font-medium rounded text-center hover:bg-green-400 transition-colors duration-300"
+                            className="w-full py-2 sm:py-3 text-sm sm:text-base productPrimaryBg text-white font-medium rounded text-center hover:bg-green-400 transition-colors duration-300"
                           >
                             Android
                           </a>
@@ -215,18 +220,18 @@ export default function SliderSection({ title, description, elements }: { title:
         </Swiper>
 
         {/* Navigation Buttons - Mobile version (hidden on desktop) */}
-        <div className="flex md:hidden items-center justify-center gap-4 mt-2">
+        <div className="flex lg:hidden items-center justify-center gap-4 mt-8">
           <button
-            className="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
+            className="w-12 h-12 rounded-full productPrimaryBg text-white flex items-center justify-center"
             onClick={handlePrev}
           >
-            <GrFormPrevious size={24} className="text-white" />
+            <FaArrowLeft size={24} className="text-white" />
           </button>
           <button
-            className="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
+            className="w-12 h-12 rounded-full productPrimaryBg text-white flex items-center justify-center"
             onClick={handleNext}
           >
-            <GrFormNext size={24} className="text-white" />
+            <FaArrowRight size={24} className="text-white" />
           </button>
         </div>
       </div>

@@ -248,7 +248,7 @@ const NewFooter = () => {
       <div className="bg-[#171B26] border-t border-[#ffffff3d] py-4 text-[14px]">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-y-2 text-sm sm:text-base">
           <div>
-            Copyright ©️ 2025 All Rights Reserved & Designed by 💕 <Link href="https://wrteam.in" title='WRTeam' className="primaryColor">WRTeam</Link>.
+            Copyright © {new Date().getFullYear()} All Rights Reserved & Designed by 💕 <Link href="https://wrteam.in" title='WRTeam' className="primaryColor">WRTeam</Link>.
           </div>
           <div className="flex mt-4 md:mt-0 flex-wrap gap-2 between-1200-1399:gap-1">
             <Link href="/terms-of-use" title='Terms of use'>Terms of use</Link>

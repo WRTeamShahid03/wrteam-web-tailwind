@@ -30,26 +30,26 @@ export default function WhyChooseUs({ title, description, features, mainImage }:
           height={40}
         />
       </div>
-      <h3 className={`font-bold mb-2 ${isResponsive ? "text-lg" : "text-xl"}`}>
+      <h3 className={`font-bold mb-2`}>
         {feature?.name}
       </h3>
 
-      <div dangerouslySetInnerHTML={{ __html: feature?.detail || "" }} className="text-gray-700" />
+      <div dangerouslySetInnerHTML={{ __html: feature?.detail || "" }} className="text-gray-700 text-sm" />
     </div>
   );
 
   return (
-    <div className="py-16 container commonMT">
+    <div className="container commonMT">
       {/* Section Header */}
       <div className="text-center mb-10 lg:mb-16">
-        <h2 className="text-4xl font-bold mb-5">{title}</h2>
-        <div dangerouslySetInnerHTML={{ __html: description || "" }} className="text-gray-700 max-w-3xl mx-auto" />
+        <h2 className="sectionTitle !font-bold">{title}</h2>
+        <div dangerouslySetInnerHTML={{ __html: description || "" }} className="sectionPara !font-medium text-gray-700 max-w-3xl mx-auto" />
       </div>
 
       {/* Desktop layout - Three-column layout (Only visible on lg screens and up) */}
-      <div className="hidden lg:grid lg:grid-cols-3 gap-6 mb-12">
+      <div className="max-1199:hidden grid grid-cols-12 gap-6 mb-12">
         {/* Left column */}
-        <div className="p-6 pl-0 flex flex-col space-y-12">
+        <div className="p-6 pl-0 flex flex-col space-y-12 col-span-3">
           {features?.slice(0, 3).map((feature, index) => (
             <div key={index} className="flex flex-col items-start">
               <div className="mb-4">
@@ -62,18 +62,18 @@ export default function WhyChooseUs({ title, description, features, mainImage }:
                 />
 
               </div>
-              <h3 className="text-xl font-bold mb-2">{feature.name}</h3>
+              <h3 className="font-bold mb-2">{feature.name}</h3>
               <div dangerouslySetInnerHTML={{ __html: feature.detail || "" }} className="text-gray-700" />
             </div>
           ))}
         </div>
 
         {/* Middle column with device showcase */}
-        <div className="p-6 flex items-center justify-center">
+        <div className="p-6 flex items-center justify-center col-span-6">
           <img
             src={mainImage}
             alt={title}
-            className="max-w-full h-auto"
+            className="max-w-full w-full h-auto"
             onError={(e) => {
               // Fallback if image fails to load
               e.currentTarget.style.display = "none";
@@ -82,7 +82,7 @@ export default function WhyChooseUs({ title, description, features, mainImage }:
         </div>
 
         {/* Right column */}
-        <div className="p-6 pe-0 flex flex-col space-y-12">
+        <div className="p-6 pe-0 flex flex-col space-y-12 col-span-3">
           {features?.slice(3).map((feature, index) => (
             <div key={index} className="flex flex-col items-start">
               <div className="mb-4">
@@ -93,7 +93,7 @@ export default function WhyChooseUs({ title, description, features, mainImage }:
                   height={40}
                 />
               </div>
-              <h3 className="text-xl font-bold mb-2">{feature.name}</h3>
+              <h3 className="font-bold mb-2">{feature.name}</h3>
               <div dangerouslySetInnerHTML={{ __html: feature.detail || "" }} className="text-gray-700" />
             </div>
           ))}
@@ -101,7 +101,7 @@ export default function WhyChooseUs({ title, description, features, mainImage }:
       </div>
 
       {/* Mobile and Tablet layout - Swiper (Only visible on screens smaller than lg) */}
-      <div className="lg:hidden mb-8">
+      <div className="max-1199:block hidden">
         <Swiper
           ref={sliderRef}
           slidesPerView={1.2}
@@ -121,7 +121,7 @@ export default function WhyChooseUs({ title, description, features, mainImage }:
         </Swiper>
       </div>
 
-      {/* Mobile Device Showcase Image (Only visible on screens smaller than lg) */}
+      {/* Mobile Device Showcase Image (Only visible on screens smaller than lg)
       <div className="flex justify-center lg:hidden">
         <img
           src="https://placehold.co/600x400/e2e8f0/1e293b?text=eSchool+SaaS+Devices"
@@ -132,7 +132,7 @@ export default function WhyChooseUs({ title, description, features, mainImage }:
             e.currentTarget.style.display = "none";
           }}
         />
-      </div>
+      </div> */}
     </div>
   );
 }

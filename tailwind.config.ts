@@ -35,6 +35,22 @@ export default {
           min: "1400px",
           max: "1680px",
         },
+        "between-992-1199": {
+          min: "992px",
+          max: "1199px",
+        },
+        "between-768-991": {
+          min: "768px",
+          max: "991px",
+        },
+        "between-576-767": {
+          min: "576px",
+          max: "767px",
+        },
+        "between-400-575": {
+          min: "400px",
+          max: "575px",
+        },
         "max-1680": {
           max: "1680px",
         },

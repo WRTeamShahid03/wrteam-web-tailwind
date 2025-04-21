@@ -18,10 +18,11 @@ import InnerPagesSect from "../layoutTwo/sections/InnerPagesSect"
 
 interface LayoutOneProps {
   productDetails: ProductDetails
+  checkoutUrl: string;
 }
 
-const LayoutOne = ({ productDetails }: LayoutOneProps) => {
-  console.log("productDetails", productDetails)
+const LayoutOne = ({ productDetails, checkoutUrl }: LayoutOneProps) => {
+
   const productDescription = productDetails.product_description[0]
   const productTestimonial = productDetails.product_testimonials
   const layoutOneDetails = productDescription
@@ -39,7 +40,7 @@ const LayoutOne = ({ productDetails }: LayoutOneProps) => {
   const productFaqs = productDetails.product_faqs
 
   return (
-    <>
+    <div className="overflow-x-hidden">
       <HeroSection
         title={introSection?.title || ''}
         description={introSection?.description || ''}
@@ -60,24 +61,28 @@ const LayoutOne = ({ productDetails }: LayoutOneProps) => {
         title={featureSection?.title || ""}
         description={featureSection?.description || ""}
         features={featureSection?.features || []}
+        mainImage={featureSection?.main_image_url}
       />
 
       {/* Payment Gateway Section with proper data */}
-      <PaymentGateway
-        title={paymentGatewaySection?.title || ""}
-        description={paymentGatewaySection?.description || ""}
-        gateways={paymentGatewaySection?.gateways || []}
-        image_url={paymentGatewaySection?.payment_gateway_main_image_url || ""}
-      />
+      {
+        paymentGatewaySection &&
+        <PaymentGateway
+          title={paymentGatewaySection?.title || ""}
+          description={paymentGatewaySection?.description || ""}
+          gateways={paymentGatewaySection?.gateways || []}
+          image_url={paymentGatewaySection?.payment_gateway_main_image_url || ""}
+        />
+      }
 
       <SuccessStatics />
 
       {/* FeaturesSection with panel-wise features */}
       {/* <FeaturesSection panelFeatures={panelWiseFeatureSection} /> */}
 
-      <InnerPagesSect title={productDetails.product_description[0].panel_wise_feature_section.title} description={productDetails.product_description[0].panel_wise_feature_section.description} tabs={productDetails.product_description[0].panel_wise_feature_section.tabs} layoutOne={true}/>
+      <InnerPagesSect title={productDetails.product_description[0].panel_wise_feature_section.title} description={productDetails.product_description[0].panel_wise_feature_section.description} tabs={productDetails.product_description[0].panel_wise_feature_section.tabs} layoutOne={true} />
 
-      <MoneyTimeSection productHighlightSection={productHighlightSection || []} />
+      <MoneyTimeSection />
 
       {/* Pass app-wise feature data to ResponsiveUISlider */}
       <ResponsiveUISlider appFeatures={appWiseFeatureSection} />
@@ -87,14 +92,14 @@ const LayoutOne = ({ productDetails }: LayoutOneProps) => {
       {/* Pass testimonials data to ClientReview */}
       <ClientReview testimonials={productTestimonials} />
 
-      <PerfectPlan />
+      <PerfectPlan layoutOne={true} />
 
       <FaqSection faqs={productFaqs} />
 
       <HelpAndSupport helpSection={helpSection} />
 
-      <ReadyToPower />
-    </>
+      <ReadyToPower checkoutUrl={checkoutUrl} />
+    </div>
   )
 }
 

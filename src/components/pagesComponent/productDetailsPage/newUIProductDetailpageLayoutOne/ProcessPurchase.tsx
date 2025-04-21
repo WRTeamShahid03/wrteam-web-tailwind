@@ -3,46 +3,87 @@ import React from "react";
 import line from "@/assets/images/line.svg";
 
 export default function ProcessPurchase() {
-  // Process steps data
+
+  const productName = 'productName'
+
+  const icon1 = <svg width="48" height="44" viewBox="0 0 48 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M48 8.41696C47.29 10.8749 46.5763 13.3315 45.8713 15.7908C44.7279 19.7803 43.5917 23.772 42.4492 27.7619C42.1703 28.7359 41.7329 29.061 40.7258 29.061C32.904 29.0619 25.0823 29.061 17.2601 29.0615C16.4735 29.0615 16.1217 29.3762 15.994 30.194C15.8844 30.8964 16.2702 31.5163 16.9377 31.7205C17.227 31.8088 17.5223 31.807 17.8189 31.807C25.4844 31.8065 33.1504 31.8061 40.8159 31.807C41.7487 31.807 42.3732 32.3431 42.4076 33.1601C42.4438 34.0132 41.8438 34.6702 40.9834 34.6775C39.4692 34.6902 37.9549 34.6811 36.2912 34.6811C37.5342 35.0651 38.4363 35.6896 39.0277 36.7121C39.6295 37.7527 39.768 38.8607 39.4547 40.0105C38.9058 42.0242 37.0701 43.2573 34.8942 43.1051C33.0616 42.977 31.373 41.3708 31.1303 39.4843C30.8495 37.3021 32.0948 35.3653 34.3495 34.7056H22.2625C22.8046 34.9107 23.323 35.1136 23.7695 35.4577C24.2206 35.805 24.5955 36.2171 24.8803 36.7107C25.1724 37.217 25.3825 37.7558 25.4337 38.3386C25.4826 38.8988 25.4717 39.4589 25.3155 40.0105C24.7467 42.0179 22.9255 43.2564 20.7496 43.1051C18.917 42.9779 17.2284 41.3739 16.9839 39.4861C16.7009 37.3007 17.9507 35.364 20.1224 34.682C19.2082 34.682 18.2935 34.6843 17.3792 34.682C14.1247 34.6721 12.0716 31.4298 13.5329 28.5267C13.9169 27.7641 13.9395 27.1116 13.7077 26.311C11.5893 18.9982 9.50448 11.676 7.42871 4.351C7.29739 3.8873 7.09814 3.74557 6.62539 3.75372C4.95535 3.7827 3.28441 3.76685 1.61392 3.76413C0.631275 3.76323 0.00501067 3.2067 2.95394e-05 2.33862C-0.00495159 1.46466 0.620407 0.890926 1.59037 0.889567C3.79158 0.88685 5.99324 0.887303 8.19445 0.889567C9.1069 0.890473 9.55429 1.23689 9.81286 2.13349C10.1806 3.40776 10.565 4.67749 10.9015 5.95991C11.0138 6.38783 11.1994 6.52006 11.6396 6.5196C23.1926 6.50738 34.7461 6.51462 46.2992 6.50013C47.0948 6.49923 47.6554 6.76685 48 7.48006V8.41696Z" fill="url(#paint0_linear_4907_5633)" />
+    <defs>
+      <linearGradient id="paint0_linear_4907_5633" x1="5.5308" y1="5.75365" x2="39.0501" y2="43.8528" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0383FE" />
+        <stop offset="0.252" stop-color="#145EA4" />
+        <stop offset="0.555" stop-color="#1C6AB5" />
+        <stop offset="0.815" stop-color="#19558F" />
+        <stop offset="1" stop-color="#0A4C8C" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  const icon2 = <svg width="48" height="46" viewBox="0 0 48 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M40.3987 6.85666C40.3988 6.85666 40.3989 6.85676 40.3989 6.85688C40.4223 7.25001 40.3059 7.61439 40.1841 7.97787C38.8845 11.8565 41.0851 15.5698 45.1049 16.2807C46.4022 16.5103 47.3257 17.3839 47.5882 18.6871C48.1593 21.5254 48.1274 24.3669 47.5509 27.1994C47.3037 28.4131 46.316 29.28 45.019 29.4993C42.2666 29.9644 40.4937 31.5251 39.7698 34.2304C39.4462 35.4388 39.5662 36.6346 39.994 37.8044C40.603 39.4675 40.2803 40.6 38.8841 41.7189C37.0825 43.1623 35.1182 44.3312 32.9814 45.2079C31.533 45.802 30.2231 45.4663 29.2488 44.2305C28.0054 42.6527 26.3624 41.8164 24.3816 41.7949C22.2937 41.7724 20.5874 42.6586 19.3336 44.3501C18.7818 45.0947 18.0772 45.5625 17.1514 45.7014C16.6724 45.7733 16.2194 45.6829 15.7826 45.5234C13.1977 44.5784 10.8443 43.2248 8.74256 41.448C7.73594 40.5968 7.45283 39.2851 7.98984 38.0007C8.70571 36.2872 8.77581 34.5656 7.99838 32.8746C7.05333 30.8196 5.42161 29.6103 3.17515 29.3002C1.56501 29.0778 0.556589 28.2105 0.294149 26.5972C-0.150291 23.8658 -0.0914217 21.134 0.473004 18.4233C0.743533 17.1242 1.79734 16.225 3.12527 16.0713C6.28758 15.7055 8.60819 13.21 8.69492 10.0432C8.71649 9.26131 8.55427 8.49331 8.29048 7.74869C7.72515 6.15023 8.0923 4.96476 9.4382 3.93072C11.2834 2.51292 13.2939 1.39306 15.4644 0.557652C16.9869 -0.0278951 18.2093 0.28937 19.2482 1.5418C21.6947 4.48976 26.2811 4.50189 28.7424 1.56697C29.8371 0.261508 31.0167 -0.0346358 32.6084 0.582817C35.0468 1.52877 37.2739 2.83153 39.2822 4.50908C40.0169 5.12289 40.3809 5.90654 40.3985 6.85643C40.3985 6.85656 40.3986 6.85666 40.3987 6.85666ZM23.9436 30.9214C23.9438 30.9212 23.944 30.9211 23.9442 30.9211C28.3462 30.8558 31.9294 27.5574 31.9231 22.9284C31.9173 18.6 28.5801 15.1114 24.0931 15.0624C19.6513 15.0139 16.0805 18.422 16.0873 23.0053C16.094 27.4127 19.497 30.7803 23.9431 30.9216C23.9433 30.9216 23.9435 30.9215 23.9436 30.9214Z" fill="url(#paint0_linear_4907_5643)" />
+    <defs>
+      <linearGradient id="paint0_linear_4907_5643" x1="5.53084" y1="5.51075" x2="41.8506" y2="43.866" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0383FE" />
+        <stop offset="0.252" stop-color="#145EA4" />
+        <stop offset="0.555" stop-color="#1C6AB5" />
+        <stop offset="0.815" stop-color="#19558F" />
+        <stop offset="1" stop-color="#0A4C8C" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  const icon3 = <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M46.0006 3.79073C45.8163 5.08537 45.675 6.3859 45.3983 7.66786C44.1471 13.4618 41.6158 18.6472 37.9751 23.3041C36.7814 24.831 35.4849 26.2674 34.0295 27.553C33.8081 27.7486 33.7456 27.971 33.7311 28.2513C33.4458 33.8437 31.6141 38.8602 28.1024 43.2399C27.5957 43.8721 27.0365 44.4635 26.484 45.0576C26.1584 45.4076 25.7518 45.606 25.2618 45.4434C24.7814 45.284 24.5654 44.9258 24.4952 44.4268C24.1723 42.1269 23.8309 39.8297 23.4954 37.5316C23.4777 37.412 23.5248 37.2494 23.3975 37.1892C23.2318 37.1109 23.1634 37.2988 23.0615 37.379C22.8777 37.5234 22.7092 37.6869 22.5295 37.8372C21.9331 38.3353 21.4409 38.3218 20.8825 37.7643C16.6744 33.5616 12.4685 29.3566 8.26486 25.1489C7.7115 24.5951 7.70199 24.1006 8.20599 23.5033C8.37716 23.3005 8.54788 23.0967 8.73218 22.9065C8.96448 22.667 8.88931 22.5877 8.5909 22.5465C7.30939 22.369 6.02969 22.1788 4.74909 21.9931C3.68448 21.8392 2.62079 21.6789 1.55482 21.534C1.06486 21.4674 0.69354 21.2636 0.540937 20.7673C0.392861 20.2864 0.598899 19.9196 0.932635 19.5959C4.45746 16.1702 8.62124 13.9319 13.4199 12.8704C14.8707 12.5494 16.3429 12.3931 17.8232 12.313C18.113 12.2971 18.3145 12.1944 18.5092 11.987C24.2855 5.83616 31.332 1.99526 39.6143 0.426655C41.3174 0.10424 43.0449 -0.0257221 44.7834 0.00416466C45.762 0.0208188 46.0006 1.20889 46.0006 2.18766V3.79073ZM27.3609 13.753C27.3608 13.753 27.3607 13.7531 27.3607 13.7532C27.3558 16.5285 29.5009 18.6793 32.2739 18.6798C35.0321 18.6802 37.1763 16.5519 37.1898 13.8005C37.2034 11.0179 35.072 8.86107 32.2988 8.85156C29.5203 8.84205 27.3658 10.9802 27.3612 13.7528C27.3612 13.7529 27.3611 13.753 27.3609 13.753Z" fill="url(#paint0_linear_4907_5651)" />
+    <defs>
+      <linearGradient id="paint0_linear_4907_5651" x1="5.73589" y1="5.24285" x2="42.1481" y2="41.6609" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0383FE" />
+        <stop offset="0.252" stop-color="#145EA4" />
+        <stop offset="0.555" stop-color="#1C6AB5" />
+        <stop offset="0.815" stop-color="#19558F" />
+        <stop offset="1" stop-color="#0A4C8C" />
+      </linearGradient>
+    </defs>
+  </svg>
+
   const steps = [
     {
+      id: 0,
+      icon: icon1,
+      title: 'Purchase',
+      desc: `Choose ${productName} and complete transactions using available payment methods on Envato Marketplace`
+
+    },
+    {
       id: 1,
-      title: "Purchase",
-      icon: "/images/Purchase.png", // Updated icon path
-      description:
-        "Choose eSchool SaaS and complete transactions using available payment methods on Envato Marketplace",
+      icon: icon2,
+      title: 'Download & Configure Description',
+      desc: 'Once downloaded from the Envato Marketplace, reach out to us for assistance with configuration'
+
     },
     {
       id: 2,
-      title: "Download & Configure Description",
-      icon: "/images/Download.png", // Updated icon path
-      description:
-        "Once downloaded from the Envato Marketplace, reach out to us for assistance with configuration",
+      icon: icon3,
+      title: 'Publish App Description',
+      desc: `Customize ${productName} with your branding and share with world`
+
     },
-    {
-      id: 3,
-      title: "Publish App Description",
-      icon: "/images/Publish.png", // Updated icon path
-      description:
-        "Customize eSchool SaaS with your branding and share with world",
-    },
-  ];
+  ]
 
   return (
-    <div className="w-full py-16 px-4 md:px-8">
+    <div className="py-16 container">
       {/* Main heading */}
-      <h2 className="text-center text-3xl md:text-4xl font-bold mb-16">
+      <h2 className="sectionTitle text-center !font-bold mb-16">
         Process From Purchase to Publication in 3 Simple Steps
       </h2>
 
       {/* Process steps with connecting line */}
-      <div className="relative flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto">
+      <div className="relative flex flex-col md:flex-row justify-between items-center lg:max-w-6xl mx-auto">
         {/* Single line connecting all steps - visible only on medium screens and above */}
-        <div className="absolute top-0 left-0 w-full -z-10 hidden md:block">
+        <div className="absolute top-0 left-0 w-full -z-10 hidden lg:block">
           <Image
             src={line}
             alt="connecting line"
-            className="w-[60%] h-auto object-contain mx-auto"
+            className="w-[62%] h-auto object-contain mx-auto"
           />
         </div>
 
@@ -50,26 +91,21 @@ export default function ProcessPurchase() {
         {steps.map((step) => (
           <div
             key={step.id}
-            className="flex flex-col items-center mb-12 md:mb-0 w-full md:w-1/3 px-4"
+            className="flexColCenter mb-12 md:mb-0 w-full md:w-1/3 px-4 md:px-8 lg:px-12"
           >
             {/* Icon circle */}
-            <div className="w-20 h-20 bg-green-50 rounded-full mt-4 flex items-center justify-center mb-4">
-              <div className="w-10 h-10 relative">
-                {/* Updated icon paths */}
-                <img
-                  src={step.icon}
-                  alt={step.title}
-                  className="w-full h-full"
-                />
+            <div className="w-20 h-20 productCommonAfterBg overflow-hidden rounded-full mt-4 flex items-center justify-center mb-4">
+              <div className='ideaIconsSvg'>
+                <span>{step.icon}</span>
               </div>
             </div>
 
             {/* Title */}
-            <h3 className="text-xl font-bold mb-2 text-center">{step.title}</h3>
+            <h3 className="text-lg lg:text-xl font-bold mb-2 text-center">{step.title}</h3>
 
             {/* Description */}
-            <p className="text-center text-gray-700 font-medium text-sm">
-              {step.description}
+            <p className="text-center font-bold text-sm">
+              {step.desc}
             </p>
           </div>
         ))}

@@ -6,9 +6,12 @@ import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
 import { FreeMode, Pagination } from 'swiper/modules';
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { PanelWiseFeatureSection, Tab } from '@/types';
+import leftShape from '../../../../../assets/images/productDetailPage/layoutTwo/leftShape.png'
+import rightShape from '../../../../../assets/images/productDetailPage/layoutTwo/rightShape.png'
+import ReadMoreModal from '@/components/commonComponents/ReadMoreModal';
 
 
-const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description, tabs,layoutOne }): React.ReactNode => {
+const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description, tabs, layoutOne }) => {
     const [activeTab, setActiveTab] = useState<Tab>(tabs[0]);
 
     const breakpoints = {
@@ -46,9 +49,12 @@ const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description,
         setActiveTab(tab);
     }
 
+    console.log('title',title)
+    console.log('desc',description)
+
 
     return (
-        <section className='py-12 lg:py-20  relative after:content-[""] after:absolute after:h-full after:w-full after:productSecondaryBg after:top-0 after:left-0 after:-z-[1] after:opacity-90' style={{ background: `${!layoutOne && `url(${bgLines.src})`}`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+        <section className={`py-12 lg:py-20  relative after:content-[""] after:absolute after:h-full after:w-full ${layoutOne ? '!commonBgAndShape' : 'after:productSecondaryBg'}  after:top-0 after:left-0 after:-z-[1] after:opacity-90`} style={{ background: `${!layoutOne && `url(${bgLines.src})`}`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
             <div className="container space-y-6 md:space-y-8 lg:space-y-12">
                 <div className='flexColCenter commonTextGap md:w-[60%] lg:w-[40%] m-auto text-center'>
                     <h2 className='sectionTitle text-white'>{title}</h2>
@@ -57,10 +63,15 @@ const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description,
                 </div>
                 <div className='w-full'>
 
-                    <div className='flexCenter gap-6 overflow-x-scroll md:overflow-auto pb-3 md:pb-0 w-max md:w-full'>
+                    <div className='flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-3 pb-2 md:pb-0 scrollbar-hide justify-center max-1199:justify-start'>
                         {tabs.map((tab: Tab, index: number): React.ReactNode => {
                             return (
-                                <button key={index} className={`p-3 border border-white rounded-[8px]  ${activeTab.tab_name === tab.tab_name ? 'bg-white text-black' : 'text-white'}`} onClick={() => handleTabClick(tab)}>
+                                <button key={index} className={`px-4 py-3 rounded-md text-sm font-medium whitespace-nowrap flex-shrink-0 ${
+                                    activeTab.tab_name === tab.tab_name
+                                      ? "bg-white text-black"
+                                      : "border-2 border-white bg-transparent text-white"
+                                  }`}
+                                onClick={() => handleTabClick(tab)}>
                                     {tab.tab_name}
                                 </button>
                             )
@@ -85,8 +96,20 @@ const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description,
                                     <Image src={detail.image_url} height={0} width={0} alt='feature-img' className='h-[164px] sm:h-[286px] w-full rounded-[8px] border-2 border-[#64748b]' />
                                     <div className='flexColCenter gap-2 !items-start'>
                                         <span className='font-semibold'>{detail.title}</span>
-                                        <p className='sectionPara !text-sm line-clamp-3  ' dangerouslySetInnerHTML={{ __html: detail.short_description || '' }} />
-                                        <span className='productPrimaryColor font-semibold -mt-1 text-sm'>Read More</span>
+                                        <p className='sectionPara !text-sm max-[356px]:h-[144px] max-399:h-[130px] between-400-575:h-[110px] between-576-767:h-[86px] between-768-991:h-[66px] between-992-1199:h-[104px] between-1200-1399:h-[86px] h-[72px]' >
+                                            {
+                                                detail.short_description?.length > 196 ?
+                                                    <>
+                                                        `${detail?.short_description?.slice(0, 196)}...
+                                                        {
+                                                            detail?.short_description.length > 196 &&
+                                                            <ReadMoreModal desc={detail?.short_description} />
+                                                        }
+                                                    </>
+                                                    :
+                                                    detail.short_description
+                                            }
+                                        </p>
                                     </div>
                                 </div>
                             </SwiperSlide>
@@ -105,6 +128,19 @@ const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description,
 
                 </div>
             </div>
+
+            {
+                layoutOne &&
+                <div className='hidden lg:block'>
+                    <div className="absolute top-0 left-0">
+                        <Image src={leftShape} alt='leftShape' height={0} width={0} className='w-full h-full' />
+                    </div>
+                    <div className="absolute -bottom-[30px] right-0">
+                        <Image src={rightShape} alt='rightShape' height={0} width={0} className='w-full h-full' />
+                    </div>
+                </div>
+            }
+
         </section>
     )
 }

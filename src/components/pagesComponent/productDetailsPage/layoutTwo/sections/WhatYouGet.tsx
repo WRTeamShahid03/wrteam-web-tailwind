@@ -70,8 +70,8 @@ const WhatYouGet: React.FC<WhatYouGetProps> = ({ title, description, elements, t
 
 
     return (
-        <section className='relative -mt-60 bg-white pt-48'>
-            <MarqueSect testimonials={testimonials} />
+        <section className='relative -mt-60 bg-white pt-48' id='explore-demo'>
+            <MarqueSect />
 
             <div className='container space-y-8 md:space-y-12 lg:space-y-16'>
 

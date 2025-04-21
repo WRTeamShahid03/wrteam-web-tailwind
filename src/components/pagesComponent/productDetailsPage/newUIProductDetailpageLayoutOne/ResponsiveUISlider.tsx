@@ -1,7 +1,9 @@
 "use client";
 import React, { useRef, useState, useCallback } from "react";
 import Image from "next/image";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import leftShape from '../../../../assets/images/productDetailPage/layoutTwo/leftShape.png'
+import rightShape from '../../../../assets/images/productDetailPage/layoutTwo/rightShape.png'
+import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -65,10 +67,10 @@ const screenLabels: Record<ScreenType, string> = {
 export default function ResponsiveUISlider({ appFeatures }: { appFeatures?: AppWiseFeatureSection }) {
   // Get the available apps from the data or use an empty array as fallback
   const appTabs = appFeatures?.tabs || [];
-  
+
   // State for tracking active tab index (default to first tab)
   const [activeTabIndex, setActiveTabIndex] = useState(0);
-  
+
   // Get the active tab and its features
   const activeTab = appTabs[activeTabIndex] || null;
   const features = activeTab?.features || [];
@@ -87,59 +89,82 @@ export default function ResponsiveUISlider({ appFeatures }: { appFeatures?: AppW
     sliderRef.current.swiper.slideNext();
   }, []);
 
+  const breakpoints = {
+    0: {
+        slidesPerView: 1,
+        // spaceBetween: 40
+    },
+    576: {
+        slidesPerView: 2,
+        // spaceBetween: 40
+    },
+    768: {
+        slidesPerView: 3,
+
+    },
+    992: {
+        slidesPerView: 3,
+
+    },
+    1200: {
+        slidesPerView: 3.8,
+    },
+    1400: {
+        slidesPerView: 3.8,
+
+    }
+};
+
   return (
-    <div className="bg-[#57cc99] py-16 relative overflow-hidden">
+    <div className="commonBgAndShape py-6 md:py-12 lg:py-16 relative overflow-hidden">
       <div className="container commonMT">
-        {/* Background gradient elements */}
-        <div className="absolute -top-20 -left-20 w-40 h-40 bg-green-400 rounded-full opacity-30"></div>
-        <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-green-400 rounded-full opacity-30"></div>
 
         {/* Header section with title on left and navigation on right */}
-        <div className="mx-auto mb-8">
+        <div className="grid grid-cols-12 mb-12 gap-y-4">
           {/* Title and Navigation - Stack on mobile, row on desktop */}
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-4 mb-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-white text-center md:text-left">
+          <div className="col-span-12 lg:col-span-8 flex flex-col gap-4">
+            <h2 className="sectionTitle !font-bold text-white text-center md:text-left">
               {appFeatures?.title || "Take a Look At Responsive UI design"}
             </h2>
+            {/* App type tabs - Horizontal scrollable on mobile */}
+            <div className="relative mt-4">
+              <div className="flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-3 pb-2 md:pb-0 scrollbar-hide">
+                {appTabs.map((tab, index) => (
+                  <button
+                    key={index}
+                    className={`px-4 py-3 rounded-md text-sm font-medium whitespace-nowrap flex-shrink-0 ${activeTabIndex === index
+                      ? "bg-white text-black"
+                      : "border-2 border-white bg-transparent text-white"
+                      }`}
+                    onClick={() => setActiveTabIndex(index)}
+                  >
+                    {tab.app_name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
 
-            {/* Navigation buttons - Centered on mobile */}
+          {/* Navigation buttons - Centered on mobile */}
+          <div className="hidden col-span-12 lg:col-span-4 lg:flex lg:items-end lg:justify-end">
             {features.length > 3 && (
               <div className="flex items-center justify-center w-full md:w-auto gap-2">
                 <button
-                  className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md"
-                onClick={handlePrev}
-                aria-label="Previous slide"
-              >
-                <GrFormPrevious size={20} />
-              </button>
-              <button
-                className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md"
-                onClick={handleNext}
-                aria-label="Next slide"
-              >
-                <GrFormNext size={20} />
-              </button>
-            </div>
-            )}
-          </div>
-
-          {/* App type tabs - Horizontal scrollable on mobile */}
-          <div className="relative mt-4">
-            <div className="flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-3 pb-2 md:pb-0 scrollbar-hide">
-              {appTabs.map((tab, index) => (
-                <button
-                  key={index}
-                  className={`px-4 py-3 rounded-md text-sm font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
-                    activeTabIndex === index
-                      ? "bg-white text-green-600"
-                      : "border-2 border-white bg-transparent text-white hover:bg-green-600/40"
-                  }`}
-                  onClick={() => setActiveTabIndex(index)}
+                  className="w-10 h-10 flex items-center justify-center bg-transparent border text-white border-white rounded-full shadow-md"
+                  onClick={handlePrev}
+                  aria-label="Previous slide"
                 >
-                  {tab.app_name}
+                  <BiLeftArrowAlt size={20} />
                 </button>
-              ))}
-            </div>
+                <button
+                  className="w-10 h-10 flex items-center justify-center bg-transparent border text-white border-white rounded-full shadow-md"
+                  onClick={handleNext}
+                  aria-label="Next slide"
+                >
+                  <BiRightArrowAlt size={20} />
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -150,11 +175,8 @@ export default function ResponsiveUISlider({ appFeatures }: { appFeatures?: AppW
             ref={sliderRef}
             slidesPerView={1}
             spaceBetween={20}
-            breakpoints={{
-              640: { slidesPerView: 2, spaceBetween: 20 },
-              768: { slidesPerView: 3, spaceBetween: 30 },
-              1024: { slidesPerView: 3.7, spaceBetween: 40 },
-            }}
+            loop={true}
+            breakpoints={breakpoints}
             modules={[Pagination, Navigation]}
             className="pb-12"
           >
@@ -178,6 +200,37 @@ export default function ResponsiveUISlider({ appFeatures }: { appFeatures?: AppW
               </SwiperSlide>
             ))}
           </Swiper>
+        </div>
+
+        {/* Navigation buttons - Centered on mobile */}
+        <div className="flexCenter lg:hidden mt-12">
+          {features.length > 3 && (
+            <div className="flex items-center justify-center w-full md:w-auto gap-2">
+              <button
+                className="w-10 h-10 flex items-center justify-center bg-transparent border text-white border-white rounded-full shadow-md"
+                onClick={handlePrev}
+                aria-label="Previous slide"
+              >
+                <BiLeftArrowAlt size={20} />
+              </button>
+              <button
+                className="w-10 h-10 flex items-center justify-center bg-transparent border text-white border-white rounded-full shadow-md"
+                onClick={handleNext}
+                aria-label="Next slide"
+              >
+                <BiRightArrowAlt size={20} />
+              </button>
+            </div>
+          )}
+        </div>
+
+      </div>
+      <div className='hidden lg:block'>
+        <div className="absolute top-0 left-0">
+          <Image src={leftShape} alt='leftShape' height={0} width={0} className='w-full h-full' />
+        </div>
+        <div className="absolute -bottom-[30px] right-0">
+          <Image src={rightShape} alt='rightShape' height={0} width={0} className='w-full h-full' />
         </div>
       </div>
     </div>
