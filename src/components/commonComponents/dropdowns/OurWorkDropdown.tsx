@@ -36,7 +36,7 @@ const OurWorkDropdown = () => {
   return (
     <div className="max-1199:relative">
       <div className="flex items-center gap-1 cursor-pointer" onClick={() => setShowDrop(true)}>
-      <span className={`flex items-center gap-1 relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${active && 'after:!bg-black font-semibold'}`}> Our Work <FaAngleDown /></span>
+      <span className={`flex items-center gap-1 relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black font-medium ${active && 'after:!bg-black font-semibold'}`}> Our Work <FaAngleDown /></span>
       </div>
 
       {showDrop && (
