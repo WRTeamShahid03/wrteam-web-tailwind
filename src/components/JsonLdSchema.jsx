@@ -11,7 +11,9 @@ export function OrganizationSchema() {
     "@type": "Organization",
     name: "WRTeam",
     url: process.env.NEXT_PUBLIC_SITE_URL || "https://wrteam.in",
-    logo: "https://wrteam.in/logo.png",
+    logo: `${
+      process.env.NEXT_PUBLIC_SITE_URL || "https://wrteam.in"
+    }/src/assets/images/logo.svg`,
     description:
       "WRTeam has a creative and dedicated group of developers who are masters in app development and Web development with a niche to deliver quality solutions to customers across the globe.",
     sameAs: [
@@ -58,7 +60,9 @@ export function LocalBusinessSchema() {
     "@context": "https://schema.org",
     "@type": "SoftwareCompany",
     name: "WRTeam",
-    image: "https://wrteam.in/logo.png",
+    image: `${
+      process.env.NEXT_PUBLIC_SITE_URL || "https://wrteam.in"
+    }/src/assets/images/logo.svg`,
     "@id": process.env.NEXT_PUBLIC_SITE_URL || "https://wrteam.in",
     url: process.env.NEXT_PUBLIC_SITE_URL || "https://wrteam.in",
     telephone: "+91 97979 45459",
