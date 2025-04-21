@@ -10,33 +10,43 @@ export async function GET() {
         "https://backend.wrteam.in/api/get-vacancies",
         {
           headers: {
-            'Accept': 'application/json',
+            Accept: "application/json",
           },
-          timeout: 5000
+          timeout: 5000,
         }
       );
-      
+
       // Return the vacancies data
       return NextResponse.json(response.data);
-      
     } catch (error) {
-      console.log('API request failed, using fallback data:', error instanceof Error ? error.message : String(error));
-
+      console.log(
+        "API request failed, using fallback data:",
+        error instanceof Error ? error.message : String(error)
+      );
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
+    // Type cast error to access properties
+    const err = error as {
+      message: string;
+      response?: {
+        data: unknown;
+        status: number;
+      };
+    };
+
     // Error handling
-    console.error('API Error:', {
-      message: error.message,
-      response: error.response?.data,
-      status: error.response?.status
+    console.error("API Error:", {
+      message: err.message,
+      response: err.response?.data,
+      status: err.response?.status,
     });
-    
+
     // Return error response
     return NextResponse.json(
-      { 
-        error: true, 
+      {
+        error: true,
         message: "Failed to fetch vacancies",
-        details: error.message
+        details: err.message,
       },
       { status: 500 }
     );

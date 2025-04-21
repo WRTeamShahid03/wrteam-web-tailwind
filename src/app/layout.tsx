@@ -1,10 +1,9 @@
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { Montserrat, Poppins, Roboto } from "next/font/google";
-import Script from "next/script";
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
 import ClientBackgroundInitializer from "@/components/ClientBackgroundInitializer";
 import { Metadata } from "next";
 
@@ -33,12 +32,13 @@ const roboto = Roboto({
 // Default metadata (will be overridden by page-specific metadata)
 export const metadata: Metadata = {
   title: {
-    template: '%s | WRTeam',
-    default: 'WRTeam - Web and Mobile App Development',
+    template: "%s | WRTeam",
+    default: "WRTeam - Web and Mobile App Development",
   },
-  description: 'WRTeam specializes in creating custom web and mobile applications for businesses of all sizes.',
+  description:
+    "WRTeam specializes in creating custom web and mobile applications for businesses of all sizes.",
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
   },
 };
 

@@ -72,14 +72,19 @@ export default function SuccessStories() {
                 },
                 992: {
                   slidesPerView: 3,
-                }
+                },
               }}
               modules={[Pagination]}
               className="mb-12 py-6"
             >
               {clientData.map((client, index) => (
-                <SwiperSlide key={client.id} className={`!overflow-visible ${activeIndex + 1 === index ? 'active-slide' : ''}`}>
-                  {({ isActive }) => (
+                <SwiperSlide
+                  key={client.id}
+                  className={`!overflow-visible ${
+                    activeIndex + 1 === index ? "active-slide" : ""
+                  }`}
+                >
+                  {() => (
                     <div
                       className={`overflow-hidden relative transition-all duration-300 border-2 rounded-xl  ${
                         activeIndex + 1 === index

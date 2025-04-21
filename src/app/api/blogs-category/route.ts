@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     // Make API call without any parameters
     const response = await axios.get(
@@ -10,13 +10,13 @@ export async function GET(request: Request) {
         headers: {
           Accept: "application/json",
         },
-        timeout: 10000
+        timeout: 10000,
       }
     );
 
     return NextResponse.json(response.data);
   } catch (error) {
-    console.error('API Error:', error);
+    console.error("API Error:", error);
     return NextResponse.json(
       { error: "Failed to fetch blogs" },
       { status: 500 }

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Star, StarHalf } from "lucide-react";
 import Image from "next/image";
 import UserIcon from "../../../assets/images/homePage/Icon.svg";
@@ -23,12 +23,11 @@ const StarRating = ({ rating }: { rating: number }) => {
         <StarHalf className="text-[#e2a52d] fill-[#e2a52d] w-5 mr-0.5" />
       )}
       {[...Array(5 - fullStars - (hasHalfStar ? 1 : 0))].map((_, i) => (
-        <Star
-          key={`empty-${i}`}
-          className="text-yellow-400 mr-0.5"
-        />
+        <Star key={`empty-${i}`} className="text-yellow-400 mr-0.5" />
       ))}
-      <span className="ml-1.5 font-semibold bg-[#2e71fe1f] py-1 px-4 rounded-full">{rating.toFixed(1)}</span>
+      <span className="ml-1.5 font-semibold bg-[#2e71fe1f] py-1 px-4 rounded-full">
+        {rating.toFixed(1)}
+      </span>
     </div>
   );
 };
@@ -85,9 +84,7 @@ const ReviewCard = ({
           <StarRating rating={rating} />
         </div>
       </div>
-      <p className="text-gray-700 mb-5 mt-4 leading-relaxed">
-        {testimonial}
-      </p>
+      <p className="text-gray-700 mb-5 mt-4 leading-relaxed">{testimonial}</p>
       <div className="mt-auto">
         <div className="border-t border-gray-200 pt-3 mb-2"></div>
         <div className="flex flex-col gap-2">
@@ -109,14 +106,17 @@ export default function ClientReviewSection() {
       try {
         setIsLoading(true);
 
-        const response = await axiosClient.get('/api/testimonials', {
-          timeout: 10000
+        const response = await axiosClient.get("/api/testimonials", {
+          timeout: 10000,
         });
 
-        if (response?.data?.data?.data && Array.isArray(response.data.data.data)) {
+        if (
+          response?.data?.data?.data &&
+          Array.isArray(response.data.data.data)
+        ) {
           setTestimonials(response.data.data.data);
         }
-      } catch (error) {
+      } catch {
         // Fallback to empty array is already set in initial state
       } finally {
         setIsLoading(false);
@@ -127,18 +127,19 @@ export default function ClientReviewSection() {
   }, []);
 
   // Use API data if available, otherwise use fallback data
-  const displayTestimonials = testimonials.length > 0
-    ? testimonials.map(item => ({
-      name: item.name,
-      role: item.rating_for,
-      rating: item.ratings,
-      testimonial: item.description
-    }))
-    : [];
-    
+  const displayTestimonials =
+    testimonials.length > 0
+      ? testimonials.map((item) => ({
+          name: item.name,
+          role: item.rating_for,
+          rating: item.ratings,
+          testimonial: item.description,
+        }))
+      : [];
+
   // Function to handle the "Load More" button click
   const handleLoadMore = () => {
-    setDisplayCount(prevCount => prevCount + 6); // Load 6 more testimonials
+    setDisplayCount((prevCount) => prevCount + 6); // Load 6 more testimonials
   };
 
   // Determine if the "Load More" button should be displayed
@@ -147,34 +148,36 @@ export default function ClientReviewSection() {
   return (
     <section className="py-16">
       <div className="container space-y-12 md:space-y-16 lg:space-y-20'">
-        <div className='flexColCenter gap-4 md:gap-6'>
-          <span className='sectionTag text-black'>Read Their Experiences</span>
-          <h3 className='sectionTitle'>Client Reviews - Hear It in Their Words</h3>
+        <div className="flexColCenter gap-4 md:gap-6">
+          <span className="sectionTag text-black">Read Their Experiences</span>
+          <h3 className="sectionTitle">
+            Client Reviews - Hear It in Their Words
+          </h3>
         </div>
 
         <div className="max-479:columns-1 max-1199:columns-2 columns-3 gap-6 md:gap-8">
-          {isLoading ? (
-            // Show skeleton cards while loading (same layout as actual cards)
-            [...Array(6)].map((_, index) => (
-              <ReviewCardSkeleton key={`skeleton-${index}`} />
-            ))
-          ) : (
-            // Show only the first 'displayCount' testimonials
-            displayTestimonials.slice(0, displayCount).map((review, index) => (
-              <ReviewCard
-                key={index}
-                name={review.name}
-                role={review.role}
-                rating={Number(review.rating)}
-                testimonial={review.testimonial}
-              />
-            ))
-          )}
+          {isLoading
+            ? // Show skeleton cards while loading (same layout as actual cards)
+              [...Array(6)].map((_, index) => (
+                <ReviewCardSkeleton key={`skeleton-${index}`} />
+              ))
+            : // Show only the first 'displayCount' testimonials
+              displayTestimonials
+                .slice(0, displayCount)
+                .map((review, index) => (
+                  <ReviewCard
+                    key={index}
+                    name={review.name}
+                    role={review.role}
+                    rating={Number(review.rating)}
+                    testimonial={review.testimonial}
+                  />
+                ))}
         </div>
 
         {!isLoading && hasMoreToLoad && (
           <div className="flex justify-center mt-12">
-            <button 
+            <button
               onClick={handleLoadMore}
               className="px-8 py-3 bg-black text-white font-medium rounded hover:bg-gray-800 transition duration-300"
             >
