@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import HomePage from "@/components/homePage";
 import { generatePageMetadata } from "@/lib/generate-metadata";
+import {
+  LocalBusinessSchema,
+  OrganizationSchema,
+} from "@/components/JsonLdSchema";
 
 // Generate metadata for the page
 export async function generateMetadata(): Promise<Metadata> {
@@ -15,6 +19,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Home() {
   return (
     <>
+      <OrganizationSchema />
+      <LocalBusinessSchema />
       <HomePage />
     </>
   );
