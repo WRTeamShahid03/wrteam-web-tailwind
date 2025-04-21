@@ -57,7 +57,7 @@ const AboutUs: React.FC = () => {
   return (
     <Layout>
       <div className="aboutUsBg">
-        <Breadcrumb title={"About Us"} />
+        <Breadcrumb title={"About Us"} secondElement={"About Us"} />
 
         <section className="container commonMT">
           <div className="grid grid-cols-12 gap-y-10 md:gap-y-32 between-1200-1399:gap-y-40 xl:gap-16">
