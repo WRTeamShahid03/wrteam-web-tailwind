@@ -5,7 +5,6 @@ import BuyNow from './sections/BuyNow'
 import Technologies from './sections/Technologies'
 import OrbitPaymentGateways from './sections/PaymentGateways'
 import InfoSect from './sections/InfoSect'
-import FeatureSection from './sections/FeatureSection'
 import InnerPagesSect from './sections/InnerPagesSect'
 import ProcessSect from './sections/ProcessSect'
 import TransformSect from './sections/TransformSect'
@@ -23,10 +22,9 @@ interface LayoutTwoProps {
     codecanyonLink: string;
     checkoutUrl: string;
 }
-const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, codecanyonLink, checkoutUrl }) => {
+const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl }) => {
 
     const productDescription = productDetails.product_description[0]
-    const productTestimonial = productDetails.product_testimonials
     const layoutOneDetails = productDescription
     const helpSection = layoutOneDetails?.help_section
     const productFaqs = productDetails.product_faqs

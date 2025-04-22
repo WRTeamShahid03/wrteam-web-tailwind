@@ -18,47 +18,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { AppWiseFeatureSection } from "@/types";
 
-// Type definitions
-type AppType = "student" | "parents" | "teacher" | "staff";
-type ScreenType = "profile" | "home" | "login" | "menu";
-
-// Mockup images mapping
-const mockupImages: Record<AppType, Record<ScreenType, string>> = {
-  student: {
-    profile: "/images/mockups/student-profile.png",
-    home: "/images/mockups/student-home.png",
-    login: "/images/mockups/student-login.png",
-    menu: "/images/mockups/student-menu.png",
-  },
-  parents: {
-    profile: "/images/mockups/parents-profile.png",
-    home: "/images/mockups/parents-home.png",
-    login: "/images/mockups/parents-login.png",
-    menu: "/images/mockups/parents-menu.png",
-  },
-  teacher: {
-    profile: "/images/mockups/teacher-profile.png",
-    home: "/images/mockups/teacher-home.png",
-    login: "/images/mockups/teacher-login.png",
-    menu: "/images/mockups/teacher-menu.png",
-  },
-  staff: {
-    profile: "/images/mockups/staff-profile.png",
-    home: "/images/mockups/staff-home.png",
-    login: "/images/mockups/staff-login.png",
-    menu: "/images/mockups/staff-menu.png",
-  },
-};
 
 // Screen types and their labels
-const screenTypes: ScreenType[] = ["profile", "home", "login", "menu"];
-const screenLabels: Record<ScreenType, string> = {
-  profile: "Profile",
-  home: "Home",
-  login: "Login",
-  menu: "Menu",
-};
-
 /**
  * ResponsiveUISlider component shows a responsive UI design showcase
  * with tabs for different app UIs (Student, Parents, Teacher, Staff)

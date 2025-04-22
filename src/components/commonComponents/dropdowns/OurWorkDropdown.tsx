@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { FaAngleDown, FaArrowRight } from 'react-icons/fa6'
-import img from '../../../assets/images/headerOurWorkImg.png'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import developmentImg from '../../../assets/images/homePage/development-portfolio.png'

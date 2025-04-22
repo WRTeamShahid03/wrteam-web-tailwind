@@ -14,7 +14,7 @@ const Footer = () => {
                             <Image src={dontMiss} height={0} width={0} alt='dont-miss-img' className='w-auto h-auto' />
                         </div>
                         <div>
-                            <h4 className='text-xl md:text-3xl lg:text-4xl/[50px] font-[500] [&_span]:primaryColor !font-roboto'>Don't Miss Out! Grab Your Free Code and Get Building!</h4>
+                            <h4 className='text-xl md:text-3xl lg:text-4xl/[50px] font-[500] [&_span]:primaryColor !font-roboto'>Don&apos;t Miss Out! Grab Your Free Code and Get Building!</h4>
                         </div>
                     </div>
                 </div>

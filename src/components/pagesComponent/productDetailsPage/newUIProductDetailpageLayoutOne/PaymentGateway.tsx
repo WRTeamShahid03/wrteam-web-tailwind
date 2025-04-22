@@ -39,9 +39,11 @@ export default function PaymentGateway({ title, description, image_url, gateways
         {/* Mobile Device Image */}
         <div className="flex-1 flex justify-center md:justify-end items-center mt-8 md:mt-0">
           <div className="relative">
-            <img
-              src={image_url}
+            <Image
+              src={image_url || ""}
               alt={title}
+              width={500}
+              height={512}
               className="max-575:w-[337px] w-[400px] lg:w-[500px] max-575:h-[337px] h-[400px] lg:h-[512px] rounded-3xl object-cover"
             />
           </div>

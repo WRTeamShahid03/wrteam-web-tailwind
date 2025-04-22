@@ -1,16 +1,17 @@
 "use client";
-import { useRef, ReactNode } from "react";
+import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import type { SwiperRef } from "swiper/react";
 import Image from "next/image";
 import { Feature, WhyChooseUsProps } from "@/types";
 
-
-
-
-export default function WhyChooseUs({ title, description, features, mainImage }: WhyChooseUsProps) {
-
+export default function WhyChooseUs({
+  title,
+  description,
+  features,
+  mainImage,
+}: WhyChooseUsProps) {
   const sliderRef = useRef<SwiperRef>(null);
 
   // Swiper breakpoints for responsiveness
@@ -20,7 +21,7 @@ export default function WhyChooseUs({ title, description, features, mainImage }:
   };
 
   // Function to render a feature card
-  const renderFeatureCard = (feature: Feature, isResponsive = false) => (
+  const renderFeatureCard = (feature: Feature) => (
     <div className="flex flex-col items-start h-full">
       <div className="mb-4">
         <Image
@@ -30,11 +31,12 @@ export default function WhyChooseUs({ title, description, features, mainImage }:
           height={40}
         />
       </div>
-      <h3 className={`font-bold mb-2`}>
-        {feature?.name}
-      </h3>
+      <h3 className={`font-bold mb-2`}>{feature?.name}</h3>
 
-      <div dangerouslySetInnerHTML={{ __html: feature?.detail || "" }} className="text-gray-700 text-sm" />
+      <div
+        dangerouslySetInnerHTML={{ __html: feature?.detail || "" }}
+        className="text-gray-700 text-sm"
+      />
     </div>
   );
 
@@ -43,7 +45,10 @@ export default function WhyChooseUs({ title, description, features, mainImage }:
       {/* Section Header */}
       <div className="text-center mb-10 lg:mb-16">
         <h2 className="sectionTitle !font-bold">{title}</h2>
-        <div dangerouslySetInnerHTML={{ __html: description || "" }} className="sectionPara !font-medium text-gray-700 max-w-3xl mx-auto" />
+        <div
+          dangerouslySetInnerHTML={{ __html: description || "" }}
+          className="sectionPara !font-medium text-gray-700 max-w-3xl mx-auto"
+        />
       </div>
 
       {/* Desktop layout - Three-column layout (Only visible on lg screens and up) */}
@@ -60,19 +65,23 @@ export default function WhyChooseUs({ title, description, features, mainImage }:
                   height={40}
                   className="w-10 h-10 sm:w-12 sm:h-12 group-hover:filter group-hover:brightness-200 transition-all duration-300 delay-100 group-hover:opacity-0"
                 />
-
               </div>
               <h3 className="font-bold mb-2">{feature.name}</h3>
-              <div dangerouslySetInnerHTML={{ __html: feature.detail || "" }} className="text-gray-700" />
+              <div
+                dangerouslySetInnerHTML={{ __html: feature.detail || "" }}
+                className="text-gray-700"
+              />
             </div>
           ))}
         </div>
 
         {/* Middle column with device showcase */}
         <div className="p-6 flex items-center justify-center col-span-6">
-          <img
-            src={mainImage}
-            alt={title}
+          <Image
+            src={mainImage || ""}
+            alt={title || ""}
+            width={500}
+            height={512}
             className="max-w-full w-full h-auto"
             onError={(e) => {
               // Fallback if image fails to load
@@ -94,7 +103,10 @@ export default function WhyChooseUs({ title, description, features, mainImage }:
                 />
               </div>
               <h3 className="font-bold mb-2">{feature.name}</h3>
-              <div dangerouslySetInnerHTML={{ __html: feature.detail || "" }} className="text-gray-700" />
+              <div
+                dangerouslySetInnerHTML={{ __html: feature.detail || "" }}
+                className="text-gray-700"
+              />
             </div>
           ))}
         </div>
@@ -114,7 +126,7 @@ export default function WhyChooseUs({ title, description, features, mainImage }:
           {features?.map((feature, index) => (
             <SwiperSlide key={index} className="h-auto">
               <div className="bg-gray-50 rounded-lg p-6">
-                {renderFeatureCard(feature, true)}
+                {renderFeatureCard(feature)}
               </div>
             </SwiperSlide>
           ))}

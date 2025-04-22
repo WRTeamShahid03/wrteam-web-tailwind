@@ -1,20 +1,8 @@
 import React from "react";
 import { PaymentGatewaySection } from "@/types";
+import Image from "next/image";
 
 const OrbitPaymentGateways: React.FC<PaymentGatewaySection> = ({ title, description, gateways }) => {
-  const data = {
-    payment_gateway_main_image_url: "/images/main-gateway.png",
-    gateways: [
-      { name: "PayPal", image_url: "/images/paypal.png" },
-      { name: "Stripe", image_url: "/images/stripe.png" },
-      { name: "Razorpay", image_url: "/images/razorpay.png" },
-      { name: "Payoneer", image_url: "/images/payoneer.png" },
-      { name: "Google Pay", image_url: "/images/googlepay.png" },
-      { name: "Apple Pay", image_url: "/images/applepay.png" },
-      { name: "Amazon Pay", image_url: "/images/amazonpay.png" },
-      { name: "Venmo", image_url: "/images/venmo.png" },
-    ],
-  };
 
   // Function to position outer icons
   const getOuterIconPosition = (index: number) => {
@@ -51,7 +39,7 @@ const OrbitPaymentGateways: React.FC<PaymentGatewaySection> = ({ title, descript
             <div className="relative w-[400px] h-[400px]">
               {/* Center Image */}
               <div className="absolute top-[46%] left-[46%] w-[100px] h-[100px] rounded-full bg-white flex flex-col justify-center items-center border border-gray-300">
-                <img src={gateways[0].image_url} alt="Center" className="w-auto h-auto" />
+                <Image src={gateways[0].image_url} alt="Center" className="w-auto h-auto" height={0} width={0} />
               </div>
 
               {/* Outer Orbit */}
@@ -67,7 +55,7 @@ const OrbitPaymentGateways: React.FC<PaymentGatewaySection> = ({ title, descript
                     key={index}
                     className={`absolute w-[60px] h-[60px] rounded-full bg-white flex flex-col justify-center items-center border border-gray-300 animate-[orbitIcon-rotate_20s_linear_infinite] ${getOuterIconPosition(index)}`}
                   >
-                    <img src={item.image_url} alt="gatewayIcon" className="w-6 h-6" />
+                    <Image src={item.image_url} alt="gatewayIcon" className="w-6 h-6" height={0} width={0} />
                     <span className="text-[8px] font-semibold text-center">{item.name}</span>
                   </div>
                 ))}
@@ -80,7 +68,7 @@ const OrbitPaymentGateways: React.FC<PaymentGatewaySection> = ({ title, descript
                     key={index}
                     className={`absolute w-[60px] h-[60px] rounded-full bg-white flex flex-col justify-center items-center border border-gray-300 animate-[orbitIcon-rotate_20s_linear_infinite] ${getInnerIconPosition(index)}`}
                   >
-                    <img src={item.image_url} alt="gatewayIcon" className="w-6 h-6" />
+                    <Image src={item.image_url} alt="gatewayIcon" className="w-6 h-6" height={0} width={0} />
                     <span className="text-[8px] font-semibold text-center">{item.name}</span>
                   </div>
                 ))}

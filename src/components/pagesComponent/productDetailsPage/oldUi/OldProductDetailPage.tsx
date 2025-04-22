@@ -1,7 +1,6 @@
 'use client'
 import Layout from '@/components/layout/Layout'
 import Image from 'next/image'
-import React, { useState } from 'react'
 import ProductDetailsSideCard from './ProductDetailsSideCard'
 import { OldUiProductData } from '@/types'
 

@@ -1,11 +1,11 @@
-import axiosClient from './axiosClient';
+import axiosClient from "./axiosClient";
 import {
   ApiResponse,
   ApiError,
   handleApiResponse,
   createApiError,
   handleApiError,
-} from './apiUtils';
+} from "./apiUtils";
 
 // Re-export everything for easier importing
 export { axiosClient, handleApiResponse, createApiError, handleApiError };
@@ -30,7 +30,7 @@ export const fetchData = async <T>(
 /**
  * Generic function to post data to API with proper error handling
  */
-export const postData = async <T, D = any>(
+export const postData = async <T, D = unknown>(
   url: string,
   data: D,
   config = {}
@@ -46,7 +46,7 @@ export const postData = async <T, D = any>(
 /**
  * Generic function to update data via API with proper error handling
  */
-export const updateData = async <T, D = any>(
+export const updateData = async <T, D = unknown>(
   url: string,
   data: D,
   config = {}
@@ -62,14 +62,11 @@ export const updateData = async <T, D = any>(
 /**
  * Generic function to delete data via API with proper error handling
  */
-export const deleteData = async <T>(
-  url: string,
-  config = {}
-): Promise<T> => {
+export const deleteData = async <T>(url: string, config = {}): Promise<T> => {
   try {
     const response = await axiosClient.delete<ApiResponse<T>>(url, config);
     return handleApiResponse<T>(response);
   } catch (error) {
     throw error;
   }
-}; 
+};

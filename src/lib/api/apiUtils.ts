@@ -1,9 +1,9 @@
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from "axios";
 
 /**
  * Standard API response format
  */
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   data: T;
   error: boolean;
   message: string;
@@ -17,15 +17,17 @@ export interface ApiError {
   error: boolean;
   message: string;
   code: number;
-  details?: any;
+  details?: unknown;
 }
 
 /**
  * Helper function to handle API responses
  */
-export const handleApiResponse = <T>(response: AxiosResponse<ApiResponse<T>>): T => {
+export const handleApiResponse = <T>(
+  response: AxiosResponse<ApiResponse<T>>
+): T => {
   if (response.data.error) {
-    throw new Error(response.data.message || 'An error occurred');
+    throw new Error(response.data.message || "An error occurred");
   }
   return response.data.data;
 };
@@ -37,24 +39,25 @@ export const createApiError = (error: unknown): ApiError => {
   if (error instanceof AxiosError) {
     return {
       error: true,
-      message: error.response?.data?.message || error.message || 'Request failed',
+      message:
+        error.response?.data?.message || error.message || "Request failed",
       code: error.response?.status || 500,
       details: error.response?.data || error.cause,
     };
   }
-  
+
   if (error instanceof Error) {
     return {
       error: true,
-      message: error.message || 'An error occurred',
+      message: error.message || "An error occurred",
       code: 500,
       details: error.cause,
     };
   }
-  
+
   return {
     error: true,
-    message: 'An unknown error occurred',
+    message: "An unknown error occurred",
     code: 500,
     details: error,
   };
@@ -63,12 +66,15 @@ export const createApiError = (error: unknown): ApiError => {
 /**
  * Function to handle API errors and return fallback data
  */
-export const handleApiError = <T>(error: unknown, fallbackData?: T): { error: ApiError, data?: T } => {
+export const handleApiError = <T>(
+  error: unknown,
+  fallbackData?: T
+): { error: ApiError; data?: T } => {
   const apiError = createApiError(error);
-  console.error('API Error:', apiError);
-  
+  console.error("API Error:", apiError);
+
   return {
     error: apiError,
     data: fallbackData,
   };
-}; 
+};

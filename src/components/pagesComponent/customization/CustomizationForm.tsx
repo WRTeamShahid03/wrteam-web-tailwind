@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useRef, FormEvent } from 'react'
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
+import React, { useState, useRef, FormEvent } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import { FiUpload } from "react-icons/fi";
 import { IoIosCloseCircle } from "react-icons/io";
 import { FaChevronDown } from "react-icons/fa";
@@ -21,8 +21,8 @@ import {
 } from "@/components/ui/command";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
-import axios from 'axios';
-import { toast } from 'react-hot-toast';
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 // Form data types
 interface FormData {
@@ -47,120 +47,120 @@ interface FormErrors {
 // Product options for dropdown
 const products = [
   {
-    value: 'eSchool SAAS',
-    label: 'eSchool SAAS',
+    value: "eSchool SAAS",
+    label: "eSchool SAAS",
   },
   {
-    value: 'eRestro- Single',
-    label: 'eRestro- Single',
+    value: "eRestro- Single",
+    label: "eRestro- Single",
   },
   {
-    value: 'eBroker',
-    label: 'eBroker',
+    value: "eBroker",
+    label: "eBroker",
   },
   {
-    value: 'eDemand',
-    label: 'eDemand',
+    value: "eDemand",
+    label: "eDemand",
   },
   {
-    value: 'eGrocer',
-    label: 'eGrocer',
+    value: "eGrocer",
+    label: "eGrocer",
   },
   {
-    value: 'eSchool',
-    label: 'eSchool',
+    value: "eSchool",
+    label: "eSchool",
   },
   {
-    value: 'eRestro- multi',
-    label: 'eRestro- multi',
+    value: "eRestro- multi",
+    label: "eRestro- multi",
   },
   {
-    value: 'Elite Quiz web',
-    label: 'Elite Quiz web',
+    value: "Elite Quiz web",
+    label: "Elite Quiz web",
   },
   {
-    value: 'eSpeech',
-    label: 'eSpeech',
+    value: "eSpeech",
+    label: "eSpeech",
   },
   {
-    value: 'Prime web',
-    label: 'Prime web',
+    value: "Prime web",
+    label: "Prime web",
   },
   {
-    value: 'eShop - multi',
-    label: 'eShop - multi',
+    value: "eShop - multi",
+    label: "eShop - multi",
   },
   {
-    value: 'Smartkit pro',
-    label: 'Smartkit pro',
+    value: "Smartkit pro",
+    label: "Smartkit pro",
   },
   {
-    value: 'Tic-tac-toe',
-    label: 'Tic-tac-toe',
+    value: "Tic-tac-toe",
+    label: "Tic-tac-toe",
   },
   {
-    value: 'Elite Quiz app',
-    label: 'Elite Quiz app',
+    value: "Elite Quiz app",
+    label: "Elite Quiz app",
   },
   {
-    value: 'Qearner',
-    label: 'Qearner',
+    value: "Qearner",
+    label: "Qearner",
   },
   {
-    value: 'eCart web - multi',
-    label: 'eCart web - multi',
+    value: "eCart web - multi",
+    label: "eCart web - multi",
   },
   {
-    value: 'eBook app',
-    label: 'eBook app',
+    value: "eBook app",
+    label: "eBook app",
   },
   {
-    value: 'News',
-    label: 'News',
+    value: "News",
+    label: "News",
   },
   {
-    value: 'eCart - multi vendor system',
-    label: 'eCart - multi vendor system',
+    value: "eCart - multi vendor system",
+    label: "eCart - multi vendor system",
   },
   {
-    value: 'eShop manager- admin',
-    label: 'eShop manager- admin',
+    value: "eShop manager- admin",
+    label: "eShop manager- admin",
   },
   {
-    value: 'eShop - web - single',
-    label: 'eShop - web - single',
+    value: "eShop - web - single",
+    label: "eShop - web - single",
   },
   {
-    value: 'eShop - app - single',
-    label: 'eShop - app - single',
+    value: "eShop - app - single",
+    label: "eShop - app - single",
   },
   {
-    value: 'eCart web',
-    label: 'eCart web',
+    value: "eCart web",
+    label: "eCart web",
   },
   {
-    value: 'Radio',
-    label: 'Radio',
+    value: "Radio",
+    label: "Radio",
   },
   {
-    value: 'Quiz online iOS',
-    label: 'Quiz online iOS',
+    value: "Quiz online iOS",
+    label: "Quiz online iOS",
   },
   {
-    value: 'Quiz online android',
-    label: 'Quiz online android',
+    value: "Quiz online android",
+    label: "Quiz online android",
   },
   {
-    value: 'eCart- app',
-    label: 'eCart- app',
+    value: "eCart- app",
+    label: "eCart- app",
   },
   {
-    value: 'Quotes app',
-    label: 'Quotes app',
+    value: "Quotes app",
+    label: "Quotes app",
   },
   {
-    value: 'eClassify',
-    label: 'eClassify',
+    value: "eClassify",
+    label: "eClassify",
   },
 ];
 
@@ -178,29 +178,35 @@ const CustomizationForm = () => {
   // Form errors state
   const [errors, setErrors] = useState<FormErrors>({});
 
-  // State for country code
-  const [selectedCountryCode, setSelectedCountryCode] = useState("");
-
   // State for file upload
   const [fileDataUrl, setFileDataUrl] = useState<string | null>(null);
   const [inputKey, setInputKey] = useState<number>(Date.now());
   const [formLoader, setFormLoader] = useState<boolean>(false);
   const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
 
-  const [open, setOpen] = useState<boolean>(false)
-  const [value, setValue] = useState<string>("")
+  const [open, setOpen] = useState<boolean>(false);
+  const [value, setValue] = useState<string>("");
 
   // Form ref
   const form = useRef<HTMLFormElement>(null);
 
   // Handle input change
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement> |
-    { name: string, value: string }
+    e:
+      | React.ChangeEvent<
+          HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+        >
+      | { name: string; value: string }
   ) => {
     // Check if the input is an event or an object with name and value
-    const name = typeof e === 'object' && 'name' in e ? e.name : (e.target as HTMLInputElement).name;
-    const value = typeof e === 'object' && 'value' in e ? e.value : (e.target as HTMLInputElement).value;
+    const name =
+      typeof e === "object" && "name" in e
+        ? e.name
+        : (e.target as HTMLInputElement).name;
+    const value =
+      typeof e === "object" && "value" in e
+        ? e.value
+        : (e.target as HTMLInputElement).value;
 
     setFormData({
       ...formData,
@@ -219,14 +225,11 @@ const CustomizationForm = () => {
   // Handle phone input change
   const handlePhoneChange = (
     value: string,
-    country: { dialCode: string; name: string; countryCode: string }
   ) => {
     setFormData({
       ...formData,
       contact: value,
     });
-
-    setSelectedCountryCode(country?.dialCode || "");
 
     // Clear error when user types
     if (errors.contact) {
@@ -255,7 +258,7 @@ const CustomizationForm = () => {
     }
 
     // Check file type
-    const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+    const allowedTypes = ["image/jpeg", "image/png", "application/pdf"];
     if (!allowedTypes.includes(file.type)) {
       setErrors({
         ...errors,
@@ -265,27 +268,27 @@ const CustomizationForm = () => {
     }
 
     // Set file to form data
-            setFormData({
-              ...formData,
+    setFormData({
+      ...formData,
       requirement_file: file,
-            });
+    });
 
     // Clear errors
     if (errors.requirement_file) {
-            setErrors({
-              ...errors,
+      setErrors({
+        ...errors,
         requirement_file: "",
       });
     }
 
     // Preview image if it's an image
-    if (file.type.includes('image')) {
+    if (file.type.includes("image")) {
       const reader = new FileReader();
       reader.onload = () => {
         setFileDataUrl(reader.result as string);
       };
-          reader.readAsDataURL(file);
-        } else {
+      reader.readAsDataURL(file);
+    } else {
       setFileDataUrl(null);
     }
   };
@@ -332,7 +335,8 @@ const CustomizationForm = () => {
     if (!formData.requirement_explanation.trim()) {
       newErrors.requirement_explanation = "Explanation is required";
     } else if (formData.requirement_explanation.length < 20) {
-      newErrors.requirement_explanation = "Please provide more details (at least 20 characters)";
+      newErrors.requirement_explanation =
+        "Please provide more details (at least 20 characters)";
     }
 
     setErrors(newErrors);
@@ -350,22 +354,29 @@ const CustomizationForm = () => {
       try {
         // Create form data for API call
         const submitFormData = new FormData();
-        submitFormData.append('user_name', formData.user_name);
-        submitFormData.append('email', formData.email);
-        submitFormData.append('contact', formData.contact);
-        submitFormData.append('product_name', formData.product_name);
-        submitFormData.append('requirement_explanation', formData.requirement_explanation);
-        
+        submitFormData.append("user_name", formData.user_name);
+        submitFormData.append("email", formData.email);
+        submitFormData.append("contact", formData.contact);
+        submitFormData.append("product_name", formData.product_name);
+        submitFormData.append(
+          "requirement_explanation",
+          formData.requirement_explanation
+        );
+
         if (formData.requirement_file) {
-          submitFormData.append('requirement_file', formData.requirement_file);
+          submitFormData.append("requirement_file", formData.requirement_file);
         }
 
         // Submit form data to API
-        const response = await axios.post('/api/customization-requirements', submitFormData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
+        const response = await axios.post(
+          "/api/customization-requirements",
+          submitFormData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
           }
-        });
+        );
 
         if (response.data && !response.data.error) {
           // Reset form on success
@@ -378,11 +389,15 @@ const CustomizationForm = () => {
             requirement_file: null,
           });
           setValue("");
-        handleFileRemove();
+          handleFileRemove();
           setSubmitSuccess(true);
-          toast.success("Your customization request has been submitted successfully!");
+          toast.success(
+            "Your customization request has been submitted successfully!"
+          );
         } else {
-          toast.error(response.data.message || "Failed to submit form. Please try again.");
+          toast.error(
+            response.data.message || "Failed to submit form. Please try again."
+          );
         }
       } catch (error) {
         console.error("Form submission error:", error);
@@ -405,7 +420,9 @@ const CustomizationForm = () => {
             value={formData.user_name}
             onChange={handleChange}
             placeholder="Enter Your Full Name"
-            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.user_name ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
+              errors.user_name ? "border-red-500" : "border-gray-300"
+            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.user_name && (
             <p className="text-red-500 text-sm mt-1">{errors.user_name}</p>
@@ -422,7 +439,9 @@ const CustomizationForm = () => {
               name: "contact",
               id: "contact",
               required: true,
-              className: `w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.contact ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500`,
+              className: `w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
+                errors.contact ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-1 focus:ring-blue-500`,
             }}
             containerClass={`${errors.contact ? "phone-input-error" : ""}`}
             containerStyle={{ width: "100%" }}
@@ -441,16 +460,20 @@ const CustomizationForm = () => {
                 type="button"
                 id="product_name"
                 name="product_name"
-                className={`w-full text-start textSecondary px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.product_name ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none bg-white`}
+                className={`w-full text-start textSecondary px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
+                  errors.product_name ? "border-red-500" : "border-gray-300"
+                } focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none bg-white`}
               >
-                {value
-                  ? products.find((item) => item.value === value)?.label
-                  :
+                {value ? (
+                  products.find((item) => item.value === value)?.label
+                ) : (
                   <div className="flexCenter !justify-between">
                     <span>Product Name</span>
-                    <span><FaChevronDown /></span>
+                    <span>
+                      <FaChevronDown />
+                    </span>
                   </div>
-                }
+                )}
               </button>
             </PopoverTrigger>
             <PopoverContent className="w-[300px] p-0">
@@ -467,7 +490,7 @@ const CustomizationForm = () => {
                           // Update form data
                           handleChange({
                             name: "product_name",
-                            value: currentValue === value ? "" : currentValue
+                            value: currentValue === value ? "" : currentValue,
                           });
 
                           // Update displayed value
@@ -503,7 +526,9 @@ const CustomizationForm = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter Your Email"
-            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.email ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
+              errors.email ? "border-red-500" : "border-gray-300"
+            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -513,7 +538,9 @@ const CustomizationForm = () => {
         {/* Upload File Field */}
         <div>
           <div
-            className={`bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.requirement_file ? "border-red-500" : "border-gray-300"} rounded-md text-center`}
+            className={`bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
+              errors.requirement_file ? "border-red-500" : "border-gray-300"
+            } rounded-md text-center`}
           >
             {formData.requirement_file ? (
               <div className="flex flex-col items-center justify-center p-4">
@@ -529,15 +556,16 @@ const CustomizationForm = () => {
                   <IoIosCloseCircle className="ml-1" size={20} />
                 </button>
 
-                {fileDataUrl && formData.requirement_file.type.includes("image") && (
-                  <div className="mt-4 max-w-xs">
-                    <img
-                      src={fileDataUrl}
-                      alt="Preview"
-                      className="max-h-40 object-contain"
-                    />
-                  </div>
-                )}
+                {fileDataUrl &&
+                  formData.requirement_file.type.includes("image") && (
+                    <div className="mt-4 max-w-xs">
+                      <img
+                        src={fileDataUrl}
+                        alt="Preview"
+                        className="max-h-40 object-contain"
+                      />
+                    </div>
+                  )}
 
                 {formData.requirement_file.type === "application/pdf" && (
                   <div className="mt-4">
@@ -552,7 +580,7 @@ const CustomizationForm = () => {
               >
                 <span className="textSecondary pl-2">Upload File</span>
                 <div className="primaryBg text-white flexCenter h-full rounded-e-md py-1.5 px-2 gap-2">
-                  <FiUpload size={26} color='white' /> Upload
+                  <FiUpload size={26} color="white" /> Upload
                 </div>
               </label>
             )}
@@ -568,7 +596,9 @@ const CustomizationForm = () => {
             />
           </div>
           {errors.requirement_file && (
-            <p className="text-red-500 text-sm mt-1">{errors.requirement_file}</p>
+            <p className="text-red-500 text-sm mt-1">
+              {errors.requirement_file}
+            </p>
           )}
         </div>
 
@@ -581,28 +611,37 @@ const CustomizationForm = () => {
             onChange={handleChange}
             placeholder="Explain what you need for customization..."
             rows={10}
-            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.requirement_explanation ? "border-red-500" : "border-gray-300"} focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
+              errors.requirement_explanation
+                ? "border-red-500"
+                : "border-gray-300"
+            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.requirement_explanation && (
-            <p className="text-red-500 text-sm mt-1">{errors.requirement_explanation}</p>
+            <p className="text-red-500 text-sm mt-1">
+              {errors.requirement_explanation}
+            </p>
           )}
-      </div>
+        </div>
 
-      {/* Submit Button */}
-        <div className='w-full'>
-        <button
-          type="submit"
-          disabled={formLoader}
-            className={`!w-full commonBtn ${formLoader ? 'opacity-70 cursor-not-allowed' : ''}`}
+        {/* Submit Button */}
+        <div className="w-full">
+          <button
+            type="submit"
+            disabled={formLoader}
+            className={`!w-full commonBtn ${
+              formLoader ? "opacity-70 cursor-not-allowed" : ""
+            }`}
           >
-            {formLoader ? 'Submitting...' : 'Submit Request'}
+            {formLoader ? "Submitting..." : "Submit Request"}
           </button>
         </div>
 
         {/* Success Message */}
         {submitSuccess && (
           <div className="bg-green-100 text-green-800 p-4 rounded-md">
-            Thank you! Your customization request has been received. We'll get back to you shortly.
+            Thank you! Your customization request has been received. We&apos;ll
+            get back to you shortly.
           </div>
         )}
       </div>

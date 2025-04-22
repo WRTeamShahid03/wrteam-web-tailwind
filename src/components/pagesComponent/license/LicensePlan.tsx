@@ -1,14 +1,9 @@
 import React from "react";
-import { FaCheckCircle, FaArrowRight } from "react-icons/fa";
+import { FaCheckCircle } from "react-icons/fa";
 import { RiCloseCircleFill } from "react-icons/ri";
-import Link from "next/link";
-// import { useSelector } from "react-redux";
-// import { productDataSelector } from "@/redux/reuducer/productLayoutSlice";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 const LicensePlan = () => {
-//   const productData = useSelector(productDataSelector);
-  const productData = [];
 
   const regularLicenseData = [
     { id: 0, detail: "Lifetime License Validity", add: true },

@@ -1,8 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import img from '../../../../../assets/images/productDetailPage/layoutOne/heroSectionMainImg.svg'
-import android from '../../../../../assets/images/productDetailPage/layoutOne/Android.svg'
-import heroSecImg from '../../../../../assets/images/productDetailPage/layoutOne/heroSectionImg.svg'
 
 interface HeroSectionProps {
   title: string;

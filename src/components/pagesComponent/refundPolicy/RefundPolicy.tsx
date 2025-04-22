@@ -1,7 +1,5 @@
-'use client'
-import Layout from '@/components/layout/Layout'
-import Link from 'next/link'
-import React from 'react'
+import Layout from "@/components/layout/Layout";
+import React from "react";
 
 const RefundPolicy = () => {
     return (
@@ -16,7 +14,7 @@ const RefundPolicy = () => {
                             <h2 className='text-lg md:text-xl font-medium'>Refund Policy:</h2>
                             <p className='text-sm md:text-base secondaryColor'>WRTeam strive to ensure that every customer is satisfied with their purchase. If for any reason you are not completely happy with your order, you may be eligible for a refund under the following conditions:</p>
                             <ul className="flex flex-col gap-1 list-decimal pl-5 secondaryColor">
-                                <li>Item is "Not as Described" or Malfunctions</li>
+                                <li>Item is &quot;Not as Described&quot; or Malfunctions</li>
                                 <li>Security Vulnerability</li>
                                 <li>Promised Item Support Not Provided</li>
                                 <li>Items Not Downloaded</li>
@@ -31,7 +29,7 @@ const RefundPolicy = () => {
                         <div className="flex flex-col gap-3 px-4 sm:px-2">
                             <h4 className='text-lg md:text-xl font-medium'>Reasons that Do Not Entitle Customers to Policy Refunds:</h4>
                             <ul className="flex flex-col gap-1 list-decimal pl-5 secondaryColor">
-                                <li>They Don't Want It After Downloading</li>
+                                <li>They Don&apos;t Want It After Downloading</li>
                                 <li>Item Did Not Meet Expectations or Perceived Quality</li>
                                 <li>Change of Mind</li>
                                 <li>Mistaken Purchase</li>

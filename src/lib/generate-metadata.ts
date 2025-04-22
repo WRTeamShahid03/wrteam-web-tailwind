@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { fetchSeoData, SeoData } from "./api/seo";
+import { fetchSeoData } from "./api/seo";
 
 export interface PageMetadataOptions {
   pageType: string;

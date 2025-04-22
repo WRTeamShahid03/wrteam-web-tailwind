@@ -21,7 +21,7 @@ const TermsOfUse = () => {
                         <div className="flex flex-col gap-3 px-4 sm:px-2">
                             <h3 className='text-lg md:text-xl font-medium'>The following terminology applies to these Terms and Conditions, Privacy Statement, and Disclaimer Notice and all Agreements:</h3>
                             <ul className="flex flex-col gap-1 list-disc pl-5 secondaryColor">
-                                <li>Client, User, You, and Your refers to you, the person accessing this website and accepting the Company's terms and conditions.</li>
+                                <li>Client, User, You, and Your refers to you, the person accessing this website and accepting the Company&apos;s terms and conditions.</li>
                                 <li>The Company, Ourselves, We, Our, and Us refers to our Company.</li>
                                 <li>Party, Parties, or Us refers to both the Client and ourselves.</li>
                             </ul>
@@ -29,7 +29,7 @@ const TermsOfUse = () => {
 
                         <div className="flex flex-col gap-3 px-4 sm:px-2">
                             <h4 className='text-lg md:text-xl font-medium'>Cookies:</h4>
-                            <p className='text-sm md:text-base secondaryColor'>We employ the use of cookies. By accessing WRTeam, you agreed to use cookies in agreement with the WRTeam's Privacy Policy.</p>
+                            <p className='text-sm md:text-base secondaryColor'>We employ the use of cookies. By accessing WRTeam, you agreed to use cookies in agreement with the WRTeam&apos;s Privacy Policy.</p>
                         </div>
 
                         <div className="flex flex-col gap-3 px-4 sm:px-2">
@@ -48,7 +48,7 @@ const TermsOfUse = () => {
                         </div>
 
                         <div className="px-4 sm:px-2">
-                            <p className='text-sm md:text-base secondaryColor'>For the complete "Terms of Use" document tailored to your business, including limitations and liabilities, please contact our legal team at <Link href={'mailto:support@wrteam.in'} title='support@wrteam.in' className='primaryColor underline'>support@wrteam.in</Link></p>
+                            <p className='text-sm md:text-base secondaryColor'>For the complete &quot;Terms of Use&quot; document tailored to your business, including limitations and liabilities, please contact our legal team at <Link href={'mailto:support@wrteam.in'} title='support@wrteam.in' className='primaryColor underline'>support@wrteam.in</Link></p>
                         </div>
                     </div>
                 </div>

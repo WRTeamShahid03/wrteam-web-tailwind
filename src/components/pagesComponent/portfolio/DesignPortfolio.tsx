@@ -3,10 +3,11 @@ import PageHeader from "@/components/commonComponents/PageHeader";
 import SectionHeading from "@/components/commonComponents/SectionHeading";
 import Layout from "@/components/layout/Layout";
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 // Skeleton component for loading states
-const SkeletonItem = ({ id }: { id: string | number }) => (
+const SkeletonItem = () => (
   <div className="bg-[#2E71FE0A] rounded-xl p-4 sm:p-6 shadow-sm animate-pulse">
     <div className="rounded-lg overflow-hidden mb-2 sm:mb-3">
       <div className="bg-gray-200 h-40 sm:h-48 lg:h-52 w-full"></div>
@@ -26,6 +27,25 @@ interface Category {
   updated_at: string;
 }
 
+interface Product {
+  name: string;
+  // Using specific properties instead of index signature
+}
+
+interface ApiPortfolioItem {
+  id?: number | string;
+  products?: Product;
+  app_headline?: string;
+  tag?: string;
+  image?: string;
+  app_image?: string;
+  play_store_link?: string;
+  app_store_link?: string;
+  website_link?: string;
+  // Using Record<string, unknown> for type safety
+  [key: string]: unknown;
+}
+
 interface PortfolioItem {
   id: string | number;
   title: string;
@@ -38,7 +58,7 @@ interface PortfolioItem {
   app_store_link?: string;
   website_link?: string;
   short_description?: string;
-  products?: any;
+  products?: Product;
 }
 
 export default function DesignPortfolio() {
@@ -70,16 +90,16 @@ export default function DesignPortfolio() {
     const fetchCategories = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch('/api/portfolio-categories?type=designer');
+        const response = await fetch("/api/portfolio-categories?type=designer");
         const data = await response.json();
         if (data && !data.error) {
           setCategories(data.data);
-          
+
           // Fetch all items initially
           fetchPortfolioItems("all");
         }
       } catch (error) {
-        console.error('Error fetching portfolio categories:', error);
+        console.error("Error fetching portfolio categories:", error);
       } finally {
         setIsLoading(false);
       }
@@ -89,7 +109,10 @@ export default function DesignPortfolio() {
   }, []);
 
   // Function to fetch portfolio items based on selected category
-  const fetchPortfolioItems = async (categoryId: string, isLoadMore = false) => {
+  const fetchPortfolioItems = async (
+    categoryId: string,
+    isLoadMore = false
+  ) => {
     try {
       // Set appropriate loading state
       if (!isLoadMore) {
@@ -99,59 +122,68 @@ export default function DesignPortfolio() {
       } else {
         setLoadingMore(true);
       }
-      
+
       // Calculate current offset
       const currentOffset = isLoadMore ? offset : 0;
-      
+
       // Build URL with offset and limit
       let url = `/api/portfolio?type=designer&offset=${currentOffset}&limit=${limit}`;
-      
+
       if (categoryId !== "all") {
         url += `&category_id=${categoryId}`;
       }
-      
+
       const response = await fetch(url);
       const data = await response.json();
-      
+
       // Check for valid response structure before processing
       if (data && !data.error) {
         // Handle different possible response structures
         let itemsData = [];
-        
+
         if (data.data && Array.isArray(data.data)) {
           // If data.data is directly an array
           itemsData = data.data;
-        } else if (data.data && data.data.data && Array.isArray(data.data.data)) {
+        } else if (
+          data.data &&
+          data.data.data &&
+          Array.isArray(data.data.data)
+        ) {
           // If data.data.data is an array (pagination structure)
           itemsData = data.data.data;
         } else if (Array.isArray(data)) {
           // If data itself is an array
           itemsData = data;
         }
-        
+
         if (itemsData.length > 0) {
           // Map API response to our PortfolioItem format
-          const items = itemsData.map((item: any) => ({
+          const items = itemsData.map((item: ApiPortfolioItem) => ({
             id: item.id || Math.random().toString(36).substr(2, 9),
-            title: item.products?.name || item.app_headline || "Untitled Project",
-            category: item.tag?.split(',')[0] || "Design",
+            title:
+              item.products?.name || item.app_headline || "Untitled Project",
+            category: item.tag?.split(",")[0] || "Design",
             image: item.image || item.app_image || "/placeholder.jpg",
-            hasDemo: !!(item.play_store_link || item.app_store_link || item.website_link),
+            hasDemo: !!(
+              item.play_store_link ||
+              item.app_store_link ||
+              item.website_link
+            ),
             play_store_link: item.play_store_link,
             app_store_link: item.app_store_link,
-            website_link: item.website_link
+            website_link: item.website_link,
           }));
-          
+
           // Check if we have more items
           const receivedItems = items.length;
           setHasMoreItems(receivedItems >= limit); // If we got a full page, assume there might be more
-          
+
           // Update offset for next load
           setOffset(currentOffset + receivedItems);
-          
+
           // If loading more, add to existing items
           if (isLoadMore) {
-            setPortfolioItems(prevItems => [...prevItems, ...items]);
+            setPortfolioItems((prevItems) => [...prevItems, ...items]);
           } else {
             setPortfolioItems(items);
           }
@@ -163,7 +195,12 @@ export default function DesignPortfolio() {
           setHasMoreItems(false);
         }
       } else {
-        console.error('API returned error:', data.error, data.message, data.details);
+        console.error(
+          "API returned error:",
+          data.error,
+          data.message,
+          data.details
+        );
         // If no items received, set empty array
         if (!isLoadMore) {
           setPortfolioItems([]);
@@ -171,7 +208,7 @@ export default function DesignPortfolio() {
         setHasMoreItems(false);
       }
     } catch (error) {
-      console.error('Error fetching portfolio items:', error);
+      console.error("Error fetching portfolio items:", error);
       if (!isLoadMore) {
         setPortfolioItems([]);
       }
@@ -190,10 +227,10 @@ export default function DesignPortfolio() {
   // Prepare filters with All category first, followed by API categories
   const filters = [
     { value: "all", label: "All" },
-    ...categories.map(category => ({
+    ...categories.map((category) => ({
       value: category.id.toString(),
-      label: category.name
-    }))
+      label: category.name,
+    })),
   ];
 
   // Close dropdown when clicking outside
@@ -256,7 +293,8 @@ export default function DesignPortfolio() {
                   className="w-full flex items-center justify-between px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm"
                 >
                   <span>
-                    {filters.find((filter) => filter.value === activeFilter)?.label || "All"}
+                    {filters.find((filter) => filter.value === activeFilter)
+                      ?.label || "All"}
                   </span>
                   <svg
                     className={`w-5 h-5 transition-transform ${
@@ -281,7 +319,9 @@ export default function DesignPortfolio() {
                       <button
                         key={filter.value}
                         className={`w-full text-left px-4 py-3 text-sm hover:bg-gray-50 ${
-                          activeFilter === filter.value ? "bg-gray-100 font-medium" : ""
+                          activeFilter === filter.value
+                            ? "bg-gray-100 font-medium"
+                            : ""
                         }`}
                         onClick={() => handleFilterSelect(filter.value)}
                       >
@@ -318,7 +358,7 @@ export default function DesignPortfolio() {
         {loadingItems && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {[1, 2, 3, 4, 5, 6].map((item, index) => (
-              <SkeletonItem key={`skeleton-initial-${index}`} id={item} />
+              <SkeletonItem key={`skeleton-initial-${index}`} />
             ))}
           </div>
         )}
@@ -326,7 +366,9 @@ export default function DesignPortfolio() {
         {/* Portfolio grid - Empty state */}
         {!loadingItems && portfolioItems.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-lg text-gray-500">No portfolio items found for this category.</p>
+            <p className="text-lg text-gray-500">
+              No portfolio items found for this category.
+            </p>
           </div>
         )}
 
@@ -345,15 +387,23 @@ export default function DesignPortfolio() {
               >
                 <div className="rounded-lg overflow-hidden mb-2 sm:mb-3">
                   {item.image && (
-                    <img 
-                      src={item.image} 
-                      alt={item.title} 
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={500}
+                      height={300}
                       className="h-40 sm:h-48 lg:h-52 w-full object-cover"
                     />
                   )}
                 </div>
 
-                <div className={`bg-white rounded-lg p-3 sm:p-4 relative ${hoveredCardId === item.id.toString() ? "shadow-[0px_8px_12px_0px_#4D545414]" : ""}`}>
+                <div
+                  className={`bg-white rounded-lg p-3 sm:p-4 relative ${
+                    hoveredCardId === item.id.toString()
+                      ? "shadow-[0px_8px_12px_0px_#4D545414]"
+                      : ""
+                  }`}
+                >
                   <div className="flex justify-between items-center">
                     <div>
                       <p className="text-xs text-gray-600">{item.category}</p>
@@ -384,12 +434,12 @@ export default function DesignPortfolio() {
                 </div>
               </motion.div>
             ))}
-            
+
             {/* Show skeleton items when loading more */}
             {loadingMore && (
               <>
                 {[1, 2, 3].map((item, index) => (
-                  <SkeletonItem key={`skeleton-loadmore-${index}`} id={item} />
+                  <SkeletonItem key={`skeleton-loadmore-${index}`} />
                 ))}
               </>
             )}
@@ -399,12 +449,14 @@ export default function DesignPortfolio() {
         {/* Load more button - only show if we have items and more to load */}
         {!loadingItems && portfolioItems.length > 0 && hasMoreItems && (
           <div className="text-center my-8">
-            <button 
-              className={`px-4 py-2 sm:px-6 sm:py-2 bg-black text-white text-sm sm:text-base rounded-md ${loadingMore ? 'opacity-70 cursor-not-allowed' : ''}`}
+            <button
+              className={`px-4 py-2 sm:px-6 sm:py-2 bg-black text-white text-sm sm:text-base rounded-md ${
+                loadingMore ? "opacity-70 cursor-not-allowed" : ""
+              }`}
               onClick={handleLoadMore}
               disabled={loadingMore}
             >
-              {loadingMore ? 'Loading...' : 'Load More'}
+              {loadingMore ? "Loading..." : "Load More"}
             </button>
           </div>
         )}

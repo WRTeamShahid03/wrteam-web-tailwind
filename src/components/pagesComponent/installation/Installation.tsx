@@ -147,7 +147,7 @@ const Installation: React.FC = () => {
                     <div className='flexCenter flex-col gap-4 text-center lg:w-[60%] m-auto'>
                         <span className='sectionTag !text-black'>Flexible Pricing, Maximum Value</span>
                         <h2 className='sectionTitle'>Choose the Perfect Plan for Your Needs</h2>
-                        <p className='sectionPara'>Get expert app and web development services at competitive prices. Whether you're starting
+                        <p className='sectionPara'>Get expert app and web development services at competitive prices. Whether you&apos;re starting
                             small or need a full setup, we have a plan that fits your vision and budget.</p>
                     </div>
 
@@ -207,7 +207,7 @@ const Installation: React.FC = () => {
                             </div>
                             
                             <ul className="mt-4 space-y-8 [&>li-las]">
-                                <span className='font-semibold'>What's included :</span>
+                                <span className='font-semibold'>What&apos;s included :</span>
                                 {pkg.services.map((service, i) => (
                                     <li key={i} className={`flex items-center gap-2 justify-between`}>
                                         <span className='text-sm font-medium inline-block w-[84%]'>{service}</span>

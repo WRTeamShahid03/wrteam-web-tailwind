@@ -1,8 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import img from '../../../../../assets/images/productDetailPage/layoutTwo/heroSect.webp'
-import { ProductDetails } from '@/types'
 
 interface HeroSectProps {
     title: string;
