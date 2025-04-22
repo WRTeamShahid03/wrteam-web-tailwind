@@ -8,13 +8,14 @@ export const metadata: Metadata = {
     "WRTeam provides creative and innovative software development services",
 };
 
-export default function AboutUsPage({
+export default async function AboutUsPage({
   searchParams,
 }: {
-  searchParams: { page?: string };
+  searchParams: Promise<{ page?: string }>;
 }) {
   // Convert page parameter to number with fallback to 1
-  const currentPage = searchParams.page ? parseInt(searchParams.page, 10) : 1;
+  const params = await searchParams;
+  const currentPage = params.page ? parseInt(params.page, 10) : 1;
 
   return <AboutUs page={currentPage} />;
 }

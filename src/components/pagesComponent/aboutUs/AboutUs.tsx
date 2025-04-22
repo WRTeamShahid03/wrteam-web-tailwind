@@ -267,7 +267,7 @@ const AboutUs: React.FC<{ page?: number }> = ({ page = 1 }) => {
                     );
                   })}
                 </div>
-                <div>
+                <div className="flexColCenter !items-start">
                   <Link href={"/hire-us"} className="commonBtn">
                     Hire Us
                   </Link>
