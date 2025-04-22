@@ -1,8 +1,7 @@
 "use client";
 import React, { useRef, useCallback, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { PageTitle } from "@/components/HeadingComponent";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,56 +11,30 @@ import type { SwiperRef } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 
 // Import icons
-import webIcon from "@/assets/images/portfolio/web.svg";
-import studentAppIcon from "@/assets/images/portfolio/playstore.svg";
-import teacherAppIcon from "@/assets/images/portfolio/iOS-Store.svg";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
-// Feature cards data
-const featureCardsData = [
-  {
-    id: 0,
-    title: "Landing page",
-    description: "Landing page to showcase your SaaS",
-    icon: webIcon,
-    iconAlt: "Web Icon",
-    iconFallback: "🖥️",
-  },
-  {
-    id: 1,
-    title: "Student & Parent App",
-    description: "Flutter app for students and parents",
-    icon: studentAppIcon,
-    iconAlt: "Student App Icon",
-    iconFallback: "📱",
-  },
-  {
-    id: 2,
-    title: "Staff & Teacher App",
-    description: "Flutter app for teachers and staff members",
-    icon: teacherAppIcon,
-    iconAlt: "Teacher App Icon",
-    iconFallback: "👨‍🏫",
-  },
-  {
-    id: 3,
-    title: "Admin Dashboard",
-    description: "Powerful admin panel for school management",
-    icon: null,
-    iconAlt: "Admin Dashboard Icon",
-    iconFallback: "⚙️",
-  },
-  {
-    id: 4,
-    title: "Reports & Analytics",
-    description: "Comprehensive reporting for student performance",
-    icon: null,
-    iconAlt: "Reports & Analytics Icon",
-    iconFallback: "📊",
-  },
-];
+// Define interface for slide elements
+interface SlideElement {
+  id: number;
+  name: string;
+  details: string;
+  image_url?: string;
+  type?: string;
+  android_link?: string;
+  ios_link?: string;
+  link?: string;
+  panel_link?: string;
+}
 
-export default function SliderSection({ title, description, elements }: { title: string, description: string, elements: any[] }) {
+export default function SliderSection({
+  title,
+  description,
+  elements,
+}: {
+  title: string;
+  description: string;
+  elements: SlideElement[];
+}) {
   // Swiper refs and controls
   const sliderRef = useRef<SwiperRef>(null);
   // State for tracking which card is being hovered
@@ -85,17 +58,18 @@ export default function SliderSection({ title, description, elements }: { title:
     768: { slidesPerView: 3 },
     992: { slidesPerView: 3 },
     1200: { slidesPerView: 4 },
-    1400: { slidesPerView: 4 }
+    1400: { slidesPerView: 4 },
   };
 
   return (
     <div className="container commonMT">
       <div className="mb-12 flex items-end justify-between">
         <div className="flexColCenter !items-start commonTextGap max-399:text-center">
-          <h1 className="sectionTitle !font-bold">
-            {title}
-          </h1>
-          <div className="sectionPara !font-medium text-gray-700 max-w-3xl" dangerouslySetInnerHTML={{ __html: description }} />
+          <PageTitle className="sectionTitle !font-bold">{title}</PageTitle>
+          <div
+            className="sectionPara !font-medium text-gray-700 max-w-3xl"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </div>
         {/* Navigation Buttons - Desktop version (hidden on mobile) */}
         {elements?.length > 4 && (
@@ -115,9 +89,6 @@ export default function SliderSection({ title, description, elements }: { title:
           </div>
         )}
       </div>
-
-
-
 
       {/* Features Swiper */}
       <div className="relative">
@@ -167,9 +138,10 @@ export default function SliderSection({ title, description, elements }: { title:
                 <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2 text-center relative z-20 group-hover:text-white transition-all duration-300 delay-100 group-hover:opacity-0">
                   {card?.name}
                 </h3>
-                <div dangerouslySetInnerHTML={{ __html: card?.details }} className="text-sm sm:text-base text-gray-600 text-center mb-3 sm:mb-4 relative z-20 group-hover:text-white/80 transition-all duration-300 delay-100 group-hover:opacity-0">
-
-                </div>
+                <div
+                  dangerouslySetInnerHTML={{ __html: card?.details }}
+                  className="text-sm sm:text-base text-gray-600 text-center mb-3 sm:mb-4 relative z-20 group-hover:text-white/80 transition-all duration-300 delay-100 group-hover:opacity-0"
+                ></div>
 
                 {/* Hover overlay with buttons */}
                 {hoveredCard === card?.id && (

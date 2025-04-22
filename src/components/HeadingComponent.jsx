@@ -8,6 +8,15 @@ import React from "react";
  * @param {string} props.level Heading level (h1, h2, h3, h4, h5, h6)
  * @param {string} props.className CSS classes for styling
  * @param {React.ReactNode} props.children Content of the heading
+ *
+ * @example
+ * // Using HeadingComponent directly
+ * <HeadingComponent level="h2" className="text-2xl font-bold">My Heading</HeadingComponent>
+ *
+ * // Using predefined heading components
+ * <PageTitle>Page Title</PageTitle>
+ * <SectionTitle>Section Title</SectionTitle>
+ * <SubsectionTitle>Subsection Title</SubsectionTitle>
  */
 export default function HeadingComponent({
   level = "h2",
@@ -37,6 +46,11 @@ export default function HeadingComponent({
 /**
  * SEO-optimized page title (h1) component
  * Ensures there's only one h1 per page
+ *
+ * @example
+ * <PageTitle className="text-3xl font-bold">
+ *   My Page Title
+ * </PageTitle>
  */
 export function PageTitle({ className = "", children }) {
   return (
@@ -48,6 +62,11 @@ export function PageTitle({ className = "", children }) {
 
 /**
  * Section title (h2) component
+ *
+ * @example
+ * <SectionTitle className="text-2xl font-semibold">
+ *   My Section Title
+ * </SectionTitle>
  */
 export function SectionTitle({ className = "", children }) {
   return (
@@ -59,6 +78,11 @@ export function SectionTitle({ className = "", children }) {
 
 /**
  * Subsection title (h3) component
+ *
+ * @example
+ * <SubsectionTitle className="text-xl font-medium">
+ *   My Subsection Title
+ * </SubsectionTitle>
  */
 export function SubsectionTitle({ className = "", children }) {
   return (

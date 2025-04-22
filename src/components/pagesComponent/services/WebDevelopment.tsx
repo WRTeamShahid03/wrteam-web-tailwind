@@ -42,6 +42,10 @@ import nextJsHover from "../../../assets/images/services/web-development/icon/ne
 import reactJs from "../../../assets/images/services/web-development/icon/React.png";
 import reactJsHover from "../../../assets/images/services/web-development/icon/React_Hover.png";
 import ServicesSwiper from "./ServicesSwiper";
+import HeadingComponent, {
+  SectionTitle,
+  SubsectionTitle,
+} from "@/components/HeadingComponent";
 
 const WebDevelopment: React.FC = () => {
   const newSwiperData = [
@@ -202,11 +206,11 @@ const WebDevelopment: React.FC = () => {
             <span className="sectionTag">
               Web <span>Development</span>
             </span>
-            <h2 className="sectionTitle">
+            <SectionTitle className="sectionTitle">
               Avail Web Development Services and Build{" "}
               <span>Stunning Websites</span> with the{" "}
               <span>Best IT Company</span> Personalized for Your Business.
-            </h2>
+            </SectionTitle>
             <p className="sectionPara">
               With over 7 years of experience, we create personalized business
               websites for E-commerce, Restaurants, Real Estate, Trivia games,
@@ -237,9 +241,9 @@ const WebDevelopment: React.FC = () => {
             <span className="sectionTag">
               <span>What</span> We Can Do <span>For You</span>
             </span>
-            <h3 className="sectionTitle">
+            <SubsectionTitle className="sectionTitle">
               Services <span>We Can Help </span>You With
-            </h3>
+            </SubsectionTitle>
           </div>
           <ServicesSwiper data={newSwiperData} />
         </div>
@@ -252,10 +256,10 @@ const WebDevelopment: React.FC = () => {
             <span className="sectionTag">
               Extensive <span>Benefits</span>
             </span>
-            <h4 className="sectionTitle">
+            <HeadingComponent level="h4" className="sectionTitle">
               Unleashing the Potential of the Best <span>Web Development</span>{" "}
               Company
-            </h4>
+            </HeadingComponent>
           </div>
           <div className="flexCenter">
             <p className="sectionPara">
@@ -339,10 +343,10 @@ const WebDevelopment: React.FC = () => {
                 <span className="sectionTag">
                   <span>We</span> Build
                 </span>
-                <h6 className="sectionTitle">
+                <HeadingComponent level="h6" className="sectionTitle">
                   We <span>Build</span> Dynamic Solutions with Leading{" "}
                   <span>Web Development</span> Platforms
-                </h6>
+                </HeadingComponent>
                 <p className="sectionPara">
                   Harness the power of advanced technology and next-level web
                   development for an online presence that captivates attention!
