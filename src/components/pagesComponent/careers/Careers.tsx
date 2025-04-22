@@ -1,13 +1,12 @@
-'use client'
 import Layout from "@/components/layout/Layout";
 import Image from "next/image";
 import ourValues from "@/assets/images/career/our-values.webp";
 import trianglePattern from "@/assets/images/career/triangle-pattern.png";
 import AnimatedDots from "./AnimatedDots";
-import CareerForm from "./CareerForm";
-import React, { useState, useEffect } from "react";
+import React from "react";
+import VacanciesSection from "./VacanciesSection";
+import CareerFormWrapper from "./CareerFormWrapper";
 
-// Import the CareerForm component with dynamic import to ensure client-side rendering
 
 interface Vacancy {
   id: number;
@@ -15,40 +14,50 @@ interface Vacancy {
   experience: string;
 }
 
-export default function Careers() {
-  const [vacancies, setVacancies] = useState<Vacancy[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchVacancies = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch('/api/get-vacancies');
-        const data = await response.json();
-        
-        if (data.error) {
-          throw new Error(data.message);
-        }
-        
-        setVacancies(data.data || []);
-      } catch (err) {
-        console.error("Error fetching vacancies:", err);
-        setError(err instanceof Error ? err.message : 'An unknown error occurred');
-      } finally {
-        setIsLoading(false);
+// Fetch vacancies data on the server
+async function fetchVacancies(): Promise<Vacancy[]> {
+  try {
+    const response = await fetch(
+      `${
+        process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
+      }/api/get-vacancies`,
+      {
+        next: { revalidate: 3600 }, // Revalidate every hour
       }
-    };
-    
-    fetchVacancies();
-  }, []);
+    );
+
+    const data = await response.json();
+
+    if (data.error) {
+      console.error("Error fetching vacancies:", data.message);
+      return [];
+    }
+
+    return data.data || [];
+  } catch (err) {
+    console.error("Error fetching vacancies:", err);
+    return [];
+  }
+}
+
+/**
+ * Careers component using Next.js hybrid rendering approach
+ * - Server-rendered static content for better SEO
+ * - Server-side data fetching for vacancies
+ * - Client components for interactive elements (form, animations)
+ */
+export default async function Careers() {
+  // Fetch vacancies on the server
+  const vacancies = await fetchVacancies();
 
   return (
     <Layout>
       <section className="container mx-auto commonMT">
         {/* Work With Us section */}
         <div className="flexColCenter commonTextGap">
-          <span className="sectionTag">Work <span>With Us</span></span>
+          <span className="sectionTag">
+            Work <span>With Us</span>
+          </span>
 
           {/* Join Our Team heading */}
           <h1 className="sectionTitle">
@@ -72,9 +81,7 @@ export default function Careers() {
           <div className="grid max-1199:grid-cols-1 grid-cols-2 gap-8 py-8 md:py-12 between-1200-1399:py-24 xl:py-24">
             <div className="space-y-6">
               <div className="flexColCenter !items-start commonTextGap">
-                <span className="sectionTag">
-                  Career Growth
-                </span>
+                <span className="sectionTag">Career Growth</span>
                 <h2 className="sectionTitle">
                   Why Work With <span>WRTeam</span>
                 </h2>
@@ -191,97 +198,8 @@ export default function Careers() {
         </div>
       </section>
 
-      {/* Current Job Openings Section */}
-      {isLoading ? (
-        <section className="container mx-auto py-16">
-          <div className="text-center mb-12">
-            <div className="flexColCenter commonTextGap">
-              <span className="sectionTag">
-                Career Opportunities
-              </span>
-              <h2 className="sectionTitle">
-                Current <span className="text-blue-600">Job Openings</span>
-              </h2>
-            </div>
-
-            {/* Skeleton Cards Container */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Generate 6 skeleton cards */}
-              {[...Array(6)].map((_, index) => (
-                <div key={index} className="border border-gray-200 rounded-lg p-8 text-left">
-                  <div className="flex items-center mb-4">
-                    <div className="w-4 h-4 min-w-[16px] min-h-[16px] bg-gray-200 rounded-full mr-2 flex-shrink-0 animate-pulse"></div>
-                    {/* Title skeleton */}
-                    <div className="h-6 bg-gray-200 rounded w-3/4 animate-pulse"></div>
-                  </div>
-                  {/* Experience text skeleton */}
-                  <div className="h-4 bg-gray-200 rounded w-1/2 mb-8 animate-pulse"></div>
-                  
-                  {/* Apply button skeleton */}
-                  <div className="h-10 bg-gray-200 rounded w-32 animate-pulse"></div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : vacancies.length > 0 ? (
-        <section className="container mx-auto py-16">
-          <div className="text-center mb-12">
-            <div className="flexColCenter commonTextGap">
-              <span className="sectionTag">
-                Career Opportunities
-              </span>
-
-              <h2 className="sectionTitle">
-                Current <span className="text-blue-600">Job Openings</span> At
-                WRTeam
-              </h2>
-
-              <p className="sectionPara max-w-3xl mx-auto mb-12 !font-medium">
-                Explore our current opportunities and fill in the necessary details
-                to apply for the desired profile. We&apos;ll be in touch with you
-                very soon. If you don&apos;t hear from us within 7 days, you can
-                reach us at <span className="font-bold text-black">hr@wrteam.in</span>
-              </p>
-            </div>
-
-            {/* Job Cards Container */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {vacancies.map((job) => (
-                <div key={job.id} className="border border-gray-200 rounded-lg p-8 text-left hover:shadow-md transition-shadow">
-                  <div className="flex items-center mb-4">
-                    <div className="w-4 h-4 min-w-[16px] min-h-[16px] bg-blue-600 rounded-full mr-2 flex-shrink-0"></div>
-                    <h3 className="text-xl font-bold font-montserrat">
-                      {job.title}
-                    </h3>
-                  </div>
-                  <p className="text-gray-600 mb-8 font-poppins">
-                    Experience: {job.experience}
-                  </p>
-                  <a
-                    href="#applySection"
-                    className="inline-flex items-center text-blue-600 font-medium border border-blue-600 rounded-md px-6 py-2 hover:bg-blue-50 transition-colors"
-                  >
-                    Apply Now
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 ml-2"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
+      {/* Vacancies Section - Use the preloaded data */}
+      <VacanciesSection vacancies={vacancies} />
 
       {/* Application Form Section */}
       <section className="bg-[#f1f5ff] py-16" id="applySection">
@@ -301,7 +219,7 @@ export default function Careers() {
           </div>
 
           {/* Application Form - Using Client Component */}
-          <CareerForm currentVacancy={vacancies} />
+          <CareerFormWrapper vacancies={vacancies} />
         </div>
       </section>
     </Layout>
