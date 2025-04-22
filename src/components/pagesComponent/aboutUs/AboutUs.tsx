@@ -26,7 +26,7 @@ interface valuesList {
   text: string;
 }
 
-const AboutUs: React.FC = () => {
+const AboutUs: React.FC<{ page?: number }> = ({ page = 1 }) => {
   const valuesListPoints = [
     {
       id: 0,
@@ -312,7 +312,7 @@ const AboutUs: React.FC = () => {
         <WorkChain />
 
         {/* expert team  */}
-        <Team />
+        <Team page={page} />
 
         {/* testimonials  */}
         <ClientReviewSection />
