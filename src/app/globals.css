@@ -304,7 +304,7 @@ footer .commonBtn:after {
   width: 0%;
   height: 100%;
   color: transparent;
-  background: linear-gradient(to right, #8cc63f, #f7941d, #00a5cd);
+  background: var(--primary-color);
   -webkit-background-clip: text;
   -webkit-text-stroke: 0px transparent;
   overflow: hidden;

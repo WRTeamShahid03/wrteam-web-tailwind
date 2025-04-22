@@ -4,6 +4,8 @@ import { FaAngleDown, FaArrowRight } from 'react-icons/fa6'
 import img from '../../../assets/images/headerOurWorkImg.png'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import developmentImg from '../../../assets/images/homePage/development-portfolio.png'
+import designImg from '../../../assets/images/homePage/ui-ux-portfolio.png'
 
 const OurWorkDropdown = () => {
 
@@ -14,7 +16,7 @@ const OurWorkDropdown = () => {
   const data = [
     {
       id: 1,
-      img: img,
+      img: developmentImg,
       title: 'Development Portfolio',
       subTitle: 'Built to Perform',
       desc: `Apps and websites built to perform—check out what we've created.`,
@@ -22,7 +24,7 @@ const OurWorkDropdown = () => {
     },
     {
       id: 2,
-      img: img,
+      img: designImg,
       title: 'Design Portfolio',
       subTitle: 'Designs That Speak',
       desc: 'Clean, modern, and user-friendly—designs that make an impact.',
@@ -65,7 +67,7 @@ const OurWorkDropdown = () => {
                     title="View Case Studies"
                     className="inline-flex items-center max-1199:text-sm text-primary font-semibold border rounded-[8px] max-1199:px-2 max-1199:py-1 px-4 py-2 transition-all duration-300 hover:bg-black hover:text-white border-black"
                   >
-                    View Case Studies <FaArrowRight className="ml-2" />
+                    View portfolio <FaArrowRight className="ml-2" />
                   </Link>
                 </div>
               </div>

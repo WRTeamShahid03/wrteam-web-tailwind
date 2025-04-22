@@ -240,7 +240,7 @@ export default function DevelopmentPortfolio() {
           title="Development Portfolio"
           breadcrumbs={[
             { name: "Home", path: "/" },
-            { name: "Our Work", path: "/our-work" },
+            { name: "Our Work"},
             { name: "Development" }, // Current page, no path
           ]}
         />

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { FaAngleDoubleRight } from "react-icons/fa";
 
 /**
  * Reusable page header component with title and breadcrumb navigation
@@ -35,13 +36,13 @@ export default function PageHeader({
           <div className="flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm">
             {breadcrumbs.map((item, index) => (
               <React.Fragment key={index}>
-                {index > 0 && <span className="text-gray-400">»</span>}
+                {index > 0 && <span className="text-[#2A2E35]"><FaAngleDoubleRight /></span>}
                 {item.path ? (
-                  <Link href={item.path} className="hover:text-blue-600">
+                  <Link href={item.path} className="hover:primaryColor font-bold text-[#2A2E35]">
                     {item.name}
                   </Link>
                 ) : (
-                  <span className="text-blue-600">{item.name}</span>
+                  <span className={`text-[#2A2E35] font-bold ${index === breadcrumbs.length - 1 ? 'primaryColor' : ''}`}>{item.name}</span>
                 )}
               </React.Fragment>
             ))}
