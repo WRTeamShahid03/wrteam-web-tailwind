@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent, useRef, useEffect, ChangeEvent } from "react";
+import { useState, FormEvent, useRef, ChangeEvent } from "react";
 import { z } from "zod";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -77,7 +77,6 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
     onDrop: acceptedFiles => {
       if (acceptedFiles && acceptedFiles.length > 0) {
         const file = acceptedFiles[0];
-        console.log("File dropped with react-dropzone:", file.name, file.type);
 
         // Handle the file upload
         handleUploadedFile(file);
@@ -142,50 +141,6 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
       return formData.contactNumber.slice(selectedCountryCode.length);
     }
     return formData.contactNumber;
-  };
-
-  // Handle file upload
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-
-      // Check if a file is selected
-      if (file) {
-        const fileType = file.type;
-
-        // Check if file type is allowed
-        if (
-          fileType === "image/png" ||
-          fileType === "image/jpeg" ||
-          fileType === "application/pdf"
-        ) {
-          const reader = new FileReader();
-
-          reader.onloadend = () => {
-            // After reading the file, set it in the state
-            setFormData({
-              ...formData,
-              resume: file,
-            });
-            setFileDataUrl(reader.result as string);
-
-            // Clear error
-            setErrors({
-              ...errors,
-              resume: "",
-            });
-          };
-
-          // Read the file as a data URL
-          reader.readAsDataURL(file);
-        } else {
-          setErrors({
-            ...errors,
-            resume: "Only PNG, JPG and PDF files are supported",
-          });
-        }
-      }
-    }
   };
 
   // Handle file removal

@@ -34,8 +34,6 @@ const Newsletter: React.FC = () => {
         }),
       });
 
-      console.log("response", response);
-
       if (response.ok) {
         toast.success(`Great, We've Sent You Source Code In Mail!`);
         setName("");

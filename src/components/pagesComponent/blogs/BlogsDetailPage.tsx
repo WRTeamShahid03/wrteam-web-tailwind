@@ -34,10 +34,7 @@ const BlogsDetailPage = () => {
           timeout: 10000
         });
 
-        console.log(response.data.data,'outer');
-
         if (response?.data?.data) {
-          console.log(response.data.data,'inner');
           setBlog(response.data.data);
         }
       } catch (error) {
@@ -62,7 +59,7 @@ const BlogsDetailPage = () => {
   };
 
   useEffect(() => {
-    console.log(blog);
+
   }, [blog]);
 
   return (

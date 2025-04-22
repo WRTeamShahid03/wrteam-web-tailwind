@@ -29,7 +29,6 @@ export default function FeedbackDialog({
     e.preventDefault();
     // Handle form submission logic here
     const feedbackData = { name, message };
-    console.log(feedbackData);
 
     if (onSubmit) {
       onSubmit(feedbackData);

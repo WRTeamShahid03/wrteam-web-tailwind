@@ -4,10 +4,7 @@ import { useState, FormEvent, useRef } from "react";
 import { z } from "zod";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { IoIosCloseCircle } from "react-icons/io";
-import { FiUpload, FiUploadCloud } from "react-icons/fi";
 import { toast } from "react-hot-toast";
-import axios from "axios";
 
 // Define Zod schema for form validation
 const formSchema = z.object({
@@ -157,57 +154,11 @@ const ContactForm = () => {
     }
   };
 
-  // Email fallback method when API fails
-  const handleEmailFallback = (data: FormData) => {
-    // Update support email to match your actual support email
-    const supportEmail = "support@wrteam.in";
-
-    try {
-      // Create a mailto link as fallback
-      const mailtoLink = `mailto:${supportEmail}?subject=${encodeURIComponent(`Contact Form: ${data.subject}`)}&body=${encodeURIComponent(`Name: ${data.fullName}\nEmail: ${data.email}\nPhone: ${data.contactNumber}\nSubject: ${data.subject}\nMessage: ${data.msg}`)}`;
-
-      // Open mailto link
-      window.open(mailtoLink, '_blank');
-
-      toast.success("We've opened an email window for you to send your message directly to our team. Please send the email to complete your request.");
-
-      // Show a message explaining what to do if the email client doesn't open
-      toast(`If your email client didn't open, please send an email to ${supportEmail} with your details.`, {
-        duration: 8000 // Show this message longer
-      });
-
-      // Still mark as success since we provided an alternative
-      setSubmitSuccess(true);
-
-      // Reset form
-      setFormData({
-        fullName: "",
-        email: "",
-        contactNumber: "",
-        subject: "",
-        msg: "",
-      });
-
-      if (form.current) {
-        form.current.reset();
-      }
-    } catch (emailError) {
-      console.error("Email fallback error:", emailError);
-
-      // Give the user direct instructions for manual contact
-      toast.error(
-        `Please contact us directly at ${supportEmail} with your name, email, phone, subject, and message.`,
-        { duration: 10000 } // Keep this message visible longer
-      );
-    }
-  };
-
   // Handle form submission
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log('valide Form')
       try {
         setIsSubmitting(true);
 
@@ -232,8 +183,6 @@ const ContactForm = () => {
           });
 
           const responseData = await response.json();
-
-          console.log('responseData =>', responseData)
 
           // Check if the response is successful
           if (response.ok && responseData && responseData.error === false) {

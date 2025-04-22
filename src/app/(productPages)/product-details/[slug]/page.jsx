@@ -25,7 +25,9 @@ async function fetchProductData(slug) {
 
 // Generate metadata for the product details page
 export async function generateMetadata({ params }) {
-  const slug = params.slug;
+  // Make sure params is properly resolved before accessing its properties
+  const resolvedParams = await Promise.resolve(params);
+  const slug = resolvedParams.slug;
   const productData = await fetchProductData(slug);
 
   if (!productData || productData.error) {
@@ -88,8 +90,11 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
+  // Make sure params is properly resolved
+  const resolvedParams = await Promise.resolve(params);
+
   // Fetch product data
-  const productData = await fetchProductData(params.slug);
+  const productData = await fetchProductData(resolvedParams.slug);
   const product = productData?.data;
   const isNewUI = product?.display_new_ui;
 
@@ -100,9 +105,12 @@ export default async function Page({ params }) {
       {product && <SoftwareProductSchema product={product} />}
 
       {isNewUI === 1 ? (
-        <ProductDetailsPage slug={params.slug} productData={product} />
+        <ProductDetailsPage slug={resolvedParams.slug} productData={product} />
       ) : (
-        <OldProductDetailPage slug={params.slug} productData={product} />
+        <OldProductDetailPage
+          slug={resolvedParams.slug}
+          productData={product}
+        />
       )}
     </div>
   );

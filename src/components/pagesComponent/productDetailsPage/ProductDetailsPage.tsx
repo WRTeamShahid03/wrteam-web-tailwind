@@ -22,8 +22,6 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
     null
   );
 
-  console.log("productData =>", productData);
-
   const checkoutUrl = productData?.checkout_url;
   const codecanyonLink = productData?.codecanyon_link;
   const footerLogo = productData?.icon_image2;

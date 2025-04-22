@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import bgLines from '../../../../../assets/images/productDetailPage/layoutTwo/bgLines.svg'
 import Image from 'next/image'
 import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
@@ -48,9 +48,6 @@ const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description,
     const handleTabClick = (tab: Tab): void => {
         setActiveTab(tab);
     }
-
-    console.log('title',title)
-    console.log('desc',description)
 
 
     return (

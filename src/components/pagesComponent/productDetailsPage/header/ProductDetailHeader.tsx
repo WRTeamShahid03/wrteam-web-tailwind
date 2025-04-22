@@ -66,9 +66,6 @@ const ProductDetailHeader = ({ icon_image }: ProductDetailHeaderProps) => {
 
     if (typeof slug === "string") {
       setWhatsappUrl(whatsappLinks[slug] || "https://cbl.link/q8Zb3AN");
-
-      console.log("slug", slug);
-      console.log("whatsappLinks[slug]", whatsappLinks[slug]);
     }
   }, [slug, whatsappUrl]);
 

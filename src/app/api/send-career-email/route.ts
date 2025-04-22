@@ -31,18 +31,6 @@ export async function POST(request: Request) {
       });
     }
 
-    // Log what we're sending to help debug
-    console.log("Sending career application:", {
-      fullName: formData.get("fullName"),
-      email: formData.get("email"),
-      qualification: formData.get("qualification"),
-      contactNumber: formData.get("contactNumber"),
-      applyFor: formData.get("applyFor"),
-      experience: formData.get("experience"),
-      fileType: resume?.type,
-      fileName: resume?.name,
-    });
-
     // Send the form data to the backend API
     try {
       const response = await axios.post(
@@ -56,11 +44,6 @@ export async function POST(request: Request) {
           timeout: 15000,
         }
       );
-
-      console.log("Career email API Response:", {
-        status: response.status,
-        data: response.data,
-      });
 
       return NextResponse.json(response.data);
     } catch (apiError) {

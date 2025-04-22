@@ -55,13 +55,6 @@ export async function POST(request: Request) {
         }
       );
 
-      // Log the response structure to help debug
-      console.log("API Response:", {
-        status: response.status,
-        statusText: response.statusText,
-        data: response.data,
-      });
-
       return NextResponse.json(response.data);
     } catch (error) {
       console.log(
@@ -81,12 +74,6 @@ export async function POST(request: Request) {
           timeout: 10000,
         }
       );
-
-      console.log("Form-data API Response:", {
-        status: response.status,
-        statusText: response.statusText,
-        data: response.data,
-      });
 
       return NextResponse.json(response.data);
     }
