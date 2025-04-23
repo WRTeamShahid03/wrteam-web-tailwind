@@ -57,7 +57,7 @@ export default function BlogPage({
   searchParams,
 }: {
   params: { slug: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
   return <BlogDetailPage slug={params.slug} />;
 }

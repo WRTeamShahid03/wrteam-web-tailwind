@@ -47,7 +47,7 @@ const CategoryContent = () => {
   return (
     <div className="flexColCenter !items-start gap-6">
       <div
-        className={`flexCenter !justify-between w-full font-semibold border-b border-[#51535892] pb-4 cursor-pointer hover:text-[#DF5200] ${
+        className={`flexCenter !justify-between w-full font-semibold border-b border-[#51535892] pb-4 cursor-pointer hover:primaryColor ${
           !currentCategorySlug ? "primaryColor" : "textSecondary"
         }`}
         onClick={() => handleCategoryClick(0, "")}
@@ -61,7 +61,7 @@ const CategoryContent = () => {
       {categories.map((category) => (
         <div
           key={category.id}
-          className={`flexCenter !justify-between w-full font-semibold border-b border-[#51535892] last:border-b-0 pb-4 last:pb-0 cursor-pointer hover:text-[#DF5200] ${
+          className={`flexCenter !justify-between w-full font-semibold border-b border-[#51535892] last:border-b-0 pb-4 last:pb-0 cursor-pointer hoverprimaryColor  ${
             currentCategorySlug === category.slug.toString()
               ? "primaryColor"
               : "textSecondary"

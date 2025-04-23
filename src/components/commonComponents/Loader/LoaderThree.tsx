@@ -34,7 +34,7 @@ const LoaderThree = () => {
       <div className='relative w-full flexCenter loader'>
       <h2 className='loaderFillTextAnimation !text-[34px] sm:!text-[44px] md:!text-[54px] !rotate-0' data-fill-text="WRTEAM">WRTEAM</h2>
     </div>
-        <div className="h-1.5 w-80 mx-auto bg-gray-200 rounded-full overflow-hidden">
+        <div className="h-1.5 w-40 md:w-72 lg:w-80 mx-auto bg-gray-200 rounded-full overflow-hidden">
           <div 
             className="h-full bg-[linear-gradient(to_right,_#869E11,_#EC8C25,_#E5016F,_#43A2A1)] rounded-full progress-bar"
             style={{ width: `${progress}%` }}
