@@ -52,6 +52,12 @@ export async function generateMetadata({
 }
 
 // Server component for the blog page
-export default function BlogPage({ params }: { params: { slug: string } }) {
+export default function BlogPage({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   return <BlogDetailPage slug={params.slug} />;
 }
