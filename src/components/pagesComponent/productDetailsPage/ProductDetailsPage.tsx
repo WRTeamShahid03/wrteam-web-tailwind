@@ -24,6 +24,10 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
 
   const checkoutUrl = productData?.checkout_url;
   const codecanyonLink = productData?.codecanyon_link;
+  const extendedLicensePrice = productData?.extended_license_price;
+  const extendedLicenseLink = productData?.extended_license_link;
+  const regularLicensePrice = productData?.price;
+
   const footerLogo = productData?.icon_image2;
   const supportData = productDetails?.product_description[0]?.help_section;
 
@@ -127,12 +131,18 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
           <LayoutOne
             productDetails={productDetails}
             checkoutUrl={checkoutUrl}
+            extendedLicensePrice={extendedLicensePrice}
+            extendedLicenseLink={extendedLicenseLink}
+            regularLicensePrice={regularLicensePrice}
           />
         ) : (
           <LayoutTwo
             productDetails={productDetails}
             codecanyonLink={codecanyonLink}
             checkoutUrl={checkoutUrl}
+            extendedLicensePrice={extendedLicensePrice}
+            extendedLicenseLink={extendedLicenseLink}
+            regularLicensePrice={regularLicensePrice}
           />
         ))}
       <ProductDetailFooter

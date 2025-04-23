@@ -21,8 +21,11 @@ interface LayoutTwoProps {
     productDetails: ProductDetails
     codecanyonLink: string;
     checkoutUrl: string;
+    extendedLicensePrice: number;
+    extendedLicenseLink: string;
+    regularLicensePrice: number;
 }
-const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl }) => {
+const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice }) => {
 
     const productDescription = productDetails.product_description[0]
     const layoutOneDetails = productDescription
@@ -62,7 +65,7 @@ const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl }) =>
 
             <ProductReviews testimonials={productDetails.product_testimonials} />
 
-            <PerfectPlan />
+            <PerfectPlan checkoutUrl={checkoutUrl} extendedLicensePrice={extendedLicensePrice} extendedLicenseLink={extendedLicenseLink} regularLicensePrice={regularLicensePrice} />
 
             <FaqSection faqs={productFaqs} />
 

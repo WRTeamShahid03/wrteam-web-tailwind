@@ -2,8 +2,10 @@ import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 
-const LicensePlan = () => {
+const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, checkoutUrl }: { detailPage: boolean, extendedLicensePrice?: number, extendedLicenseLink?: string, regularLicensePrice?: number, checkoutUrl?: string }) => {
 
   const regularLicenseData = [
     { id: 0, detail: "Lifetime License Validity", add: true },
@@ -31,8 +33,30 @@ const LicensePlan = () => {
         <TableHeader className="">
           <TableRow className="font-semibold text-xl md:text-2xl">
             <TableHead className="text-left font-semibold p-4 border-r text-black">Product Plans</TableHead>
-            <TableHead className="text-center font-semibold p-4 text-lg md:text-xl textSecondary border-r">Regular License</TableHead>
-            <TableHead className="text-center font-semibold p-4 text-lg md:text-xl textSecondary">Extended License</TableHead>
+            <TableHead className="text-center font-semibold p-4 text-lg md:text-xl textSecondary border-r">
+              <div className="flex flex-col gap-3">
+                <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${regularLicensePrice}</span>
+                <span className="text-sm sm:text-base md:text-lg ">Regular License</span>
+                <Link href={checkoutUrl || ''} target="_blank" className="text-sm md:text-base border productDetailPrimaryBorder rounded-[6px] p-1 productPrimaryColor flexCenter gap-1" title="Buy Now">
+                  Buy Now
+                  <FaArrowRight />
+                </Link>
+              </div>
+            </TableHead>
+            <TableHead className="text-center font-semibold p-4 text-lg md:text-xl textSecondary relative overflow-hidden">
+              <span className={`hidden lg:block absolute top-[16px] left-[-60px] ${detailPage ? 'productPrimaryBg' : 'primaryBg'} text-white text-[12px] py-[0px] px-[18px] w-[220px] -rotate-[27deg]`}>
+                Recommended
+              </span>
+
+              <div className="flex flex-col gap-3 pt-6">
+                <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${extendedLicensePrice}</span>
+                <span className="text-sm sm:text-base md:text-lg ">Extended License</span>
+                <Link href={extendedLicenseLink || ''} target="_blank" className="text-sm md:text-base border productDetailPrimaryBorder rounded-[6px] p-1 productPrimaryBg text-white flexCenter gap-1" title="Buy Now">
+                  Buy Now
+                  <FaArrowRight />
+                </Link>
+              </div>
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -43,10 +67,10 @@ const LicensePlan = () => {
                 {item.otherText && <span className="textSecondary text-sm"> ({item.otherText})</span>}
               </TableCell>
               <TableCell className="text-center m-auto border-r">
-                {item.add ? <FaCheckCircle className="text-green-500 m-auto" size={18}/> : <RiCloseCircleFill className="text-[#ff0018e8] m-auto" size={20}/>}
+                {item.add ? <FaCheckCircle className="text-green-500 m-auto" size={18} /> : <RiCloseCircleFill className="text-[#ff0018e8] m-auto" size={20} />}
               </TableCell>
               <TableCell className="text-center m-auto">
-                {extendedLicenseData[index].add ? <FaCheckCircle className="text-green-500 m-auto" size={18}/> : <RiCloseCircleFill className="text-[#ff0018e8] m-auto" size={20}/>}
+                {extendedLicenseData[index].add ? <FaCheckCircle className="text-green-500 m-auto" size={18} /> : <RiCloseCircleFill className="text-[#ff0018e8] m-auto" size={20} />}
               </TableCell>
             </TableRow>
           ))}

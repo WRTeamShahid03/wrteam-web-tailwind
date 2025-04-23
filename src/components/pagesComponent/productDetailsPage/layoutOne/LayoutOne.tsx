@@ -17,9 +17,13 @@ import InnerPagesSect from "../layoutTwo/sections/InnerPagesSect";
 interface LayoutOneProps {
   productDetails: ProductDetails;
   checkoutUrl: string;
+  extendedLicensePrice: number;
+  extendedLicenseLink: string;
+  regularLicensePrice: number;
 }
 
-const LayoutOne = ({ productDetails, checkoutUrl }: LayoutOneProps) => {
+const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice }: LayoutOneProps) => {
+
   const productDescription = productDetails.product_description[0];
   const productTestimonial = productDetails.product_testimonials;
   const layoutOneDetails = productDescription;
@@ -112,7 +116,7 @@ const LayoutOne = ({ productDetails, checkoutUrl }: LayoutOneProps) => {
       {/* Pass testimonials data to ClientReview */}
       <ClientReview testimonials={productTestimonials} />
 
-      <PerfectPlan layoutOne={true} />
+      <PerfectPlan layoutOne={true} checkoutUrl={checkoutUrl} extendedLicensePrice={extendedLicensePrice} extendedLicenseLink={extendedLicenseLink} regularLicensePrice={regularLicensePrice} />
 
       <FaqSection faqs={productFaqs} />
 
