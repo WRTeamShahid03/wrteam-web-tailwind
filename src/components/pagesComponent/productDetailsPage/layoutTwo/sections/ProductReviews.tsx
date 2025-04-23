@@ -70,7 +70,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ testimonials }): React.
                         </div>
                     </div>
                     <div className='flexColCenter commonTextGap !items-start'>
-                        <h2 className='sectionTitle'>Our Product Has Received Rav Reviews.</h2>
+                        <h4 className='sectionTitle'>Our Product Has Received Rav Reviews.</h4>
                         <p className='sectionPara'>
                             Discover what our customers are saying about their experience with our eClassify
                         </p>

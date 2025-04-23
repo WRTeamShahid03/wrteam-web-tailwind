@@ -31,7 +31,7 @@ export default function WhyChooseUs({
           height={40}
         />
       </div>
-      <h3 className={`font-bold mb-2`}>{feature?.name}</h3>
+      <h4 className={`font-bold mb-2`}>{feature?.name}</h4>
 
       <div
         dangerouslySetInnerHTML={{ __html: feature?.detail || "" }}
@@ -44,7 +44,7 @@ export default function WhyChooseUs({
     <div className="container commonMT">
       {/* Section Header */}
       <div className="text-center mb-10 lg:mb-16">
-        <h2 className="sectionTitle !font-bold">{title}</h2>
+        <h4 className="sectionTitle !font-bold">{title}</h4>
         <div
           dangerouslySetInnerHTML={{ __html: description || "" }}
           className="sectionPara !font-medium text-gray-700 max-w-3xl mx-auto"
@@ -66,7 +66,7 @@ export default function WhyChooseUs({
                   className="w-10 h-10 sm:w-12 sm:h-12 group-hover:filter group-hover:brightness-200 transition-all duration-300 delay-100 group-hover:opacity-0"
                 />
               </div>
-              <h3 className="font-bold mb-2">{feature.name}</h3>
+              <h5 className="font-bold mb-2">{feature.name}</h5>
               <div
                 dangerouslySetInnerHTML={{ __html: feature.detail || "" }}
                 className="text-gray-700"
@@ -102,7 +102,7 @@ export default function WhyChooseUs({
                   height={40}
                 />
               </div>
-              <h3 className="font-bold mb-2">{feature.name}</h3>
+              <h5 className="font-bold mb-2">{feature.name}</h5>
               <div
                 dangerouslySetInnerHTML={{ __html: feature.detail || "" }}
                 className="text-gray-700"

@@ -84,9 +84,9 @@ export default function ResponsiveUISlider({ appFeatures }: { appFeatures?: AppW
         <div className="grid grid-cols-12 mb-12 gap-y-4">
           {/* Title and Navigation - Stack on mobile, row on desktop */}
           <div className="col-span-12 lg:col-span-8 flex flex-col gap-4">
-            <h2 className="sectionTitle !font-bold text-white text-center md:text-left">
+            <h3 className="sectionTitle !font-bold text-white text-center md:text-left">
               {appFeatures?.title || "Take a Look At Responsive UI design"}
-            </h2>
+            </h3>
             {/* App type tabs - Horizontal scrollable on mobile */}
             <div className="relative mt-4">
               <div className="flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-3 pb-2 md:pb-0 scrollbar-hide">

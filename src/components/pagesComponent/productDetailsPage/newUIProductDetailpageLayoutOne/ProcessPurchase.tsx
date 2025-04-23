@@ -72,9 +72,9 @@ export default function ProcessPurchase() {
   return (
     <div className="py-16 container">
       {/* Main heading */}
-      <h2 className="sectionTitle text-center !font-bold mb-16">
+      <h3 className="sectionTitle text-center !font-bold mb-16">
         Process From Purchase to Publication in 3 Simple Steps
-      </h2>
+      </h3>
 
       {/* Process steps with connecting line */}
       <div className="relative flex flex-col md:flex-row justify-between items-center lg:max-w-6xl mx-auto">
@@ -101,7 +101,7 @@ export default function ProcessPurchase() {
             </div>
 
             {/* Title */}
-            <h3 className="text-lg lg:text-xl font-bold mb-2 text-center">{step.title}</h3>
+            <h4 className="text-lg lg:text-xl font-bold mb-2 text-center">{step.title}</h4>
 
             {/* Description */}
             <p className="text-center font-bold text-sm">

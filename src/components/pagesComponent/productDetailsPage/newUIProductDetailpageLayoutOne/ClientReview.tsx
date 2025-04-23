@@ -43,10 +43,10 @@ export default function ClientReview({ testimonials }: { testimonials: ProductTe
       <div className="container mx-auto px-4 max-w-6xl layoutOneTestimonials relative">
         {/* Section Title */}
         <div className="text-center mb-12">
-          <h2 className="sectionTitle !font-bold mb-2">
+          <h4 className="sectionTitle !font-bold mb-2">
             What Customers Have to say about
-          </h2>
-          <h3 className="text-3xl font-bold">eSchool SaaS</h3>
+          </h4>
+          <h5 className="text-3xl font-bold">eSchool SaaS</h5>
         </div>
 
         {/* Reviews Container */}

@@ -12,9 +12,9 @@ const ReadyToPower:React.FC<dataProps> = ({ checkoutUrl }) => {
     <div className="container commonMT">
       <div className="productDetailPrimaryBg overflow-hidden py-12 md:py-16 lg:py-20 md:p-8 my-4 rounded-lg">
         <div className="flexColCenter commonTextGap lg:w-[70%] xl:w-[50%] text-center m-auto mb-6 md:mb-12">
-          <h2 className="sectionTitle !font-bold">
+          <h6 className="sectionTitle !font-bold">
             Ready to Power Up Your Project with eSchool SaaS?
-          </h2>
+          </h6>
           <p className="sectionPara">
             eSchool SaaS is designed to help you work smarter, not harder.
             Let&apos;s get you up and running in no time!

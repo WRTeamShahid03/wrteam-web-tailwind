@@ -45,9 +45,9 @@ const TransformSect:React.FC<dataProps> = ({ checkoutUrl }) => {
         {/* Content container */}
         <div className="">
           <div className="max-w-2xl">
-            <h1 className="sectionTitle text-white leading-tight mb-8">
+            <h3 className="sectionTitle text-white leading-tight mb-8">
              {` Transform your project with ${productName}, the perfect solution for fast and efficient development. Build smarter, not harder.`}
-            </h1>
+            </h3>
 
             <Link href={checkoutUrl} target='_blank' title='Buy Now' className="inline-flex items-center px-6 py-3 productPrimaryBg transition-colors duration-200 text-white font-medium rounded-md group">
               Buy Now

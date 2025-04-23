@@ -19,7 +19,7 @@ const FaqItem = ({
         className="flex justify-between items-center p-4 bg-white cursor-pointer"
         onClick={() => toggleFaq(faq.id)}
       >
-        <h3 className="font-medium text-gray-800">{faq.question}</h3>
+        <span className="font-medium text-gray-800">{faq.question}</span>
         <button className="productDetailPrimaryColor bg-[--productPage-primary-color]/10 rounded-full p-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -137,9 +137,9 @@ export default function FaqSection({ faqs }: { faqs?: ProductFaqs }) {
       <div className="max-w-6xl mx-auto">
         {/* FAQ Header */}
         <div className="flexColCenter commonTextGap lg:w-[70%] xl:w-[50%] text-center m-auto mb-6 md:mb-12">
-          <h2 className="sectionTitle !font-bold">
+          <h5 className="sectionTitle !font-bold">
             Here Are Answers to Most Asked Questions from Our Customers
-          </h2>
+          </h5>
           <p className="sectionPara">
             Curious about something? Get the information you need! Explore our
             most frequently asked questions.
@@ -179,7 +179,7 @@ export default function FaqSection({ faqs }: { faqs?: ProductFaqs }) {
                 }`}
                 onClick={() => setCategory(category.id)}
               >
-                <h3 className="">{category.name}</h3>
+                <h6 className="">{category.name}</h6>
               </div>
             ))}
           </div>
@@ -211,9 +211,9 @@ export default function FaqSection({ faqs }: { faqs?: ProductFaqs }) {
                     d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <h3 className="text-lg font-medium text-gray-800 mb-2">
+                <h6 className="text-lg font-medium text-gray-800 mb-2">
                   No matching questions found
-                </h3>
+                </h6>
                 <p className="text-gray-600">
                   Try selecting a different category to find what you&apos;re
                   looking for.

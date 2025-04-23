@@ -7,9 +7,9 @@ export default function PaymentGateway({ title, description, image_url, gateways
     <div className="container commonMT">
       {/* Title Section */}
       <div className="flexColCenter !items-start commonTextGap text-center lg:w-[70%] xl:w-[58%] mb-8 mx-auto">
-        <h2 className="sectionTitle !font-bold">
+        <h6 className="sectionTitle !font-bold">
           {title}
-        </h2>
+        </h6>
         <div className="sectionPara !font-medium max-w-3xl" dangerouslySetInnerHTML={{ __html: description }} />
       </div>
 

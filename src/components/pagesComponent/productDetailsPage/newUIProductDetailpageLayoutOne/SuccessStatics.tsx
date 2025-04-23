@@ -52,9 +52,9 @@ export default function SuccessStatics() {
               <div className="">
                 <Image src={item.img} width={0} height={0} alt={item.title} className='w-[50px] lg:w-auto h-auto' />
               </div>
-              <h2 className="md:text-2xl font-semibold mb-0 mt-1">
+              <h6 className="md:text-2xl font-semibold mb-0 mt-1">
                 {item.title}
-              </h2>
+              </h6>
               <p className="text-sm md:text-lg">{item.desc}</p>
             </div>
           })

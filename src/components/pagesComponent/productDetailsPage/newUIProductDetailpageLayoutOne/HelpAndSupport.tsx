@@ -46,9 +46,9 @@ const btnsName = [
   return (
     <div className="py-5 md:py-10 container">
       <div className="flexColCenter commonTextGap text-center mb-8">
-        <h2 className="sectionTitle !font-bold">
+        <h5 className="sectionTitle !font-bold">
           {helpSection?.title}
-        </h2>
+        </h5>
         <p className="sectionPara">
           {helpSection?.description}
         </p>
@@ -64,7 +64,7 @@ const btnsName = [
 
               </div>
             </div>
-            <h3 className="text-xl font-bold mb-2">{section.name}</h3>
+            <h6 className="text-xl font-bold mb-2">{section.name}</h6>
             <p className="mb-4 font-medium">{section.detail}</p>
             <Link href={section.link} target="_blank" className="font-semibold border border-white rounded-md px-4 py-2 transition-colors inline-block group-hover:bg-white group-hover:productPrimaryColor">
               {

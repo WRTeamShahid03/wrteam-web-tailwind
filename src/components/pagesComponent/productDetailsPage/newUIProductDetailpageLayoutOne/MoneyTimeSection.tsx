@@ -41,9 +41,9 @@ const MoneyTimeSection: React.FC = () => {
           {/* Left side - Text content */}
           <div className="w-full lg:w-1/2 text-white mb-10 lg:mb-0">
             <div className="flexColCenter commonTextGap mb-6 md:mb-12">
-              <h2 className="sectionTitle !font-bold">
+              <h1 className="sectionTitle !font-bold">
                 {`Save Money & Time With ${productName}`}
-              </h2>
+              </h1>
 
               {/* Show the first part of short_description (before bullet points) */}
               <p className="sectionPara !text-gray-100">
@@ -60,7 +60,7 @@ const MoneyTimeSection: React.FC = () => {
                     {point.id}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg">{point.list}</h3>
+                    <h2 className="font-semibold text-lg">{point.list}</h2>
                   </div>
                 </div>
               ))}
