@@ -1,0 +1,33 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 🔀 Routing Structure
+
+This project uses Next.js App Router for routing.
+
+## 🧭 Key Routing Concepts
+- Each folder in `src/app` represents a route segment
+- Special files like `page.tsx`, `layout.tsx`, and `loading.tsx` define behavior
+- Folder names in parentheses (e.g., `(blogsPages)`) are grouped routes that don't affect the URL path
+
+## 🌐 Main Routes
+- `/` - Homepage route [src/app/page.tsx](mdc:src/app/page.tsx)
+- `/api` - API routes [src/app/api](mdc:src/app/api)
+- `/services` - Services pages [src/app/services](mdc:src/app/services)
+- `/our-work` - Portfolio/work showcase [src/app/our-work](mdc:src/app/our-work)
+- `/hire-us` - Hire page [src/app/hire-us](mdc:src/app/hire-us)
+
+## 📦 Route Groups
+- `(pages)` - General pages
+- `(productPages)` - Product-related pages
+- `(portfolio)` - Portfolio items
+- `(blogsPages)` - Blog posts and categories
+- `(more)` - Additional pages
+
+## 📌 Routing Conventions
+- Use kebab-case for route folder names
+- Create clean, descriptive URLs
+- Place related routes in route groups (parentheses)
+- Use dynamic routes when needed with [slug] naming convention

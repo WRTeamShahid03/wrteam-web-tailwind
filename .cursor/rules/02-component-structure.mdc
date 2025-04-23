@@ -1,0 +1,28 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 🧩 Component Structure
+
+The project follows a modular component architecture with several types of components.
+
+## 🔄 Component Types
+- **Layout Components** - Components used for the page layout (header, footer, etc.)
+- **UI Components** - Reusable UI elements (buttons, inputs, cards, etc.)
+- **Page Components** - Components specific to individual pages
+- **Common Components** - Shared components used across multiple pages
+
+## 📂 Component Directories
+- [src/components/layout](mdc:src/components/layout) - Layout components
+- [src/components/ui](mdc:src/components/ui) - UI components using shadcn/ui
+- [src/components/homePage](mdc:src/components/homePage) - Homepage-specific components
+- [src/components/pagesComponent](mdc:src/components/pagesComponent) - Page-specific components
+- [src/components/commonComponents](mdc:src/components/commonComponents) - Common components
+
+## 📏 Component Conventions
+- Components should be focused and not exceed 200 lines of code
+- Use TypeScript for type safety
+- Follow the naming convention of PascalCase for component files
+- Prefer functional components with hooks over class components
+- Use proper commenting for complex logic

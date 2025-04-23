@@ -1,0 +1,40 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 📝 Coding Standards
+
+This project follows specific coding standards to maintain code quality and consistency.
+
+## 🔍 General Guidelines
+- Keep files small and focused (under 200 lines)
+- Use clear, consistent naming conventions
+- Write clean, simple, readable code
+- Implement features in the simplest possible way
+- Add descriptive comments for complex logic
+- Test after every meaningful change
+
+## 🦸 TypeScript Usage
+- Use TypeScript for type safety
+- Define proper interfaces and types in the [src/types](mdc:src/types) directory
+- Avoid using `any` type when possible
+- Use proper type annotations for function parameters and return values
+
+## ⚛️ React Best Practices
+- Use functional components with hooks
+- Keep component state minimal and focused
+- Use proper React hooks (useState, useEffect, useMemo, useCallback)
+- Avoid prop drilling by using React Context when appropriate
+- Ensure components have proper prop validation
+
+## 📋 File Organization
+- Keep related files close to each other
+- Follow the structure defined in the project overview
+- Use appropriate file extensions (.tsx for React components with TypeScript)
+- Keep imports organized and grouped by type
+
+## 🧹 Code Quality Tools
+- Follow ESLint rules defined in [eslint.config.mjs](mdc:eslint.config.mjs)
+- Use TypeScript strict mode as defined in [tsconfig.json](mdc:tsconfig.json)
+- Run the linter before committing changes (`npm run lint`)

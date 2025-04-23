@@ -1,0 +1,32 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 🎨 Styling Conventions
+
+This project uses Tailwind CSS for styling with some customizations.
+
+## ⚙️ Tailwind Configuration
+- The project uses a custom Tailwind configuration [tailwind.config.ts](mdc:tailwind.config.ts)
+- Global CSS is defined in [src/app/globals.css](mdc:src/app/globals.css)
+
+## 💅 Styling Approaches
+- Use Tailwind utility classes for component styling
+- Use the `clsx` or `tailwind-merge` libraries for conditional styling
+- For complex components, use the `cva` (class-variance-authority) pattern
+- Avoid inline styles and traditional CSS files when possible
+
+## 🧰 UI Components
+- The project uses shadcn/ui components from [src/components/ui](mdc:src/components/ui)
+- Customization for shadcn/ui is defined in [components.json](mdc:components.json)
+
+## ✨ Animation
+- Use `framer-motion` for complex animations
+- Use Tailwind's built-in animation utilities for simple animations
+- Use `AOS` (Animate On Scroll) for scroll-based animations
+
+## 🌈 Color Palette
+- Follow the color scheme defined in the Tailwind configuration
+- Use semantic color names from the configuration rather than raw color values
+- Maintain consistent use of colors across the application
