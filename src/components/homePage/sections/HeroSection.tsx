@@ -6,6 +6,7 @@ import heroImg from "../../../assets/images/homePage/heroSectImg.svg";
 import { PageTitle } from "@/components/HeadingComponent";
 
 const HeroSection: React.FC = () => {
+
   return (
     <section className="commonBg py-12 md:py-16 lg:py-20">
       <div className="container">
@@ -54,15 +55,18 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="w-full flexCenter mt-16">
+        <div className="w-full flexCenter mt-12 md:mt-16">
           <Image
             src={heroImg}
-            alt="heroImg"
-            width={0}
-            height={0}
+            alt="Creative agency hero banner"
+            width={1600}           // real intrinsic size
+            height={900}
+            priority               // 👈 critical for LCP
+            sizes="(max-width:768px) 100vw, 80vw"
             className="w-full h-auto"
           />
         </div>
+
       </div>
     </section>
   );

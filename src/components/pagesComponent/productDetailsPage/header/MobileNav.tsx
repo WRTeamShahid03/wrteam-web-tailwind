@@ -20,9 +20,13 @@ const MobileNav: React.FC<dataProps> = ({ whatsappUrl }) => {
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <span className="productPrimaryBg block text-white p-1 rounded-sm">
+          <button
+            type="button"
+            aria-label="Open navigation menu"
+            className="productPrimaryBg block text-white p-1 rounded-sm"
+          >
             <RxHamburgerMenu size={26} />
-          </span>
+          </button>
         </SheetTrigger>
         <SheetContent className="overflow-y-scroll w-[90%]">
           <SheetTitle className="hidden"></SheetTitle>

@@ -22,9 +22,14 @@ const MobileNav = () => {
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <span className="primaryBg block text-white p-1 rounded-sm">
+          <button
+            type="button"
+            aria-label="Open navigation menu"
+            className="primaryBg block text-white p-1 rounded-sm"
+          >
             <RxHamburgerMenu size={26} />
-          </span>
+          </button>
+
         </SheetTrigger>
         <SheetContent className="overflow-y-scroll w-[90%]">
           <SheetTitle className="hidden"></SheetTitle>
@@ -32,17 +37,15 @@ const MobileNav = () => {
             <nav className="flex flex-col items-start gap-6 textPrimary font-semibold">
               <Link
                 href={"/"}
-                className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${
-                  pathname === "/" && "after:!bg-black font-semibold"
-                }`}
+                className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === "/" && "after:!bg-black font-semibold"
+                  }`}
               >
                 Home
               </Link>
               <Link
                 href={"/products"}
-                className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${
-                  pathname === "/products" && "after:!bg-black font-semibold"
-                }`}
+                className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === "/products" && "after:!bg-black font-semibold"
+                  }`}
               >
                 Products
               </Link>
@@ -51,10 +54,9 @@ const MobileNav = () => {
               <OurWorkDropdown />
               <Link
                 href={"/exclusive-license"}
-                className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${
-                  pathname === "/exclusive-license" &&
+                className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === "/exclusive-license" &&
                   "after:!bg-black font-semibold"
-                }`}
+                  }`}
               >
                 Exclusive License
               </Link>
