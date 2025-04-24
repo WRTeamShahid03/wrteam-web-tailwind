@@ -94,10 +94,8 @@ export async function generateMetadata({
 
 export default function Page({
   params,
-  searchParams,
 }: {
   params: { slug: string };
-  searchParams: any;
 }) {
   const slug = params.slug;
   
@@ -115,13 +113,11 @@ export default function Page({
         <ProductDetailsPage
           slug={slug}
           productData={product}
-          // searchParams={searchParams}
         />
       ) : (
         <OldProductDetailPage
           // slug={slug}
           productData={product}
-          // searchParams={searchParams}
         />
       )}
     </div>
