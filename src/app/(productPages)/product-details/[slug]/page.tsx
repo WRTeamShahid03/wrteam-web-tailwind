@@ -25,11 +25,12 @@ async function fetchProductData(slug: string) {
 }
 
 // Generate metadata for the product details page
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const slug = params.slug;
   const productData = await fetchProductData(slug);
 
@@ -95,9 +96,10 @@ export async function generateMetadata({
 export default function Page({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const slug = params.slug;
+  // Use the 'use' hook to handle the Promise synchronously
+  const { slug } = use(params);
   
   // Use server component async data fetching
   const productData = use(fetchProductData(slug));
