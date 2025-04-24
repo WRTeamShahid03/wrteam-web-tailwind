@@ -52,8 +52,13 @@ export async function generateMetadata({
 }
 
 // Server component for the blog page
-export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function PostPage({ 
+  params 
+}: { 
+  params: Promise<{ slug: string }> 
+}) {
   // Need to await params as it's now a Promise in Next.js 15
-  const { slug } = await params;
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
   return <BlogDetailPage slug={slug} />;
 }
