@@ -10,7 +10,7 @@ export default function robots() {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/", "/admin/", "/_next/", "/thank-you/"],
+      disallow: ["/api/", "/admin/", "/_next/", "/thank-you/","/product-category/","/product-tag/","/shop/","/woolentor-template/","/homepage/","/undefined","/our-team/","/validator/"],
     },
     sitemap: `${baseUrl}/sitemap.xml`,
   };

@@ -35,7 +35,7 @@ const AchievementEnvanto: React.FC = () => {
             <Link
               href={"https://1.envato.market/R5YR7b"}
               target="_blank"
-              title="Discover More"
+              title="View WRTeam's Envato Portfolio and Achievements"
               className="commonBtn"
             >
               Read More

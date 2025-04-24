@@ -15,6 +15,7 @@ import PerfectPlan from '../newUIProductDetailpageLayoutOne/PerfectPlan'
 import ReadyToPower from '../newUIProductDetailpageLayoutOne/ReadyToPower'
 import FaqSection from '../newUIProductDetailpageLayoutOne/FaqSection'
 import HelpAndSupport from '../newUIProductDetailpageLayoutOne/HelpAndSupport'
+import ClientProductReviews from './ClientProductReviews'
 
 
 interface LayoutTwoProps {
@@ -51,7 +52,7 @@ const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, exte
 
             <Technologies title={productDetails.product_description[0].technology_section.title} description={productDetails.product_description[0].technology_section.description} technologies={productDetails.product_description[0].technology_section.technologies} />
 
-            <OrbitPaymentGateways title={productDetails.product_description[0].payment_gateway_section.title} description={productDetails.product_description[0].payment_gateway_section.description} gateways={productDetails.product_description[0].payment_gateway_section.gateways} />
+            <OrbitPaymentGateways title={productDetails.product_description[0].payment_gateway_section.title} description={productDetails.product_description[0].payment_gateway_section.description} gateways={productDetails.product_description[0].payment_gateway_section.gateways} payment_gateway_main_image_url={productDetails.product_description[0].payment_gateway_section.payment_gateway_main_image_url} />
 
             <InfoSect />
 
@@ -72,6 +73,8 @@ const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, exte
             <HelpAndSupport helpSection={helpSection} />
 
             <ReadyToPower checkoutUrl={checkoutUrl} />
+
+            {/* <ClientProductReviews /> */}
 
         </div>
     )

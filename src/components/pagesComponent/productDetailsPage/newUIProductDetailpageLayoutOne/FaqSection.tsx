@@ -172,7 +172,7 @@ export default function FaqSection({ faqs }: { faqs?: ProductFaqs }) {
             {displayCategories.map((category) => (
               <div
                 key={category.id}
-                className={`py-3 px-4 rounded-[8px] mb-4 cursor-pointer !font-bold ${
+                className={`py-3 px-4 rounded-[8px] mb-4 cursor-pointer !font-medium ${
                   activeCategory === category.id
                     ? "productPrimaryBg text-white"
                     : "relative productDetailPrimaryBg overflow-hidden"

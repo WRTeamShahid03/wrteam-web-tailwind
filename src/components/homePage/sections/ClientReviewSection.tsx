@@ -35,7 +35,7 @@ const StarRating = ({ rating }: { rating: number }) => {
 // Skeleton loader for review card
 const ReviewCardSkeleton = () => {
   return (
-    <div className="flex flex-col h-full p-5 bg-white rounded-lg shadow-sm border border-gray-100 animate-pulse">
+    <div className="flex flex-col h-full p-5 bg-white rounded-lg shadow-sm border border-gray-100 animate-pulse mb-4">
       <div className="flex items-center justify-between mb-3">
         {/* Blue user icon placeholder */}
         <div className="bg-blue-300 rounded-full w-8 h-8 flex items-center justify-center shrink-0"></div>

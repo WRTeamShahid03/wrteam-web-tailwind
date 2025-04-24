@@ -29,7 +29,7 @@ const MobileNav = () => {
         <SheetContent className="overflow-y-scroll w-[90%]">
           <SheetTitle className="hidden"></SheetTitle>
           <div className="">
-            <ul className="flex flex-col items-start gap-6 textPrimary font-semibold">
+            <nav className="flex flex-col items-start gap-6 textPrimary font-semibold">
               <Link
                 href={"/"}
                 className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${
@@ -60,7 +60,7 @@ const MobileNav = () => {
               </Link>
               <Link
                 href={"/hire-us"}
-                className="secondaryBg text-white max-1680:py-2 max-1680:px-4 py-4 px-8 rounded-[8px] flexCenter gap-2"
+                className="bg-[#181C24] text-white max-1680:py-2 max-1680:px-4 py-4 px-8 rounded-[8px] flexCenter gap-2"
               >
                 <span>Hire Us</span>
                 <FaArrowRight />
@@ -81,7 +81,7 @@ const MobileNav = () => {
                   </Link>
                 </div>
               </div>
-            </ul>
+            </nav>
           </div>
         </SheetContent>
       </Sheet>

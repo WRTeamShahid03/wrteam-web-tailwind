@@ -61,7 +61,6 @@ const HeroSection: React.FC = () => {
             width={0}
             height={0}
             className="w-full h-auto"
-            loading="lazy"
           />
         </div>
       </div>

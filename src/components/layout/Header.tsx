@@ -40,17 +40,17 @@ const Header = () => {
   };
 
   return (
-    <header className={`sticky top-0 w-full z-[10] border-b shadow-none ${scroll > (navRef.current?.offsetTop || 0) ? "stickky" : ""}`}>
+    <header className={`sticky top-0 w-full z-[20] border-b shadow-none ${scroll > (navRef.current?.offsetTop || 0) ? "stickky" : ""}`}>
       <TopBar />
       <div className='py-6 bg-white'>
       <div className="max-1680:container 2xl:max-w-[1620px] mx-auto">
 
         <div ref={navRef} className='flex items-center justify-between nav'>
-          <Link href={'/'}>
-            <Image src={logo} width={0} height={0} className='w-[175px] between-1200-1399:w-[175px] md:w-[200px] xl:w-auto h-auto' alt='' />
+          <Link href={'/'} title='WRTeam Logo'>
+            <Image src={logo} width={0} height={0} className='w-[175px] between-1200-1399:w-[175px] md:w-[200px] xl:w-auto h-auto' alt='WRTeam Logo' />
           </Link>
           <div className='max-1199:hidden block'>
-            <ul className='flex items-center lg:gap-6 between-1200-1399:gap-4 between-1200-1399:text-[15px] between-1400-1680:gap-5 xl:gap-12 textPrimary'>
+            <nav className='flex items-center lg:gap-6 between-1200-1399:gap-4 between-1200-1399:text-[15px] between-1400-1680:gap-5 xl:gap-12 textPrimary'>
               <Link href={'/'} className={`relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black font-medium ${pathname === '/' && 'after:!bg-black font-semibold'}`}>
                 Home
               </Link>
@@ -63,7 +63,7 @@ const Header = () => {
               <Link href={'/exclusive-license'} className={`relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black font-medium ${pathname === '/exclusive-license' && 'after:!bg-black font-semibold'}`}>
                 Exclusive License
               </Link>
-              <Link href={'/hire-us'} className='secondaryBg text-white max-1680:py-2 max-1680:px-4 py-4 px-8 rounded-[8px] flexCenter gap-2'>
+              <Link href={'/hire-us'} className='bg-[#181C24] text-white max-1680:py-2 max-1680:px-4 py-4 px-8 rounded-[8px] flexCenter gap-2'>
                 <span>Hire Us</span>
                 <FaArrowRight />
               </Link>
@@ -76,7 +76,7 @@ const Header = () => {
                   <Link href={'tel:+91 97979 45459'} title='+91 97979 45459' className='primaryColor'> +91 97979 45459</Link>
                 </div>
               </div>
-            </ul>
+            </nav>
           </div>
 
           <div className='max-1199:block hidden'>

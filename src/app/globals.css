@@ -817,3 +817,278 @@ footer .commonBtn:after {
       background: transparent;
   }
 }
+
+
+.orbitPaymentsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  margin-bottom: 30px;
+  margin-top: -40px;
+}
+
+.orbit-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.center-img {
+  position: absolute;
+  top: 46%;
+  left: 46%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #8080806e;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.center-img img {
+  width: auto !important;
+  height: auto !important;
+}
+
+.center-img span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.orbit {
+  position: absolute;
+  top: 46%;
+  left: 46%;
+  width: 400px;
+  height: 400px;
+  margin-top: -150px;
+  margin-left: -150px;
+  border: 2px dotted #8080806e;
+  border-radius: 50%;
+}
+
+.orbit-inner {
+  position: absolute;
+  top: 52%;
+  left: 52%;
+  width: 250px;
+  height: 250px;
+  margin-top: -100px;
+  margin-left: -100px;
+  border: 2px dotted #8080806e;
+  border-radius: 50%;
+}
+
+.orbit-icon-container {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  top: 50%;
+  left: 50%;
+  margin-top: -150px;
+  margin-left: -150px;
+  animation: rotate 20s linear infinite;
+}
+
+.orbit-icon-container-inner {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -100px;
+  animation: rotate 20s linear infinite;
+}
+
+.orbit-icon {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid #8080806e;
+  animation: orbitIcon-rotate 20s linear infinite;
+}
+
+.orbit-icon img {
+  width: 24px !important;
+  height: 24px;
+}
+
+.orbit-icon span {
+  font-size: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.orbit-icon-container-outer .icon1 {
+  top: -40px;
+  left: 50%;
+}
+
+.orbit-icon-container-outer .icon2 {
+  top: 50%;
+  right: -54px;
+}
+
+.orbit-icon-container-outer .icon3 {
+  bottom: -54px;
+  left: 50%;
+}
+
+.orbit-icon-container-outer .icon4 {
+  top: 50%;
+  left: -40px;
+}
+
+/* ============================================== */
+
+.orbit-icon-container-inner .icon1 {
+  top: 13%;
+  left: 0%;
+}
+
+.orbit-icon-container-inner .icon2 {
+  top: 12%;
+  right: 0%;
+}
+
+.orbit-icon-container-inner .icon3 {
+  bottom: 8%;
+  left: 0%;
+}
+
+.orbit-icon-container-inner .icon4 {
+  bottom: 6%;
+  right: 0%;
+}
+
+
+
+@keyframes rotate {
+  from {
+      transform: rotate(0deg);
+  }
+
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitIcon-rotate {
+  from {
+      transform: rotate(360deg);
+  }
+
+  to {
+      transform: rotate(0deg);
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width:991px) {
+  .orbitPaymentsWrapper {
+      margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+
+  .orbitPaymentsWrapper {
+      margin-bottom: -10px;
+      margin-top: -10px;
+  }
+
+  .orbit-container {
+      width: 400px;
+      height: 400px;
+  }
+
+  .center-img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .center-img img {
+      width: 80%;
+      height: 80%;
+  }
+
+  .orbit {
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+  }
+
+  .orbit-inner {
+      top: 50%;
+      left: 50%;
+      width: 200px;
+      height: 200px;
+  }
+
+  .orbit-icon-container {
+      width: 300px;
+      height: 300px;
+      top: 50%;
+      left: 50%;
+  }
+
+  .orbit-icon-container-inner {
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      left: 50%;
+  }
+
+  .orbit-icon {
+      width: 50px;
+      height: 50px;
+      padding: 10px;
+  }
+
+  .orbit-icon img {
+      width: 60%;
+      height: 60%;
+  }
+
+  .orbit-icon-container-outer .icon1 {
+      top: -6px;
+  }
+
+  .orbit-icon-container-outer .icon2 {
+      right: -6px;
+  }
+
+  .orbit-icon-container-outer .icon4 {
+      left: -6px;
+  }
+
+  .orbit-icon-container-outer .icon3 {
+      bottom: -6px;
+  }
+
+/* orbit ends here  */
+}

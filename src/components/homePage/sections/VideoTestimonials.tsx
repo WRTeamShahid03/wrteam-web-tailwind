@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import clientImg from '@/assets/images/homePage/clientImg.jpeg';
+import VideoPlayerModal from '@/components/commonComponents/VideoPlayerModal';
 
 
 const VideoTestimonials = () => {
@@ -19,35 +20,35 @@ const VideoTestimonials = () => {
       name: 'Martin Mathew',
       company: 'eShop Plus',
       image: clientImg,
-      videoUrl: '#',
+      videoUrl: 'https://youtu.be/coGUusRo8TI?si=70NdmvFQXe3WxXN4',
     },
     {
       id: 2,
       name: 'Steve John',
       company: 'eHustle - Multi Vendor',
       image: clientImg,
-      videoUrl: '#',
+      videoUrl: 'https://youtu.be/coGUusRo8TI?si=70NdmvFQXe3WxXN4',
     },
     {
       id: 3,
       name: 'Martin Mathew',
       company: 'eShop Plus',
       image: clientImg,
-      videoUrl: '#',
+      videoUrl: 'https://youtu.be/coGUusRo8TI?si=70NdmvFQXe3WxXN4',
     },
     {
       id: 4,
       name: 'Martin Mathew',
       company: 'eShop Plus',
       image: clientImg,
-      videoUrl: '#',
+      videoUrl: 'https://youtu.be/coGUusRo8TI?si=70NdmvFQXe3WxXN4',
     },
     {
       id: 5,
       name: 'Martin Mathew',
       company: 'eShop Plus',
       image: clientImg,
-      videoUrl: '#',
+      videoUrl: 'https://youtu.be/coGUusRo8TI?si=70NdmvFQXe3WxXN4',
     },
   ];
 
@@ -103,15 +104,16 @@ const VideoTestimonials = () => {
                     className="object-cover w-full h-full"
                   />
                   <div className="absolute bottom-0 left-0 w-full p-4 textLinearBg text-white">
-                    <h5 className="text-lg font-semibold">{testimonial.name}</h5>
+                    <span className="text-lg font-semibold">{testimonial.name}</span>
                     <p className="text-sm">{testimonial.company}</p>
                   </div>
-                  <a
-                    href={testimonial.videoUrl}
+                  {/* <span
                     className="absolute bottom-4 right-4 w-10 h-10 bg-white text-gray-900 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
                   >
                     <FaPlay />
-                  </a>
+                    <ReactPlayer width='100%' height='500px' url={'https://youtu.be/coGUusRo8TI?si=70NdmvFQXe3WxXN4'} controls={true} />
+                  </span> */}
+                  <VideoPlayerModal videoUrl={testimonial.videoUrl} />
                 </div>
               </div>
             </SwiperSlide>
