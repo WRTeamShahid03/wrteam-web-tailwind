@@ -20,9 +20,10 @@ interface LayoutOneProps {
   extendedLicensePrice: number;
   extendedLicenseLink: string;
   regularLicensePrice: number;
+  productName: string;
 }
 
-const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice }: LayoutOneProps) => {
+const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, productName }: LayoutOneProps) => {
 
   const productDescription = productDetails.product_description[0];
   const productTestimonial = productDetails.product_testimonials;
@@ -106,12 +107,12 @@ const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extended
         layoutOne={true}
       />
 
-      <MoneyTimeSection />
+      <MoneyTimeSection productName={productName}/>
 
       {/* Pass app-wise feature data to ResponsiveUISlider */}
       <ResponsiveUISlider appFeatures={appWiseFeatureSection} />
 
-      <ProcessPurchase />
+      <ProcessPurchase productName={productName}/>
 
       {/* Pass testimonials data to ClientReview */}
       <ClientReview testimonials={productTestimonials} />

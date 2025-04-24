@@ -22,6 +22,9 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
     null
   );
 
+
+  const productName = productData?.product_title;
+
   const checkoutUrl = productData?.checkout_url;
   const codecanyonLink = productData?.codecanyon_link;
   const extendedLicensePrice = productData?.extended_license_price;
@@ -134,6 +137,7 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
             extendedLicensePrice={extendedLicensePrice}
             extendedLicenseLink={extendedLicenseLink}
             regularLicensePrice={regularLicensePrice}
+            productName={productName}
           />
         ) : (
           <LayoutTwo

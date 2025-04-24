@@ -92,7 +92,7 @@ export async function generateMetadata({ params }) {
 export default async function Page(props) {
   const searchParams = await props.searchParams;
   // Make sure params is properly resolved
-  const resolvedParams = await params;
+  const resolvedParams = await props.params;
   // Also resolve searchParams if needed
   const resolvedSearchParams = await searchParams;
 

@@ -10,28 +10,26 @@ interface listData {
   list: string
 }
 
-const MoneyTimeSection: React.FC = () => {
+const MoneyTimeSection: React.FC<{ productName: string }> = ({ productName }) => {
 
   const list = [
     {
       id: 1,
-      list: 'One Time Payment',
+      list: 'One Time Payment - Lifetime Access',
     },
     {
       id: 2,
-      list: 'Ready To Launch',
+      list: 'Ready to Launch Your Project',
     },
     {
       id: 3,
-      list: 'Lifetime Revenue',
+      list: 'Lifetime Revenue with Built-in Features',
     },
     {
       id: 4,
-      list: 'Error Free Code',
+      list: 'Nulled-Free Premium Code',
     },
   ];
-
-  const productName = 'productName'
 
   return (
     <div className="container commonMT">
@@ -42,12 +40,12 @@ const MoneyTimeSection: React.FC = () => {
           <div className="w-full lg:w-1/2 text-white mb-10 lg:mb-0">
             <div className="flexColCenter commonTextGap mb-6 md:mb-12">
               <h1 className="sectionTitle !font-bold">
-                {`Save Money & Time With ${productName}`}
+                {`Save Money & Time With ${productName} Script`}
               </h1>
 
               {/* Show the first part of short_description (before bullet points) */}
               <p className="sectionPara !text-gray-100">
-                `${productName} saves your very precious time and your hard-earned money`
+                {`${productName} source code helps you save time, cut costs, and reduce technical effort, making it fastest to launch your project.`}
               </p>
 
             </div>
