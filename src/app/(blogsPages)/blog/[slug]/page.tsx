@@ -1,13 +1,15 @@
 import BlogDetailPage from "@/components/pagesComponent/blogs/BlogDetailPage";
 import { Metadata } from "next";
 import React from "react";
+import { use } from "react";
 
 // Generate metadata for the blog page
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   // Get the slug from the URL
   const slug = params.slug;
 
@@ -52,13 +54,12 @@ export async function generateMetadata({
 }
 
 // Server component for the blog page
-export default async function PostPage({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
+export default function PostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }) {
-  // Need to await params as it's now a Promise in Next.js 15
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+  // Use the 'use' hook to handle the Promise synchronously
+  const { slug } = use(params);
   return <BlogDetailPage slug={slug} />;
 }

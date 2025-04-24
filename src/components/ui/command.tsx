@@ -1,28 +1,43 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { type DialogProps } from "@radix-ui/react-dialog"
-import { Command as CommandPrimitive } from "cmdk"
-import { Search } from "lucide-react"
+import * as React from "react";
+import { type DialogProps } from "@radix-ui/react-dialog";
+import { Command as CommandPrimitive } from "cmdk";
+import { Search } from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { cn } from "@/lib/utils";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 // Create type augmentation for CommandPrimitive to recognize its properties
-type CommandPrimitiveType = React.FC<React.ComponentProps<typeof CommandPrimitive>> & {
-  Input: React.ForwardRefExoticComponent<React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>
-  List: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>
-  Empty: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>
-  Group: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>
-  Separator: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>
-  Item: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & { 
-    onselect?: (event: any) => void;
-    value?: string;
-  } & React.RefAttributes<HTMLDivElement>>
-}
+type CommandPrimitiveType = React.FC<
+  React.ComponentProps<typeof CommandPrimitive>
+> & {
+  Input: React.ForwardRefExoticComponent<
+    React.InputHTMLAttributes<HTMLInputElement> &
+      React.RefAttributes<HTMLInputElement>
+  >;
+  List: React.ForwardRefExoticComponent<
+    React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>
+  >;
+  Empty: React.ForwardRefExoticComponent<
+    React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>
+  >;
+  Group: React.ForwardRefExoticComponent<
+    React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>
+  >;
+  Separator: React.ForwardRefExoticComponent<
+    React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>
+  >;
+  Item: React.ForwardRefExoticComponent<
+    React.HTMLAttributes<HTMLDivElement> & {
+      onselect?: (event: any) => void;
+      value?: string;
+    } & React.RefAttributes<HTMLDivElement>
+  >;
+};
 
 // Cast CommandPrimitive to our augmented type
-const CommandWithProps = CommandPrimitive as CommandPrimitiveType
+const CommandWithProps = CommandPrimitive as CommandPrimitiveType;
 
 // Use a more specific type for the ref to avoid issues
 const Command = React.forwardRef<
@@ -33,16 +48,16 @@ const Command = React.forwardRef<
     ref={ref}
     className={cn(
       "flex h-full w-full flex-col overflow-hidden rounded-md bg-white text-neutral-950 dark:bg-neutral-950 dark:text-neutral-50",
-      className
+      className as string
     )}
     {...props}
   />
-))
-Command.displayName = CommandPrimitive.displayName || "Command"
+));
+Command.displayName = CommandPrimitive.displayName || "Command";
 
 type CommandDialogProps = DialogProps & {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
@@ -53,8 +68,8 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
         </Command>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
 
 // Fix type issues by using HTMLInputElement for Input
 const CommandInput = React.forwardRef<
@@ -72,8 +87,8 @@ const CommandInput = React.forwardRef<
       {...props}
     />
   </div>
-))
-CommandInput.displayName = "CommandInput"
+));
+CommandInput.displayName = "CommandInput";
 
 // Fix type issues by using HTMLDivElement for List
 const CommandList = React.forwardRef<
@@ -85,8 +100,8 @@ const CommandList = React.forwardRef<
     className={cn("max-h-[300px] overflow-y-auto overflow-x-hidden", className)}
     {...props}
   />
-))
-CommandList.displayName = "CommandList"
+));
+CommandList.displayName = "CommandList";
 
 // Fix type issues by using HTMLDivElement for Empty
 const CommandEmpty = React.forwardRef<
@@ -98,8 +113,8 @@ const CommandEmpty = React.forwardRef<
     className="py-6 text-center text-sm"
     {...props}
   />
-))
-CommandEmpty.displayName = "CommandEmpty"
+));
+CommandEmpty.displayName = "CommandEmpty";
 
 // Fix type issues by using HTMLDivElement for Group
 const CommandGroup = React.forwardRef<
@@ -114,8 +129,8 @@ const CommandGroup = React.forwardRef<
     )}
     {...props}
   />
-))
-CommandGroup.displayName = "CommandGroup"
+));
+CommandGroup.displayName = "CommandGroup";
 
 // Fix type issues by using HTMLDivElement for Separator
 const CommandSeparator = React.forwardRef<
@@ -127,18 +142,21 @@ const CommandSeparator = React.forwardRef<
     className={cn("-mx-1 h-px bg-neutral-200 dark:bg-neutral-800", className)}
     {...props}
   />
-))
-CommandSeparator.displayName = "CommandSeparator"
+));
+CommandSeparator.displayName = "CommandSeparator";
 
 // Fix type issues by using HTMLDivElement for Item and properly typing onSelect
 const CommandItem = React.forwardRef<
   HTMLDivElement,
-  Omit<React.ComponentPropsWithoutRef<typeof CommandWithProps.Item>, "onSelect"> & {
+  Omit<
+    React.ComponentPropsWithoutRef<typeof CommandWithProps.Item>,
+    "onSelect"
+  > & {
     onSelect?: (value: string) => void;
   }
 >(({ className, onSelect, ...props }, ref) => {
   const { value } = props as { value?: string };
-  
+
   // Create a prop object that includes our custom lowercase onselect
   const itemProps = {
     ...props,
@@ -149,9 +167,9 @@ const CommandItem = React.forwardRef<
       if (onSelect && value) {
         onSelect(value);
       }
-    }
+    },
   };
-  
+
   return (
     <CommandWithProps.Item
       ref={ref}
@@ -162,8 +180,8 @@ const CommandItem = React.forwardRef<
       )}
     />
   );
-})
-CommandItem.displayName = "CommandItem"
+});
+CommandItem.displayName = "CommandItem";
 
 const CommandShortcut = ({
   className,
@@ -177,9 +195,9 @@ const CommandShortcut = ({
       )}
       {...props}
     />
-  )
-}
-CommandShortcut.displayName = "CommandShortcut"
+  );
+};
+CommandShortcut.displayName = "CommandShortcut";
 
 export {
   Command,
@@ -191,4 +209,4 @@ export {
   CommandItem,
   CommandShortcut,
   CommandSeparator,
-}
+};
