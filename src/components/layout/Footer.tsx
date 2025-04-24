@@ -79,7 +79,7 @@ const NewFooter = () => {
         <div className="space-y-8 col-span-12 sm:col-span-7 sm:border-r border-[#ffffff3d]">
           <div className="logo">
             <Link href="/" title='WRTeam Logo'>
-              <Image src={logo} alt="WRTeam Logo" width={150} height={50} className="mb-4" />
+              <Image src={logo} width={0} height={0} className='w-[175px] between-1200-1399:w-[175px] md:w-[200px] xl:w-[248px] h-auto mb-4' alt='WRTeam Logo' />
             </Link>
           </div>
 
@@ -275,7 +275,7 @@ const NewFooter = () => {
 
       {/* Copyright bar */}
       <div className="bg-[#171B26] border-t border-[#ffffff3d] py-4 text-[14px]">
-        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-y-2 text-sm sm:text-base">
+        <div className="max-1680:container 2xl:max-w-[1620px] mx-auto flex flex-col md:flex-row justify-between items-center gap-y-2 text-sm sm:text-base">
           <div>
             Copyright © {new Date().getFullYear()} All Rights Reserved & Designed by 💕 <Link href="https://wrteam.in" title='WRTeam' className="primaryColor">WRTeam</Link>.
           </div>

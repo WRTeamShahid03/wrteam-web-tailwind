@@ -34,7 +34,7 @@ const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, re
           <TableRow className="font-semibold text-xl md:text-2xl">
             <TableHead className="text-left font-semibold p-4 border-r text-black">Product Plans</TableHead>
             <TableHead className="text-center font-semibold p-4 text-lg md:text-xl textSecondary border-r">
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 lg:pt-6 lg:pb-3">
                 <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${regularLicensePrice}</span>
                 <span className="text-sm sm:text-base md:text-lg ">Regular License</span>
                 <Link href={checkoutUrl || ''} target="_blank" className="text-sm md:text-base border productDetailPrimaryBorder rounded-[6px] p-1 productPrimaryColor flexCenter gap-1" title="Buy Now">
@@ -48,7 +48,7 @@ const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, re
                 Recommended
               </span>
 
-              <div className="flex flex-col gap-3 pt-6">
+              <div className="flex flex-col gap-3 lg:pt-6 lg:pb-3">
                 <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${extendedLicensePrice}</span>
                 <span className="text-sm sm:text-base md:text-lg ">Extended License</span>
                 <Link href={extendedLicenseLink || ''} target="_blank" className="text-sm md:text-base border productDetailPrimaryBorder rounded-[6px] p-1 productPrimaryBg text-white flexCenter gap-1" title="Buy Now">

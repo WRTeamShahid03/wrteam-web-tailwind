@@ -47,7 +47,7 @@ const Header = () => {
 
         <div ref={navRef} className='flex items-center justify-between nav'>
           <Link href={'/'} title='WRTeam Logo'>
-            <Image src={logo} width={0} height={0} className='w-[175px] between-1200-1399:w-[175px] md:w-[200px] xl:w-auto h-auto' alt='WRTeam Logo' />
+            <Image src={logo} width={0} height={0} className='w-[175px] between-1200-1399:w-[175px] md:w-[200px] xl:w-[248px] h-auto' alt='WRTeam Logo' />
           </Link>
           <div className='max-1199:hidden block'>
             <nav className='flex items-center lg:gap-6 between-1200-1399:gap-4 between-1200-1399:text-[15px] between-1400-1680:gap-5 xl:gap-12 textPrimary'>

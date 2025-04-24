@@ -107,12 +107,6 @@ const VideoTestimonials = () => {
                     <span className="text-lg font-semibold">{testimonial.name}</span>
                     <p className="text-sm">{testimonial.company}</p>
                   </div>
-                  {/* <span
-                    className="absolute bottom-4 right-4 w-10 h-10 bg-white text-gray-900 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
-                  >
-                    <FaPlay />
-                    <ReactPlayer width='100%' height='500px' url={'https://youtu.be/coGUusRo8TI?si=70NdmvFQXe3WxXN4'} controls={true} />
-                  </span> */}
                   <VideoPlayerModal videoUrl={testimonial.videoUrl} />
                 </div>
               </div>

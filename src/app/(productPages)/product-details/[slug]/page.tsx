@@ -5,7 +5,7 @@ import OldProductDetailPage from "@/components/pagesComponent/productDetailsPage
 import { SoftwareProductSchema } from "@/components/JsonLdSchema";
 
 // Function to fetch product data from the API
-async function fetchProductData(slug) {
+async function fetchProductData(slug: string) {
   try {
     const response = await fetch(
       `https://backend.wrteam.in/api/products?slug=${slug}`,
@@ -24,10 +24,9 @@ async function fetchProductData(slug) {
 }
 
 // Generate metadata for the product details page
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: { params: { slug: string } }) {
   // Make sure params is properly resolved before accessing its properties
-  const resolvedParams = await params;
-  const slug = resolvedParams.slug;
+  const slug = params.slug;
   const productData = await fetchProductData(slug);
 
   if (!productData || productData.error) {
@@ -89,7 +88,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Page(props) {
+export default async function Page(props: { params: { slug: string }, searchParams: any }) {
   const searchParams = await props.searchParams;
   // Make sure params is properly resolved
   const resolvedParams = await props.params;
@@ -111,13 +110,11 @@ export default async function Page(props) {
         <ProductDetailsPage
           slug={resolvedParams.slug}
           productData={product}
-          searchParams={resolvedSearchParams}
+          // searchParams={resolvedSearchParams}
         />
       ) : (
         <OldProductDetailPage
-          slug={resolvedParams.slug}
           productData={product}
-          searchParams={resolvedSearchParams}
         />
       )}
     </div>

@@ -32,14 +32,7 @@ const AchievementEnvanto: React.FC = () => {
               Credit for this remarkable achievement goes to our team&apos;s
               dedication and passion for excellence.
             </p>
-            <Link
-              href={"https://1.envato.market/R5YR7b"}
-              target="_blank"
-              title="View WRTeam's Envato Portfolio and Achievements"
-              className="commonBtn"
-            >
-              Read More
-            </Link>
+            <Link href="https://1.envato.market/R5YR7b" target="_blank" aria-label="Read more about WRTeam's Envato portfolio and achievements" className="commonBtn" > Read&nbsp;More </Link>
           </div>
         </div>
         <div className="relative lg:flexCenter">
