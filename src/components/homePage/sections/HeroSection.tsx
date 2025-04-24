@@ -4,6 +4,7 @@ import teamImg from "../../../assets/images/homePage/teamImg.png";
 import { FaArrowRight } from "react-icons/fa";
 import heroImg from "../../../assets/images/homePage/heroSectImg.svg";
 import { PageTitle } from "@/components/HeadingComponent";
+import Link from "next/link";
 
 const HeroSection: React.FC = () => {
 
@@ -30,10 +31,10 @@ const HeroSection: React.FC = () => {
 
             {/* This div arranges button and creative minds section in one row */}
             <div className="flex flex-wrap between-1200-1399:flex-nowrap items-start md:items-center justify-between max-479:justify-center mt-8 lg:mt-4 gap-4">
-              <button className="commonBtn between-1200-1399:py-2 between-1200-1399:px-1 between-1200-1399:text-sm flex items-center gap-2">
+              <Link href={'/about-us'} title="Get to Know Us" className="commonBtn between-1200-1399:py-2 between-1200-1399:px-1 between-1200-1399:text-sm flex items-center gap-2">
                 <span>Get to Know Us</span>
                 <FaArrowRight />
-              </button>
+              </Link>
 
               <div className="flex flex-col">
                 <p className="font-medium between-1200-1399:text-sm">
