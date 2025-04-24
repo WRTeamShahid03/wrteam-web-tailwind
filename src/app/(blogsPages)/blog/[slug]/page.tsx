@@ -52,12 +52,10 @@ export async function generateMetadata({
 }
 
 // Server component for the blog page
-export default function BlogPage({
+export default async function Page({
   params,
-  searchParams,
 }: {
   params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
 }) {
   return <BlogDetailPage slug={params.slug} />;
 }
