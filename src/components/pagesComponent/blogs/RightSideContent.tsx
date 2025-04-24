@@ -61,7 +61,7 @@ const CategoryContent = () => {
       {categories.map((category) => (
         <div
           key={category.id}
-          className={`flexCenter !justify-between w-full font-semibold border-b border-[#51535892] last:border-b-0 pb-4 last:pb-0 cursor-pointer hoverprimaryColor  ${
+          className={`flexCenter !justify-between w-full font-semibold border-b border-[#51535892] last:border-b-0 pb-4 last:pb-0 cursor-pointer hover:primaryColor  ${
             currentCategorySlug === category.slug.toString()
               ? "primaryColor"
               : "textSecondary"
