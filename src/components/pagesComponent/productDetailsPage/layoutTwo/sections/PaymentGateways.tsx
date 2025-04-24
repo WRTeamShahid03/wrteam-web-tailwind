@@ -39,7 +39,7 @@ const OrbitPaymentGateways: React.FC<PaymentGatewaySection> = ({ title, descript
             <p className="sectionPara" dangerouslySetInnerHTML={{ __html: description || '' }} />
           </div>
           <div>
-            <div className="flex justify-center items-center mb-8 -mt-10">
+            <div className="flex justify-center items-center mb-8 -mt-10 py-3 lg:py-6">
               <div className='orbitPaymentsWrapper'>
                 <div className="orbit-container">
                   <div className="center-img">

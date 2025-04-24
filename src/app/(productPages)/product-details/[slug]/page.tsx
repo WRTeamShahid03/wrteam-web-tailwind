@@ -1,6 +1,7 @@
 import React from "react";
-import ProductDetailsPage from "@/components/pagesComponent/productDetailsPage/ProductDetailsPage";
+import { use } from "react";
 import { Metadata } from "next";
+import ProductDetailsPage from "@/components/pagesComponent/productDetailsPage/ProductDetailsPage";
 import OldProductDetailPage from "@/components/pagesComponent/productDetailsPage/oldUi/OldProductDetailPage";
 import { SoftwareProductSchema } from "@/components/JsonLdSchema";
 
@@ -24,8 +25,11 @@ async function fetchProductData(slug: string) {
 }
 
 // Generate metadata for the product details page
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  // Make sure params is properly resolved before accessing its properties
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
   const slug = params.slug;
   const productData = await fetchProductData(slug);
 
@@ -88,19 +92,20 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function Page(props: { params: { slug: string }, searchParams: any }) {
-  const searchParams = await props.searchParams;
-  // Make sure params is properly resolved
-  const resolvedParams = await props.params;
-  // Also resolve searchParams if needed
-  const resolvedSearchParams = await searchParams;
-
-  // Fetch product data
-  const productData = await fetchProductData(resolvedParams.slug);
+export default function Page({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams: any;
+}) {
+  const slug = params.slug;
+  
+  // Use server component async data fetching
+  const productData = use(fetchProductData(slug));
   const product = productData?.data;
   const isNewUI = product?.display_new_ui;
 
-  // Pass the slug to the ProductDetailsPage component
   return (
     <div>
       {/* Add structured data schema for the product */}
@@ -108,13 +113,15 @@ export default async function Page(props: { params: { slug: string }, searchPara
 
       {isNewUI === 1 ? (
         <ProductDetailsPage
-          slug={resolvedParams.slug}
+          slug={slug}
           productData={product}
-          // searchParams={resolvedSearchParams}
+          // searchParams={searchParams}
         />
       ) : (
         <OldProductDetailPage
+          // slug={slug}
           productData={product}
+          // searchParams={searchParams}
         />
       )}
     </div>
