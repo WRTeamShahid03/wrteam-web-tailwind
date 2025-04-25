@@ -95,19 +95,19 @@ const NewFooter = () => {
               <h3 className="text-white font-medium text-lg mb-4 bg-[#2a2e35] py-2 px-4 rounded-md">Company</h3>
               <ul className="space-y-3 text-gray-300">
                 <li><Link href="/about-us" className="hover:text-white transition-all flex justify-between items-center group duration-300" title='About Us'>About Us
-                <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300'/>
+                  <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
                 <li><Link href="/career" className="hover:text-white transition-all flex justify-between items-center group duration-300" title='Careers'>Careers
-                <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300'/>
+                  <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
                 <li><Link href="/blogs" className="hover:text-white transition-all flex justify-between items-center group duration-300" title='Blogs'>Blogs
-                <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300'/>
+                  <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
                 <li><Link href="/contact-us" className="hover:text-white transition-all flex justify-between items-center group duration-300" title='Contact Us'>Contact Us
-                <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300'/>
+                  <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
                 <li><Link href="/exclusive-license" className="hover:text-white transition-all flex justify-between items-center group duration-300" title='Exclusive License'>Exclusive License
-                <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300'/>
+                  <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
               </ul>
             </div>
@@ -117,22 +117,22 @@ const NewFooter = () => {
               <h3 className="text-white font-medium text-lg mb-4 bg-[#2a2e35] py-2 px-4 rounded-md">Our Services</h3>
               <ul className="space-y-3 text-gray-300">
                 <li><Link href="/services/web-development" title='Web Development' className="hover:text-white transition-all flex justify-between items-center group duration-300">Web Development
-                <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300'/>
+                  <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
                 <li><Link href="/services/app-development" title='App Development' className="hover:text-white transition-all flex justify-between items-center group duration-300">App Development
-                <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300'/>
+                  <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
                 <li><Link href="/services/ui-ux-design" title='UI / UX Design' className="hover:text-white transition-all flex justify-between items-center group duration-300">UI / UX Design
-                <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300'/>
+                  <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
                 <li><Link href="/services/digital-marketing" title='Digital Marketing' className="hover:text-white transition-all flex justify-between items-center group duration-300">Digital Marketing
-                <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300'/>
+                  <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
                 <li><Link href="/services/customization" title='Customization' className="hover:text-white transition-all flex justify-between items-center group duration-300">Customization
-                <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300'/>
+                  <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
                 <li><Link href="/services/installation" title='Installation' className="hover:text-white transition-all flex justify-between items-center group duration-300">Installation
-                <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300'/>
+                  <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
               </ul>
             </div>
@@ -142,10 +142,10 @@ const NewFooter = () => {
               <h3 className="text-white font-medium text-lg mb-4 bg-[#2a2e35] py-2 px-4 rounded-md">Our Work</h3>
               <ul className="space-y-3 text-gray-300">
                 <li><Link href="/our-work/development" className="hover:text-white transition-all flex justify-between items-center group duration-300" title='Development'>Development
-                <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300'/>
+                  <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
                 <li><Link href="/our-work/design" className="hover:text-white transition-all flex justify-between items-center group duration-300" title='Design'>Design
-                <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300'/>
+                  <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
               </ul>
             </div>
@@ -229,7 +229,21 @@ const NewFooter = () => {
                 Share your thoughts with us to help improve your experience!
               </p>
             </div>
-            <FeedbackDialog />
+            <Link href="/feedback" title='Feedback' className="inline-flex items-center bg-white text-[#171B26] px-4 py-2 rounded-md font-medium text-sm transition hover:bg-gray-200">
+              Feedback
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 ml-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </Link>
           </div>
 
           {/* Trust Badges */}

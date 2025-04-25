@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     // Try to fetch the API URL structure or company website to determine proper endpoint
     try {
       // Try with GET first to check API availability and structure
-      const checkApi = await axios.get("https://schoolbyte.wrteam.me", {
+      const checkApi = await axios.get("https://backend.wrteam.in", {
         timeout: 3000,
       });
       console.log("API check response:", checkApi.status);
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
     // First try with JSON format
     try {
       const response = await axios.post(
-        "https://schoolbyte.wrteam.me/api/feedback",
+        "https://backend.wrteam.in/api/feedback",
         jsonData,
         {
           headers: {
@@ -59,7 +59,7 @@ export async function POST(request: Request) {
 
       // Fall back to FormData attempt
       const response = await axios.post(
-        "https://schoolbyte.wrteam.me/api/feedback",
+        "https://backend.wrteam.in/api/feedback",
         apiFormData,
         {
           headers: {

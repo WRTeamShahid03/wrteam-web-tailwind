@@ -3,7 +3,7 @@ import { axiosClient, createApiError } from '@/lib/api';
 import { ApiResponse } from '@/lib/api/apiUtils';
 
 // const EXTERNAL_API_URL = 'http://backend.wrteam.in/api/video-testimonials';
-const EXTERNAL_API_URL = 'https://schoolbyte.wrteam.me/api/video-testimonials';
+const EXTERNAL_API_URL = 'https://backend.wrteam.in/api/video-testimonials';
 
 export async function GET() {
   try {
