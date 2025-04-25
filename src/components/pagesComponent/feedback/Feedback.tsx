@@ -5,12 +5,16 @@ import { toast } from "react-hot-toast";
 // Interface for form data
 interface FeedbackData {
     name: string;
+    email: string;
+    product: string;
     message: string;
 }
 
 // Interface for form errors
 interface FormErrors {
     name?: string;
+    email?: string;
+    product?: string;
     message?: string;
 }
 
@@ -18,6 +22,8 @@ const Feedback = () => {
     // Form state
     const [formData, setFormData] = useState<FeedbackData>({
         name: "",
+        email: "",
+        product: "",
         message: ""
     });
 
@@ -58,6 +64,18 @@ const Feedback = () => {
             newErrors.name = "Name is required";
         }
 
+        // Validate email
+        if (!formData.email.trim()) {
+            newErrors.email = "Email is required";
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            newErrors.email = "Please enter a valid email address";
+        }
+
+        // Validate product
+        // if (!formData.product.trim()) {
+        //     newErrors.product = "Product name is required";
+        // }
+
         // Validate message
         if (!formData.message.trim()) {
             newErrors.message = "Feedback message is required";
@@ -79,12 +97,16 @@ const Feedback = () => {
 
                 // Create FormData for submission to API
                 const apiFormData = new FormData();
-                apiFormData.append("name", formData.name);
-                apiFormData.append("message", formData.message);
+                apiFormData.append('email', formData.email);
+                apiFormData.append('message', formData.message);
+                apiFormData.append('name', formData.name);
+                apiFormData.append('phone', "");
+                apiFormData.append('product', formData.product);
+                apiFormData.append('subject', "feedback");
 
                 try {
                     // Try the API endpoint
-                    const response = await fetch("/api/feedback", {
+                    const response = await fetch("/api/contact-us", {
                         method: "POST",
                         body: apiFormData,
                     });
@@ -135,6 +157,8 @@ const Feedback = () => {
         // Reset form
         setFormData({
             name: "",
+            email: "",
+            product: "",
             message: "",
         });
 
@@ -151,10 +175,12 @@ const Feedback = () => {
 
         try {
             // Create a mailto link as fallback
-            const mailtoLink = `mailto:${supportEmail}?subject=Feedback%20from%20${encodeURIComponent(
+            const mailtoLink = `mailto:${supportEmail}?subject=Feedback%20for%20${encodeURIComponent(
+                data.product
+            )}%20from%20${encodeURIComponent(
                 data.name
             )}&body=${encodeURIComponent(
-                `Name: ${data.name}\n\nFeedback: ${data.message}`
+                `Name: ${data.name}\nEmail: ${data.email}\nProduct: ${data.product}\n\nFeedback: ${data.message}`
             )}`;
 
             // Open mailto link
@@ -170,6 +196,8 @@ const Feedback = () => {
             // Reset form
             setFormData({
                 name: "",
+                email: "",
+                product: "",
                 message: "",
             });
 
@@ -213,6 +241,45 @@ const Feedback = () => {
                     />
                     {errors.name && (
                         <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                    )}
+                </div>
+
+                <div className="space-y-2">
+                    <label htmlFor="email" className="text-base font-medium flex">
+                        Your Email <span className="text-red-500 ml-1">*</span>
+                    </label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="Enter Your Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className={`border ${errors.email ? "border-red-500" : "border-gray-300"
+                            } rounded w-full py-2 px-4`}
+                    />
+                    {errors.email && (
+                        <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                    )}
+                </div>
+
+                <div className="space-y-2">
+                    <label htmlFor="product" className="text-base font-medium flex">
+                        Product <span className="text-red-500 ml-1">*</span>
+                    </label>
+                    <input
+                        id="product"
+                        name="product"
+                        placeholder="Enter Product Name"
+                        value={formData.product}
+                        onChange={handleChange}
+                        required
+                        className={`border ${errors.product ? "border-red-500" : "border-gray-300"
+                            } rounded w-full py-2 px-4`}
+                    />
+                    {errors.product && (
+                        <p className="text-red-500 text-sm mt-1">{errors.product}</p>
                     )}
                 </div>
 

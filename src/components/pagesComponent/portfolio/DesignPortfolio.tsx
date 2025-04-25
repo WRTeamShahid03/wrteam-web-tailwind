@@ -5,6 +5,7 @@ import Layout from "@/components/layout/Layout";
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 // Skeleton component for loading states
 const SkeletonItem = () => (
@@ -58,6 +59,7 @@ interface PortfolioItem {
   app_store_link?: string;
   website_link?: string;
   short_description?: string;
+  description?: string;
   products?: Product;
 }
 
@@ -135,6 +137,7 @@ export default function DesignPortfolio() {
 
       const response = await fetch(url);
       const data = await response.json();
+      console.log('data',data);
 
       // Check for valid response structure before processing
       if (data && !data.error) {
@@ -255,6 +258,8 @@ export default function DesignPortfolio() {
     fetchPortfolioItems(value);
     setShowFilterDropdown(false);
   };
+
+  console.log('portfolioItems',portfolioItems);
 
   return (
     <Layout>
@@ -396,7 +401,7 @@ export default function DesignPortfolio() {
                     />
                   )}
                 </div>
-
+                <Link href={`/our-work/design/${item.title}`} title={item.title}>
                 <div
                   className={`bg-white rounded-lg p-3 sm:p-4 relative ${
                     hoveredCardId === item.id.toString()
@@ -432,6 +437,7 @@ export default function DesignPortfolio() {
                     )}
                   </div>
                 </div>
+                </Link>
               </motion.div>
             ))}
 
@@ -460,6 +466,8 @@ export default function DesignPortfolio() {
             </button>
           </div>
         )}
+        {/* {console.log('portfolioItems',portfolioItems)} */}
+        {/* <div dangerouslySetInnerHTML={{__html: portfolioItems.map((item) => item.description || '').join('')}} /> */}
       </div>
     </Layout>
   );

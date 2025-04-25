@@ -146,7 +146,7 @@ export default function ClientReviewSection() {
   const hasMoreToLoad = displayTestimonials.length > displayCount;
 
   return (
-    <section className="py-16">
+    <section className="py-16 commonMT">
       <div className="container space-y-12 md:space-y-16 lg:space-y-20'">
         <div className="flexColCenter gap-4 md:gap-6">
           <span className="sectionTag text-black">Read Their Experiences</span>
