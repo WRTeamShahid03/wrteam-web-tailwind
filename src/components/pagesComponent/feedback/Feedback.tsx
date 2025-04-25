@@ -5,7 +5,6 @@ import { toast } from "react-hot-toast";
 // Interface for form data
 interface FeedbackData {
     name: string;
-    email: string;
     product: string;
     message: string;
 }
@@ -13,7 +12,6 @@ interface FeedbackData {
 // Interface for form errors
 interface FormErrors {
     name?: string;
-    email?: string;
     product?: string;
     message?: string;
 }
@@ -22,7 +20,6 @@ const Feedback = () => {
     // Form state
     const [formData, setFormData] = useState<FeedbackData>({
         name: "",
-        email: "",
         product: "",
         message: ""
     });
@@ -64,13 +61,6 @@ const Feedback = () => {
             newErrors.name = "Name is required";
         }
 
-        // Validate email
-        if (!formData.email.trim()) {
-            newErrors.email = "Email is required";
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = "Please enter a valid email address";
-        }
-
         // Validate product
         // if (!formData.product.trim()) {
         //     newErrors.product = "Product name is required";
@@ -97,12 +87,9 @@ const Feedback = () => {
 
                 // Create FormData for submission to API
                 const apiFormData = new FormData();
-                apiFormData.append('email', formData.email);
-                apiFormData.append('message', formData.message);
                 apiFormData.append('name', formData.name);
-                apiFormData.append('phone', "");
                 apiFormData.append('product', formData.product);
-                apiFormData.append('subject', "feedback");
+                apiFormData.append('message', formData.message);
 
                 try {
                     // Try the API endpoint
@@ -124,17 +111,14 @@ const Feedback = () => {
                         toast.error(
                             responseData.message || "There was an error submitting your feedback."
                         );
-                        handleEmailFallback(formData);
                     }
                 } catch (apiError) {
                     console.error("API request failed:", apiError);
                     toast.error("We couldn't connect to our server. Trying alternative method.");
-                    handleEmailFallback(formData);
                 }
             } catch (error) {
                 console.error("Error in form submission:", error);
                 toast.error("We're experiencing technical difficulties. Please try again later.");
-                handleEmailFallback(formData);
             } finally {
                 setIsSubmitting(false);
             }
@@ -157,7 +141,6 @@ const Feedback = () => {
         // Reset form
         setFormData({
             name: "",
-            email: "",
             product: "",
             message: "",
         });
@@ -168,50 +151,7 @@ const Feedback = () => {
         }
     };
 
-    // Email fallback method when API fails
-    const handleEmailFallback = (data: FeedbackData) => {
-        // Update support email to match your actual support email
-        const supportEmail = "feedback@wrteam.in";
 
-        try {
-            // Create a mailto link as fallback
-            const mailtoLink = `mailto:${supportEmail}?subject=Feedback%20for%20${encodeURIComponent(
-                data.product
-            )}%20from%20${encodeURIComponent(
-                data.name
-            )}&body=${encodeURIComponent(
-                `Name: ${data.name}\nEmail: ${data.email}\nProduct: ${data.product}\n\nFeedback: ${data.message}`
-            )}`;
-
-            // Open mailto link
-            window.open(mailtoLink, "_blank");
-
-            toast.success(
-                "We've opened an email window for you to send your feedback directly to our team."
-            );
-
-            // Still mark as success since we provided an alternative
-            setSubmitSuccess(true);
-
-            // Reset form
-            setFormData({
-                name: "",
-                email: "",
-                product: "",
-                message: "",
-            });
-
-            if (form.current) {
-                form.current.reset();
-            }
-        } catch (emailError) {
-            console.error("Email fallback error:", emailError);
-            toast.error(
-                `Please contact us directly at ${supportEmail} with your feedback.`,
-                { duration: 8000 }
-            );
-        }
-    };
 
     return (
         <div className="container h-screen flexColCenter lg:w-1/2 gap-12">
@@ -241,26 +181,6 @@ const Feedback = () => {
                     />
                     {errors.name && (
                         <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-                    )}
-                </div>
-
-                <div className="space-y-2">
-                    <label htmlFor="email" className="text-base font-medium flex">
-                        Your Email <span className="text-red-500 ml-1">*</span>
-                    </label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="Enter Your Email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className={`border ${errors.email ? "border-red-500" : "border-gray-300"
-                            } rounded w-full py-2 px-4`}
-                    />
-                    {errors.email && (
-                        <p className="text-red-500 text-sm mt-1">{errors.email}</p>
                     )}
                 </div>
 
@@ -306,7 +226,7 @@ const Feedback = () => {
                 <div className="flex justify-center mt-8">
                     <button
                         type="submit"
-                        className="commonBtn"
+                        className="commonBtn commonBtnSecondaryBg"
                         disabled={isSubmitting}
                     >
                         {isSubmitting ? (

@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 
 // Skeleton component for loading states
 const SkeletonItem = () => (
@@ -163,8 +164,7 @@ export default function DesignPortfolio() {
           // Map API response to our PortfolioItem format
           const items = itemsData.map((item: ApiPortfolioItem) => ({
             id: item.id || Math.random().toString(36).substr(2, 9),
-            title:
-              item.products?.name || item.app_headline || "Untitled Project",
+            title: item.app_headline || item.products?.name || "Untitled Project",
             category: item.tag?.split(",")[0] || "Design",
             image: item.image || item.app_image || "/placeholder.jpg",
             hasDemo: !!(
@@ -267,7 +267,7 @@ export default function DesignPortfolio() {
         title="Design Portfolio"
         breadcrumbs={[
           { name: "Home", path: "/" },
-          { name: "Our Work", path: "/our-work" },
+          { name: "Our Work"},
           { name: "Design" }, // Current page, no path
         ]}
       />
@@ -416,23 +416,8 @@ export default function DesignPortfolio() {
                     </div>
 
                     {hoveredCardId === item.id.toString() && (
-                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center shadow-sm border border-[#2A2E35]">
-                        <svg
-                          width="9"
-                          height="9"
-                          className="sm:w-[11px] sm:h-[11px]"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M7 12H17M17 12L13 8M17 12L13 16"
-                            stroke="black"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center shadow-sm border border-[#2A2E35] p-2">
+                        <FaArrowRight size={14}/>
                       </div>
                     )}
                   </div>
