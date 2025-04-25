@@ -19,7 +19,7 @@ const Installation: React.FC = () => {
     const [currency, setCurrency] = useState<'USD' | 'INR'>('USD');
 
     // Exchange rate (1 USD to INR)
-    const exchangeRate = 75;
+    const exchangeRate = 85.46;
 
     // Toggle currency function
     const toggleCurrency = () => {
@@ -27,10 +27,11 @@ const Installation: React.FC = () => {
     };
 
     // Function to convert price based on selected currency
-    const convertPrice = (usdPrice: number) => {
-        const convertedPrice = currency === 'USD' ? usdPrice : Math.round(usdPrice * exchangeRate);
-        return convertedPrice.toLocaleString('en-US');
+    const convertPrice = (usdPrice: number, inrPrice?: number) => {
+        const price = currency === 'USD' ? usdPrice : inrPrice ?? Math.round(usdPrice * exchangeRate);
+        return price.toLocaleString('en-US');
     };
+    
 
     // Currency symbol
     const currencySymbol = currency === 'USD' ? '$' : '₹';
@@ -60,6 +61,9 @@ const Installation: React.FC = () => {
                 "Google Analytics Setup",
                 "Third-party API Integration",
             ],
+            // New INR values
+            cutPriceINR: 20990,
+            priceINR: 16499,
         },
         {
             id: 1,
@@ -81,6 +85,8 @@ const Installation: React.FC = () => {
                 "Live over PlayStore OR Live over App Store",
             ],
             excludedServices: ["Live Website on Server"],
+            cutPriceINR: 40990,
+            priceINR: 34499,
         },
         {
             id: 2,
@@ -103,6 +109,8 @@ const Installation: React.FC = () => {
                 "Live over PlayStore OR Live over App Store",
             ],
             excludedServices: ["Live Website on Server"],
+            cutPriceINR: 80990,
+            priceINR: 49499,
         },
         {
             id: 3,
@@ -126,8 +134,11 @@ const Installation: React.FC = () => {
                 "Live over PlayStore OR Live over App Store",
             ],
             excludedServices: [],
+            cutPriceINR: 99990,
+            priceINR: 55499,
         },
     ];
+    
 
     const reskinningDetails = [
         "App LOGO / ICON",
@@ -198,10 +209,22 @@ const Installation: React.FC = () => {
 
                                 <div className='bg-[#2E71FE14] rounded-[8px] p-4 flexCenter gap-2 font-extrabold !items-end'>
                                     <span className={`text-center text-lg sm:text-xl line-through font-semibold`}>
-                                        {currencySymbol}{convertPrice(pkg.cutPrice)}
+                                        {
+                                            currency === 'INR' ? (
+                                                <span>{currencySymbol}{pkg.cutPriceINR}</span>
+                                            ) : (
+                                                <span>{currencySymbol}{pkg.cutPrice}</span>
+                                            )
+                                        }
                                     </span>
                                     <span className={`text-center text-2xl sm:text-3xl font-bold primaryColor`}>
-                                        {currencySymbol}{convertPrice(pkg.price)}
+                                        {
+                                            currency === 'INR' ? (
+                                                <span>{currencySymbol}{pkg.priceINR}</span>
+                                            ) : (
+                                                <span>{currencySymbol}{pkg.price}</span>
+                                            )
+                                        }
                                     </span>
                                 </div>
                             </div>

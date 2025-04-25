@@ -56,7 +56,9 @@ export interface installationPackagesDataTypes {
   packageName: string;
   setups: string;
   cutPrice: number;
+  cutPriceINR: number;
   price: number;
+  priceINR: number;
   services: Array<string>;
   excludedServices: Array<string>;
 }
