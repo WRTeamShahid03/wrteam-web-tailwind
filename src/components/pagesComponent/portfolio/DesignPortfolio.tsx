@@ -88,6 +88,8 @@ export default function DesignPortfolio() {
   // Items per page
   const limit = 6;
 
+  const [portfolioCateName, setPortfolioCateName] = useState<string>("");
+
   // Fetch categories from API
   useEffect(() => {
     const fetchCategories = async () => {
@@ -139,6 +141,9 @@ export default function DesignPortfolio() {
       const response = await fetch(url);
       const data = await response.json();
       console.log('data',data);
+      setPortfolioCateName(data?.data[0]?.category?.name);
+
+      // console.log('data?.data[0]?.category?.name',data?.data[0]?.category?.name)
 
       // Check for valid response structure before processing
       if (data && !data.error) {
@@ -148,13 +153,9 @@ export default function DesignPortfolio() {
         if (data.data && Array.isArray(data.data)) {
           // If data.data is directly an array
           itemsData = data.data;
-        } else if (
-          data.data &&
-          data.data.data &&
-          Array.isArray(data.data.data)
-        ) {
-          // If data.data.data is an array (pagination structure)
-          itemsData = data.data.data;
+
+          console.log('itemsData',itemsData);
+
         } else if (Array.isArray(data)) {
           // If data itself is an array
           itemsData = data;
@@ -411,8 +412,8 @@ export default function DesignPortfolio() {
                 >
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="text-xs text-gray-600">{item.category}</p>
-                      <h3 className="text-sm font-medium mt-1">{item.title}</h3>
+                      <p className="text-sm text-[#2A2E35]">{portfolioCateName}</p>
+                      <h3 className="text-[#181C24] font-bold mt-1">{item.title}</h3>
                     </div>
 
                     {hoveredCardId === item.id.toString() && (

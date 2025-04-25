@@ -88,12 +88,19 @@ const Feedback = () => {
                 // Create FormData for submission to API
                 const apiFormData = new FormData();
                 apiFormData.append('name', formData.name);
-                apiFormData.append('product', formData.product);
+
+                // Only add product if it has a value, otherwise add empty string
+                const productValue = formData.product.trim();
+                apiFormData.append('product', productValue ? productValue : "-");
+
+                // For debugging - log what's being sent
+                console.log('Product value being sent:', productValue);
+
                 apiFormData.append('message', formData.message);
 
                 try {
                     // Try the API endpoint
-                    const response = await fetch("/api/contact-us", {
+                    const response = await fetch("/api/feedback", {
                         method: "POST",
                         body: apiFormData,
                     });
@@ -149,6 +156,11 @@ const Feedback = () => {
         if (form.current) {
             form.current.reset();
         }
+        
+        // Hide success message after 2 seconds
+        setTimeout(() => {
+            setSubmitSuccess(false);
+        }, 2000);
     };
 
 
@@ -186,7 +198,7 @@ const Feedback = () => {
 
                 <div className="space-y-2">
                     <label htmlFor="product" className="text-base font-medium flex">
-                        Product <span className="text-red-500 ml-1">*</span>
+                        Product
                     </label>
                     <input
                         id="product"

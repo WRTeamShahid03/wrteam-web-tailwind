@@ -38,16 +38,11 @@ const VideoTestimonials = () => {
 
   useEffect(() => {
     const fetchVideoTestimonials = async () => {
-      console.log('fetchVideoTestimonials');
       try {
-        console.log('fetchVideoTestimonials try');
         setIsLoading(true);
         const response = await axiosClient.get('/api/video-testimonials', {
           timeout: 10000,
         });
-
-        console.log('response =>', response);
-        console.log('response.data =>', response.data.data);
 
         if (response?.data?.data && Array.isArray(response.data.data)) {
 
@@ -89,8 +84,6 @@ const VideoTestimonials = () => {
       videoUrl: 'https://youtu.be/coGUusRo8TI?si=70NdmvFQXe3WxXN4',
     },
   ];
-
-  console.log(videoTestimonials);
 
 
   return (
