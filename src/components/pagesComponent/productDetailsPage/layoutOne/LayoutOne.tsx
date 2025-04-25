@@ -41,40 +41,49 @@ const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extended
 
   return (
     <div className="overflow-x-hidden">
-      <HeroSection
-        title={introSection?.title || ""}
-        description={introSection?.description || ""}
-        mainImage={introSection?.image_url || ""}
-        otherImagesUrl={introSection?.other_images_url || []}
-        technologySection={technologySection}
-      />
+      {
+        introSection &&
+        <HeroSection
+          title={introSection?.title || ""}
+          description={introSection?.description || ""}
+          mainImage={introSection?.image_url || ""}
+          otherImagesUrl={introSection?.other_images_url || []}
+          technologySection={technologySection}
+        />
+      }
 
       {/* Passing product element data to SliderSection */}
-      <SliderSection
-        title={productElementSection?.title || ""}
-        description={productElementSection?.description || ""}
-        elements={(productElementSection?.elements || []).map(
-          (element, index) => ({
-            id: index + 1,
-            name: element.name,
-            details: element.details || "",
-            image_url: element.image_url,
-            type: element.type,
-            link: element.link === null ? undefined : element.link,
-            android_link: element.android_link,
-            ios_link: element.ios_link,
-            panel_link: element.panel_link,
-          })
-        )}
-      />
+      {
+        productElementSection &&
+        <SliderSection
+          title={productElementSection?.title || ""}
+          description={productElementSection?.description || ""}
+          elements={(productElementSection?.elements || []).map(
+            (element, index) => ({
+              id: index + 1,
+              name: element.name,
+              details: element.details || "",
+              image_url: element.image_url,
+              type: element.type,
+              link: element.link === null ? undefined : element.link,
+              android_link: element.android_link,
+              ios_link: element.ios_link,
+              panel_link: element.panel_link,
+            })
+          )}
+        />
+      }
 
       {/* Pass feature_section data to WhyChooseUs */}
-      <WhyChooseUs
-        title={featureSection?.title || ""}
-        description={featureSection?.description || ""}
-        features={featureSection?.features || []}
-        mainImage={featureSection?.main_image_url}
-      />
+      {
+        featureSection &&
+        <WhyChooseUs
+          title={featureSection?.title || ""}
+          description={featureSection?.description || ""}
+          features={featureSection?.features || []}
+          mainImage={featureSection?.main_image_url}
+        />
+      }
 
       {/* Payment Gateway Section with proper data */}
       {paymentGatewaySection && (
@@ -91,37 +100,51 @@ const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extended
       <SuccessStatics />
 
       {/* FeaturesSection with panel-wise features */}
-      {/* <FeaturesSection panelFeatures={panelWiseFeatureSection} /> */}
+      {
 
-      <InnerPagesSect
-        title={
-          productDetails.product_description[0].panel_wise_feature_section.title
-        }
-        description={
-          productDetails.product_description[0].panel_wise_feature_section
-            .description
-        }
-        tabs={
-          productDetails.product_description[0].panel_wise_feature_section.tabs
-        }
-        layoutOne={true}
-      />
+        productDetails?.product_description[0] &&
+        <InnerPagesSect
+          title={
+            productDetails.product_description[0].panel_wise_feature_section.title
+          }
+          description={
+            productDetails.product_description[0].panel_wise_feature_section
+              .description
+          }
+          tabs={
+            productDetails.product_description[0].panel_wise_feature_section.tabs
+          }
+          layoutOne={true}
+        />
+      }
 
-      <MoneyTimeSection productName={productName}/>
+      <MoneyTimeSection productName={productName} />
 
       {/* Pass app-wise feature data to ResponsiveUISlider */}
-      <ResponsiveUISlider appFeatures={appWiseFeatureSection} />
+      {
+        appWiseFeatureSection &&
+        <ResponsiveUISlider appFeatures={appWiseFeatureSection} />
+      }
 
-      <ProcessPurchase productName={productName}/>
+      <ProcessPurchase productName={productName} />
 
       {/* Pass testimonials data to ClientReview */}
-      <ClientReview testimonials={productTestimonials} />
+      {
+        productTestimonials &&
+        <ClientReview testimonials={productTestimonials} />
+      }
 
       <PerfectPlan layoutOne={true} checkoutUrl={checkoutUrl} extendedLicensePrice={extendedLicensePrice} extendedLicenseLink={extendedLicenseLink} regularLicensePrice={regularLicensePrice} />
 
-      <FaqSection faqs={productFaqs} />
+      {
+        productFaqs &&
+        <FaqSection faqs={productFaqs} />
+      }
 
-      <HelpAndSupport helpSection={helpSection} />
+      {
+        helpSection &&
+        <HelpAndSupport helpSection={helpSection} />
+      }
 
       <ReadyToPower checkoutUrl={checkoutUrl} />
     </div>
