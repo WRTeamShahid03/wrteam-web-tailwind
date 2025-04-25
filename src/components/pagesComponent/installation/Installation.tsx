@@ -31,7 +31,7 @@ const Installation: React.FC = () => {
         const price = currency === 'USD' ? usdPrice : inrPrice ?? Math.round(usdPrice * exchangeRate);
         return price.toLocaleString('en-US');
     };
-    
+
 
     // Currency symbol
     const currencySymbol = currency === 'USD' ? '$' : '₹';
@@ -138,7 +138,7 @@ const Installation: React.FC = () => {
             priceINR: 55499,
         },
     ];
-    
+
 
     const reskinningDetails = [
         "App LOGO / ICON",
@@ -198,9 +198,9 @@ const Installation: React.FC = () => {
                             <div className='flex flex-col gap-3 border-b pb-4 border-dashed border-black'>
 
                                 <div className='flex gap-4'>
-                                    <div className='bg-[#181C2414] rounded-[6px] p-2 flexCenter h-[72px] w-[72px]'>
+                                    {/* <div className='bg-[#181C2414] rounded-[6px] p-2 flexCenter h-[72px] w-[72px]'>
                                         <Image src={pkg.icon} height={42} width={42} loading='lazy' className='' alt='bg' />
-                                    </div>
+                                    </div> */}
                                     <div className='flex flex-col gap-1'>
                                         <h3 className="text-2xl font-semibold">{pkg.packageName}</h3>
                                         <p className="text-[#545A68] font-semibold">{pkg.setups}</p>
@@ -227,8 +227,12 @@ const Installation: React.FC = () => {
                                         }
                                     </span>
                                 </div>
+                                {
+                                    currency === 'INR' &&
+                                    <span className='text-sm font-medium text-center'>(excl. GST)</span>
+                                }
                             </div>
-                            
+
                             <ul className="mt-4 space-y-8 [&>li-las]">
                                 <span className='font-semibold'>What&apos;s included :</span>
                                 {pkg.services.map((service, i) => (
