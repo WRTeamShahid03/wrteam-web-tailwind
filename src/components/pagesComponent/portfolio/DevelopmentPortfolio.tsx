@@ -174,8 +174,7 @@ export default function DevelopmentPortfolio() {
           // Map API response to our PortfolioItem format
           const items = itemsData.map((item: PortfolioItem) => ({
             id: item.id || Math.random().toString(36).substr(2, 9),
-            title:
-              item.products?.name || item.app_headline || "Untitled Project",
+            title: item.app_headline || "Untitled Project",
             description: item.description || "",
             image: item.image || item.app_image || "/placeholder.jpg",
             hasDemo: !!(
@@ -286,7 +285,7 @@ export default function DevelopmentPortfolio() {
           ]}
         />
 
-        <div className="container commonMT px-4 sm:px-6 lg:px-8">
+        <div className="container commonMT">
           {/* Section heading */}
           <SectionHeading
             badge="Our Code, Your Power"
@@ -429,7 +428,7 @@ export default function DevelopmentPortfolio() {
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover md:h-[300px] md:w-[597px]"
                       />
                     )}
 
