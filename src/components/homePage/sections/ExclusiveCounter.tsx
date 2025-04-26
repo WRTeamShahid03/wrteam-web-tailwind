@@ -168,7 +168,7 @@ const ExclusiveCounter: React.FC = () => {
                     isInView={inViewState}
                   />
                   <motion.p
-                    className="max-479:!text-[10px] sm:text-sm text-gray-300"
+                    className="text-sm text-gray-300 text-center max-399:h-[40px]"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}

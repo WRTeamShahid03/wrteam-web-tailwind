@@ -63,7 +63,6 @@ const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, exte
 
             {
                 productDetails?.product_description[0]?.payment_gateway_section &&
-
                 <OrbitPaymentGateways title={productDetails?.product_description[0].payment_gateway_section.title} description={productDetails?.product_description[0].payment_gateway_section.description} gateways={productDetails?.product_description[0].payment_gateway_section.gateways} payment_gateway_main_image_url={productDetails?.product_description[0].payment_gateway_section.payment_gateway_main_image_url} />
             }
 

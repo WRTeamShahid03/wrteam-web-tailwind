@@ -6,11 +6,15 @@ import { usePathname } from 'next/navigation'
 import developmentImg from '../../../assets/images/homePage/development-portfolio.png'
 import designImg from '../../../assets/images/homePage/ui-ux-portfolio.png'
 
-const OurWorkDropdown = () => {
+interface dataProps {
+  ourWorkDropdown: boolean,
+  setOurWorkDropdown: (value: boolean) => void,
+  isMobileNav?: boolean
+} 
+
+const OurWorkDropdown: React.FC<dataProps> = ({ ourWorkDropdown, setOurWorkDropdown, isMobileNav }) => {
 
   const pathname = usePathname();
-
-  const [showDrop, setShowDrop] = useState<boolean>(false)
 
   const data = [
     {
@@ -36,14 +40,14 @@ const OurWorkDropdown = () => {
 
   return (
     <div className="max-1199:relative">
-      <div className="flex items-center gap-1 cursor-pointer" onClick={() => setShowDrop(true)}>
+      <div className="flex items-center gap-1 cursor-pointer" onClick={() => setOurWorkDropdown(isMobileNav? !ourWorkDropdown : true)} onMouseEnter={() => setOurWorkDropdown(isMobileNav? !ourWorkDropdown : true)}>
       <span className={`flex items-center gap-1 relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black font-medium ${active && 'after:!bg-black font-semibold'}`}> Our Work <FaAngleDown /></span>
       </div>
 
-      {showDrop && (
+      {ourWorkDropdown && (
         <div
         className="absolute max-1199:!top-[28px] max-1680:top-[137px] top-[144px] left-0 right-0 mx-auto bg-white rounded-b-2xl shadow-md max-399:w-[250px] max-1199:w-[350px] between-1200-1399:w-[900px] w-[1000px] max-1199:p-3 p-6 z-50 pt-0"
-        onMouseLeave={() => setShowDrop(false)}
+        onMouseLeave={() => setOurWorkDropdown(false)}
         >
           <div className="flex gap-6 max-1199:flex-wrap">
             {data.map((item, index) => (

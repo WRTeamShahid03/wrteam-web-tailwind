@@ -30,7 +30,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ testimonials }): React.
     return (
         <section className='commonMT productDetailPrimaryBg py-8 md:py-12 lg:py-20'>
             <div className="container">
-                <div className='grid grid-cols-2 gap-6'>
+                <div className='grid md:grid-cols-2 gap-6'>
                     <div className='bg-white p-12 rounded-[8px] relative'>
                         <Swiper
                             ref={sliderRef}

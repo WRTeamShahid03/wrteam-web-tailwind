@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "@/components/commonComponents/SectionHeading";
 import PageHeader from "@/components/commonComponents/PageHeader";
 import Layout from "@/components/layout/Layout";
+import { BiRightArrowCircle } from "react-icons/bi";
 
 // Skeleton component for loading states
 const SkeletonItem = () => (
@@ -171,11 +172,11 @@ export default function DevelopmentPortfolio() {
 
         if (itemsData.length > 0) {
           // Map API response to our PortfolioItem format
-          const items = itemsData.map((item: PortfolioApiItem) => ({
+          const items = itemsData.map((item: PortfolioItem) => ({
             id: item.id || Math.random().toString(36).substr(2, 9),
             title:
               item.products?.name || item.app_headline || "Untitled Project",
-            description: item.short_description || "",
+            description: item.description || "",
             image: item.image || item.app_image || "/placeholder.jpg",
             hasDemo: !!(
               item.play_store_link ||
@@ -288,9 +289,9 @@ export default function DevelopmentPortfolio() {
         <div className="container commonMT px-4 sm:px-6 lg:px-8">
           {/* Section heading */}
           <SectionHeading
-            badge="Our Work, Your Inspiration"
-            title="Designs That Speak for Themselves"
-            description="Discover our finest creations, meticulously crafted with precision and passion. Explore how we turn ideas into innovative, functional, and visually stunning experiences!"
+            badge="Our Code, Your Power"
+            title="Development That Delivers"
+            description="Explore our top-performing projects, built with clean code, solid architecture, and the latest tech. See how we turn ideas into scalable, high-performance, and user-friendly digital solutions."
           />
 
           {/* Responsive Filter Component */}
@@ -313,9 +314,8 @@ export default function DevelopmentPortfolio() {
                         ?.label || "All"}
                     </span>
                     <svg
-                      className={`w-5 h-5 transition-transform ${
-                        showFilterDropdown ? "rotate-180" : ""
-                      }`}
+                      className={`w-5 h-5 transition-transform ${showFilterDropdown ? "rotate-180" : ""
+                        }`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -334,11 +334,10 @@ export default function DevelopmentPortfolio() {
                       {filters.map((filter) => (
                         <button
                           key={filter.value}
-                          className={`w-full text-left px-4 py-3 text-sm hover:bg-gray-50 ${
-                            activeTab === filter.value
-                              ? "bg-gray-100 font-medium"
-                              : ""
-                          }`}
+                          className={`w-full text-left px-4 py-3 text-sm hover:bg-gray-50 ${activeTab === filter.value
+                            ? "bg-gray-100 font-medium"
+                            : ""
+                            }`}
                           onClick={() => handleFilterSelect(filter.value)}
                         >
                           {filter.label}
@@ -354,11 +353,10 @@ export default function DevelopmentPortfolio() {
                     {filters.map((filter) => (
                       <button
                         key={filter.value}
-                        className={`px-6 py-3 rounded-md text-base ${
-                          activeTab === filter.value
-                            ? "bg-black text-white"
-                            : "bg-white border border-gray-300"
-                        }`}
+                        className={`px-6 py-3 rounded-md text-base ${activeTab === filter.value
+                          ? "bg-black text-white"
+                          : "bg-white border border-gray-300"
+                          }`}
                         onClick={() => handleFilterSelect(filter.value)}
                       >
                         {filter.label}
@@ -394,28 +392,27 @@ export default function DevelopmentPortfolio() {
               {portfolioItems.map((item, index) => (
                 <motion.div
                   key={item.id}
-                  className="bg-[#2E71FE0A] rounded-xl p-4 sm:p-6 shadow-sm relative overflow-hidden cursor-pointer border border-[#2E71FE1F]"
+                  className="bg-[#2E71FE0A] rounded-xl max-575:p-2 p-4 sm:p-6 shadow-sm relative overflow-hidden cursor-pointer border border-[#2E71FE1F]"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ all: 0.3 }}
                   onHoverStart={() => setHoveredCard(item.id.toString())}
                   onHoverEnd={() => setHoveredCard(null)}
                 >
-                  <div className="flex items-start mb-4">
+                  <div className="flexCenter mb-4">
                     <motion.span
-                      className={`text-lg sm:text-xl font-bold transition-colors duration-200 flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-md ${
-                        hoveredCard === item.id.toString()
-                          ? "primaryBg text-white"
-                          : "bg-white"
-                      }`}
+                      className={`max-575:hidden text-lg sm:text-xl font-bold transition-colors duration-200 flex items-center justify-center h-[72px] w-[72px] rounded-md ${hoveredCard === item.id.toString()
+                        ? "primaryBg text-white"
+                        : "bg-white"
+                        }`}
                     >
                       {index + 1}
                     </motion.span>
                     <div className="flex-1 ml-3 sm:ml-4">
-                      <h3 className="font-semibold text-base sm:text-lg">
+                      <h3 className="font-semibold max-479:text-sm  text-base sm:text-lg">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 text-xs sm:text-sm mt-1">
+                      <p className="text-gray-600 text-xs sm:text-sm mt-2">
                         {item.description}
                       </p>
                     </div>
@@ -423,11 +420,10 @@ export default function DevelopmentPortfolio() {
 
                   {/* Project image with demo popup on hover */}
                   <div
-                    className={`h-48 sm:h-64 w-full rounded-md mb-4 sm:mb-5 relative overflow-hidden ${
-                      hoveredCard === item.id.toString()
-                        ? "bg-[#00000066]"
-                        : "bg-[#D9D9D9]"
-                    }`}
+                    className={`h-48 sm:h-auto w-full rounded-md mb-4 sm:mb-5 relative overflow-hidden ${hoveredCard === item.id.toString()
+                      ? "bg-[#00000066]"
+                      : "bg-[#D9D9D9]"
+                      }`}
                   >
                     {item.image && (
                       <img
@@ -461,23 +457,8 @@ export default function DevelopmentPortfolio() {
                                 <span className="text-xs sm:text-sm">
                                   App Store
                                 </span>
-                                <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border flex items-center justify-center">
-                                  <svg
-                                    width="9"
-                                    height="9"
-                                    className="sm:w-[11px] sm:h-[11px]"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M7 12H17M17 12L13 8M17 12L13 16"
-                                      stroke="black"
-                                      strokeWidth="1.5"
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                    />
-                                  </svg>
+                                <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center">
+                                  <BiRightArrowCircle />
                                 </span>
                               </a>
                             )}
@@ -492,23 +473,8 @@ export default function DevelopmentPortfolio() {
                                 <span className="text-xs sm:text-sm">
                                   Play Store
                                 </span>
-                                <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border flex items-center justify-center">
-                                  <svg
-                                    width="9"
-                                    height="9"
-                                    className="sm:w-[11px] sm:h-[11px]"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M7 12H17M17 12L13 8M17 12L13 16"
-                                      stroke="black"
-                                      strokeWidth="1.5"
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                    />
-                                  </svg>
+                                <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center">
+                                  <BiRightArrowCircle />
                                 </span>
                               </a>
                             )}
@@ -523,23 +489,8 @@ export default function DevelopmentPortfolio() {
                                 <span className="text-xs sm:text-sm">
                                   Website
                                 </span>
-                                <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border flex items-center justify-center">
-                                  <svg
-                                    width="9"
-                                    height="9"
-                                    className="sm:w-[11px] sm:h-[11px]"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M7 12H17M17 12L13 8M17 12L13 16"
-                                      stroke="black"
-                                      strokeWidth="1.5"
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                    />
-                                  </svg>
+                                <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center">
+                                  <BiRightArrowCircle />
                                 </span>
                               </a>
                             )}
@@ -554,17 +505,16 @@ export default function DevelopmentPortfolio() {
                     {item.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className={`inline-block px-3 py-2 sm:px-4 sm:py-2 ${
-                          hoveredCard === item.id.toString()
-                            ? "bg-white"
-                            : "bg-white"
-                        } text-[10px] sm:text-xs rounded-full border border-[#2A2E35] font-medium`}
+                        className={`inline-block px-3 py-2 sm:px-4 sm:py-2 ${hoveredCard === item.id.toString()
+                          ? "bg-white"
+                          : "bg-white"
+                          } text-[10px] sm:text-xs rounded-full border border-[#2A2E35] font-medium`}
                       >
                         {tag === "App UI"
                           ? "App UI"
                           : tag === "UX/UI"
-                          ? "UI/UX"
-                          : tag}
+                            ? "UI/UX"
+                            : tag}
                       </span>
                     ))}
                   </div>
@@ -586,9 +536,8 @@ export default function DevelopmentPortfolio() {
           {!loadingItems && portfolioItems.length > 0 && hasMoreItems && (
             <div className="text-center my-8">
               <button
-                className={`px-4 py-2 sm:px-6 sm:py-2 bg-black text-white text-sm sm:text-base rounded-md ${
-                  loadingMore ? "opacity-70 cursor-not-allowed" : ""
-                }`}
+                className={`px-4 py-2 sm:px-6 sm:py-2 bg-black text-white text-sm sm:text-base rounded-md ${loadingMore ? "opacity-70 cursor-not-allowed" : ""
+                  }`}
                 onClick={handleLoadMore}
                 disabled={loadingMore}
               >

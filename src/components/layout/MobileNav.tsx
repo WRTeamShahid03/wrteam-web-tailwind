@@ -15,7 +15,16 @@ import { FaArrowRight } from "react-icons/fa6";
 import { LucidePhoneCall } from "lucide-react";
 import { usePathname } from "next/navigation";
 
-const MobileNav = () => {
+interface dataProps {
+  servicesDropdown: boolean,
+  setServicesDropdown: (value: boolean) => void,
+  morePagesDropdown: boolean,
+  setMorePagesDropdown: (value: boolean) => void,
+  ourWorkDropdown: boolean,
+  setOurWorkDropdown: (value: boolean) => void
+}
+
+const MobileNav: React.FC<dataProps> = ({ servicesDropdown, setServicesDropdown, morePagesDropdown, setMorePagesDropdown, ourWorkDropdown, setOurWorkDropdown }) => {
   const pathname = usePathname();
 
   return (
@@ -37,24 +46,24 @@ const MobileNav = () => {
             <nav className="flex flex-col items-start gap-6 textPrimary font-semibold">
               <Link
                 href={"/"}
-                className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === "/" && "after:!bg-black font-semibold"
+                className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full font-medium hover:after:bg-black ${pathname === "/" && "after:!bg-black font-semibold"
                   }`}
               >
                 Home
               </Link>
               <Link
                 href={"/products"}
-                className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === "/products" && "after:!bg-black font-semibold"
+                className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full font-medium hover:after:bg-black ${pathname === "/products" && "after:!bg-black font-semibold"
                   }`}
               >
                 Products
               </Link>
-              <ServicesDropdown />
-              <MorePagesDropdown />
-              <OurWorkDropdown />
+              <ServicesDropdown servicesDropdown={servicesDropdown} setServicesDropdown={setServicesDropdown} isMobileNav={true} />
+              <MorePagesDropdown morePagesDropdown={morePagesDropdown} setMorePagesDropdown={setMorePagesDropdown} isMobileNav={true} />
+              <OurWorkDropdown ourWorkDropdown={ourWorkDropdown} setOurWorkDropdown={setOurWorkDropdown} isMobileNav={true} />
               <Link
                 href={"/exclusive-license"}
-                className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black ${pathname === "/exclusive-license" &&
+                className={`relative transition-all duration-300 after:contents-[""] after:absolute after:-bottom-[36px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full font-medium hover:after:bg-black ${pathname === "/exclusive-license" &&
                   "after:!bg-black font-semibold"
                   }`}
               >

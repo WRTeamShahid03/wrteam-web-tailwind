@@ -14,12 +14,12 @@ import { usePathname } from 'next/navigation'
 
 interface dataProps {
     isMobileNav?: boolean,
+    servicesDropdown: boolean,
+    setServicesDropdown: (value: boolean) => void
   } 
 
-const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav }) => {
+const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav, servicesDropdown, setServicesDropdown }) => {
     const pathname = usePathname();
-
-    const [showDrop, setShowDrop] = useState<boolean>(false)
 
     const dropData = [
         {
@@ -64,16 +64,16 @@ const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav }) => {
 
     return (
         <div className="max-1199:relative  w-max">
-            <div className="flex items-center gap-1 cursor-pointer" onClick={() => setShowDrop(true)}>
+            <div className="flex items-center gap-1 cursor-pointer" onClick={() => setServicesDropdown(isMobileNav? !servicesDropdown : true)} onMouseEnter={() => setServicesDropdown(isMobileNav? !servicesDropdown : true)}>
                 <span className={`flex items-center gap-1 relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black font-medium ${active && 'after:!bg-black font-semibold'}`}>
                     Services <FaAngleDown />
                 </span>
             </div>
 
-            {showDrop && (
+            {servicesDropdown && (
                 <div
                     className="absolute max-1199:!top-[28px] max-1680:top-[137px] top-[144px] left-0 right-0 mx-auto bg-white rounded-b-2xl shadow-md max-399:w-[250px] max-1199:w-[350px] between-1200-1399:w-[1100px] w-[1320px] max-1199:p-3 p-6 z-50"
-                    onMouseLeave={() => setShowDrop(false)}
+                    onMouseLeave={() => setServicesDropdown(false)}
                 >
                     <div className="flex flex-wrap">
                         {/* Core Services */}
@@ -85,13 +85,13 @@ const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav }) => {
                                 {dropData.slice(0, 4).map((data, index) => (
                                     <div key={index} className={`${isMobileNav ? 'w-full' : 'lg:w-1/2'} max-1199:px-0 px-2`}>
                                         <Link href={data.link} title={data.title}>
-                                            <div className="flex gap-3 max-1199:px-0 p-3 max-1199:pb-0 rounded-lg hover:bg-[#EFF2FA] transition-all text-[#181C24] max-1199:flex-col max-1199:hover:bg-transparent group">
-                                                <div className="bg-[#EFF2FA] group-hover:primaryBg h-[60px] w-[60px] p-3 rounded-[10px] flex items-center justify-center transition-all">
+                                            <div className="flex gap-3 max-1199:px-0 p-3 max-1199:pb-0 rounded-lg hover:bg-[#EFF2FA] transition-all text-[#181C24] max-1199:hover:bg-transparent group max-1199:items-center">
+                                                <div className="bg-[#EFF2FA] group-hover:primaryBg max-1199:h-[40px] max-1199:w-[40px] h-[60px] w-[60px] max-1199:p-2 p-3 rounded-[10px] flex items-center justify-center transition-all">
                                                     <Image src={data.img} alt="webDev-icon" height={0} width={0} className="h-full w-full group-hover:filter group-hover:invert" />
                                                 </div>
                                                 <div className="flex flex-col gap-[2px]">
                                                     <span className="font-bold max-1199:text-sm">{data.title}</span>
-                                                    <p className="text-sm">{data.desc}</p>
+                                                    <p className="text-sm max-1199:hidden">{data.desc}</p>
                                                 </div>
                                             </div>
                                         </Link>
@@ -102,20 +102,20 @@ const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav }) => {
 
                         {/* Product Configurations */}
                         <div className={`${isMobileNav ? 'w-full mt-6' : 'lg:w-1/3 border-l border-[#D8DEEF] max-1199:border-none max-1199:pl-0 pl-8'} max-1199:px-0 px-3`}>
-                            <div className="w-max border-b-4 primaryBorder mb-4">
+                            <div className="w-max border-b-4 primaryBorder mb-4 mt-4 lg:mt-0">
                                 <span className="text-primary font-semibold max-1199:text-base text-xl">Product Configurations</span>
                             </div>
                             <div className="flex flex-col max-1199:gap-y-1 gap-y-6 max-1199:px-0 px-3 pb-0">
                                 {dropData.slice(4, 6).map((data, index) => (
                                     <div key={index} className="w-full px-2">
                                         <Link href={data.link} title={data.title}>
-                                            <div className="flex gap-3 max-1199:px-0 p-3 max-1199:pb-0 rounded-lg hover:bg-[#EFF2FA] transition-all text-[#181C24] max-1199:flex-col max-1199:hover:bg-transparent group">
-                                                <div className="bg-[#EFF2FA] group-hover:primaryBg h-[60px] w-[60px] p-3 rounded-[10px] flex items-center justify-center transition-all">
+                                            <div className="flex gap-3 max-1199:px-0 p-3 max-1199:pb-0 rounded-lg hover:bg-[#EFF2FA] transition-all text-[#181C24] max-1199:hover:bg-transparent group max-1199:items-center">
+                                                <div className="bg-[#EFF2FA] group-hover:primaryBg max-1199:h-[40px] max-1199:w-[40px] h-[60px] w-[60px] max-1199:p-2 p-3 rounded-[10px] flex items-center justify-center transition-all">
                                                     <Image src={data.img} alt="webDev-icon" height={0} width={0} className="h-full w-full group-hover:filter group-hover:invert" />
                                                 </div>
                                                 <div className="flex flex-col gap-[2px]">
                                                     <span className="font-bold max-1199:text-sm">{data.title}</span>
-                                                    <p className="text-sm">{data.desc}</p>
+                                                    <p className="text-sm max-1199:hidden">{data.desc}</p>
                                                 </div>
                                             </div>
                                         </Link>

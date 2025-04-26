@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import achievementImg from "../../../assets/images/homePage/Achievement.webp";
+import achievementImgResponsive from "../../../assets/images/homePage/AchievementResponsive.webp";
 import Link from "next/link";
 
 const AchievementEnvanto: React.FC = () => {
@@ -49,7 +50,15 @@ const AchievementEnvanto: React.FC = () => {
               height={0}
               loading="lazy"
               alt="team of creative and innovative designers using most advanced tools & technology"
-              className="md:w-[80%] lg:w-full max-w-full lg:h-full max-h-full md:-ml-6 lg:ml-8 xl:-ml-14"
+              className="md:w-[80%] lg:w-full max-w-full lg:h-full max-h-full md:-ml-6 lg:ml-8 xl:-ml-14 md:block hidden"
+            />
+            <Image
+              src={achievementImgResponsive}
+              width={0}
+              height={0}
+              loading="lazy"
+              alt="team of creative and innovative designers using most advanced tools & technology"
+              className="md:w-[80%] lg:w-full max-w-full lg:h-full max-h-full md:-ml-6 lg:ml-8 xl:-ml-14 block md:hidden"
             />
           </div>
         </div>
