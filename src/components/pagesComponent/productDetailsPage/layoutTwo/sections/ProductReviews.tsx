@@ -30,8 +30,8 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ testimonials }): React.
     return (
         <section className='commonMT productDetailPrimaryBg py-8 md:py-12 lg:py-20'>
             <div className="container">
-                <div className='grid md:grid-cols-2 gap-6'>
-                    <div className='bg-white p-12 rounded-[8px] relative'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+                    <div className='bg-white p-3 md:p-12 rounded-[8px] relative'>
                         <Swiper
                             ref={sliderRef}
                             slidesPerView={1}
@@ -42,10 +42,10 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ testimonials }): React.
                         >
                             {testimonials.map((testimonial: ProductTestimonial) => (
                                 <SwiperSlide key={testimonial.id}>
-                                    <div className='flex flex-col gap-8 relative'>
-                                        <div className='flex gap-3 items-center border-b-2 border-[#6c757d1f] pb-8'>
+                                    <div className='flex flex-col gap-8 relative max-575:gap-4'>
+                                        <div className='flex gap-3 items-center border-b-2 border-[#6c757d1f] max-575:pb-4 pb-8'>
                                             <div>
-                                                <Image src={envatoIcon} height={41} width={41} alt='envatoIcon' />
+                                                <Image src={envatoIcon} height={41} width={41} alt='envatoIcon' className='max-575:w-[30px] max-575:h-[30px]'/>
                                             </div>
                                             <div className='flex flex-col gap-2'>
                                                 <span className='font-[600]'>{testimonial.name}</span>
@@ -53,18 +53,18 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ testimonials }): React.
                                             </div>
                                         </div>
                                         <div className=''>
-                                            <p className='sectionPara'>{testimonial.review}</p>
+                                            <p className='sectionPara max-575:text-[14px]'>{testimonial.review}</p>
                                         </div>
                                     </div>
 
                                 </SwiperSlide>
                             ))}
                         </Swiper>                        
-                        <div className='flex items-center gap-4 absolute top-[30px] right-[30px] bg-white z-[1] p-5'>
-                            <span className='productDetailPrimaryBg productPrimaryColor p-4 rounded-full after:!z-[1] overflow-hidden cursor-pointer' onClick={handlePrev}>
+                        <div className='flex items-center max-399:gap-2 gap-4 absolute max-575:top-[10px] between-576-767:top-[10px] top-[30px] max-399:right-0 right-[30px] bg-white z-[1] p-5'>
+                            <span className='productDetailPrimaryBg productPrimaryColor max-575:p-2 p-4 rounded-full after:!z-[1] overflow-hidden cursor-pointer' onClick={handlePrev}>
                                 <FaChevronLeft />
                             </span>
-                            <span className='productDetailPrimaryBg productPrimaryColor p-4 rounded-full after:!z-[1] overflow-hidden cursor-pointer' onClick={handleNext}>
+                            <span className='productDetailPrimaryBg productPrimaryColor max-575:p-2 p-4 rounded-full after:!z-[1] overflow-hidden cursor-pointer' onClick={handleNext}>
                                 <FaChevronRight />
                             </span>
                         </div>

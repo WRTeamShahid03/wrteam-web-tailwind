@@ -60,7 +60,7 @@ const ProcessSect = () => {
           quick, easy, and hassle-free
         </p>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 relative gap-6">
+      <div className="flexColCenter sm:grid sm:grid-cols-2 lg:grid-cols-3 relative gap-6">
         <Image
           src={arrIcon}
           height={0}
