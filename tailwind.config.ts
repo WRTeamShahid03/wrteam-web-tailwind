@@ -26,8 +26,9 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       screens: {
-        "min-1800": {
+        "between-1800-2500": {
           min: "1800px",
+          max: "2500px",
         },
         "between-1200-1399": {
           min: "1200px",

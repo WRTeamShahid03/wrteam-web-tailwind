@@ -54,13 +54,13 @@ const HeroSection: React.FC<HeroSectionProps> = (
       </div>
 
 
-      <Image src={otherImagesUrl[0]} width={420} height={236} alt="Hero section" className="max-1199:hidden block object-cover w-[230px] h-[150px] min-1800:w-[420px] min-1800:h-[236px] lg:absolute left-0 top-[222px] rounded-lg border-[6px] productDetailLightPrimaryBorder border-opacity-60" />
+      <Image src={otherImagesUrl[0]} width={420} height={236} alt="Hero section" className="max-1199:hidden block object-cover w-[230px] h-[150px] between-1800-2500:w-[420px] between-1800-2500:h-[236px] lg:absolute left-0 top-[222px] rounded-lg border-[6px] productDetailLightPrimaryBorder border-opacity-60" />
 
-      <Image src={otherImagesUrl[3]} width={420} height={236} alt="Hero section" className="max-1199:hidden block object-cover w-[230px] h-[150px] min-1800:w-[420px] min-1800:h-[236px] absolute right-0 bottom-[444px] rounded-lg border-[6px] productDetailLightPrimaryBorder border-opacity-60" />
+      <Image src={otherImagesUrl[3]} width={420} height={236} alt="Hero section" className="max-1199:hidden block object-cover w-[230px] h-[150px] between-1800-2500:w-[420px] between-1800-2500:h-[236px] absolute right-0 bottom-[444px] rounded-lg border-[6px] productDetailLightPrimaryBorder border-opacity-60" />
 
-      <Image src={otherImagesUrl[2]} width={420} height={236} alt="Hero section" className="max-1199:hidden block object-cover w-[220px] h-[130px] min-1800:w-[318px] min-1800:h-[180px] absolute right-[110px] top-[222px] rounded-lg border-[6px] productDetailLightPrimaryBorder border-opacity-60 transform -rotate-12 animateHeroImgTwo" />
+      <Image src={otherImagesUrl[2]} width={420} height={236} alt="Hero section" className="max-1199:hidden block object-cover w-[220px] h-[130px] between-1800-2500:w-[318px] between-1800-2500:h-[180px] absolute right-[110px] top-[222px] rounded-lg border-[6px] productDetailLightPrimaryBorder border-opacity-60 transform -rotate-12 animateHeroImgTwo" />
 
-      <Image src={otherImagesUrl[1]} width={420} height={236} alt="Hero section" className="max-1199:hidden block object-cover w-[220px] h-[130px] min-1800:w-[318px] min-1800:h-[180px] absolute between-1200-1399:left-[30px] left-[110px] top-[400px] rounded-lg border-[6px] productDetailLightPrimaryBorder border-opacity-60 transform -rotate-12 animateHeroImgOne" />
+      <Image src={otherImagesUrl[1]} width={420} height={236} alt="Hero section" className="max-1199:hidden block object-cover w-[220px] h-[130px] between-1800-2500:w-[318px] between-1800-2500:h-[180px] absolute between-1200-1399:left-[30px] left-[110px] top-[400px] rounded-lg border-[6px] productDetailLightPrimaryBorder border-opacity-60 transform -rotate-12 animateHeroImgOne" />
 
     </section>
   )
