@@ -395,14 +395,14 @@ export default function DesignPortfolio() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="rounded-lg overflow-hidden mb-2 sm:mb-4">
+                <div className="overflow-hidden mb-2 sm:mb-4">
                   {item.image && (
                     <Image
                       src={item.image}
                       alt={item.title}
                       width={0}
                       height={0}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover lg:w-[388px] lg:h-[295px] rounded-[8px]"
                     />
                   )}
                 </div>
