@@ -81,7 +81,7 @@ const ContactUs: React.FC = () => {
 
                         <div className="col-span-12 lg:col-span-8 p-4 lg:p-[50px_50px]">
                             <div className="flexColCenter !items-start text-ceter gap-8 md:gap-12">
-                                <h1 className='sectionTitle !font-bold lg:w-[70%]'>Have something to ask or share? or just want to say HI!</h1>
+                                <h1 className='sectionTitle !font-bold lg:w-[80%]'>Have something to ask or share? or just want to say HI!</h1>
                                 <div className='w-full'>
                                     <ContactForm />
                                 </div>
