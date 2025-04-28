@@ -69,7 +69,7 @@ const Header = () => {
     <header className={`sticky top-0 w-full z-[20] border-b shadow-none ${scroll > (navRef.current?.offsetTop || 0) ? "stickky" : ""}`}>
       <TopBar />
       <div className='py-6 bg-white'>
-        <div className="max-1680:container 2xl:max-w-[1620px] mx-auto">
+        <div className="max-1680:!container 2xl:max-w-[1620px] mx-auto">
 
           <div ref={navRef} className='flex items-center justify-between nav'>
             <Link href={'/'} title='WRTeam Logo'>

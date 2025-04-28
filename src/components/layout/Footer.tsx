@@ -74,7 +74,7 @@ const NewFooter = () => {
   return (
     <footer className="bg-[#181c24] text-white relative z-[2] commonMT">
       {/* Main footer content */}
-      <div className="max-1680:container 2xl:max-w-[1620px] mx-auto pt-12 grid grid-cols-12 gap-y-12">
+      <div className="max-1680:!container 2xl:max-w-[1620px] mx-auto pt-12 grid grid-cols-12 gap-y-12">
         {/* Left section - Logo and description */}
         <div className="space-y-8 col-span-12 sm:col-span-7 sm:border-r border-[#ffffff3d]">
           <div className="logo">

@@ -46,6 +46,7 @@ interface ApiPortfolioItem {
   website_link?: string;
   // Using Record<string, unknown> for type safety
   [key: string]: unknown;
+  slug?: string;
 }
 
 interface PortfolioItem {
@@ -62,6 +63,7 @@ interface PortfolioItem {
   short_description?: string;
   description?: string;
   products?: Product;
+  slug?: string;
 }
 
 export default function DesignPortfolio() {
@@ -89,7 +91,7 @@ export default function DesignPortfolio() {
   const limit = 6;
 
   const [portfolioCateName, setPortfolioCateName] = useState<string>("");
-
+  const [portfolioSlug, setPortfolioSlug] = useState<string>("");
   // Fetch categories from API
   useEffect(() => {
     const fetchCategories = async () => {
@@ -142,6 +144,7 @@ export default function DesignPortfolio() {
       const data = await response.json();
       console.log('data',data);
       setPortfolioCateName(data?.data[0]?.category?.name);
+      setPortfolioSlug(data?.data[0]?.slug);
 
       // console.log('data?.data[0]?.category?.name',data?.data[0]?.category?.name)
 
@@ -176,6 +179,7 @@ export default function DesignPortfolio() {
             play_store_link: item.play_store_link,
             app_store_link: item.app_store_link,
             website_link: item.website_link,
+            slug: item.slug,
           }));
 
           // Check if we have more items
@@ -272,7 +276,7 @@ export default function DesignPortfolio() {
           { name: "Design" }, // Current page, no path
         ]}
       />
-      <div className="container commonMT px-4 sm:px-6 lg:px-8">
+      <div className="container commonMT">
         {/* Section heading */}
         <SectionHeading
           badge="Creativity Meets Functionality"
@@ -402,7 +406,7 @@ export default function DesignPortfolio() {
                     />
                   )}
                 </div>
-                <Link href={`/our-work/design/${item.title}`} title={item.title}>
+                <Link href={`/our-work/design/${portfolioSlug}`} title={item.title}>
                 <div
                   className={`bg-white rounded-lg p-3 sm:p-4 relative ${
                     hoveredCardId === item.id.toString()
@@ -452,8 +456,6 @@ export default function DesignPortfolio() {
             </button>
           </div>
         )}
-        {/* {console.log('portfolioItems',portfolioItems)} */}
-        {/* <div dangerouslySetInnerHTML={{__html: portfolioItems.map((item) => item.description || '').join('')}} /> */}
       </div>
     </Layout>
   );
