@@ -121,7 +121,7 @@ const PortfolioDetials = () => {
         title="Portfolio Details"
         breadcrumbs={[
           { name: "Home", path: "/" },
-          { name: "Our Work", path: "/portfolio" },
+          { name: "Our Work", },
           { name: portfolioDetail?.title || "Details" }, // Current page, no path
         ]}
       />
