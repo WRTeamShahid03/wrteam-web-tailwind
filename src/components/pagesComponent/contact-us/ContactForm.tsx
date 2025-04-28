@@ -316,11 +316,10 @@ const ContactForm = () => {
             id="msg"
             name="msg"
             value={formData.msg}
-            rows={10}
             onChange={handleChange}
             placeholder="Your Message"
-            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.msg ? "border-red-500" : "border-gray-300"
-              } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full pb-[150px] px-2 pt-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.msg ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-1 focus:ring-blue-500 text-start resize-none`}
           />
           {errors.msg && (
             <p className="text-red-500 text-sm mt-1">{errors.msg}</p>

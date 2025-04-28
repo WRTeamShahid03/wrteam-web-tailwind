@@ -20,24 +20,24 @@ const ContactUs: React.FC = () => {
         <Layout>
             <section className='container commonMT'>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    <div className='flexColCenter gap-3 text-center border border-[#51535892] py-4 px-8 rounded-[16px] transition-all duration-300 hover:primaryBg group'>
+                    <div className='flexColCenter gap-3 text-center border border-[#51535892] py-4 px-8 rounded-[16px] transition-all duration-300 hover:primaryBg group hover:shadow-[0px_8px_34px_0px_#2e71fe94] overflow-hidden'>
                         <div className='w-[74px] h-[74px] flexCenter primaryBg text-white rounded-full group-hover:bg-white transition-all duration-300 group-hover:primary group-hover:primaryColor'><IoLocationOutline size={50} /></div>
-                        <span className='font-extrabold text-lg group-hover:text-white'>Our Address</span>
-                        <Link href={'#contactUs'} className='sectionPara hover:underline group-hover:text-white'>#262-263, Time Square Empire, SH 42 Mirjapar highway,Bhuj - Kutch 370001 Gujarat India.</Link>
+                        <span className='font-bold text-lg group-hover:text-white'>Our Address</span>
+                        <Link href={'#contactUs'} className='sectionPara hover:underline group-hover:text-white !font-medium'>#262-263, Time Square Empire, SH 42 Mirjapar highway,Bhuj - Kutch 370001 Gujarat India.</Link>
                     </div>
-                    <div className='flexColCenter gap-3 text-center border border-[#51535892] py-4 px-8 rounded-[16px] transition-all duration-300 hover:primaryBg group'>
+                    <div className='flexColCenter gap-3 text-center border border-[#51535892] py-4 px-8 rounded-[16px] transition-all duration-300 hover:primaryBg group hover:shadow-[0px_8px_34px_0px_#2e71fe94] overflow-hidden'>
                         <div className='w-[74px] h-[74px] flexCenter primaryBg text-white rounded-full group-hover:bg-white transition-all duration-300 group-hover:primary group-hover:primaryColor'><IoMailOutline size={50} /></div>
-                        <span className='font-extrabold text-lg group-hover:text-white'>Email Address</span>
-                        <Link href={'mailto:support@wrteam.in'} className='sectionPara hover:underline group-hover:text-white'>support@wrteam.in</Link>
+                        <span className='font-bold text-lg group-hover:text-white'>Email Address</span>
+                        <Link href={'mailto:support@wrteam.in'} className='sectionPara hover:underline group-hover:text-white !font-medium'>support@wrteam.in</Link>
                     </div>
-                    <div className='flexColCenter gap-3 text-center border border-[#51535892] py-4 px-8 rounded-[16px] transition-all duration-300 hover:primaryBg group'>
+                    <div className='flexColCenter gap-3 text-center border border-[#51535892] py-4 px-8 rounded-[16px] transition-all duration-300 hover:primaryBg group hover:shadow-[0px_8px_34px_0px_#2e71fe94] overflow-hidden'>
                         <div className='w-[74px] h-[74px] flexCenter primaryBg text-white rounded-full group-hover:bg-white transition-all duration-300 group-hover:primary group-hover:primaryColor'><BiSupport size={50} /></div>
-                        <span className='font-extrabold text-lg group-hover:text-white'>Phone Number</span>
-                        <Link href={'tel:+91 97979 45459'} className='sectionPara hover:underline group-hover:text-white'>+91 97979 45459</Link>
+                        <span className='font-bold text-lg group-hover:text-white'>Phone Number</span>
+                        <Link href={'tel:+91 97979 45459'} className='sectionPara hover:underline group-hover:text-white !font-medium'>+91 97979 45459</Link>
                     </div>
-                    <div className='flexColCenter gap-3 text-center border border-[#51535892] py-4 px-8 rounded-[16px] transition-all duration-300 hover:primaryBg group'>
+                    <div className='flexColCenter gap-3 text-center border border-[#51535892] py-4 px-8 rounded-[16px] transition-all duration-300 hover:primaryBg group hover:shadow-[0px_8px_34px_0px_#2e71fe94] overflow-hidden'>
                         <Image src={scannerImg} height={0} width={0} alt='whatsapp-scanner' className='w-[150px] h-auto rounded-sm' />
-                        <span className='font-extrabold text-lg group-hover:text-white'>Quick Scan To Whatsapp</span>
+                        <span className='font-bold text-lg group-hover:text-white'>Quick Scan To Whatsapp</span>
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@ const ContactUs: React.FC = () => {
 
                         <div className="col-span-12 lg:col-span-8 p-4 lg:p-[50px_50px]">
                             <div className="flexColCenter !items-start text-ceter gap-8 md:gap-12">
-                                <h1 className='sectionTitle'>Have something to ask or share? or just want to say HI!</h1>
+                                <h1 className='sectionTitle !font-bold lg:w-[70%]'>Have something to ask or share? or just want to say HI!</h1>
                                 <div className='w-full'>
                                     <ContactForm />
                                 </div>
