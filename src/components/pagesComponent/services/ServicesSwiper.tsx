@@ -65,7 +65,7 @@ const ServicesSwiper: React.FC<dataProps> = ({ data }) => {
                 <div ref={sidebarRef} className="h-full lg:w-1/2 absolute top-0 left-0 transition-transform duration-500 ease-in-out">
                     {data.map((ele) => (
                         <div
-                            className="h-full w-full flex flex-col items-center justify-center text-black px-2 md:px-16 bg-[#EDEDED]"
+                            className="h-full w-full flex flex-col items-center justify-center text-black px-2 md:px-16 bg-white"
                             key={ele.id}
                         >
                             <h3 className="font-extrabold text-xl md:text-3xl text-center text-[#212121] mb-5 -mt-8">{ele.title}</h3>

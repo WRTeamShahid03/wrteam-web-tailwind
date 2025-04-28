@@ -91,7 +91,7 @@ const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav, servicesDropdown, 
                                                 </div>
                                                 <div className="flex flex-col gap-[2px]">
                                                     <span className="font-bold max-1199:text-sm">{data.title}</span>
-                                                    <p className="text-sm max-1199:hidden">{data.desc}</p>
+                                                    <p className="text-sm font-normal max-1199:hidden">{data.desc}</p>
                                                 </div>
                                             </div>
                                         </Link>
@@ -115,7 +115,7 @@ const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav, servicesDropdown, 
                                                 </div>
                                                 <div className="flex flex-col gap-[2px]">
                                                     <span className="font-bold max-1199:text-sm">{data.title}</span>
-                                                    <p className="text-sm max-1199:hidden">{data.desc}</p>
+                                                    <p className="text-sm font-normal max-1199:hidden">{data.desc}</p>
                                                 </div>
                                             </div>
                                         </Link>

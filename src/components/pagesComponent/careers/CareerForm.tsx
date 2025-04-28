@@ -581,13 +581,7 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
                   </p>
                   <p className="text-sm text-gray-400 mb-4">
                     (Only PNG, JPG and PDF Files are supported)
-                  </p>
-                  <button
-                    type="button"
-                    className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
-                  >
-                    Select File
-                  </button>
+                  </p>                  
                 </div>
               )}
             </div>

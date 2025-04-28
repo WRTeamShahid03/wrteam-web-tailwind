@@ -1099,3 +1099,7 @@ footer .commonBtn:after {
     max-width: 1536px;
   }
 }
+
+textarea{
+  resize: none;
+}

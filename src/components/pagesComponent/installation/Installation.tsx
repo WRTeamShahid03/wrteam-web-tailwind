@@ -179,11 +179,11 @@ const Installation: React.FC = () => {
                         </button>
                     </div>
                 </div>
-                <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
+                <div className='grid sm:grid-cols-2 lg:grid-cols-3 between-1200-1399:grid-cols-4 xl:grid-cols-4 gap-6'>
                     {packages.map((pkg: installationPackagesDataTypes, index) => (
                         <div
                             key={pkg.id}
-                            className={`h-max p-4 border-[1.5px] rounded-[16px] relative bg-white ${index === 3 ? "primaryBorder" : "border-[#2E71FE29]"
+                            className={`max-1199:h-max between-1200-1399:h-[68rem] h-[62rem] p-4 border-[1.5px] rounded-[16px] relative bg-white ${index === 3 ? "primaryBorder" : "border-[#2E71FE29]"
                                 }`}
                         >
                             {
@@ -237,7 +237,7 @@ const Installation: React.FC = () => {
                                 <span className='font-semibold'>What&apos;s included :</span>
                                 {pkg.services.map((service, i) => (
                                     <li key={i} className={`flex items-center gap-2 justify-between`}>
-                                        <span className='text-sm font-medium inline-block w-[84%]'>{service}</span>
+                                        <span className='text-sm between-1200-1399:text-sm font-medium inline-block w-[84%]'>{service}</span>
                                         <span className='w-[22px] h-[22px] flexCenter bg-[#48b02c] text-white rounded-full'><FaCheck size={12} /></span>
                                     </li>
                                 ))}

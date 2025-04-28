@@ -30,7 +30,7 @@ type CommandPrimitiveType = React.FC<
   >;
   Item: React.ForwardRefExoticComponent<
     React.HTMLAttributes<HTMLDivElement> & {
-      onselect?: (event: any) => void;
+      onSelect?: (event: any) => void;
       value?: string;
     } & React.RefAttributes<HTMLDivElement>
   >;
@@ -157,13 +157,10 @@ const CommandItem = React.forwardRef<
 >(({ className, onSelect, ...props }, ref) => {
   const { value } = props as { value?: string };
 
-  // Create a prop object that includes our custom lowercase onselect
+  // Create a prop object that includes our custom lowercase onSelect
   const itemProps = {
     ...props,
-    onselect: (event: any) => {
-      if (props.onselect) {
-        props.onselect(event);
-      }
+    onSelect: () => {
       if (onSelect && value) {
         onSelect(value);
       }

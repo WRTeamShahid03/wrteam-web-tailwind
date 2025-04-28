@@ -140,7 +140,7 @@ const HireUs = () => {
             <section className='commonBg py-8 md:py-16'>
                 <div className="container space-y-6 md:space-y-8 lg:space-y-12">
                     <div className="flexColCenter commonTextGap text-center">
-                        <span className='sectionTag'><span>Hire</span>Us</span>
+                        <span className='sectionTag'><span>Hire</span> Us</span>
                         <h1 className='sectionTitle'>Need <span>Assistance</span> With Your Project?</h1>
                     </div>
                     <div className="bg-white rounded-[16px] lg:w-[80%] mx-auto p-4 md:p-16 space-y-8 lg:space-y-12">

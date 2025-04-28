@@ -87,7 +87,7 @@ export default function ClientReview({ testimonials }: { testimonials: ProductTe
                   </div>
 
                   {/* Reviewer Name */}
-                  <div className="text-right mt-4 pt-2 border-t border-gray-100">
+                  <div className="text-right mt-4 pt-2">
                     <p className="font-semibold text-black">{review.name}</p>
                   </div>
 

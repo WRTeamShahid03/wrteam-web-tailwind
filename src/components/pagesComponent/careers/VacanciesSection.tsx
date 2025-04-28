@@ -1,4 +1,5 @@
 import React from "react";
+import { BsArrowRightCircle } from "react-icons/bs";
 
 interface Vacancy {
   id: number;
@@ -41,10 +42,10 @@ export default function VacanciesSection({
           {vacancies.map((job) => (
             <div
               key={job.id}
-              className="border border-gray-200 rounded-lg p-8 text-left hover:shadow-md transition-shadow"
+              className="border-2 border-[#545a684d] p-8 text-left rounded-[16px]"
             >
               <div className="flex items-center mb-4">
-                <div className="w-4 h-4 min-w-[16px] min-h-[16px] bg-blue-600 rounded-full mr-2 flex-shrink-0"></div>
+                <div className="p-[6px] bg-blue-600 rounded-full mr-2 flex-shrink-0"></div>
                 <h3 className="text-xl font-bold font-montserrat">
                   {job.title}
                 </h3>
@@ -54,21 +55,10 @@ export default function VacanciesSection({
               </p>
               <a
                 href="#applySection"
-                className="inline-flex items-center text-blue-600 font-medium border border-blue-600 rounded-md px-6 py-2 hover:bg-blue-50 transition-colors"
+                className="inline-flex items-center text-blue-600 font-medium border border-blue-600 rounded-md px-6 py-2 transition-all duration-300 hover:primaryBg hover:text-white hover:shadow-[0_20px_36px_#2e71ef5c]"
               >
                 Apply Now
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 ml-2"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                <BsArrowRightCircle className="ml-2" /> 
               </a>
             </div>
           ))}

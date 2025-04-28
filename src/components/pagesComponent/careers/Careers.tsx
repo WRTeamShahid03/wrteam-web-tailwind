@@ -18,8 +18,7 @@ interface Vacancy {
 async function fetchVacancies(): Promise<Vacancy[]> {
   try {
     const response = await fetch(
-      `${
-        process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
+      `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
       }/api/get-vacancies`,
       {
         next: { revalidate: 3600 }, // Revalidate every hour
@@ -202,8 +201,8 @@ export default async function Careers() {
       <VacanciesSection vacancies={vacancies} />
 
       {/* Application Form Section */}
-      <section className="bg-[#f1f5ff] py-16" id="applySection">
-        <div className="container mx-auto">
+      <div className="container mx-auto">
+        <section className="commonBg py-16 max-575:px-3 px-10 rounded-[16px]" id="applySection">
           <div className="flexColCenter commonTextGap text-center">
             <h2 className="text-4xl font-bold mb-6 font-montserrat">
               Apply <span className="text-blue-600">Now</span>
@@ -220,8 +219,8 @@ export default async function Careers() {
 
           {/* Application Form - Using Client Component */}
           <CareerFormWrapper vacancies={vacancies} />
-        </div>
-      </section>
+        </section>
+      </div>
     </Layout>
   );
 }

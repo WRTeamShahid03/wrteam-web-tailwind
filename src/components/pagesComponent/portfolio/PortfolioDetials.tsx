@@ -127,7 +127,7 @@ const PortfolioDetials = () => {
         ]}
       />
 
-      <div className='container commonMT px-4 sm:px-6 lg:px-8'>
+      <div className='container commonMT'>
         {isLoading ? (
           <LoaderThree />
         ) : error ? (
@@ -138,95 +138,6 @@ const PortfolioDetials = () => {
           <div>
             <div dangerouslySetInnerHTML={{ __html: portfolioDetail?.description || '' }} />
           </div>
-          // <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          //   {/* Portfolio image */}
-          //   <div className="rounded-xl overflow-hidden shadow-md">
-          //     {portfolioDetail.image && (
-          //       <img 
-          //         src={portfolioDetail.image} 
-          //         alt={portfolioDetail.title} 
-          //         className="w-full h-full object-cover"
-          //       />
-          //     )}
-          //   </div>
-
-          //   {/* Portfolio details */}
-          //   <div>
-          //     <h1 className="text-2xl sm:text-3xl font-bold mb-4">
-          //       {portfolioDetail.title}
-          //     </h1>
-
-          //     <div className="mb-6">
-          //       <p className="text-gray-700 mb-4">
-          //         {portfolioDetail.description}
-          //       </p>
-          //     </div>
-
-          //     {/* Tags */}
-          //     {tags.length > 0 && (
-          //       <div className="flex flex-wrap gap-2 mb-6">
-          //         {tags.map((tag, index) => (
-          //           <span
-          //             key={index}
-          //             className="inline-block px-3 py-2 text-xs bg-white text-black rounded-full border border-gray-300"
-          //           >
-          //             {tag}
-          //           </span>
-          //         ))}
-          //       </div>
-          //     )}
-
-          //     {/* Links */}
-          //     {(portfolioDetail.play_store_link || portfolioDetail.app_store_link || portfolioDetail.website_link) && (
-          //       <div className="mt-6">
-          //         <h3 className="text-lg font-semibold mb-3">Experience the Product</h3>
-          //         <div className="flex flex-wrap gap-4">
-          //           {portfolioDetail.app_store_link && (
-          //             <a
-          //               href={portfolioDetail.app_store_link}
-          //               target="_blank"
-          //               rel="noopener noreferrer"
-          //               className="bg-black text-white px-4 py-2 rounded-md flex items-center gap-2"
-          //             >
-          //               <span>App Store</span>
-          //               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          //                 <path d="M7 17L17 7M17 7H7M17 7V17" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          //               </svg>
-          //             </a>
-          //           )}
-
-          //           {portfolioDetail.play_store_link && (
-          //             <a
-          //               href={portfolioDetail.play_store_link}
-          //               target="_blank"
-          //               rel="noopener noreferrer"
-          //               className="bg-black text-white px-4 py-2 rounded-md flex items-center gap-2"
-          //             >
-          //               <span>Play Store</span>
-          //               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          //                 <path d="M7 17L17 7M17 7H7M17 7V17" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          //               </svg>
-          //             </a>
-          //           )}
-
-          //           {portfolioDetail.website_link && (
-          //             <a
-          //               href={portfolioDetail.website_link}
-          //               target="_blank"
-          //               rel="noopener noreferrer"
-          //               className="bg-black text-white px-4 py-2 rounded-md flex items-center gap-2"
-          //             >
-          //               <span>Visit Website</span>
-          //               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          //                 <path d="M7 17L17 7M17 7H7M17 7V17" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          //               </svg>
-          //             </a>
-          //           )}
-          //         </div>
-          //       </div>
-          //     )}
-          //   </div>
-          // </div>
         ) : (
           <div className="text-center py-12">
             <p className="text-lg text-gray-500">

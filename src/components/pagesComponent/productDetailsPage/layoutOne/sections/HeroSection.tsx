@@ -28,9 +28,9 @@ const HeroSection: React.FC<HeroSectionProps> = (
   return (
     <section className='relative productDetailPrimaryBg pt-8 md:pt-16 lg:pt-20'>
       <div className="flexColCenter container">
-        <div className='flex flex-col gap-6 lg:w-[50%] xl:w-[35%] text-center'>
+        <div className='flex flex-col gap-6 lg:w-[50%] xl:w-[40%] text-center'>
           <h1 className='sectionTitle !font-bold'>{title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: description }}></div>
+          <div dangerouslySetInnerHTML={{ __html: description }} className="text-[#334155] font-normal !font-roboto [&>p]:!font-roboto [&>p]:text-[#334155]"></div>
         </div>
         <div className='flexCenter gap-3 font-semibold mt-5 sm:mt-10'>
           <Link href={''} title='Explore Demo' className='productPrimaryBg p-3 rounded-md flexCenter max-399:text-sm max-399:w-[130px] w-[165px] text-white'>

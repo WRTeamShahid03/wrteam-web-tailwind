@@ -629,11 +629,11 @@ const CustomizationForm = () => {
           <button
             type="submit"
             disabled={formLoader}
-            className={`!w-full commonBtn ${
+            className={`!w-full commonBtn commonBtnSecondaryBg ${
               formLoader ? "opacity-70 cursor-not-allowed" : ""
             }`}
           >
-            {formLoader ? "Submitting..." : "Submit Request"}
+            {formLoader ? "Submitting..." : "Submit"}
           </button>
         </div>
 

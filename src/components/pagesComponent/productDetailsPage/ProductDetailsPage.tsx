@@ -118,7 +118,7 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
   };
 
   return (
-    <div className="">
+    <div className="font-roboto">
       {/* JSON-LD structured data for product */}
       {productDetails && (
         <Script

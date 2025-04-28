@@ -62,8 +62,8 @@ const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, re
         <TableBody>
           {regularLicenseData.map((item, index) => (
             <TableRow key={item.id} className="border-t">
-              <TableCell className="p-4 border-r flex flex-wrap items-center gap-1 font-semibold">
-                <span className="md:text-base">{item.detail}</span>
+              <TableCell className="p-4 border-r flex flex-wrap gap-1 font-semibold flex-col">
+                <span className="md:text-base">{item.detail}</span> 
                 {item.otherText && <span className="textSecondary text-sm"> ({item.otherText})</span>}
               </TableCell>
               <TableCell className="text-center m-auto border-r">

@@ -152,7 +152,7 @@ const NewFooter = () => {
           </div>
 
           {/* CodeCanyon Achievements - Desktop Only */}
-          <div className="container px-4 py-12 hidden lg:block border-t border-[#ffffff3d] pr-6">
+          <div className="container px-4 py-12 hidden lg:block border-t border-[#ffffff3d] pr-6 between-1400-1680:flexCenter between-1400-1680:h-[266px]">
             <div className="flex justify-between items-center gap-4">
               <div>
                 <h3 className="text-white font-medium mb-2">CodeCanyon Achievements</h3>

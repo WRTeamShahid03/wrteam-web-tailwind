@@ -92,8 +92,8 @@ const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description,
                                 <div className='flexColCenter gap-6 !items-start bg-white rounded-[8px] p-5'>
                                     <Image src={detail.image_url} height={0} width={0} alt='feature-img' className='h-[164px] sm:h-[286px] w-full rounded-[8px] border-2 border-[#64748b]' />
                                     <div className='flexColCenter gap-2 !items-start'>
-                                        <span className='font-semibold'>{detail.title}</span>
-                                        <p className='sectionPara !text-sm max-[356px]:h-[144px] max-399:h-[130px] between-400-575:h-[110px] between-576-767:h-[86px] between-768-991:h-[66px] between-992-1199:h-[104px] between-1200-1399:h-[86px] h-[72px]' >
+                                        <span className='font-bold'>{detail.title}</span>
+                                        <p className='sectionPara !font-medium !text-sm max-[356px]:h-[144px] max-399:h-[130px] between-400-575:h-[110px] between-576-767:h-[86px] between-768-991:h-[66px] between-992-1199:h-[104px] between-1200-1399:h-[86px] h-[72px]' >
                                             {
                                                 detail.short_description?.length > 196 ?
                                                     <>

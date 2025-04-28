@@ -168,14 +168,14 @@ const VideoTestimonials = () => {
                     slidesPerView: 3,
                   },
                 }}
-                className="testimonials-swiper [&>.swiper-wrapper]:py-5"
+                className="testimonials-swiper [&>.swiper-wrapper]:py-5 [&>.swiper-wrapper]:items-center"
               >
                 {
                   // Show testimonials when loaded
                   videoTestimonials.map((testimonial: VideoTestimonial, index: number) => (
                     <SwiperSlide
                       key={testimonial.id}
-                      className={`testimonial-slide transition-all duration-300 ease-in-out ${activeSlide === index - 1 ? 'active-slide scale-105 opacity-100' : 'opacity-70 scale-95'
+                      className={`testimonial-slide transition-all duration-300 ease-in-out ${activeSlide === index - 1 ? 'active-slide md:!scale-105 md:opacity-100' : 'md:opacity-70 md:!scale-95'
                         }`}
                     >
                       <div className="rounded-[30px] overflow-hidden shadow-xl border-[5px] border-white/25 h-full m-2 transition-transform duration-300 ease-in-out">

@@ -403,7 +403,7 @@ const HireUsForm = () => {
       <div className="flex justify-center mt-8 w-full">
         <button
           type="submit"
-          className="commonBtn !w-full"
+          className="commonBtn commonBtnSecondaryBg !w-full"
           disabled={isSubmitting}
         >
           {isSubmitting ? (
@@ -431,7 +431,7 @@ const HireUsForm = () => {
               Processing...
             </span>
           ) : (
-            "Submit Request"
+            "Submit"
           )}
         </button>
       </div>
