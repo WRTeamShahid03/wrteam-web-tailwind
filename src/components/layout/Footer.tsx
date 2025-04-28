@@ -222,7 +222,7 @@ const NewFooter = () => {
           </div>
 
           {/* Feedback Section */}
-          <div className="border-b border-[#ffffff3d] sm:pl-6 pb-[39px] flex items-center gap-[12px_50px] flex-wrap">
+          <div className="border-b border-[#ffffff3d] sm:pl-6 pb-[39px] between-1800-2500:h-[112px] flex items-center gap-[12px_50px] flex-wrap">
             <div>
               <h3 className="text-white font-medium text-lg mb-2">We Value Your Feedback</h3>
               <p className="text-gray-300 text-sm">
