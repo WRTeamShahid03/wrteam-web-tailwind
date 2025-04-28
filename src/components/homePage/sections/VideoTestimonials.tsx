@@ -91,10 +91,10 @@ const VideoTestimonials = () => {
 
       {
         isLoading ?
-          <div className="bg-gray-900 py-16 videoTestimonials commonMT">
+          <div className="bg-[#181C24] py-16 videoTestimonials commonMT">
             <div className="container mx-auto px-4">
-              <div className="text-center mb-10 flex flex-col items-center gap-3">
-                <span className="bg-gray-800 text-white py-2 px-4 rounded-md text-sm">
+            <div className="text-center mb-10 flex flex-col items-center gap-3 md:gap-5">
+                <span className="bg-[#FFFFFF29] text-white py-2 px-4 rounded-md text-sm font-semibold">
                   Real Stories from Our Clients
                 </span>
                 <h2 className="text-white text-3xl md:text-4xl font-semibold">

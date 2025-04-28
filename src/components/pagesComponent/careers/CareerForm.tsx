@@ -515,7 +515,7 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
         </label>
         <div
           {...getRootProps()}
-          className={`border-2 border-dashed rounded-md p-8 text-center transition-colors duration-200 ${isDragActive
+          className={`border-2 border-dashed rounded-md p-8 text-center transition-colors duration-200 bg-[#f8f8f9] ${isDragActive
               ? "border-blue-500 bg-blue-50"
               : errors.resume
                 ? "border-red-500"
