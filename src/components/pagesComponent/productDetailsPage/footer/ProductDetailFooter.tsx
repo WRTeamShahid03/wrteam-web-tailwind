@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import logo from '../../../../assets/images/logo.svg'
 import codecanyon from '../../../../assets/images/productDetailPage/Codecanyon.png'
-import envato from '../../../../assets/images/productDetailPage/Envato.png'
+import envato from '../../../../assets/images/productDetailPage/Envato.svg'
 import { HelpSection } from '@/types';
 
 
@@ -46,10 +46,10 @@ const ProductDetailFooter: React.FC<ProductDetailFooterProps> = ({ icon_image, c
             )}
             <div className="flex flex-col gap-6">
               <Link href={codecanyonLink} title='codecanyonLink'>
-                <Image src={codecanyon} height={0} width={0} alt='codecanyonImg' className='w-auto h-auto' />
+                <Image src={codecanyon} height={0} width={0} alt='codecanyonImg' className='w-[164px] max-575:w-[130px] object-cover h-auto border border-[#6c757d] rounded-[8px]' />
               </Link>
               <Link href={'https://codecanyon.net/user/wrteam/portfolio'} title='portfolioLink'>
-                <Image src={envato} height={0} width={0} alt='envatoImg' className='w-auto h-auto' />
+                <Image src={envato} height={0} width={0} alt='envatoImg' className='w-[164px] max-575:w-[130px] object-cover h-auto border border-[#6c757d] rounded-[8px]' />
               </Link>
             </div>
           </div>

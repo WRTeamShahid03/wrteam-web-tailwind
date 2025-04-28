@@ -134,9 +134,9 @@ const PortfolioDetials = () => {
           <div className="bg-red-50 text-red-700 p-4 rounded-md">
             {error}
           </div>
-        ) : portfolioDetail ? (
+        ) : portfolioDetail?.description ? (
           <div>
-            <div dangerouslySetInnerHTML={{ __html: portfolioDetail.description || '' }} />
+            <div dangerouslySetInnerHTML={{ __html: portfolioDetail?.description || '' }} />
           </div>
           // <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           //   {/* Portfolio image */}

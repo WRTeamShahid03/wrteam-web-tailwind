@@ -89,7 +89,7 @@ const ReviewCard = ({
         <div className="border-t border-gray-200 pt-3 mb-2"></div>
         <div className="flex flex-col gap-2">
           <h4 className="font-semibold text-xl">{name}</h4>
-          <p className="font-medium text-gray-600">For {role}</p>
+          <p className="font-medium text-gray-600">{role}</p>
         </div>
       </div>
     </div>

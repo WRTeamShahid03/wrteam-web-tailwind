@@ -53,9 +53,9 @@ const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description,
     return (
         <section className={`py-12 lg:py-20  relative after:content-[""] after:absolute after:h-full after:w-full ${layoutOne ? '!commonBgAndShape' : 'after:productSecondaryBg'}  after:top-0 after:left-0 after:-z-[1] after:opacity-90`} style={{ background: `${!layoutOne && `url(${bgLines.src})`}`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
             <div className="container space-y-6 md:space-y-8 lg:space-y-12">
-                <div className='flexColCenter commonTextGap md:w-[60%] lg:w-[40%] m-auto text-center'>
+                <div className='flexColCenter commonTextGap md:w-[60%] lg:w-[50%] m-auto text-center'>
                     <h1 className='sectionTitle text-white'>{title}</h1>
-                    <p className='sectionPara !text-[#ffffff8f]' dangerouslySetInnerHTML={{ __html: description || '' }} />
+                    <p className='sectionPara !text-[#f1f5f9]' dangerouslySetInnerHTML={{ __html: description || '' }} />
 
                 </div>
                 <div className='w-full'>

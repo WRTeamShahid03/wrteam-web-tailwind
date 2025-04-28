@@ -234,7 +234,7 @@ const ContactForm = () => {
 
   return (
     <form className="space-y-6" onSubmit={handleSubmit} noValidate ref={form}>
-      <div className="grid grid-cols-12 gap-6 ">
+      <div className="grid grid-cols-12 gap-6">
         {/* Full Name Field */}
         <div className="max-479:col-span-12 col-span-6">
           <input
