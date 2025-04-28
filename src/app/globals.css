@@ -1092,3 +1092,10 @@ footer .commonBtn:after {
 
 /* orbit ends here  */
 }
+
+@media (min-width: 1800px) {
+
+  .container {
+    max-width: 1536px;
+  }
+}
