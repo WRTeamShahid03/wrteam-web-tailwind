@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent, JSX } from "react";
+import { useState, FormEvent, ChangeEvent, JSX, useRef } from "react";
 import {
   Dialog,
   DialogContent,
@@ -9,42 +9,173 @@ import {
 } from "@/components/ui/dialog";
 import { IoMdClose } from "react-icons/io";
 import { FaArrowRight } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 interface FeedbackDialogProps {
   initialOpen?: boolean;
-  onSubmit?: (data: { name: string; message: string }) => void;
   onClose?: () => void;
+}
+interface FeedbackData {
+  name: string;
+  product: string;
+  message: string;
+}
+
+// Interface for form errors
+interface FormErrors {
+  name?: string;
+  product?: string;
+  message?: string;
 }
 
 export default function FeedbackDialog({
   initialOpen = false,
-  onSubmit,
   onClose,
 }: FeedbackDialogProps): JSX.Element {
   const [open, setOpen] = useState<boolean>(initialOpen);
-  const [name, setName] = useState<string>("");
-  const [message, setMessage] = useState<string>("");
+  // Form state
+  const [formData, setFormData] = useState<FeedbackData>({
+    name: "",
+    product: "",
+    message: ""
+  });
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    // Handle form submission logic here
-    const feedbackData = { name, message };
+  // Form errors and submission states
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
-    if (onSubmit) {
-      onSubmit(feedbackData);
-    }
+  // Form ref
+  const form = useRef<HTMLFormElement>(null);
 
-    setOpen(false);
-    if (onClose) {
-      onClose();
+  // Handle input change
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+    // Clear error when user types
+    if (errors[name as keyof FormErrors]) {
+      setErrors({
+        ...errors,
+        [name]: "",
+      });
     }
   };
 
-  const handleClose = (): void => {
-    setOpen(false);
-    if (onClose) {
-      onClose();
+  // Validate form
+  const validateForm = () => {
+    const newErrors: FormErrors = {};
+
+    // Validate name
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
     }
+
+    // Validate product
+    // if (!formData.product.trim()) {
+    //     newErrors.product = "Product name is required";
+    // }
+
+    // Validate message
+    if (!formData.message.trim()) {
+      newErrors.message = "Feedback message is required";
+    } else if (formData.message.length < 5) {
+      newErrors.message = "Please provide more detailed feedback";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+      try {
+        setIsSubmitting(true);
+
+        // Create FormData for submission to API
+        const apiFormData = new FormData();
+        apiFormData.append('name', formData.name);
+
+        // Only add product if it has a value, otherwise add empty string
+        const productValue = formData.product.trim();
+        apiFormData.append('product', productValue ? productValue : "-");
+
+        apiFormData.append('message', formData.message);
+
+        try {
+          // Try the API endpoint
+          const response = await fetch("/api/feedback", {
+            method: "POST",
+            body: apiFormData,
+          });
+
+          const responseData = await response.json();
+
+          // Check if the response is successful
+          if (response.ok && responseData && responseData.error === false) {
+            // Success scenario
+            handleSuccess();
+            return;
+          } else {
+            // API returned an error response
+            console.error("API error response:", responseData);
+            toast.error(
+              responseData.message || "There was an error submitting your feedback."
+            );
+          }
+        } catch (apiError) {
+          console.error("API request failed:", apiError);
+          toast.error("We couldn't connect to our server. Trying alternative method.");
+        }
+      } catch (error) {
+        console.error("Error in form submission:", error);
+        toast.error("We're experiencing technical difficulties. Please try again later.");
+      } finally {
+        setIsSubmitting(false);
+      }
+    } else {
+      // Scroll to the first error
+      const firstErrorField = Object.keys(errors)[0];
+      const element = document.getElementById(firstErrorField);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+        element.focus();
+      }
+    }
+  };
+
+  // Handle successful submission
+  const handleSuccess = () => {
+    setSubmitSuccess(true);
+    toast.success("Thank you for your feedback!");
+
+    // Reset form
+    setFormData({
+      name: "",
+      product: "",
+      message: "",
+    });
+
+    setOpen(false);
+
+    // Reset form fields
+    if (form.current) {
+      form.current.reset();
+    }
+
+    // Hide success message after 2 seconds
+    setTimeout(() => {
+      setSubmitSuccess(false);
+    }, 3000);
   };
 
   return (
@@ -69,7 +200,7 @@ export default function FeedbackDialog({
       <DialogContent className="sm:max-w-md overflow-hidden">
         <div
           className="absolute right-4 top-4 bg-black text-white flexCenter w-8 h-8 rounded-[8px] cursor-pointer"
-          onClick={handleClose}
+          onClick={() => setOpen(false)}
         >
           <IoMdClose size={18} />
         </div>
@@ -84,21 +215,43 @@ export default function FeedbackDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-6 pt-4">
+        <form ref={form} onSubmit={handleSubmit} noValidate className="space-y-6 pt-4">
           <div className="space-y-2">
             <label htmlFor="name" className="text-base font-medium flex">
               Your Name <span className="text-red-500 ml-1">*</span>
             </label>
             <input
               id="name"
+              name="name"
               placeholder="Enter Your Name"
-              value={name}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setName(e.target.value)
-              }
+              value={formData.name}
+              onChange={handleChange}
               required
-              className="border border-gray-300 rounded w-full py-2 px-4"
+              className={`border ${errors.name ? "border-red-500" : "border-gray-300"
+                } rounded w-full py-2 px-4`}
             />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="product" className="text-base font-medium flex">
+              Product
+            </label>
+            <input
+              id="product"
+              name="product"
+              placeholder="Enter Product Name"
+              value={formData.product}
+              onChange={handleChange}
+              required
+              className={`border ${errors.product ? "border-red-500" : "border-gray-300"
+                } rounded w-full py-2 px-4`}
+            />
+            {errors.product && (
+              <p className="text-red-500 text-sm mt-1">{errors.product}</p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -107,25 +260,56 @@ export default function FeedbackDialog({
             </label>
             <textarea
               id="message"
+              name="message"
               placeholder="Write Message..."
-              value={message}
-              onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                setMessage(e.target.value)
-              }
+              value={formData.message}
+              onChange={handleChange}
               required
-              className="min-h-32 border border-gray-300 rounded w-full py-2 px-4"
+              className={`min-h-32 border ${errors.message ? "border-red-500" : "border-gray-300"
+                } rounded w-full py-2 px-4`}
             />
+            {errors.message && (
+              <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+            )}
           </div>
 
           <div className="flex justify-end gap-4">
-            <button type="button" onClick={handleClose}>
+            <button type="button" onClick={() => setOpen(false)}>
               Cancel
             </button>
             <button
               type="submit"
               className="bg-gray-900 text-white hover:bg-gray-800 px-8 py-4 flexCenter gap-2 rounded-[8px]"
             >
-              Send <FaArrowRight />
+              {/* Send <FaArrowRight /> */}
+              {isSubmitting ? (
+                <span className="flex items-center justify-center">
+                  <svg
+                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Sending...
+                </span>
+              ) : <>
+                Send <FaArrowRight />
+              </>
+              }
             </button>
           </div>
         </form>

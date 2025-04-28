@@ -93,9 +93,6 @@ const Feedback = () => {
                 const productValue = formData.product.trim();
                 apiFormData.append('product', productValue ? productValue : "-");
 
-                // For debugging - log what's being sent
-                console.log('Product value being sent:', productValue);
-
                 apiFormData.append('message', formData.message);
 
                 try {
@@ -160,7 +157,7 @@ const Feedback = () => {
         // Hide success message after 2 seconds
         setTimeout(() => {
             setSubmitSuccess(false);
-        }, 2000);
+        }, 3000);
     };
 
 
