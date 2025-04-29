@@ -12,7 +12,7 @@ const PaymentGatewaysTwo = ({ title, description, gateways }: { title: string, d
                 {/* Bottom Right Corner */}
                 <div className="absolute bottom-0 right-0 w-[125px] h-[125px] lg:productPrimaryBg  rounded-tl-full z-10"></div>
 
-                <div className="relative z-20 flex flex-col lg:flex-row md:items-center justify-center max-w-6xl mx-auto">
+                <div className="relative z-[4] flex flex-col lg:flex-row md:items-center justify-center max-w-6xl mx-auto">
                     {/* Text Content */}
                     <div className="text-center lg:w-2/5 mb-10 lg:mb-0 flex flex-col items-center">
                         <h2 className="sectionTitle secondaryColor font-bold mb-4">
@@ -57,25 +57,6 @@ const PaymentGatewaysTwo = ({ title, description, gateways }: { title: string, d
                                 <span className='text-sm sm:text-base'>{gateways[3]?.name}</span>
                             </div>
                         </div>
-                        {/* {gateways.map((gateway) => (
-                        <div
-                            key={gateway.name}
-                            className="bg-white rounded-xl p-5 flex flex-col items-center justify-center shadow-md hover:-translate-y-1 transition-transform duration-300"
-                        >
-                            <div className="w-[70px] h-[50px] flex items-center justify-center mb-3">
-                                <Image
-                                    src={gateway.image_url}
-                                    alt={`${gateway.name} payment gateway`}
-                                    width={50}
-                                    height={50}
-                                    className="object-contain"
-                                />
-                            </div>
-                            <p className="text-base font-medium text-[#2c3e50] m-0">
-                                {gateway.name}
-                            </p>
-                        </div>
-                    ))} */}
                     </div>
                 </div>
             </section>

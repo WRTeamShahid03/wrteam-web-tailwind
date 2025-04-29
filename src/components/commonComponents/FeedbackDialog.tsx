@@ -180,7 +180,7 @@ export default function FeedbackDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger asChild className="">
         <button className="inline-flex items-center bg-white text-[#171B26] px-4 py-2 rounded-md font-medium text-sm transition hover:bg-gray-200">
           Feedback
           <svg
@@ -197,13 +197,13 @@ export default function FeedbackDialog({
           </svg>
         </button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md overflow-hidden">
-        <div
+      <DialogContent className="sm:max-w-md overflow-hidden [&>.ring-offset-white]:!bg-black [&>.ring-offset-white]:!p-2 [&>.ring-offset-white]:!text-white [&>.ring-offset-white]:!opacity-100">
+        {/* <div
           className="absolute right-4 top-4 bg-black text-white flexCenter w-8 h-8 rounded-[8px] cursor-pointer"
           onClick={() => setOpen(false)}
         >
           <IoMdClose size={18} />
-        </div>
+        </div> */}
 
         <DialogHeader className='pb-6 relative after:content-[""] after:absolute after:bottom-0 after:-left-6 after:w-[120%] after:h-[1px] after:bg-[#D8E0E6]'>
           <DialogTitle className="text-2xl font-bold">

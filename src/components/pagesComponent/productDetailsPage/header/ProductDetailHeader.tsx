@@ -71,7 +71,7 @@ const ProductDetailHeader = ({ icon_image }: ProductDetailHeaderProps) => {
 
   return (
     <header
-      className={`py-4 sticky top-0 w-full z-[10] ${
+      className={`py-4 sticky top-0 w-full z-[20] ${
         scroll > (navRef.current?.offsetTop || 0)
           ? "stickky bg-white shadow-sm"
           : "!bg-none"

@@ -1103,3 +1103,7 @@ footer .commonBtn:after {
 textarea{
   resize: none;
 }
+
+.df-brand-img img{
+  height: 100%;
+}
