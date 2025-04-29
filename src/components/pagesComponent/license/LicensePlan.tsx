@@ -35,12 +35,18 @@ const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, re
             <TableHead className="text-left font-semibold p-4 border-r text-black">Product Plans</TableHead>
             <TableHead className="text-center font-semibold p-4 text-lg md:text-xl textSecondary border-r">
               <div className="flex flex-col gap-3 lg:pt-6 lg:pb-3">
-                <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${regularLicensePrice}</span>
+                {
+                  detailPage &&
+                  <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${regularLicensePrice}</span>
+                }
                 <span className="text-sm sm:text-base md:text-lg ">Regular License</span>
-                <Link href={checkoutUrl || ''} target="_blank" className="text-sm md:text-base border productDetailPrimaryBorder rounded-[6px] p-1 productPrimaryColor flexCenter gap-1" title="Buy Now">
-                  Buy Now
-                  <FaArrowRight />
-                </Link>
+                {
+                  detailPage &&
+                  <Link href={checkoutUrl || ''} target="_blank" className="text-sm md:text-base border productDetailPrimaryBorder rounded-[6px] p-1 productPrimaryColor flexCenter gap-1" title="Buy Now">
+                    Buy Now
+                    <FaArrowRight />
+                  </Link>
+                }
               </div>
             </TableHead>
             <TableHead className="text-center font-semibold p-4 text-lg md:text-xl textSecondary relative overflow-hidden">
@@ -49,12 +55,18 @@ const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, re
               </span>
 
               <div className="flex flex-col gap-3 lg:pt-6 lg:pb-3">
+                {
+                  detailPage &&
                 <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${extendedLicensePrice}</span>
+                }
                 <span className="text-sm sm:text-base md:text-lg ">Extended License</span>
-                <Link href={extendedLicenseLink || ''} target="_blank" className="text-sm md:text-base border productDetailPrimaryBorder rounded-[6px] p-1 productPrimaryBg text-white flexCenter gap-1" title="Buy Now">
-                  Buy Now
-                  <FaArrowRight />
-                </Link>
+                {
+                  detailPage &&
+                  <Link href={extendedLicenseLink || ''} target="_blank" className="text-sm md:text-base border productDetailPrimaryBorder rounded-[6px] p-1 productPrimaryBg text-white flexCenter gap-1" title="Buy Now">
+                    Buy Now
+                    <FaArrowRight />
+                  </Link>
+                }
               </div>
             </TableHead>
           </TableRow>
@@ -63,7 +75,7 @@ const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, re
           {regularLicenseData.map((item, index) => (
             <TableRow key={item.id} className="border-t">
               <TableCell className="p-4 border-r flex flex-wrap gap-1 font-semibold flex-col">
-                <span className="md:text-base">{item.detail}</span> 
+                <span className="md:text-base">{item.detail}</span>
                 {item.otherText && <span className="textSecondary text-sm"> ({item.otherText})</span>}
               </TableCell>
               <TableCell className="text-center m-auto border-r">
