@@ -132,19 +132,6 @@ export default function WhyChooseUs({
           ))}
         </Swiper>
       </div>
-
-      {/* Mobile Device Showcase Image (Only visible on screens smaller than lg)
-      <div className="flex justify-center lg:hidden">
-        <img
-          src="https://placehold.co/600x400/e2e8f0/1e293b?text=eSchool+SaaS+Devices"
-          alt="eSchool SaaS on multiple devices"
-          className="max-w-full h-auto"
-          onError={(e) => {
-            // Fallback if image fails to load
-            e.currentTarget.style.display = "none";
-          }}
-        />
-      </div> */}
     </div>
   );
 }

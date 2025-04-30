@@ -11,7 +11,7 @@ import envatoIcon from '../../../../assets/images/envatoTestimonial.png'
 import Image from "next/image";
 
 
-export default function ClientReview({ testimonials }: { testimonials: ProductTestimonial[] }) {
+export default function ClientReview({ testimonials, productName }: { testimonials: ProductTestimonial[], productName: string }) {
   // Create a ref for the Swiper instance
   const swiperRef = useRef<SwiperType | null>(null);
 
@@ -46,7 +46,7 @@ export default function ClientReview({ testimonials }: { testimonials: ProductTe
           <h4 className="sectionTitle !font-bold mb-2">
             What Customers Have to say about
           </h4>
-          <h5 className="text-3xl font-bold">eSchool SaaS</h5>
+          <h5 className="text-3xl font-bold">{productName}</h5>
         </div>
 
         {/* Reviews Container */}

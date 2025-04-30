@@ -27,7 +27,7 @@ const MoneyTimeSection: React.FC<{ productName: string }> = ({ productName }) =>
     },
     {
       id: 4,
-      list: 'Nulled-Free Premium Code',
+      list: '100% Original Premium Code',
     },
   ];
 

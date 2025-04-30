@@ -141,6 +141,7 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
           />
         ) : (
           <LayoutTwo
+            productName={productName}
             productDetails={productDetails}
             codecanyonLink={codecanyonLink}
             checkoutUrl={checkoutUrl}

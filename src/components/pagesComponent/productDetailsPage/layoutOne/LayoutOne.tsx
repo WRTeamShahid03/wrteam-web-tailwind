@@ -131,7 +131,7 @@ const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extended
       {/* Pass testimonials data to ClientReview */}
       {
         productTestimonials &&
-        <ClientReview testimonials={productTestimonials} />
+        <ClientReview testimonials={productTestimonials} productName={productName}/>
       }
 
       <PerfectPlan layoutOne={true} checkoutUrl={checkoutUrl} extendedLicensePrice={extendedLicensePrice} extendedLicenseLink={extendedLicenseLink} regularLicensePrice={regularLicensePrice} />
@@ -146,7 +146,7 @@ const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extended
         <HelpAndSupport helpSection={helpSection} />
       }
 
-      <ReadyToPower checkoutUrl={checkoutUrl} />
+      <ReadyToPower checkoutUrl={checkoutUrl} productName={productName}/>
     </div>
   );
 };

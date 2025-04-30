@@ -25,8 +25,9 @@ interface LayoutTwoProps {
     extendedLicensePrice: number;
     extendedLicenseLink: string;
     regularLicensePrice: number;
+    productName: string;
 }
-const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice }) => {
+const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, productName }) => {
 
     const productDescription = productDetails?.product_description[0]
     const layoutOneDetails = productDescription
@@ -99,7 +100,7 @@ const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, exte
                 <HelpAndSupport helpSection={helpSection} />
             }
 
-            <ReadyToPower checkoutUrl={checkoutUrl} />
+            <ReadyToPower checkoutUrl={checkoutUrl} productName={productName} />
 
             {/* <ClientProductReviews /> */}
 
