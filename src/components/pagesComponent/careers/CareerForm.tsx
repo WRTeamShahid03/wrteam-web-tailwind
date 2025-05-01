@@ -16,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import toast from "react-hot-toast";
 
 // Define Zod schema for form validation
 const formSchema = z.object({
@@ -286,7 +287,7 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
 
         // Append the resume file if it exists
         if (formData.resume) {
-          apiFormData.append('resume', formData.resume);
+          apiFormData.append('file', formData.resume);
         }
 
         // Send data to API
@@ -302,7 +303,7 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
         }
 
         // Show success message
-        alert("Application submitted successfully!");
+        toast.success("Application submitted successfully!");
 
         // Reset form after successful submission
         setFormData({
@@ -314,13 +315,25 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
           experience: "",
           resume: null,
         });
-
-        // Reset file upload
-        handleFileRemove();
+        
+        // Reset file input
+        setFileDataUrl(null);
+        setInputKey(Date.now());
+        
+        // Reset any errors
+        setErrors({});
+        
+        // Reset country code
+        setSelectedCountryCode("");
+        
+        // Reset form using the form ref
+        if (form.current) {
+          form.current.reset();
+        }
 
       } catch (error) {
         console.error('Form submission error:', error);
-        alert(`Error: ${error instanceof Error ? error.message : 'Failed to submit application'}`);
+        toast.error(`Error: ${error instanceof Error ? error.message : 'Failed to submit application'}`);
       } finally {
         setFormLoader(false);
       }
