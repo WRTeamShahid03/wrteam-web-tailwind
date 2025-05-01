@@ -246,6 +246,12 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
         return false;
       }
 
+      // Save the formatted phone number back to form state
+      setFormData({
+        ...formData,
+        contactNumber: finalNum,
+      });
+
       // Clear all errors if validation passes
       setErrors({});
       return true;
