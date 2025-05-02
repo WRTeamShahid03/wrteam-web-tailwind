@@ -17,7 +17,7 @@ const HeroSect: React.FC<HeroSectProps> = ({ title, description, imageUrl }) => 
                 <h1 className='sectionTitle !font-bold'>{title}</h1>
                 <p className='sectionPara' dangerouslySetInnerHTML={{ __html: description || '' }} />
                 <div className='flexCenter gap-6 font-semibold'>
-                    <Link href={'#exploreDemo'} title='Explore Demo' className='productPrimaryBg rounded-full h-[48px] flexCenter w-[140px] text-white'>
+                    <Link href={'#explore-demo'} title='Explore Demo' className='productPrimaryBg rounded-full h-[48px] flexCenter w-[140px] text-white'>
                         Explore Demo
                     </Link>
                     <Link href={'#license'} title='Buy Now' className='bg-transparent rounded-full h-[48px] flexCenter w-[128px] productDetailPrimaryColor border-[2px] productDetailPrimaryBorder'>

@@ -71,10 +71,10 @@ const WhatYouGet: React.FC<WhatYouGetProps> = ({
   }, []);
 
   return (
-    <section className="relative -mt-60 bg-white pt-48" id="explore-demo">
+    <section className="relative -mt-60 bg-white pt-48">
       <MarqueSect />
 
-      <div className="container space-y-8 md:space-y-12 lg:space-y-16">
+      <div className="container space-y-8 md:space-y-12 lg:space-y-16" id="explore-demo">
         <div className="flexColCenter commonTextGap lg:w-[50%] mx-auto text-center commonMT">
           <h2 className="sectionTitle !font-bold">{title}</h2>
           <p
