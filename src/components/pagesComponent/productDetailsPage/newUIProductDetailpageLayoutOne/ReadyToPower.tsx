@@ -25,7 +25,7 @@ const ReadyToPower:React.FC<dataProps> = ({ checkoutUrl,productName }) => {
           <Link href={checkoutUrl} title="Buy Now" target="_blank" className="font-medium productPrimaryBg text-white px-4 md:px-6 py-2 rounded text-sm md:text-base">
             Buy Now
           </Link>
-          <Link href={'/contact-us'} title="Contact Us" className="font-medium border productDetailPrimaryBorder productPrimaryColor px-4 md:px-6 py-2 rounded text-sm md:text-base hover:bg-green-50 transition-colors">
+          <Link href={'/contact-us'} title="Contact Us" className="font-medium border productDetailPrimaryBorder productPrimaryColor px-4 md:px-6 py-2 rounded text-sm md:text-base">
             Contact Us
           </Link>
         </div>

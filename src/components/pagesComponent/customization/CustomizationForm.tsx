@@ -194,8 +194,8 @@ const CustomizationForm = () => {
   const handleChange = (
     e:
       | React.ChangeEvent<
-          HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-        >
+        HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+      >
       | { name: string; value: string }
   ) => {
     // Check if the input is an event or an object with name and value
@@ -390,6 +390,10 @@ const CustomizationForm = () => {
           });
           setValue("");
           handleFileRemove();
+          // Reset form using the form ref
+          if (form.current) {
+            form.current.reset();
+          }
           setSubmitSuccess(true);
           toast.success(
             "Your customization request has been submitted successfully!"
@@ -420,9 +424,8 @@ const CustomizationForm = () => {
             value={formData.user_name}
             onChange={handleChange}
             placeholder="Enter Your Full Name"
-            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
-              errors.user_name ? "border-red-500" : "border-gray-300"
-            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.user_name ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.user_name && (
             <p className="text-red-500 text-sm mt-1">{errors.user_name}</p>
@@ -439,9 +442,8 @@ const CustomizationForm = () => {
               name: "contact",
               id: "contact",
               required: true,
-              className: `w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
-                errors.contact ? "border-red-500" : "border-gray-300"
-              } focus:outline-none focus:ring-1 focus:ring-blue-500`,
+              className: `w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.contact ? "border-red-500" : "border-gray-300"
+                } focus:outline-none focus:ring-1 focus:ring-blue-500`,
             }}
             containerClass={`${errors.contact ? "phone-input-error" : ""}`}
             containerStyle={{ width: "100%" }}
@@ -460,9 +462,8 @@ const CustomizationForm = () => {
                 type="button"
                 id="product_name"
                 name="product_name"
-                className={`w-full text-start textSecondary px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
-                  errors.product_name ? "border-red-500" : "border-gray-300"
-                } focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none bg-white`}
+                className={`w-full text-start textSecondary px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.product_name ? "border-red-500" : "border-gray-300"
+                  } focus:outline-none focus:ring-1 focus:ring-blue-500 appearance-none bg-white`}
               >
                 {value ? (
                   products.find((item) => item.value === value)?.label
@@ -526,9 +527,8 @@ const CustomizationForm = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter Your Email"
-            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
-              errors.email ? "border-red-500" : "border-gray-300"
-            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.email ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -538,9 +538,8 @@ const CustomizationForm = () => {
         {/* Upload File Field */}
         <div>
           <div
-            className={`bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
-              errors.requirement_file ? "border-red-500" : "border-gray-300"
-            } rounded-md text-center`}
+            className={`bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.requirement_file ? "border-red-500" : "border-gray-300"
+              } rounded-md text-center`}
           >
             {formData.requirement_file ? (
               <div className="flex flex-col items-center justify-center p-4">
@@ -611,11 +610,10 @@ const CustomizationForm = () => {
             onChange={handleChange}
             placeholder="Explain what you need for customization..."
             rows={10}
-            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
-              errors.requirement_explanation
+            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.requirement_explanation
                 ? "border-red-500"
                 : "border-gray-300"
-            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+              } focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.requirement_explanation && (
             <p className="text-red-500 text-sm mt-1">
@@ -629,21 +627,20 @@ const CustomizationForm = () => {
           <button
             type="submit"
             disabled={formLoader}
-            className={`!w-full commonBtn commonBtnSecondaryBg ${
-              formLoader ? "opacity-70 cursor-not-allowed" : ""
-            }`}
+            className={`!w-full commonBtn commonBtnSecondaryBg ${formLoader ? "opacity-70 cursor-not-allowed" : ""
+              }`}
           >
             {formLoader ? "Submitting..." : "Submit"}
           </button>
         </div>
 
         {/* Success Message */}
-        {submitSuccess && (
+        {/* {submitSuccess && (
           <div className="bg-green-100 text-green-800 p-4 rounded-md">
             Thank you! Your customization request has been received. We&apos;ll
             get back to you shortly.
           </div>
-        )}
+        )} */}
       </div>
     </form>
   );

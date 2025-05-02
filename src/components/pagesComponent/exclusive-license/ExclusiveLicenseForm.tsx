@@ -603,11 +603,11 @@ export default function ExclusiveLicenseForm() {
             </div>
 
             {/* Success Message */}
-            {submitSuccess && (
+            {/* {submitSuccess && (
                 <div className="bg-green-100 text-green-800 p-4 rounded-md mt-4">
                     Thank you for your exclusive license request! We have received your inquiry and will get back to you shortly with pricing and licensing details.
                 </div>
-            )}
+            )} */}
         </form>
     );
 }

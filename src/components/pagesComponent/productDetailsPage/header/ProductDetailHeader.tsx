@@ -13,6 +13,7 @@ import MobileNav from "./MobileNav";
 
 interface ProductDetailHeaderProps {
   icon_image?: string;
+  codecanyonLink?: string;
 }
 
 // Define an interface for the whatsapp links
@@ -20,7 +21,7 @@ interface WhatsAppLinks {
   [key: string]: string;
 }
 
-const ProductDetailHeader = ({ icon_image }: ProductDetailHeaderProps) => {
+const ProductDetailHeader = ({ icon_image, codecanyonLink }: ProductDetailHeaderProps) => {
   const router = useParams();
   const navRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(0);
@@ -79,7 +80,7 @@ const ProductDetailHeader = ({ icon_image }: ProductDetailHeaderProps) => {
     >
       <div className="container">
         <div ref={navRef} className="flex items-center justify-between nav">
-          <Link href={"/"}>
+          <Link href={codecanyonLink ? codecanyonLink : "/"}>
             {icon_image ? (
               <Image
                 src={icon_image}

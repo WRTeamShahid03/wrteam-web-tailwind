@@ -120,6 +120,7 @@ const WhatYouGet: React.FC<WhatYouGetProps> = ({
                   />
                   <Link
                     href={element.link || ""}
+                    target="_blank"
                     title="Explore Demo"
                     className="productPrimaryColor flexCenter gap-1 font-medium"
                   >

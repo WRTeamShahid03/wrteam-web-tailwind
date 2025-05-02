@@ -90,7 +90,7 @@ const ContactUs: React.FC = () => {
                     </div>
                 </div>
             </section>
-            <section className="container commonMT commonMB ">
+            <section className="container commonMT">
                 <div className='border border-[#707070b3] rounded-[16px] overflow-hidden'>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6879.666659015773!2d69.63730994896257!3d23.23263359742167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39511e5b00000001%3A0x99eb1d2a09bf7685!2sWRTeam!5e0!3m2!1sen!2sin!4v1694243415170!5m2!1sen!2sin" width="100%" height="450" style={{ border: "0" }} allowFullScreen={true} referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>

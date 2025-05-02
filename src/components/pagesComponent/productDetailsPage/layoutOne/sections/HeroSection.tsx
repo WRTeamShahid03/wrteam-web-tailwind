@@ -33,10 +33,10 @@ const HeroSection: React.FC<HeroSectionProps> = (
           <div dangerouslySetInnerHTML={{ __html: description }} className="text-[#334155] font-normal !font-roboto [&>p]:!font-roboto [&>p]:text-[#334155]"></div>
         </div>
         <div className='flexCenter gap-3 font-semibold mt-5 sm:mt-10'>
-          <Link href={''} title='Explore Demo' className='productPrimaryBg p-3 rounded-md flexCenter max-399:text-sm max-399:w-[130px] w-[165px] text-white'>
+          <Link href={'#explore-demo'} title='Explore Demo' className='productPrimaryBg p-3 rounded-md flexCenter max-399:text-sm max-399:w-[130px] w-[165px] text-white'>
             Explore Demo
           </Link>
-          <Link href={''} title='Buy Now' className='bg-transparent p-3 rounded-md flexCenter max-399:text-sm max-399:w-[130px] w-[165px] productDetailPrimaryColor border-[1px] productDetailPrimaryBorder'>
+          <Link href={'#license'} title='Buy Now' className='bg-transparent p-3 rounded-md flexCenter max-399:text-sm max-399:w-[130px] w-[165px] productDetailPrimaryColor border-[1px] productDetailPrimaryBorder'>
             Buy Now
           </Link>
         </div>

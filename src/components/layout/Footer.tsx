@@ -97,7 +97,7 @@ const NewFooter = () => {
                 <li><Link href="/about-us" className="hover:text-white transition-all flex justify-between items-center group duration-300" title='About Us'>About Us
                   <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
-                <li><Link href="/career" className="hover:text-white transition-all flex justify-between items-center group duration-300" title='Careers'>Careers
+                <li><Link href="/career" className="hover:text-white transition-all flex justify-between items-center group duration-300" title='Career'>Career
                   <FaAngleRight className='opacity-0 group-hover:opacity-100 transition-all duration-300' />
                 </Link></li>
                 <li><Link href="/blogs" className="hover:text-white transition-all flex justify-between items-center group duration-300" title='Blogs'>Blogs
@@ -275,11 +275,11 @@ const NewFooter = () => {
 
       {/* Copyright bar */}
       <div className="bg-[#171B26] border-t border-[#ffffff3d] py-4 text-[14px]">
-        <div className="max-1680:container 2xl:max-w-[1620px] mx-auto flex flex-col md:flex-row justify-between items-center gap-y-2 text-sm sm:text-base">
+        <div className="max-1680:container 2xl:max-w-[1620px] mx-auto flex max-1199:flex-col justify-between items-center gap-y-2 text-sm sm:text-base">
           <div>
             Copyright © {new Date().getFullYear()} All Rights Reserved & Designed by 💕 <Link href="https://wrteam.in" title='WRTeam' className="primaryColor">WRTeam</Link>.
           </div>
-          <div className="flex mt-4 md:mt-0 flex-wrap gap-2 between-1200-1399:gap-1">
+          <div className="flex mt-4 md:mt-0 flex-wrap gap-2 between-1200-1399:gap-1 between-1200-1399:pr-[130px] between-1400-1680:pr-[160px] between-1800-2500:pr-[80px]">
             <Link href="/terms-of-use" title='Terms of use'>Terms of use</Link>
             <span>|</span>
             <Link href="/privacy-policy" title='Privacy Policies'>Privacy Policies</Link>

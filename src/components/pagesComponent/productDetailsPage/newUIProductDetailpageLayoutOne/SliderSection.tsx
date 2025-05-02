@@ -62,7 +62,7 @@ export default function SliderSection({
   };
 
   return (
-    <div className="container commonMT">
+    <div className="container commonMT" id="explore-demo">
       <div className="mb-12 flex items-end justify-between">
         <div className="flexColCenter !items-start commonTextGap max-399:text-center">
           <PageTitle className="sectionTitle !font-bold">{title}</PageTitle>

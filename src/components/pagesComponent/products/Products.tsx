@@ -290,87 +290,96 @@ const ProductsPage = ({
               <ProductCardSkeleton key={`skeleton-${index}`} />
             ))
           ) : // Show actual product cards when data is loaded
-          products.length > 0 ? (
-            products.map((product) => (
-              <div
-                key={product?.id}
-                className="flex flex-col gap-4 p-3 rounded-[16px] border-dashed border-[2px] border-[#545a6870] overflow-hidden transition-all duration-300 group cursor-pointer"
-              >
-                {/* Product Main Image - Clickable */}
-                <Link
-                  href={`/product-details/${product?.slug}`}
-                  title="Product Details"
-                  target="_blank"
+            products.length > 0 ? (
+              products.map((product) => (
+                <div
+                  key={product?.id}
+                  className="flex flex-col gap-4 p-3 rounded-[16px] border-dashed border-[2px] border-[#545a6870] overflow-hidden transition-all duration-300 group cursor-pointer"
                 >
-                  <div>
-                    <Image
-                      src={product?.banner_image}
-                      alt={product?.name || "Product Image"}
-                      width={500}
-                      height={300}
-                      loader={({ src }) => src}
-                      unoptimized={true}
-                      loading="lazy"
-                      className="rounded-t-[8px] w-full h-auto aspect-[16/10] object-fill"
-                    />
-                  </div>
-                </Link>
-
-                {/* Product Details */}
-                <div className="flex items-center justify-between">
-                  <span className="p-1 sm:p-2 rounded-sm secondaryBg text-white text-sm font-semibold w-max">
-                    {product?.sales} Sales
-                  </span>
-                  <div className="flex items-center gap-1">
-                    <div className="flex items-center">
-                      {renderStars(product?.rating)}
+                  {/* Product Main Image - Clickable */}
+                  <Link
+                    href={`/product-details/${product?.slug}`}
+                    title="Product Details"
+                    target="_blank"
+                  >
+                    <div>
+                      <Image
+                        src={product?.banner_image}
+                        alt={product?.name || "Product Image"}
+                        width={500}
+                        height={300}
+                        loader={({ src }) => src}
+                        unoptimized={true}
+                        loading="lazy"
+                        className="rounded-t-[8px] w-full h-auto aspect-[16/10] object-fill"
+                      />
                     </div>
-                    <span className="text-sm secondaryColor font-semibold">
-                      ({product?.rating.toFixed(2)})
-                    </span>
-                  </div>
-                </div>
+                  </Link>
 
-                {/* Product Name - Clickable */}
-                <Link href={`/product-details/${product?.slug}`}>
-                  <h3 className="md:text-lg font-bold line-clamp-2">
-                    {product?.name}
-                  </h3>
-                </Link>
-
-                <div className='flex items-center justify-between relative after:contents-[""] after:absolute after:top-0 after:-left-2.5 after:w-[120%] after:h-[1px] after:border-dashed after:border-[2px] after:border-[#545a6830] pt-4 md:pt-6'>
-                  <div className="flex flex-col gap-1">
-                    <span className="textSecondary">Price</span>
-                    <span className="font-extrabold text-2xl md:text-3xl text-[#22a869]">
-                      $
-                      {product?.sale_price !== null
-                        ? product?.sale_price
-                        : product?.price}
+                  {/* Product Details */}
+                  <div className="flex items-center justify-between">
+                    <span className="p-1 sm:p-2 rounded-sm secondaryBg text-white text-sm font-semibold w-max">
+                      {product?.sales} Sales
                     </span>
-                  </div>
-                  <div className="flexCenter textSecondary p-1 rounded-sm transition-all duration-300 group-hover:bg-[#22a869] group-hover:text-white">
-                    {/* Buy Button - Uses custom handler */}
-                    <button
-                      onClick={(e) =>
-                        handleBuyClick(e, product?.codecanyon_link)
-                      }
-                      title="Buy product"
-                      className="flexCenter gap-2"
-                    >
-                      <span>
-                        <RiShoppingCartFill />
+                    <div className="flex items-center gap-1">
+                      <div className="flex items-center">
+                        {renderStars(product?.rating)}
+                      </div>
+                      <span className="text-sm secondaryColor font-semibold">
+                        ({product?.rating.toFixed(2)})
                       </span>
-                      Buy
-                    </button>
+                    </div>
+                  </div>
+
+                  {/* Product Name - Clickable */}
+                  <Link href={`/product-details/${product?.slug}`}>
+                    <h3 className="md:text-lg font-bold line-clamp-2 sm:h-[52px] md:h-[56px]">
+                      {product?.name}
+                    </h3>
+                  </Link>
+
+                  <div className='flex items-center justify-between relative after:contents-[""] after:absolute after:top-0 after:-left-2.5 after:w-[120%] after:h-[1px] after:border-dashed after:border-[2px] after:border-[#545a6830] pt-4 md:pt-6'>
+                    <div className="flex flex-col gap-1">
+                      <span className="textSecondary">Price</span>
+                      <span className="font-extrabold text-2xl md:text-3xl text-[#22a869]">
+
+                        {
+                          product?.sale_price !== null &&
+                          <span className="line-through decoration-[4px] mr-1 text-xl md:text-[26px]">
+                            ${product?.price}
+                          </span>
+                        }
+                        <span className={`${product?.sale_price !== null ? 'primaryColor' : ''}`}>
+                          $
+                          {product?.sale_price !== null
+                            ? product?.sale_price
+                            : product?.price}
+                        </span>
+                      </span>
+                    </div>
+                    <div className="flexCenter textSecondary p-1 rounded-sm transition-all duration-300 group-hover:bg-[#22a869] group-hover:text-white">
+                      {/* Buy Button - Uses custom handler */}
+                      <button
+                        onClick={(e) =>
+                          handleBuyClick(e, product?.codecanyon_link)
+                        }
+                        title="Buy product"
+                        className="flexCenter gap-2"
+                      >
+                        <span>
+                          <RiShoppingCartFill />
+                        </span>
+                        Buy
+                      </button>
+                    </div>
                   </div>
                 </div>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-10">
+                <p>No products found. Please try again later.</p>
               </div>
-            ))
-          ) : (
-            <div className="col-span-full text-center py-10">
-              <p>No products found. Please try again later.</p>
-            </div>
-          )}
+            )}
         </div>
 
         {products.length > 0 && currentPage < lastPage && (

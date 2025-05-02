@@ -18,7 +18,7 @@ const BestItServices: React.FC = () => {
       icon: webIcon,
       alt: "best web development service provider BHUJ-GUJRAT-INDIA",
       hoverBg: "bg-[#97b21e]",
-      link: "/web-development",
+      link: '/services/web-development',
     },
     {
       id: 2,
@@ -27,7 +27,7 @@ const BestItServices: React.FC = () => {
       icon: appIcon,
       alt: "best affordable mobile app creator WRTeam bhuj-gujrat-india",
       hoverBg: "bg-[#EE8F27]",
-      link: "/web-development",
+      link: '/services/app-development',
     },
     {
       id: 3,
@@ -36,7 +36,7 @@ const BestItServices: React.FC = () => {
       icon: uiIcon,
       alt: "a large variety of  trendy & innovative customizable UI / UX designs-WRTeam bhuj",
       hoverBg: "bg-[#FF0077]",
-      link: "/web-development",
+      link: '/services/ui-ux-design',
     },
     {
       id: 4,
@@ -45,7 +45,7 @@ const BestItServices: React.FC = () => {
       icon: digitalIcon,
       alt: "best digital marketing agency to grow your business rapidly-WRTeam(Bhuj)",
       hoverBg: "bg-[#57B0AF]",
-      link: "/web-development",
+      link: '/services/digital-marketing',
     },
   ];
 

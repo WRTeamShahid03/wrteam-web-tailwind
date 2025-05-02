@@ -128,7 +128,7 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
         />
       )}
 
-      <ProductDetailHeader icon_image={productDetails?.icon_image} />
+      <ProductDetailHeader icon_image={productDetails?.icon_image} codecanyonLink={codecanyonLink}/>
       {productDetails &&
         (layoutType === 1 ? (
           <LayoutOne

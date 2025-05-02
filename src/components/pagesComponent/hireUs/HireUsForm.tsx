@@ -437,12 +437,12 @@ const HireUsForm = () => {
       </div>
 
       {/* Success Message */}
-      {submitSuccess && (
+      {/* {submitSuccess && (
         <div className="bg-green-100 text-green-800 p-4 rounded-md">
           Thank you for your interest in hiring us! Your request has been
           received, and we&apos;ll get back to you shortly.
         </div>
-      )}
+      )} */}
     </form>
   );
 };

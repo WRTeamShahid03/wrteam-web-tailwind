@@ -269,11 +269,11 @@ const Feedback = () => {
                 </div>
 
                 {/* Success Message */}
-                {submitSuccess && (
+                {/* {submitSuccess && (
                     <div className="bg-green-100 text-green-800 p-4 rounded-md">
                         Thank you for your feedback! We appreciate your input and will use it to improve our services.
                     </div>
-                )}
+                )} */}
             </form>
         </div>
     );

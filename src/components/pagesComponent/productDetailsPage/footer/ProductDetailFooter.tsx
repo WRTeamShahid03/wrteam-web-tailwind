@@ -22,7 +22,7 @@ const ProductDetailFooter: React.FC<ProductDetailFooterProps> = ({ icon_image, c
           {/* Logo and marketplace section */}
           <div className="space-y-6">
             {icon_image ? (
-              <Link href={codecanyonLink}>
+              <Link href={codecanyonLink ? codecanyonLink : "/"}>
                 <Image
                   src={icon_image}
                   width={162}
