@@ -130,11 +130,11 @@ export default function ClientReviewSection() {
   const displayTestimonials =
     testimonials.length > 0
       ? testimonials.map((item) => ({
-          name: item.name,
-          role: item.rating_for,
-          rating: item.ratings,
-          testimonial: item.description,
-        }))
+        name: item.name,
+        role: item.rating_for,
+        rating: item.ratings,
+        testimonial: item.description,
+      }))
       : [];
 
   // Function to handle the "Load More" button click
@@ -146,22 +146,38 @@ export default function ClientReviewSection() {
   const hasMoreToLoad = displayTestimonials.length > displayCount;
 
   return (
-    <section className="py-16 commonMT">
-      <div className="container space-y-12 md:space-y-16 lg:space-y-20'">
-        <div className="flexColCenter gap-4 md:gap-6">
-          <span className="sectionTag text-black">Read Their Experiences</span>
-          <h3 className="sectionTitle">
-            Client Reviews - Hear It in Their Words
-          </h3>
-        </div>
 
-        <div className="max-479:columns-1 max-1199:columns-2 columns-3 gap-6 md:gap-8">
-          {isLoading
-            ? // Show skeleton cards while loading (same layout as actual cards)
+    isLoading ?
+      <section className="py-16 commonMT">
+        <div className="container space-y-12 md:space-y-16 lg:space-y-20'" >
+          <div className="flexColCenter gap-4 md:gap-6">
+            <span className="sectionTag text-black">Read Their Experiences</span>
+            <h3 className="sectionTitle">
+              Client Reviews - Hear It in Their Words
+            </h3>
+          </div>
+          <div className="max-479:columns-1 max-1199:columns-2 columns-3 gap-6 md:gap-8">
+            {
               [...Array(6)].map((_, index) => (
                 <ReviewCardSkeleton key={`skeleton-${index}`} />
               ))
-            : // Show only the first 'displayCount' testimonials
+            }
+          </div>
+        </div>
+      </section>
+      :
+      displayTestimonials?.length > 0 &&
+      <section className="py-16 commonMT">
+        <div className="container space-y-12 md:space-y-16 lg:space-y-20'">
+          <div className="flexColCenter gap-4 md:gap-6">
+            <span className="sectionTag text-black">Read Their Experiences</span>
+            <h3 className="sectionTitle">
+              Client Reviews - Hear It in Their Words
+            </h3>
+          </div>
+
+          <div className="max-479:columns-1 max-1199:columns-2 columns-3 gap-6 md:gap-8">
+            {
               displayTestimonials
                 .slice(0, displayCount)
                 .map((review, index) => (
@@ -172,20 +188,22 @@ export default function ClientReviewSection() {
                     rating={Number(review.rating)}
                     testimonial={review.testimonial}
                   />
-                ))}
-        </div>
-
-        {!isLoading && hasMoreToLoad && (
-          <div className="flex justify-center mt-12">
-            <button
-              onClick={handleLoadMore}
-              className="px-8 py-3 bg-black text-white font-medium rounded hover:bg-gray-800 transition duration-300"
-            >
-              Load More
-            </button>
+                ))
+            }
           </div>
-        )}
-      </div>
-    </section>
+
+          {
+            hasMoreToLoad &&
+            <div className="flex justify-center mt-12">
+              <button
+                onClick={handleLoadMore}
+                className="px-8 py-3 bg-black text-white font-medium rounded hover:bg-gray-800 transition duration-300"
+              >
+                Load More
+              </button>
+            </div>
+          }
+        </div>
+      </section>
   );
 }
