@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { axiosClient, createApiError } from '@/lib/api';
 import { ApiResponse } from '@/lib/api/apiUtils';
 
-const EXTERNAL_API_URL = 'http://backend.wrteam.in/api/testimonials';
+const EXTERNAL_API_URL = 'https://backend.wrteam.in/api/testimonials';
 
 export async function GET() {
   try {

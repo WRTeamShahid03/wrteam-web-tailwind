@@ -5,7 +5,7 @@ export async function GET() {
   try {
     // Make API call without any parameters
     const response = await axios.get(
-      "http://backend.wrteam.in/api/blogs-categories",
+      "https://backend.wrteam.in/api/blogs-categories",
       {
         headers: {
           Accept: "application/json",

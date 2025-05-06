@@ -13,7 +13,7 @@ export async function GET(request: Request) {
     
     // Make API call with only page parameter if it exists
     const response = await axios.get(
-      "http://backend.wrteam.in/api/team-members",
+      "https://backend.wrteam.in/api/team-members",
       {
         headers: {
           Accept: "application/json",
