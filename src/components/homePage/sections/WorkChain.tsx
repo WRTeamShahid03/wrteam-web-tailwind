@@ -29,8 +29,8 @@ const WorkChain: React.FC = () => {
             id: 3,
             title: 'Start planning',
             img: workImg3,
-            desc: 'best UI/UX designing servicer provider-WRTeam bhuj gujrat',
-            alt: 'best UI/UX designing servicer provider-WRTeam bhuj gujrat'
+            desc: 'Best UI/UX designing servicer provider-WRTeam Bhuj-Gujarat',
+            alt: 'best UI/UX designing servicer provider-WRTeam Bhuj gujrat'
         },
         {
             id: 4,

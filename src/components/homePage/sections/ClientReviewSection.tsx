@@ -106,9 +106,7 @@ export default function ClientReviewSection() {
       try {
         setIsLoading(true);
 
-        const response = await axiosClient.get("/api/testimonials", {
-          timeout: 10000,
-        });
+        const response = await axiosClient.get("/api/testimonials");
 
         if (
           response?.data?.data?.data &&

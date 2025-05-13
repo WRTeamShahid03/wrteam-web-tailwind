@@ -332,7 +332,7 @@ const ProductsPage = ({
                   </div>
 
                   {/* Product Name - Clickable */}
-                  <Link href={`/product-details/${product?.slug}`}>
+                  <Link href={`/product-details/${product?.slug}`}  target="_blank">
                     <h3 className="md:text-lg font-bold line-clamp-2 sm:h-[52px] md:h-[56px]">
                       {product?.name}
                     </h3>

@@ -188,6 +188,7 @@ export default function DevelopmentPortfolio() {
             play_store_link: item.play_store_link,
             app_store_link: item.app_store_link,
             website_link: item.website_link,
+            products: item.products,
           }));
 
           // Check if we have more items
@@ -271,6 +272,8 @@ export default function DevelopmentPortfolio() {
     fetchPortfolioItems(value);
     setShowFilterDropdown(false);
   };
+
+  console.log("portfolioItems", portfolioItems)
 
   return (
     <Layout>
@@ -502,19 +505,33 @@ export default function DevelopmentPortfolio() {
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 sm:gap-3 mt-2">
                     {item.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className={`inline-block px-3 py-2 sm:px-4 sm:py-2 ${hoveredCard === item.id.toString()
-                          ? "bg-white"
-                          : "bg-white"
-                          } text-[10px] sm:text-xs rounded-full border border-[#2A2E35] font-medium`}
-                      >
-                        {tag === "App UI"
-                          ? "App UI"
-                          : tag === "UX/UI"
-                            ? "UI/UX"
-                            : tag}
-                      </span>
+                      <div className="flex flex-wrap gap-2">
+                        <span
+                          key={index}
+                          className={`inline-block px-3 py-2 sm:px-4 sm:py-2 ${hoveredCard === item.id.toString()
+                            ? "bg-white"
+                            : "bg-white"
+                            } text-[10px] sm:text-xs rounded-full border border-[#2A2E35] font-medium`}
+                        >
+                          {tag === "App UI"
+                            ? "App UI"
+                            : tag === "UX/UI"
+                              ? "UI/UX"
+                              : tag}
+                        </span>
+                        {/* {
+                          item?.products?.name &&
+                          <span
+                            key={index}
+                            className={`inline-block px-3 py-2 sm:px-4 sm:py-2 ${hoveredCard === item.id.toString()
+                              ? "bg-white"
+                              : "bg-white"
+                              } text-[10px] sm:text-xs rounded-full border border-[#2A2E35] font-medium`}
+                          >
+                            {item?.products?.name}
+                          </span>
+                        } */}
+                      </div>
                     ))}
                   </div>
                 </motion.div>

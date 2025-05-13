@@ -40,9 +40,7 @@ const VideoTestimonials = () => {
     const fetchVideoTestimonials = async () => {
       try {
         setIsLoading(true);
-        const response = await axiosClient.get('/api/video-testimonials', {
-          timeout: 10000,
-        });
+        const response = await axiosClient.get('/api/video-testimonials');
 
         if (response?.data?.data && Array.isArray(response.data.data)) {
 
@@ -60,31 +58,6 @@ const VideoTestimonials = () => {
     fetchVideoTestimonials();
   }, []);
 
-  // Fallback testimonials in case API fails or returns empty
-  const fallbackTestimonials = [
-    {
-      id: 1,
-      name: 'Martin Mathew',
-      company: 'eShop Plus',
-      image: clientImg,
-      videoUrl: 'https://youtu.be/coGUusRo8TI?si=70NdmvFQXe3WxXN4',
-    },
-    {
-      id: 2,
-      name: 'Steve John',
-      company: 'eHustle - Multi Vendor',
-      image: clientImg,
-      videoUrl: 'https://youtu.be/coGUusRo8TI?si=70NdmvFQXe3WxXN4',
-    },
-    {
-      id: 3,
-      name: 'Martin Mathew',
-      company: 'eShop Plus',
-      image: clientImg,
-      videoUrl: 'https://youtu.be/coGUusRo8TI?si=70NdmvFQXe3WxXN4',
-    },
-  ];
-
 
   return (
     <>
@@ -92,7 +65,7 @@ const VideoTestimonials = () => {
       {
         isLoading ?
           <div className="bg-[#181C24] py-16 videoTestimonials commonMT">
-            <div className="container mx-auto px-4">
+            <div className="container">
             <div className="text-center mb-10 flex flex-col items-center gap-3 md:gap-5">
                 <span className="bg-[#FFFFFF29] text-white py-2 px-4 rounded-md text-sm font-semibold">
                   Real Stories from Our Clients
@@ -138,7 +111,7 @@ const VideoTestimonials = () => {
           :
           videoTestimonials.length > 0 &&
            <div className="bg-[#181C24] py-16 videoTestimonials commonMT">
-            <div className="container mx-auto px-4">
+            <div className="container">
               <div className="text-center mb-10 flex flex-col items-center gap-3 md:gap-5">
                 <span className="bg-[#FFFFFF29] text-white py-2 px-4 rounded-md text-sm font-semibold">
                   Real Stories from Our Clients
@@ -178,7 +151,7 @@ const VideoTestimonials = () => {
                       className={`testimonial-slide transition-all duration-300 ease-in-out ${activeSlide === index - 1 ? 'active-slide md:!scale-105 md:opacity-100' : 'md:opacity-70 md:!scale-95'
                         }`}
                     >
-                      <div className="rounded-[30px] overflow-hidden shadow-xl border-[5px] border-white/25 h-full m-2 transition-transform duration-300 ease-in-out">
+                      <div className="rounded-[30px] overflow-hidden shadow-xl h-full m-2 transition-transform duration-300 ease-in-out">
                         <div className="relative h-[500px] bg-gradient-to-b from-transparent to-black overflow-hidden md:h-[600px]">
                           <Image
                             src={testimonial.thumbnail}

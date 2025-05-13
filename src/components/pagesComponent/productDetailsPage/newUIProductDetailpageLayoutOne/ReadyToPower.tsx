@@ -18,7 +18,7 @@ const ReadyToPower:React.FC<dataProps> = ({ checkoutUrl,productName }) => {
           </h6>
           <p className="sectionPara">
             {`${productName} is designed to help you work smarter, not harder.
-            Let&apos;s get you up and running in no time!`}
+            Let's get you up and running in no time!`}
           </p>
         </div>
         <div className="flex justify-center gap-3 md:gap-4">

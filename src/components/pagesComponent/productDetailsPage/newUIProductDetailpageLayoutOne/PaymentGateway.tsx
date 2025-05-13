@@ -14,10 +14,10 @@ export default function PaymentGateway({ title, description, image_url, gateways
       </div>
 
       {/* Main Content Section */}
-      <div className="p-4 md:p-8 rounded-lg productDetailPrimaryBg flex flex-col lg:flex-row gap-y-3">
+      <div className="p-4 md:p-8 rounded-[24px] productDetailPrimaryBg grid grid-cols-12 overflow-hidden max-575:gap-y-6 max-1199:gap-y-12">
         {/* Payment Options */}
-        <div className="flex-1 flex items-center justify-center md:justify-start">
-          <div className="flex gap-2 sm:gap-4 justify-center md:justify-start">
+        <div className="max-1199:col-span-12 col-span-8 flex-1 flex items-center max-1199:justify-center justify-start">
+          <div className="flex gap-2 sm:gap-4 max-1199:justify-center justify-start flex-wrap">
             {/* Stripe Payment Option */}
             {gateways.map((gateway, index) => (
               <div className="flex flex-col items-center" key={index}>
@@ -37,7 +37,7 @@ export default function PaymentGateway({ title, description, image_url, gateways
         </div>
 
         {/* Mobile Device Image */}
-        <div className="flex-1 flex justify-center md:justify-end items-center mt-8 md:mt-0">
+        <div className="max-1199:col-span-12 col-span-4 flex-1 flex max-1199:justify-center justify-end items-center mt-8 md:mt-0">
           <div className="relative">
             <Image
               src={image_url || ""}

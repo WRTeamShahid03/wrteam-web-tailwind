@@ -37,7 +37,7 @@ const FaqsSect = () => {
     {
       id: 5,
       question: "What platforms are the source codes compatible with?",
-      answer: `Our source codes are built in flutter so it&apos;s compatible with iOS, Android, and web platforms.`,
+      answer: `Our source codes are built in flutter so it's compatible with iOS, Android, and web platforms.`,
     },
     {
       id: 6,

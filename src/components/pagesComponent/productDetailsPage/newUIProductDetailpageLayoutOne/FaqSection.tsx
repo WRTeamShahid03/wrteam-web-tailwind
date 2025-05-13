@@ -58,7 +58,7 @@ const FaqItem = ({
         }}
       >
         <div ref={contentRef} className="p-4 bg-white border-t">
-          <p className="text-gray-700">{faq.answer}</p>
+          <p className="text-gray-700" dangerouslySetInnerHTML={{ __html: faq.answer }} />
         </div>
       </div>
     </div>

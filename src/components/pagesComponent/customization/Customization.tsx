@@ -24,14 +24,14 @@ const Customization: React.FC = () => {
     {
       id: 2,
       img: discuss2,
-      title: `We&apos;ll Discuss the Details`,
-      desc: `We&apos;ll go through your requirements together, sort out any questions, and make sure we&apos;re clear on what you need.`,
+      title: `We'll Discuss the Details`,
+      desc: `We'll go through your requirements together, sort out any questions, and make sure we're clear on what you need.`,
     },
     {
       id: 3,
       img: discuss3,
       title: "Sit Back as We Customize",
-      desc: `We&apos;ll start working on your project once we understand your requirements. We&apos;ll keep you updated on how it&apos;s going.`,
+      desc: `We'll start working on your project once we understand your requirements. We'll keep you updated on how it's going.`,
     },
   ];
   return (

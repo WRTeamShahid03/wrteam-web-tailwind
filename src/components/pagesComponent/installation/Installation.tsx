@@ -183,7 +183,7 @@ const Installation: React.FC = () => {
                     {packages.map((pkg: installationPackagesDataTypes, index) => (
                         <div
                             key={pkg.id}
-                            className={`max-1199:h-max between-1200-1399:h-[68rem] h-[62rem] p-4 border-[1.5px] rounded-[16px] relative bg-white ${index === 3 ? "primaryBorder max-1199:mt-12" : "border-[#2E71FE29]"
+                            className={`max-1199:h-max ${currency === 'INR' ? "between-1200-1399:h-[70rem] h-[64rem]" : "between-1200-1399:h-[68rem] h-[62rem]"} p-4 border-[1.5px] rounded-[16px] relative bg-white ${index === 3 ? "primaryBorder max-1199:mt-12" : "border-[#2E71FE29]"
                                 }`}
                         >
                             {

@@ -40,7 +40,7 @@ export default function ClientReview({ testimonials, productName }: { testimonia
 
   return (
     <div className="w-full py-12 productSecondaryBg text-white">
-      <div className="container mx-auto px-4 max-w-6xl layoutOneTestimonials relative">
+      <div className="container layoutOneTestimonials relative">
         {/* Section Title */}
         <div className="text-center mb-12">
           <h4 className="sectionTitle !font-bold mb-2">

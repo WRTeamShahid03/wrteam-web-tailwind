@@ -42,7 +42,7 @@ const AboutUs: React.FC<{ page?: number }> = ({ page = 1 }) => {
     },
     {
       id: 3,
-      text: `We put our customers&apos; needs first.`,
+      text: `We put our customers's needs first.`,
     },
     {
       id: 4,

@@ -31,12 +31,12 @@ const MarqueSect: React.FC = () => {
       },
       {
         id: 3,
-        title: `It&apos;s beautifully designed`,
+        title: `It's beautifully designed`,
         name: "arif",
       },
       {
         id: 4,
-        title: `I don&apos;t know how I can thank you? Excellent`,
+        title: `I don't know how I can thank you? Excellent`,
         name: "alinsour",
       },
       {
@@ -79,7 +79,7 @@ const MarqueSect: React.FC = () => {
       },
       {
         id: 5,
-        title: `I can&apos;t emphasize enough how impressed I am`,
+        title: `I can't emphasize enough how impressed I am`,
         name: "pra1ay",
       },
       {
@@ -130,7 +130,7 @@ const MarqueSect: React.FC = () => {
     const eSchoolRegular = [
       {
         id: 0,
-        title: `I&apos;m really happy with the support`,
+        title: `I'm really happy with the support`,
         name: "argroofficial",
       },
       {

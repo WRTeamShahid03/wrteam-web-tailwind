@@ -402,7 +402,7 @@ export default function DesignPortfolio() {
                       alt={item.title}
                       width={0}
                       height={0}
-                      className="h-full w-full object-cover lg:w-[388px] lg:h-[295px] rounded-[8px]"
+                      className="between-576-767:w-full between-576-767:h-full between-768-991:w-full between-768-991:h-full between-992-1199:w-full between-992-1199:h-full object-cover w-[388px] max-479:h-[250px] h-[295px] rounded-[8px]"
                     />
                   )}
                 </div>

@@ -12,24 +12,6 @@ interface TeamPaginationProps {
 const TeamPagination = ({ currentPage, totalPages }: TeamPaginationProps) => {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  // Use effect to scroll to team section when the page param changes
-  // useEffect(() => {
-  //   // Find the team section element
-  //   const teamSection = document.getElementById("team-section");
-  //   if (teamSection) {
-  //     // Get the current position of the team section
-  //     const teamPosition = teamSection.getBoundingClientRect().top;
-  //     const offsetPosition = teamPosition + window.scrollY - 100; // 100px offset for better visibility
-
-  //     // Smooth scroll to the team section
-  //     window.scrollTo({
-  //       top: offsetPosition,
-  //       behavior: "smooth",
-  //     });
-  //   }
-  // }, [searchParams]);
 
   const handlePageChange = (page: number) => {
     // Navigate to the same page with a query parameter but prevent default scroll

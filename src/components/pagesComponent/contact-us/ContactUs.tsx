@@ -34,6 +34,7 @@ const ContactUs: React.FC = () => {
                         <div className='w-[74px] h-[74px] flexCenter primaryBg text-white rounded-full group-hover:bg-white transition-all duration-300 group-hover:primary group-hover:primaryColor'><BiSupport size={50} /></div>
                         <span className='font-bold text-lg group-hover:text-white'>Phone Number</span>
                         <Link href={'tel:+91 97979 45459'} className='sectionPara hover:underline group-hover:text-white !font-medium'>+91 97979 45459</Link>
+                        <Link href={'tel:+91 97124 445459'} className='sectionPara hover:underline group-hover:text-white !font-medium'>+91 97124 445459</Link>
                     </div>
                     <div className='flexColCenter gap-3 text-center border border-[#51535892] py-4 px-8 rounded-[16px] transition-all duration-300 hover:primaryBg group hover:shadow-[0px_8px_34px_0px_#2e71fe94] overflow-hidden'>
                         <Image src={scannerImg} height={0} width={0} alt='whatsapp-scanner' className='w-[150px] h-auto rounded-sm' />
