@@ -191,7 +191,7 @@ const HireUs = () => {
                 </div>
             </section>
 
-            <section className='container commonMT space-y-6 lg:space-y-12 commonMB'>
+            <section className='container commonMT space-y-6 lg:space-y-12'>
                 <div className='flexColCenter commonTextGap text-center m-auto lg:w-[60%]'>
                     <h4 className='sectionTitle'>4 Steps to <span>Success</span> With <span>WRTeam</span></h4>
                 </div>

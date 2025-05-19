@@ -33,7 +33,7 @@ const FaqsSect = () => {
     ];
 
     return (
-        <section className='container commonMB commonMT space-y-8 md:space-y-12 lg:space-y-16'>
+        <section className='container commonMT space-y-8 md:space-y-12 lg:space-y-16'>
             <div className="flexColCenter lg:w-[60%] mx-auto text-center commonTextGap">
                 <span className='sectionTag'><span>All You Need</span> To Know</span>
                 <h6 className='sectionTitle'>Frequently Asked <span>Questions</span></h6>

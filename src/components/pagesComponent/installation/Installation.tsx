@@ -254,7 +254,7 @@ const Installation: React.FC = () => {
             </section>
 
             <div className="container">
-                <section className="secondaryBg commonMT commonMB text-white rounded-[16px] p-6 md:p-8">
+                <section className="secondaryBg commonMT text-white rounded-[16px] p-6 md:p-8">
                     <div className="grid md:grid-cols-12 gap-y-8 md:gap-12">
                         {/* Left Side */}
                         <div className='flexColCenter !items-start gap-4 md:gap-6 col-span-12 lg:col-span-7'>

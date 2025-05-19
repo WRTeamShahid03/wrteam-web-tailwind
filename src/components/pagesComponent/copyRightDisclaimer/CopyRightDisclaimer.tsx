@@ -6,7 +6,7 @@ import React from "react";
 const CopyRightDisclaimer = () => {
   return (
     <Layout>
-      <section className="container commonMT commonMB">
+      <section className="container commonMT">
         <div className="rounded-xl shadow-[0_2px_8px_0_#63636333] py-4 md:py-8 px-1 md:px-4 space-y-6 md:space-y-12">
           <div className="flex justify-center">
             <h1 className="text-xl font-semibold text-center secondaryColor underline sm:text-3xl">

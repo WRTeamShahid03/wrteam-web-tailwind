@@ -64,7 +64,7 @@ const Blogs = async ({
 
   return (
     <Layout>
-      <section className="container commonMT commonMB">
+      <section className="container commonMT">
         <div className="grid grid-cols-12 gap-y-8 lg:gap-6">
           <div className="max-1199:col-span-12 col-span-8">
             {blogs.length === 0 ? (

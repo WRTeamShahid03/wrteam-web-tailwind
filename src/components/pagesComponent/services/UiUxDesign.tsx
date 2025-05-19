@@ -300,7 +300,7 @@ const UiUxDesign: React.FC = () => {
       </section>
 
       {/* build  */}
-      <section className="commonMT commonMB">
+      <section className="commonMT">
         <div
           className="h-[400px] relative -z-[1]"
           style={{

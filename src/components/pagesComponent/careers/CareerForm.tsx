@@ -280,6 +280,10 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
       setFormLoader(true);
 
       try {
+
+        // Get formatted phone number for submission
+        const formattedPhoneNumber = getFormattedPhoneNumber();
+        const finalNum = `+${selectedCountryCode} ${formattedPhoneNumber}`;
         // Create FormData for API submission
         const apiFormData = new FormData();
 
@@ -287,7 +291,7 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
         apiFormData.append('full_name', formData.fullName);
         apiFormData.append('email', formData.email);
         apiFormData.append('qualification', formData.qualification);
-        apiFormData.append('contact', formData.contactNumber);
+        apiFormData.append('contact', finalNum);
         apiFormData.append('apply_for', formData.applyFor);
         apiFormData.append('experience', formData.experience);
 
@@ -321,17 +325,17 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
           experience: "",
           resume: null,
         });
-        
+
         // Reset file input
         setFileDataUrl(null);
         setInputKey(Date.now());
-        
+
         // Reset any errors
         setErrors({});
-        
+
         // Reset country code
         setSelectedCountryCode("");
-        
+
         // Reset form using the form ref
         if (form.current) {
           form.current.reset();
@@ -457,13 +461,12 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
             Apply For
           </label>
           <div className={errors.applyFor ? "border border-red-500 rounded-md" : ""}>
-            <Select 
+            <Select
               value={formData.applyFor}
               onValueChange={handleApplyForChange}
             >
-              <SelectTrigger className={`w-full px-4 py-3 h-auto rounded-md bg-white ${
-                errors.applyFor ? "border-red-500" : "border-gray-300"
-              } focus:outline-none focus:ring-0`}>
+              <SelectTrigger className={`w-full px-4 py-3 h-auto rounded-md bg-white ${errors.applyFor ? "border-red-500" : "border-gray-300"
+                } focus:outline-none focus:ring-0`}>
                 <SelectValue placeholder="Select Apply For" />
               </SelectTrigger>
               <SelectContent>
@@ -501,13 +504,12 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
             Experience
           </label>
           <div className={errors.experience ? "border border-red-500 rounded-md" : ""}>
-            <Select 
+            <Select
               value={formData.experience}
               onValueChange={handleExperienceChange}
             >
-              <SelectTrigger className={`w-full px-4 py-3 h-auto rounded-md bg-white ${
-                errors.experience ? "border-red-500" : "border-gray-300"
-              } focus:outline-none focus:ring-0`}>
+              <SelectTrigger className={`w-full px-4 py-3 h-auto rounded-md bg-white ${errors.experience ? "border-red-500" : "border-gray-300"
+                } focus:outline-none focus:ring-0`}>
                 <SelectValue placeholder="Select Your Experience" />
               </SelectTrigger>
               <SelectContent>
@@ -535,10 +537,10 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
         <div
           {...getRootProps()}
           className={`border-2 border-dashed rounded-md p-8 text-center transition-colors duration-200 bg-[#f8f8f9] ${isDragActive
-              ? "border-blue-500 bg-blue-50"
-              : errors.resume
-                ? "border-red-500"
-                : "border-gray-300"
+            ? "border-blue-500 bg-blue-50"
+            : errors.resume
+              ? "border-red-500"
+              : "border-gray-300"
             }`}
           style={{ position: 'relative', minHeight: '150px' }}
         >
@@ -587,7 +589,7 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
                   </p>
                 </div>
               ) : (
-                <div 
+                <div
                   className="cursor-pointer flex flex-col items-center justify-center"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -600,7 +602,7 @@ export default function CareerForm({ currentVacancy }: { currentVacancy: Vacancy
                   </p>
                   <p className="text-sm text-gray-400 mb-4">
                     (Only PNG, JPG and PDF Files are supported)
-                  </p>                  
+                  </p>
                 </div>
               )}
             </div>

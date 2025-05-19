@@ -229,7 +229,7 @@ const ProductsPage = ({
         blueText="Products"
         secondElement="Products"
       />
-      <section className="container mt-8 md:mt-12 space-y-8 commonMB">
+      <section className="container mt-8 md:mt-12 space-y-8">
         {!isLoading && (
           <div className="flex items-center justify-between flex-wrap gap-y-4">
             <div>
@@ -332,7 +332,7 @@ const ProductsPage = ({
                   </div>
 
                   {/* Product Name - Clickable */}
-                  <Link href={`/product-details/${product?.slug}`}  target="_blank">
+                  <Link href={`/product-details/${product?.slug}`} target="_blank">
                     <h3 className="md:text-lg font-bold line-clamp-2 sm:h-[52px] md:h-[56px]">
                       {product?.name}
                     </h3>
@@ -357,7 +357,7 @@ const ProductsPage = ({
                         </span>
                       </span>
                     </div>
-                    <div className="flexCenter textSecondary p-1 rounded-sm transition-all duration-300 group-hover:bg-[#22a869] group-hover:text-white">
+                    <div className="flexCenter textSecondary py-1.5 px-2.5 rounded-sm transition-all duration-300 group-hover:bg-[#22a869] group-hover:text-white">
                       {/* Buy Button - Uses custom handler */}
                       <button
                         onClick={(e) =>

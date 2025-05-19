@@ -118,7 +118,7 @@ const Customization: React.FC = () => {
         </div>
       </section>
 
-      <section className="container commonMT commonMB">
+      <section className="container commonMT">
         <div className="bg-white rounded-[16px] shadow-[0_0_6px_#00000029] p-4 md:p-8">
           <div className="grid between-1200-1399:grid-cols-2 xl:grid-cols-2 gap-y-8 md:gap-y-12 between-1200-1399:gap-6 xl:gap-6">
             <div className="flexColCenter commonTextGap">

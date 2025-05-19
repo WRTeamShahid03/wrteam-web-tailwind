@@ -37,6 +37,7 @@ interface Category {
 interface Product {
   id?: number | string;
   name?: string;
+  product_title?: string;
   // Add other properties as needed
 }
 
@@ -505,9 +506,8 @@ export default function DevelopmentPortfolio() {
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 sm:gap-3 mt-2">
                     {item.tags.map((tag, index) => (
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2" key={index}>
                         <span
-                          key={index}
                           className={`inline-block px-3 py-2 sm:px-4 sm:py-2 ${hoveredCard === item.id.toString()
                             ? "bg-white"
                             : "bg-white"
@@ -519,18 +519,17 @@ export default function DevelopmentPortfolio() {
                               ? "UI/UX"
                               : tag}
                         </span>
-                        {/* {
+                        {
                           item?.products?.name &&
                           <span
-                            key={index}
                             className={`inline-block px-3 py-2 sm:px-4 sm:py-2 ${hoveredCard === item.id.toString()
                               ? "bg-white"
                               : "bg-white"
                               } text-[10px] sm:text-xs rounded-full border border-[#2A2E35] font-medium`}
                           >
-                            {item?.products?.name}
+                            {item?.products?.product_title}
                           </span>
-                        } */}
+                        }
                       </div>
                     ))}
                   </div>

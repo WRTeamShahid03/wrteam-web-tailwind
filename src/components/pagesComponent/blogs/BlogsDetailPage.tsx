@@ -69,7 +69,7 @@ const BlogsDetailPage = () => {
         secondElement='Blogs'
         thirdElement={blog?.slug || slug as string}
       />
-      <section className='container commonMT commonMB'>
+      <section className='container commonMT'>
         <div className='grid grid-cols-12 gap-6'>
           {isLoading ? (
             <BlogDetailSkeleton />

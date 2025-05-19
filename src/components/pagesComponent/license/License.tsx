@@ -5,7 +5,7 @@ import LicensePlan from "./LicensePlan";
 const License = () => {
   return (
     <Layout>
-      <section className="container commonMT commonMB space-y-8 md:space-y-12">
+      <section className="container commonMT space-y-8 md:space-y-12">
         <div className="flexCenter">
           <h1 className="sectionTitle">
             <span>Discover More Value: That is Align Your Needs</span>

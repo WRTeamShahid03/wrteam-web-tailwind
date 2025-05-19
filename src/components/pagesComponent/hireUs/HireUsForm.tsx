@@ -46,6 +46,9 @@ const HireUsForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
+  // State for country code
+  const [selectedCountryCode, setSelectedCountryCode] = useState("");
+
   // Form ref
   const form = useRef<HTMLFormElement>(null);
 
@@ -53,8 +56,8 @@ const HireUsForm = () => {
   const handleChange = (
     e:
       | React.ChangeEvent<
-          HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-        >
+        HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+      >
       | { name: string; value: string }
   ) => {
     // Check if the input is an event or an object with name and value
@@ -82,11 +85,13 @@ const HireUsForm = () => {
   };
 
   // Handle phone input change
-  const handlePhoneChange = (value: string) => {
+  const handlePhoneChange = (value: string, country: { dialCode: string; name: string; countryCode: string }) => {
     setFormData({
       ...formData,
       phone: value,
     });
+
+    setSelectedCountryCode(country?.dialCode || "");
 
     // Clear error when user types
     if (errors.phone) {
@@ -95,6 +100,14 @@ const HireUsForm = () => {
         phone: "",
       });
     }
+  };
+
+  // Function to return formatted phone number
+  const getFormattedPhoneNumber = () => {
+    if (formData.phone.startsWith(selectedCountryCode)) {
+      return formData.phone.slice(selectedCountryCode.length);
+    }
+    return formData.phone;
   };
 
   // Validate form
@@ -139,6 +152,11 @@ const HireUsForm = () => {
     e.preventDefault();
 
     if (validateForm()) {
+      // Get formatted phone number for submission
+      const formattedPhoneNumber = getFormattedPhoneNumber();
+      const finalNum = `+${selectedCountryCode} ${formattedPhoneNumber}`;
+      // console.log("finalNum", finalNum);
+
       try {
         setIsSubmitting(true);
 
@@ -146,7 +164,7 @@ const HireUsForm = () => {
         const apiFormData = new FormData();
         apiFormData.append("name", formData.name);
         apiFormData.append("email", formData.email);
-        apiFormData.append("phone", formData.phone);
+        apiFormData.append("phone", finalNum);
         apiFormData.append("budget", formData.budget);
         apiFormData.append("message", formData.message);
 
@@ -304,9 +322,8 @@ const HireUsForm = () => {
             value={formData.name}
             onChange={handleChange}
             placeholder="Your Full Name"
-            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
-              errors.name ? "border-red-500" : "border-gray-300"
-            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.name ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.name && (
             <p className="text-red-500 text-sm mt-1">{errors.name}</p>
@@ -322,9 +339,8 @@ const HireUsForm = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Your Email"
-            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
-              errors.email ? "border-red-500" : "border-gray-300"
-            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.email ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -341,9 +357,8 @@ const HireUsForm = () => {
               name: "phone",
               id: "phone",
               required: true,
-              className: `w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
-                errors.phone ? "border-red-500" : "border-gray-300"
-              } focus:outline-none focus:ring-1 focus:ring-blue-500`,
+              className: `w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.phone ? "border-red-500" : "border-gray-300"
+                } focus:outline-none focus:ring-1 focus:ring-blue-500`,
             }}
             containerClass={`${errors.phone ? "phone-input-error" : ""}`}
             containerStyle={{ width: "100%" }}
@@ -361,9 +376,8 @@ const HireUsForm = () => {
             onValueChange={(value) => handleChange({ name: "budget", value })}
           >
             <SelectTrigger
-              className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
-                errors.budget ? "border-red-500" : "border-gray-300"
-              } focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-none`}
+              className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.budget ? "border-red-500" : "border-gray-300"
+                } focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-none`}
             >
               <SelectValue placeholder="Your Budget" />
             </SelectTrigger>
@@ -389,9 +403,8 @@ const HireUsForm = () => {
             rows={10}
             onChange={handleChange}
             placeholder="Your message"
-            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${
-              errors.message ? "border-red-500" : "border-gray-300"
-            } focus:outline-none focus:ring-1 focus:ring-blue-500`}
+            className={`w-full px-2 py-1.5 bg-[#fafafa] border-[#d3d3d3] rounded-md border ${errors.message ? "border-red-500" : "border-gray-300"
+              } focus:outline-none focus:ring-1 focus:ring-blue-500`}
           />
           {errors.message && (
             <p className="text-red-500 text-sm mt-1">{errors.message}</p>
