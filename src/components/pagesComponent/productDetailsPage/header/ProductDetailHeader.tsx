@@ -50,6 +50,26 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink }: ProductDetailHeader
   };
 
   useEffect(() => {
+    // Wait for the DOM to load completely
+    if (typeof window !== "undefined") {
+      const hash = window.location.hash;
+
+      if (hash === "#explore-demo") {
+        const section = document.querySelector(hash);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+      if (hash === "#license") {
+        const section = document.querySelector(hash);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     const whatsappLinks: WhatsAppLinks = {
       "eshop-flutter-multi-vendor-ecommerce-full-app":
         "https://wa.me/+916359302924?text=Hello+sir,+I+want+a+personalised+demo",
@@ -72,11 +92,10 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink }: ProductDetailHeader
 
   return (
     <header
-      className={`py-4 sticky top-0 w-full z-[20] ${
-        scroll > (navRef.current?.offsetTop || 0)
+      className={`py-4 sticky top-0 w-full z-[20] ${scroll > (navRef.current?.offsetTop || 0)
           ? "stickky bg-white shadow-sm"
           : "!bg-none"
-      }`}
+        }`}
     >
       <div className="container">
         <div ref={navRef} className="flex items-center justify-between nav">

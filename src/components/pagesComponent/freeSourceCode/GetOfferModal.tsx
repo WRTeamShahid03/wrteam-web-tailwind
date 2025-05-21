@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogHeader, DialogTrigger } from '@/components/ui/dialog';
 import { IoClose } from 'react-icons/io5';
 
 const GetOfferModal = () => {
@@ -24,6 +24,9 @@ const GetOfferModal = () => {
                 </div>
             </DialogTrigger>
             <DialogContent className="sm:max-w-xl bg-transparent !border-transparent p-0 m-0 [&>.ring-offset-white]:hidden">
+                <DialogHeader className='hidden'>
+                    <DialogTitle className='text-2xl font-semibold'>Get My Free Code Now!</DialogTitle>
+                </DialogHeader>
                 <div className='relative border-none'>
                     <span className='cursor-pointer absolute top-[50px] right-[30px] text-white w-[30px] h-[30px] flexColCenter rounded-full bg-[#4c5b79]' onClick={handleClose}><IoClose /></span>
                     <iframe
