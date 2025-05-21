@@ -103,7 +103,7 @@ const GrabBundlesSect = () => {
                   </span>
                 </div>
                 <div className="font-semibold max-399:text-xs sm:text-lg text-[#ffc66b] w-max">
-                  Worth : ${list.worth}
+                  Value : ${list.worth}
                 </div>
               </div>
             );

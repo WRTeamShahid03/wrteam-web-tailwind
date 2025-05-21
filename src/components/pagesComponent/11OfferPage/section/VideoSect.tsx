@@ -26,7 +26,7 @@ const VideoSect = () => {
     return (
         <section className='container commonMT videoSect'>
             <div className="flexColCenter commonTextGap lg:w-[74%] text-center m-auto">
-                <h1 className='text-2xl md:text-4xl lg:text-5xl/[55px] font-[500] [&_span]:primaryColor'>Fed Up with Coding from Scratch? Get 11 Ready-to-Use <span>Source Codes for Just $699!</span></h1>
+                <h1 className='text-2xl md:text-4xl lg:text-5xl/[55px] font-[500] [&_span]:primaryColor'>Fed Up with Coding from Scratch? Get 11 Ready-to-Use <span>Source Codes for Just $709!</span></h1>
                 <p className='text-sm sm:text-base md:text-lg'>Why start from zero? Use these ready-made Source codes and speed up your work instantly.</p>
 
                 <div className='videoPlayer w-full'>

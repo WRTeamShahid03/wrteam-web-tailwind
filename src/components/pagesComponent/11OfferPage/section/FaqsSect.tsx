@@ -8,12 +8,8 @@ import {
 import { faqsDataTypes } from "@/types";
 
 const FaqsSect = () => {
+
   const data = [
-    {
-      id: 0,
-      question: "Can i use 1 product for multiple clients?",
-      answer: `Yes, But for that you have to buy extended licence for that product`,
-    },
     {
       id: 1,
       question: "Can i fully customize all source codes?",
@@ -21,7 +17,7 @@ const FaqsSect = () => {
     },
     {
       id: 2,
-      question: "How can i obtain 30% discount on installation service?",
+      question: "How can i obtain 10% discount on installation service?",
       answer: `After purchasing 11 source codes reach out us on WhatsApp: +91 6355 104 724`,
     },
     {

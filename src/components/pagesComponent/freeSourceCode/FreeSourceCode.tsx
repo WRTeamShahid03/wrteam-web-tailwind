@@ -11,7 +11,7 @@ const FreeSourceCode = () => {
         <div className='!text-white !font-roboto'>
             <Header />
             <HeroSect />
-            <CheckoutSect />
+            <CheckoutSect freeCodePage={true}/>
             <Testimonials />
             <Footer/>
         </div>
