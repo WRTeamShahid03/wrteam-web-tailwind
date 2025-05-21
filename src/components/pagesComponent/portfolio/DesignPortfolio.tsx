@@ -142,9 +142,8 @@ export default function DesignPortfolio() {
 
       const response = await fetch(url);
       const data = await response.json();
-      console.log('data',data);
+      console.log('data', data);
       setPortfolioCateName(data?.data[0]?.category?.name);
-      setPortfolioSlug(data?.data[0]?.slug);
 
       // console.log('data?.data[0]?.category?.name',data?.data[0]?.category?.name)
 
@@ -157,7 +156,7 @@ export default function DesignPortfolio() {
           // If data.data is directly an array
           itemsData = data.data;
 
-          console.log('itemsData',itemsData);
+          console.log('itemsData', itemsData);
 
         } else if (Array.isArray(data)) {
           // If data itself is an array
@@ -264,7 +263,7 @@ export default function DesignPortfolio() {
     setShowFilterDropdown(false);
   };
 
-  console.log('portfolioItems',portfolioItems);
+  console.log('portfolioItems', portfolioItems);
 
   return (
     <Layout>
@@ -272,7 +271,7 @@ export default function DesignPortfolio() {
         title="Design Portfolio"
         breadcrumbs={[
           { name: "Home", path: "/" },
-          { name: "Our Work"},
+          { name: "Our Work" },
           { name: "Design" }, // Current page, no path
         ]}
       />
@@ -307,9 +306,8 @@ export default function DesignPortfolio() {
                       ?.label || "All"}
                   </span>
                   <svg
-                    className={`w-5 h-5 transition-transform ${
-                      showFilterDropdown ? "rotate-180" : ""
-                    }`}
+                    className={`w-5 h-5 transition-transform ${showFilterDropdown ? "rotate-180" : ""
+                      }`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -328,11 +326,10 @@ export default function DesignPortfolio() {
                     {filters.map((filter) => (
                       <button
                         key={filter.value}
-                        className={`w-full text-left px-4 py-3 text-sm hover:bg-gray-50 ${
-                          activeFilter === filter.value
+                        className={`w-full text-left px-4 py-3 text-sm hover:bg-gray-50 ${activeFilter === filter.value
                             ? "bg-gray-100 font-medium"
                             : ""
-                        }`}
+                          }`}
                         onClick={() => handleFilterSelect(filter.value)}
                       >
                         {filter.label}
@@ -348,11 +345,10 @@ export default function DesignPortfolio() {
                   {filters.map((filter) => (
                     <button
                       key={filter.value}
-                      className={`px-6 py-3 rounded-md text-base ${
-                        activeFilter === filter.value
+                      className={`px-6 py-3 rounded-md text-base ${activeFilter === filter.value
                           ? "bg-black text-white"
                           : "bg-white border border-gray-300"
-                      }`}
+                        }`}
                       onClick={() => handleFilterSelect(filter.value)}
                     >
                       {filter.label}
@@ -386,49 +382,45 @@ export default function DesignPortfolio() {
         {!loadingItems && portfolioItems.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {portfolioItems.map((item) => (
-              <motion.div
-                key={item.id}
-                className="rounded-2xl overflow-hidden p-2 sm:p-3 bg-[#2E71FE0A] border border-[#2E71FE1F]"
-                onMouseEnter={() => setHoveredCardId(item.id.toString())}
-                onMouseLeave={() => setHoveredCardId(null)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="overflow-hidden mb-2 sm:mb-4">
-                  {item.image && (
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      width={0}
-                      height={0}
-                        className="h-full w-full object-cover lg:w-[388px] lg:h-[230px] rounded-[8px]"
-                    />
-                  )}
-                </div>
-                <Link href={`/our-work/design/${portfolioSlug}`} title={item.title}>
-                <div
-                  className={`bg-white rounded-lg p-3 sm:p-4 relative ${
-                    hoveredCardId === item.id.toString()
-                      ? "shadow-[0px_8px_12px_0px_#4D545414]"
-                      : ""
-                  }`}
+              <Link href={`/our-work/design/${item?.slug}`} title={item.title}>
+                <motion.div
+                  key={item.id}
+                  className="group rounded-2xl overflow-hidden p-2 sm:p-3 bg-[#2E71FE0A] border border-[#2E71FE1F] transition-all duration-300"
+                  onMouseEnter={() => setHoveredCardId(item.id.toString())}
+                  onMouseLeave={() => setHoveredCardId(null)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="text-sm text-[#2A2E35]">{portfolioCateName}</p>
-                      <h3 className="text-[#181C24] font-bold mt-1">{item.title}</h3>
-                    </div>
+                  <div className="overflow-hidden mb-2 sm:mb-4">
+                    {item.image && (
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={0}
+                        height={0}
+                        className="h-full w-full object-cover lg:w-[388px] lg:h-[230px] rounded-[8px]"
+                      />
+                    )}
+                  </div>
+                    <div
+                      className={`bg-white rounded-lg p-3 sm:p-4 relative transition-all duration-300 group-hover:shadow-[0px_8px_12px_0px_#4D545414]`}
+                    >
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <p className="text-sm text-[#2A2E35]">{portfolioCateName}</p>
+                          <h3 className="text-[#181C24] font-bold mt-1 group-hover:primaryColor transition-all duration-300">{item.title}</h3>
+                        </div>
 
-                    {hoveredCardId === item.id.toString() && (
+                        {/* {hoveredCardId === item.id.toString() && (
                       <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white rounded-full flex items-center justify-center shadow-sm border border-[#2A2E35] p-2">
                         <FaArrowRight size={14}/>
                       </div>
-                    )}
-                  </div>
-                </div>
-                </Link>
-              </motion.div>
+                    )} */}
+                      </div>
+                    </div>
+                </motion.div>
+              </Link>
             ))}
 
             {/* Show skeleton items when loading more */}
@@ -446,9 +438,8 @@ export default function DesignPortfolio() {
         {!loadingItems && portfolioItems.length > 0 && hasMoreItems && (
           <div className="text-center my-8">
             <button
-              className={`px-4 py-2 sm:px-6 sm:py-2 bg-black text-white text-sm sm:text-base rounded-md ${
-                loadingMore ? "opacity-70 cursor-not-allowed" : ""
-              }`}
+              className={`px-4 py-2 sm:px-6 sm:py-2 bg-black text-white text-sm sm:text-base rounded-md ${loadingMore ? "opacity-70 cursor-not-allowed" : ""
+                }`}
               onClick={handleLoadMore}
               disabled={loadingMore}
             >

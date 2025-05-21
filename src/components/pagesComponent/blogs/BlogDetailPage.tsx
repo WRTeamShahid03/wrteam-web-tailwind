@@ -10,6 +10,7 @@ import { Blog } from "@/types/blogs";
 import RichTextContent from "@/components/commonComponents/RichTextContent";
 import SocialShareButtons from "./SocialShareButtons";
 import BlogImage from "./BlogImage"; // Import the client component directly
+import { calculateReadTime, extractTextFromHTML, formatDate } from "@/utils/helpers";
 
 // Loading component
 function BlogLoading() {
@@ -32,9 +33,8 @@ function BlogLoading() {
 // Fetch blog data on the server
 async function fetchBlogDetail(slug: string): Promise<Blog | null> {
   try {
-    const url = `${
-      process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
-    }/api/blogs?slug=${slug}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
+      }/api/blogs?slug=${slug}`;
 
     // Server-side fetch with revalidation
     const response = await fetch(url, {
@@ -55,16 +55,6 @@ async function fetchBlogDetail(slug: string): Promise<Blog | null> {
   }
 }
 
-// Format date for display
-const formatDate = (dateString?: string) => {
-  if (!dateString) return "";
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-};
 
 // Blog content component that will be wrapped in Suspense
 async function BlogContent({ slug }: { slug: string }) {
@@ -78,6 +68,7 @@ async function BlogContent({ slug }: { slug: string }) {
       </div>
     );
   }
+
 
   return (
     <div className="col-span-12 lg:col-span-8">
@@ -93,7 +84,7 @@ async function BlogContent({ slug }: { slug: string }) {
             <span>
               <FaRegClock className="primaryColor" size={17} />
             </span>
-            <span>8 minutes read</span>
+            <span>{calculateReadTime(blog?.description)} minutes read</span>
           </div>
         </div>
         <h2 className="text-xl md:text-3xl lg:text-4xl/[50px] !font-medium">

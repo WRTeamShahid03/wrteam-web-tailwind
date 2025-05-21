@@ -53,22 +53,25 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink }: ProductDetailHeader
     // Wait for the DOM to load completely
     if (typeof window !== "undefined") {
       const hash = window.location.hash;
-
+  
+      const scrollWithOffset = (selector: string, offset = 100) => {
+        const element = document.querySelector(selector);
+        if (element) {
+          const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      };
+  
       if (hash === "#explore-demo") {
-        const section = document.querySelector(hash);
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
-        }
+        scrollWithOffset(hash, -200); // adjust offset as needed
       }
+  
       if (hash === "#license") {
-        const section = document.querySelector(hash);
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
-        }
+        scrollWithOffset(hash, -500);
       }
     }
   }, []);
-
+  
   useEffect(() => {
     const whatsappLinks: WhatsAppLinks = {
       "eshop-flutter-multi-vendor-ecommerce-full-app":

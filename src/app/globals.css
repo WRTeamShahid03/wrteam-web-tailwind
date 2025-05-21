@@ -701,8 +701,12 @@ footer .commonBtn:after {
 .rich-text-content table,
 .rich-text-content tr,
 .rich-text-content td,
-.rich-text-content th {
+.rich-text-content th ,
+.rich-text-content a {
   all: revert; /* This resets all properties to their natural values */
+}
+.rich-text-content a{
+  text-decoration: none;
 }
 
 /* Ensure images don't exceed container width */
