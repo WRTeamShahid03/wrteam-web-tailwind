@@ -81,7 +81,7 @@ const Testimonials = () => {
             </div>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {
-                    data.map((item:freeSourceCodeTestimonialsDataType) => {
+                    data.map((item: freeSourceCodeTestimonialsDataType) => {
                         return <div className='flexColCenter !items-start !justify-start gap-8 bg-[#316be71a] border-[#545a6882] rounded-[14px] p-5' key={item.id}>
                             <div className='flexCenter flex-wrap gap-4  !justify-between w-full'>
                                 <div className='flexCenter gap-3'>
@@ -103,7 +103,9 @@ const Testimonials = () => {
                 }
 
             </div>
-            <CommonBtnComp />
+            <div>
+                <CommonBtnComp />
+            </div>
         </section>
     )
 }

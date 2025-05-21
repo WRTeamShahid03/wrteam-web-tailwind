@@ -62,7 +62,9 @@ const LoveBundleSect = () => {
           </div>
         ))}
       </div>
-      <CommonBtnComp />
+      <div>
+        <CommonBtnComp />
+      </div>
     </div>
   );
 };
