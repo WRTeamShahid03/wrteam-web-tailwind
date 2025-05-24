@@ -14,7 +14,7 @@ import completeSolution from "../../../assets/images/services/app-development/Co
 import timelyUpdadtes from "../../../assets/images/services/icons/Benefits/Timely Updates-.png";
 import quality from "../../../assets/images/services/icons/Benefits/Testing & Quality Assurance.png";
 import support from "../../../assets/images/services/icons/Benefits/Ongoing Support.png";
-import eliteAuthor from "../../../assets/images/services/icons/Benefits/Elite Author on Codecanyon – 1.png";
+import eliteAuthor from "../../../assets/images/services/icons/Benefits/EliteAuthorCodecanyon.png";
 import { servicesBenefitsDataTypes, servicesBuildDataTypes } from "@/types";
 
 import ProcessSect from "./ProcessSect";
@@ -30,7 +30,7 @@ import arrowImg from "../../../assets/images/services/ArrowLeftDown.svg";
 
 import buildBg from "../../../assets/images/contactFormBg.webp";
 import androidIcon from "../../../assets/images/services/app-development/icon/Android.png";
-import androidIconHover from "../../../assets/images/services/app-development/icon/Android_Hover – 1.png";
+import androidIconHover from "../../../assets/images/services/app-development/icon/Android_Hover.png";
 import flutterIcon from "../../../assets/images/services/app-development/icon/flutter.png";
 import flutterIconHover from "../../../assets/images/services/app-development/icon/flutterHover.png";
 import iosIcon from "../../../assets/images/services/app-development/icon/iOS.png";

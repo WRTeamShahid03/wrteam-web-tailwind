@@ -3,10 +3,83 @@ import React from "react";
 import { generatePageMetadata } from "@/lib/generate-metadata";
 import { Metadata } from "next";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return generatePageMetadata({
-    pageType: "web_products",
-  });
+// export async function generateMetadata(): Promise<Metadata> {
+//   return generatePageMetadata({
+//     pageType: "web_products",
+//   });
+// }
+
+// Generate metadata for the page
+async function fetchSeoData() {
+  try {
+    const response = await fetch(
+      `https://backend.wrteam.in/api/seo-settings?type=app_products`,
+      { next: { revalidate: 3600 } } // Revalidate every hour
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch product data: ${response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching product data:", error);
+    return null;
+  }
+}
+
+// Generate metadata for the product details page
+export async function generateMetadata(
+): Promise<Metadata> {
+  const seoData = await fetchSeoData();
+
+  if (!seoData || seoData.error) {
+    // Fallback metadata if product data not found
+    return {
+      title: "Product Not Found | WRTeam",
+      description: "The requested product could not be found.",
+    };
+  }
+
+  const seo = seoData.data;
+
+  const staticTitle = `Create Web & Mobile App with WRTeam's Digital Products`
+
+  // Use SEO fields if available, otherwise fallback to product data
+  return {
+    title: staticTitle || process.env.NEXT_PUBLIC_TITLE,
+    description:
+      seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
+    keywords:
+      seo.keywords || process.env.NEXT_PUBLIC_META_KEYWORD,
+    openGraph: {
+      title: staticTitle || process.env.NEXT_PUBLIC_TITLE,
+      description:
+        seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
+      images: seo.image
+        ? [seo.image]
+        : [],
+      type: "website",
+      siteName: "WRTeam",
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: staticTitle || process.env.NEXT_PUBLIC_TITLE,
+      description:
+        seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
+      images: seo.image
+        ? [seo.image]
+        : [],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    alternates: {
+      canonical: `https://wrteam.in`,
+    },
+  };
 }
 
 // Server-side fetch function for initial products data
@@ -24,8 +97,7 @@ async function fetchInitialProducts(filter?: string, category?: string) {
     const queryString = params.toString() ? `?${params.toString()}` : "";
 
     const response = await fetch(
-      `${
-        process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
+      `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
       }/api/products${queryString}`,
       {
         next: { revalidate: 3600 }, // Revalidate every hour

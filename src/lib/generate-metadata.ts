@@ -43,7 +43,7 @@ export async function generatePageMetadata(
       follow: true,
     },
     alternates: {
-      canonical: `https://wrteam.in/${pageType === "home" ? "" : pageType}`,
+      canonical: `https://wrteam.in`,
     },
   };
   

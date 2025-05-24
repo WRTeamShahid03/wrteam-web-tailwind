@@ -72,6 +72,22 @@ export default function RootLayout({
         >
         </script>
 
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var sbSiteSecret = '373837b5-5528-4c86-aa44-48d1f2a1b479';
+                window.sitebehaviourTrackingSecret = sbSiteSecret;
+                var scriptElement = document.createElement('script');
+                scriptElement.async = true;
+                scriptElement.id = 'site-behaviour-script-v2';
+                scriptElement.src = 'https://sitebehaviour-cdn.fra1.cdn.digitaloceanspaces.com/index.min.js?sitebehaviour-secret=' + sbSiteSecret;
+                document.head.appendChild(scriptElement); 
+              })();
+            `,
+          }}
+        />
+
       </head>
       <body
         className={`${montserrat.variable} ${poppins.variable} ${roboto.variable} font-sans`}

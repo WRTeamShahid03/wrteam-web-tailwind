@@ -14,7 +14,7 @@ import localMarketing from "../../../assets/images/services/digital-marketing/Lo
 import timelyUpdadtes from "../../../assets/images/services/icons/Benefits/Timely Updates-.png";
 import quality from "../../../assets/images/services/icons/Benefits/Testing & Quality Assurance.png";
 import support from "../../../assets/images/services/icons/Benefits/Ongoing Support.png";
-import eliteAuthor from "../../../assets/images/services/icons/Benefits/Elite Author on Codecanyon – 1.png";
+import eliteAuthor from "../../../assets/images/services/icons/Benefits/EliteAuthorCodecanyon.png";
 import { servicesBenefitsDataTypes, servicesBuildDataTypes } from "@/types";
 
 import ProcessSect from "./ProcessSect";
