@@ -57,7 +57,7 @@ const AboutUs: React.FC<{ page?: number }> = ({ page = 1 }) => {
   return (
     <Layout>
       <div className="aboutUsBg">
-        <Breadcrumb title={"About Us"} secondElement={"About Us"} />
+        <Breadcrumb blueText={"About Us"} secondElement={"About Us"} />
 
         <section className="container commonMT">
           <div className="grid grid-cols-12 gap-y-10 md:gap-y-32 between-1200-1399:gap-y-40 xl:gap-16">
@@ -77,9 +77,9 @@ const AboutUs: React.FC<{ page?: number }> = ({ page = 1 }) => {
                     <AiFillLike size={30} />
                   </span>
                   <span className="text-3xl md:text-5xl font-bold">25+</span>
-                  <h1 className="text-xl md:text-4xl font-semibold">
+                  <h2 className="text-xl md:text-4xl font-semibold">
                     Business Solution
-                  </h1>
+                  </h2>
                 </div>
 
                 {/* Triangle pattern - Using client component */}

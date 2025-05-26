@@ -40,6 +40,9 @@ export async function generateMetadata(
             : [],
           type: "article",
         },
+        alternates: {
+          canonical: `https://www.wrteam.in/blog/${slug}`,
+        },
       };
     }
   } catch (error) {

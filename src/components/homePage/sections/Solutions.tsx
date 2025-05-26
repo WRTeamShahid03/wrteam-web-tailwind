@@ -15,7 +15,7 @@ const Solutions: React.FC = () => {
             <div className='container space-y-12 md:space-y-16 lg:space-y-20'>
                 <div className='flexColCenter commonTextGap lg:w-[70%] xl:w-[50%] text-center m-auto'>
                     <span className='sectionTag'>Our <span>Solutions</span></span>
-                    <h1 className='sectionTitle'><span>Digital Solutions</span> We Offer, as the <span>Best Software</span> Development Company.</h1>
+                    <h5 className='sectionTitle'><span>Digital Solutions</span> We Offer, as the <span>Best Software</span> Development Company.</h5>
                     <p className='sectionPara'>We are serving a huge variety of digital solutions specially designed for various businesses that help to create websites and mobile apps for e-commerce, restaurants, mobile games, etc.</p>
                 </div>
 

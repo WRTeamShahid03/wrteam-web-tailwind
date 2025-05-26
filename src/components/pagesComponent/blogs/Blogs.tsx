@@ -4,6 +4,7 @@ import RightSideContent from "./RightSideContent";
 import BlogCard from "./BlogCard";
 import { Blog } from "@/types/blogs";
 import BlogPagination from "./BlogPagination";
+import Breadcrumb from "@/components/commonComponents/Breadcrumb";
 
 /**
  * Server component for blog listing with server-side data fetching
@@ -64,6 +65,7 @@ const Blogs = async ({
 
   return (
     <Layout>
+      <Breadcrumb blueText="Blogs" secondElement="Blogs" />
       <section className="container commonMT">
         <div className="grid grid-cols-12 gap-y-8 lg:gap-6">
           <div className="max-1199:col-span-12 col-span-8">

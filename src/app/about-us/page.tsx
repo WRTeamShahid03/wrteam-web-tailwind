@@ -68,7 +68,7 @@ export async function generateMetadata(
       follow: true,
     },
     alternates: {
-      canonical: `https://wrteam.in`,
+      canonical: `https://www.wrteam.in/about-us`,
     },
   };
 }

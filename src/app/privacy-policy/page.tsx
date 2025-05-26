@@ -5,7 +5,10 @@ import type { Metadata } from 'next'
 // either Static metadata
 export const metadata: Metadata = {
   title: 'Privacy Policy of WRTeam',
-  description: 'We are committed to safeguarding your personal information while providing top-notch app and web development services.'
+  description: 'We are committed to safeguarding your personal information while providing top-notch app and web development services.',
+  alternates: {
+    canonical: `https://www.wrteam.in/privacy-policy`,
+  },
 }
 
 

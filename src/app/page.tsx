@@ -40,7 +40,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const seoData = await fetchSeoData();
 
-  console.log(seoData,"seoData -->");
+  // console.log(seoData,"seoData -->");
 
   if (!seoData || seoData.error) {
     // Fallback metadata if product data not found
@@ -84,7 +84,7 @@ export async function generateMetadata(
       follow: true,
     },
     alternates: {
-      canonical: `https://wrteam.in`,
+      canonical: `https://www.wrteam.in/`,
     },
   };
 }

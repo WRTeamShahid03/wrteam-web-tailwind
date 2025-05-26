@@ -84,7 +84,7 @@ export async function generateMetadata(
       follow: true,
     },
     alternates: {
-      canonical: `https://wrteam.in/product-details/${slug}`,
+      canonical: `https://www.wrteam.in/product-details/${slug}`,
     },
     other: {
       "product:price:amount": product.price?.toString() || "",

@@ -45,7 +45,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
             before:contents-[""] before:absolute before:w-[2px] before:h-14 before:right-36 before:top-12 before:primaryBg
             '
       ></div>
-      <div className="container space-y-3">
+      <div className="container space-y-3 relative z-[2]">
         <PageTitle className="sectionTitle capitalize">
           {title} <span>{blueText}</span>
         </PageTitle>

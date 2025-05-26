@@ -76,7 +76,7 @@ export async function generateMetadata(
       follow: true,
     },
     alternates: {
-      canonical: `https://wrteam.in`,
+      canonical: `https://www.wrteam.in/services/digital-marketing`,
     },
   };
 }
