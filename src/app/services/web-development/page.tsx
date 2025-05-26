@@ -37,8 +37,9 @@ export async function generateMetadata(
   if (!seoData || seoData.error) {
     // Fallback metadata if product data not found
     return {
-      title: "Product Not Found | WRTeam",
-      description: "The requested product could not be found.",
+      title: process.env.NEXT_PUBLIC_TITLE,
+      description: process.env.NEXT_PUBLIC_DESCRIPTION,
+      keywords: process.env.NEXT_PUBLIC_META_KEYWORD,
     };
   }
 
@@ -82,11 +83,11 @@ export async function generateMetadata(
 }
 
 const Page = () => {
-    return (
-        <>
-            <WebDevelopment />
-        </>
-    )
+  return (
+    <>
+      <WebDevelopment />
+    </>
+  )
 }
 
 export default Page
