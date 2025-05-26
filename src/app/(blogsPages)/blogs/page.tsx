@@ -4,7 +4,7 @@ import Blogs from "@/components/pagesComponent/blogs/Blogs";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blogs",
+  title: "Blogs | WRTeam",
   description:
     "Explore our collection of insightful blogs about web and mobile app development",
   alternates: {
