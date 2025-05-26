@@ -29,18 +29,18 @@ const roboto = Roboto({
   display: "swap",
 });
 
-// Default metadata (will be overridden by page-specific metadata)
-export const metadata: Metadata = {
-  title: {
-    template: "%s | WRTeam",
-    default: "WRTeam - Web and Mobile App Development",
-  },
-  description:
-    "WRTeam specializes in creating custom web and mobile applications for businesses of all sizes.",
-  icons: {
-    icon: "./favicon.ico",
-  },
-};
+// // Default metadata (will be overridden by page-specific metadata)
+// export const metadata: Metadata = {
+//   title: {
+//     template: "%s | WRTeam",
+//     default: "WRTeam - Web and Mobile App Development",
+//   },
+//   description:
+//     "WRTeam specializes in creating custom web and mobile applications for businesses of all sizes.",
+//   icons: {
+//     icon: "./favicon.ico",
+//   },
+// };
 
 export default function RootLayout({
   children,
@@ -51,6 +51,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <link rel="icon" href={'./favicon.ico'} sizes="32x32" type="image/png" />
         {/* <!-- Google Tag Manager --> */}
         <script dangerouslySetInnerHTML={{
           __html: `(function(w,d,s,l,i){w[l] = w[l] || [];w[l].push({'gtm.start':

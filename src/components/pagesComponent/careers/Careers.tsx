@@ -19,11 +19,7 @@ async function fetchVacancies(): Promise<Vacancy[]> {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
-      }/api/get-vacancies`,
-      {
-        next: { revalidate: 3600 }, // Revalidate every hour
-      }
-    );
+      }/api/get-vacancies`);
 
     const data = await response.json();
 

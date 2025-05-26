@@ -14,7 +14,6 @@ async function fetchSeoData() {
   try {
     const response = await fetch(
       `https://backend.wrteam.in/api/seo-settings?type=app_products`,
-      { next: { revalidate: 3600 } } // Revalidate every hour
     );
 
     if (!response.ok) {
@@ -99,11 +98,7 @@ async function fetchInitialProducts(filter?: string, category?: string) {
 
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
-      }/api/products${queryString}`,
-      {
-        next: { revalidate: 3600 }, // Revalidate every hour
-        cache: "force-cache", // Use cache for initial load
-      }
+      }/api/products${queryString}`
     );
 
     if (!response.ok) {

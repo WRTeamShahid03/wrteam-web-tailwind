@@ -10,7 +10,6 @@ async function fetchProductData(slug: string) {
   try {
     const response = await fetch(
       `https://backend.wrteam.in/api/products?slug=${slug}`,
-      { next: { revalidate: 3600 } } // Revalidate every hour
     );
 
     if (!response.ok) {

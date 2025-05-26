@@ -15,7 +15,6 @@ async function fetchSeoData() {
   try {
     const response = await fetch(
       `https://backend.wrteam.in/api/seo-settings?type=digital_marketing`,
-      { next: { revalidate: 3600 } } // Revalidate every hour
     );
 
     if (!response.ok) {
@@ -44,6 +43,8 @@ export async function generateMetadata(
   }
 
   const seo = seoData.data;
+
+  console.log(seo,"seo - digital marketing");
 
   // Use SEO fields if available, otherwise fallback to product data
   return {

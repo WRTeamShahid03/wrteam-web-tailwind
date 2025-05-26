@@ -21,7 +21,6 @@ async function fetchSeoData() {
   try {
     const response = await fetch(
       `https://backend.wrteam.in/api/seo-settings?type=home`,
-      { next: { revalidate: 3600 } } // Revalidate every hour
     );
 
     if (!response.ok) {

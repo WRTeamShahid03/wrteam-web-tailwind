@@ -14,10 +14,7 @@ async function getTeamMembers(page: number): Promise<{
     const response = await fetch(
       `${
         process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
-      }/api/team-members?page=${page}`,
-      {
-        next: { revalidate: 300 }, // Revalidate every 5 minutes
-      }
+      }/api/team-members?page=${page}`
     );
 
     const data = await response.json();

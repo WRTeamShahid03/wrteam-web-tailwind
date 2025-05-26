@@ -37,10 +37,7 @@ async function fetchBlogDetail(slug: string): Promise<Blog | null> {
       }/api/blogs?slug=${slug}`;
 
     // Server-side fetch with revalidation
-    const response = await fetch(url, {
-      next: { revalidate: 3600 }, // Revalidate every hour
-      cache: "force-cache", // Use cache for initial load
-    });
+    const response = await fetch(url);
 
     const data = await response.json();
 

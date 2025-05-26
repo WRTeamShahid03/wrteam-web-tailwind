@@ -170,12 +170,11 @@ export default async function sitemap() {
   let productRoutes = [];
   try {
     console.log("Attempting to fetch products...");
-    
+
     // First fetch page 1 to get total pages info
     const initialResponse = await fetch(
       "https://backend.wrteam.in/api/products?page=1",
-      { 
-        next: { revalidate: 604800 }, // Revalidate weekly (7 days = 604800 seconds)
+      {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -190,27 +189,26 @@ export default async function sitemap() {
 
     if (initialResponse && initialResponse.ok) {
       const initialData = await initialResponse.json();
-      
+
       // Get total pages from the first response
       const totalPages = initialData?.data?.last_page || 1;
       console.log(`Product API: Found ${totalPages} total pages`);
-      
+
       let allProducts = [];
-      
+
       // Add products from first page
       if (initialData?.data?.data && Array.isArray(initialData.data.data)) {
         allProducts = [...initialData.data.data];
       }
-      
+
       // Fetch remaining pages if more than 1 page exists
       if (totalPages > 1) {
         const pagePromises = [];
-        
+
         // Create promises for pages 2 to totalPages
         for (let page = 2; page <= totalPages; page++) {
           pagePromises.push(
             fetch(`https://backend.wrteam.in/api/products?page=${page}`, {
-              next: { revalidate: 604800 },
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -218,18 +216,18 @@ export default async function sitemap() {
               },
               cache: "no-store"
             })
-            .then(res => res.json())
-            .then(pageData => pageData?.data?.data || [])
-            .catch(error => {
-              console.error(`Error fetching product page ${page}:`, error);
-              return [];
-            })
+              .then(res => res.json())
+              .then(pageData => pageData?.data?.data || [])
+              .catch(error => {
+                console.error(`Error fetching product page ${page}:`, error);
+                return [];
+              })
           );
         }
-        
+
         // Wait for all page requests to complete
         const pagesResults = await Promise.all(pagePromises);
-        
+
         // Combine all products from all pages
         pagesResults.forEach(pageProducts => {
           if (Array.isArray(pageProducts)) {
@@ -237,9 +235,9 @@ export default async function sitemap() {
           }
         });
       }
-      
+
       console.log(`Product API: Successfully retrieved ${allProducts.length} total products`);
-      
+
       // Map products to routes
       if (allProducts.length > 0) {
         productRoutes = allProducts.map((product) => ({
@@ -263,12 +261,11 @@ export default async function sitemap() {
   let blogRoutes = [];
   try {
     console.log("Attempting to fetch blogs...");
-    
+
     // First fetch page 1 to get total pages info
     const initialResponse = await fetch(
       "https://backend.wrteam.in/api/blogs?page=1",
-      { 
-        next: { revalidate: 604800 }, // Revalidate weekly
+      {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -283,27 +280,26 @@ export default async function sitemap() {
 
     if (initialResponse && initialResponse.ok) {
       const initialData = await initialResponse.json();
-      
+
       // Get total pages from the first response
       const totalPages = initialData?.data?.last_page || 1;
       console.log(`Blog API: Found ${totalPages} total pages`);
-      
+
       let allBlogs = [];
-      
+
       // Add blogs from first page
       if (initialData?.data?.data && Array.isArray(initialData.data.data)) {
         allBlogs = [...initialData.data.data];
       }
-      
+
       // Fetch remaining pages if more than 1 page exists
       if (totalPages > 1) {
         const pagePromises = [];
-        
+
         // Create promises for pages 2 to totalPages
         for (let page = 2; page <= totalPages; page++) {
           pagePromises.push(
             fetch(`https://backend.wrteam.in/api/blogs?page=${page}`, {
-              next: { revalidate: 604800 },
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -311,18 +307,18 @@ export default async function sitemap() {
               },
               cache: "no-store"
             })
-            .then(res => res.json())
-            .then(pageData => pageData?.data?.data || [])
-            .catch(error => {
-              console.error(`Error fetching blog page ${page}:`, error);
-              return [];
-            })
+              .then(res => res.json())
+              .then(pageData => pageData?.data?.data || [])
+              .catch(error => {
+                console.error(`Error fetching blog page ${page}:`, error);
+                return [];
+              })
           );
         }
-        
+
         // Wait for all page requests to complete
         const pagesResults = await Promise.all(pagePromises);
-        
+
         // Combine all blogs from all pages
         pagesResults.forEach(pageBlogs => {
           if (Array.isArray(pageBlogs)) {
@@ -330,9 +326,9 @@ export default async function sitemap() {
           }
         });
       }
-      
+
       console.log(`Blog API: Successfully retrieved ${allBlogs.length} total blogs`);
-      
+
       // Map blogs to routes
       if (allBlogs.length > 0) {
         blogRoutes = allBlogs.map((blog) => ({
@@ -355,6 +351,6 @@ export default async function sitemap() {
   // Combine all routes
   const allRoutes = [...staticRoutes, ...productRoutes, ...blogRoutes];
   console.log(`Sitemap generated with ${allRoutes.length} total routes: ${staticRoutes.length} static, ${productRoutes.length} products, ${blogRoutes.length} blogs`);
-  
+
   return allRoutes;
 }

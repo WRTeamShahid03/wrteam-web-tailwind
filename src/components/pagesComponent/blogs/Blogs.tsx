@@ -21,9 +21,7 @@ async function fetchBlogs(page: number, categorySlug?: string | null) {
     }
 
     // Server-side fetch with revalidation
-    const response = await fetch(url, {
-      next: { revalidate: 600 }, // Revalidate every 10 minutes
-    });
+    const response = await fetch(url);
 
     const data = await response.json();
 
