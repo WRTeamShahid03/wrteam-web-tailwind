@@ -47,6 +47,7 @@ interface ApiPortfolioItem {
   // Using Record<string, unknown> for type safety
   [key: string]: unknown;
   slug?: string;
+  category?: Category;
 }
 
 interface PortfolioItem {
@@ -89,9 +90,6 @@ export default function DesignPortfolio() {
   const filterDropdownRef = useRef<HTMLDivElement>(null);
   // Items per page
   const limit = 6;
-
-  const [portfolioCateName, setPortfolioCateName] = useState<string>("");
-  const [portfolioSlug, setPortfolioSlug] = useState<string>("");
   // Fetch categories from API
   useEffect(() => {
     const fetchCategories = async () => {
@@ -143,7 +141,6 @@ export default function DesignPortfolio() {
       const response = await fetch(url);
       const data = await response.json();
       console.log('data', data);
-      setPortfolioCateName(data?.data[0]?.category?.name);
 
       // console.log('data?.data[0]?.category?.name',data?.data[0]?.category?.name)
 
@@ -168,7 +165,8 @@ export default function DesignPortfolio() {
           const items = itemsData.map((item: ApiPortfolioItem) => ({
             id: item.id || Math.random().toString(36).substr(2, 9),
             title: item.app_headline || item.products?.name || "Untitled Project",
-            category: item.tag?.split(",")[0] || "Design",
+            // category: item.tag?.split(",")[0] || "Design",
+            category: item.category?.name?.split(",")[0] || "Design",
             image: item.image || item.app_image || "/placeholder.jpg",
             hasDemo: !!(
               item.play_store_link ||
@@ -408,7 +406,7 @@ export default function DesignPortfolio() {
                     >
                       <div className="flex justify-between items-center">
                         <div>
-                          <p className="text-sm text-[#2A2E35]">{portfolioCateName}</p>
+                          <p className="text-sm text-[#2A2E35]">{item.category}</p>
                           <h3 className="text-[#181C24] font-bold mt-1 group-hover:primaryColor transition-all duration-300">{item.title}</h3>
                         </div>
 

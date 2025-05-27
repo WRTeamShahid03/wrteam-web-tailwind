@@ -14,6 +14,7 @@ import MobileNav from "./MobileNav";
 interface ProductDetailHeaderProps {
   icon_image?: string;
   codecanyonLink?: string;
+  layoutType?: number;
 }
 
 // Define an interface for the whatsapp links
@@ -21,7 +22,7 @@ interface WhatsAppLinks {
   [key: string]: string;
 }
 
-const ProductDetailHeader = ({ icon_image, codecanyonLink }: ProductDetailHeaderProps) => {
+const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: ProductDetailHeaderProps) => {
   const router = useParams();
   const navRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(0);
@@ -63,11 +64,16 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink }: ProductDetailHeader
       };
   
       if (hash === "#explore-demo") {
-        scrollWithOffset(hash, -200); // adjust offset as needed
+        if(layoutType === 1){
+          scrollWithOffset(hash, 100); // adjust offset as needed
+        }
+        else{
+          scrollWithOffset(hash, -200);
+        }
       }
   
       if (hash === "#license") {
-        scrollWithOffset(hash, -500);
+        scrollWithOffset(hash, -600);
       }
     }
   }, []);

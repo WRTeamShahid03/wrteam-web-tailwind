@@ -5,6 +5,7 @@ import { LuPhoneCall } from 'react-icons/lu'
 import { GrLocation } from 'react-icons/gr'
 import { BsFacebook, BsLinkedin, BsYoutube } from 'react-icons/bs'
 import { AiFillInstagram } from 'react-icons/ai'
+import { IoIosMail } from "react-icons/io";
 
 const TopBar:React.FC = () => {
   return (
@@ -13,7 +14,7 @@ const TopBar:React.FC = () => {
         <div className="flex items-center justify-between py-2">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-1 pr-3 border-r border-[#4C5B79]">
-              <LuPhoneCall className="hover:primaryColor transition-all" />
+              <IoIosMail className="hover:primaryColor transition-all" size={20}/>
               <span>
                 Mail Us:{' '}
                 <Link href="mailto:support@wrteam.in" className="text-white hover:underline">
