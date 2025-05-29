@@ -94,11 +94,14 @@ const VideoTestimonials = () => {
                   992: {
                     slidesPerView: 3,
                   },
+                  1200: {
+                    slidesPerView: 4,
+                  },
                 }}
                 className="testimonials-swiper [&>.swiper-wrapper]:py-5"
               >
                 {
-                  Array(3).fill(0).map((_, index) => (
+                  Array(4).fill(0).map((_, index) => (
                     <SwiperSlide key={`skeleton-${index}`} className="testimonial-slide">
                       <VideoTestimonialSkeleton />
                     </SwiperSlide>
@@ -140,6 +143,9 @@ const VideoTestimonials = () => {
                   992: {
                     slidesPerView: 3,
                   },
+                  1200: {
+                    slidesPerView: 4,
+                  },
                 }}
                 className="testimonials-swiper [&>.swiper-wrapper]:py-5 [&>.swiper-wrapper]:items-center"
               >
@@ -148,11 +154,10 @@ const VideoTestimonials = () => {
                   videoTestimonials.map((testimonial: VideoTestimonial, index: number) => (
                     <SwiperSlide
                       key={testimonial.id}
-                      className={`testimonial-slide transition-all duration-300 ease-in-out ${activeSlide === index - 1 ? 'active-slide md:!scale-105 md:opacity-100' : 'md:opacity-70 md:!scale-95'
-                        }`}
+                      className={`testimonial-slide transition-all duration-300 ease-in-out`}
                     >
-                      <div className="rounded-[30px] overflow-hidden shadow-xl h-full m-2 transition-transform duration-300 ease-in-out">
-                        <div className="relative h-[500px] bg-gradient-to-b from-transparent to-black overflow-hidden md:h-[600px]">
+                      <div className="overflow-hidden shadow-xl h-full m-2 transition-transform duration-300 ease-in-out rounded-[18px]">
+                        <div className="relative h-[380px] bg-gradient-to-b from-transparent to-black overflow-hidden md:h-[407px] rounded-[18px] border-[5px] border-[#FFFFFF3D] ">
                           <Image
                             src={testimonial.thumbnail}
                             alt={testimonial.name}

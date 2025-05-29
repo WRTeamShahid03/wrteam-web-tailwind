@@ -311,7 +311,7 @@ const ProductsPage = ({
                         loader={({ src }) => src}
                         unoptimized={true}
                         loading="lazy"
-                        className="rounded-t-[8px] w-full h-auto aspect-[16/10] object-fill"
+                        className="rounded-t-[8px] w-full h-auto aspect-[1/0.8]"
                       />
                     </div>
                   </Link>
