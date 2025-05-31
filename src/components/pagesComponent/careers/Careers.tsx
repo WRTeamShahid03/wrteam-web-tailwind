@@ -15,7 +15,8 @@ interface Vacancy {
 }
 
 // Fetch vacancies data on the server
-async function fetchVacancies(): Promise<Vacancy[]> {
+// async function fetchVacancies(): Promise<Vacancy[]> {
+  async function fetchVacancies() {
   try {
 
     let url = `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
