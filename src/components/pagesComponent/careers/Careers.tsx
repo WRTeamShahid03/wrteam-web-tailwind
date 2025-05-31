@@ -15,14 +15,15 @@ interface Vacancy {
 }
 
 // Fetch vacancies data on the server
-// async function fetchVacancies(): Promise<Vacancy[]> {
-  async function fetchVacancies() {
+async function fetchVacancies() {
   try {
-
     let url = `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
       }/api/get-vacancies`;
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      next: { revalidate: 0 }, // This ensures the data is always fresh
+      cache: 'no-store' // This prevents caching
+    });
 
     const data = await response.json();
 
@@ -40,8 +41,8 @@ interface Vacancy {
 
 /**
  * Careers component using Next.js hybrid rendering approach
- * - Server-rendered static content for better SEO
- * - Server-side data fetching for vacancies
+ * - Dynamic content with server-side data fetching
+ * - No static generation to ensure real-time data
  * - Client components for interactive elements (form, animations)
  */
 const Careers = async () => {
