@@ -25,6 +25,8 @@ async function fetchVacancies() {
       cache: 'no-store' // This prevents caching
     });
 
+    console.log(response, 'response');
+
     const data = await response.json();
 
     if (data.error) {
@@ -201,7 +203,7 @@ const Careers = async () => {
       <VacanciesSection vacancies={vacancies} />
 
       {/* Application Form Section */}
-      <div className="container mx-auto">
+      <div className="container commonMT">
         <section className="commonBg py-16 max-575:px-3 px-10 rounded-[16px]" id="applySection">
           <div className="flexColCenter commonTextGap text-center">
             <h2 className="text-4xl font-bold mb-6 font-montserrat">

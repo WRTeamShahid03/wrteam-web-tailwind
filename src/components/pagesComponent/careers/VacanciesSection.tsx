@@ -18,7 +18,7 @@ export default function VacanciesSection({
   }
 
   return (
-    <section className="container mx-auto py-16">
+    <section className="container commonMT">
       <div className="text-center mb-12">
         <div className="flexColCenter commonTextGap">
           <span className="sectionTag">Career Opportunities</span>

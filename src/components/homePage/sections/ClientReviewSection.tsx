@@ -106,7 +106,10 @@ export default function ClientReviewSection() {
       try {
         setIsLoading(true);
 
-        const response = await axiosClient.get("/api/testimonials");
+        let url = `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
+          }/api/testimonials`;
+
+        const response = await axiosClient.get(url);
 
         if (
           response?.data?.data?.data &&

@@ -40,7 +40,11 @@ const VideoTestimonials = () => {
     const fetchVideoTestimonials = async () => {
       try {
         setIsLoading(true);
-        const response = await axiosClient.get('/api/video-testimonials');
+
+        let url = `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
+          }/api/video-testimonials`;
+
+        const response = await axiosClient.get(url);
 
         if (response?.data?.data && Array.isArray(response.data.data)) {
 
@@ -66,7 +70,7 @@ const VideoTestimonials = () => {
         isLoading ?
           <div className="bg-[#181C24] py-16 videoTestimonials commonMT">
             <div className="container">
-            <div className="text-center mb-10 flex flex-col items-center gap-3 md:gap-5">
+              <div className="text-center mb-10 flex flex-col items-center gap-3 md:gap-5">
                 <span className="bg-[#FFFFFF29] text-white py-2 px-4 rounded-md text-sm font-semibold">
                   Real Stories from Our Clients
                 </span>
@@ -113,7 +117,7 @@ const VideoTestimonials = () => {
           </div>
           :
           videoTestimonials.length > 0 &&
-           <div className="bg-[#181C24] py-16 videoTestimonials commonMT">
+          <div className="bg-[#181C24] py-16 videoTestimonials commonMT">
             <div className="container">
               <div className="text-center mb-10 flex flex-col items-center gap-3 md:gap-5">
                 <span className="bg-[#FFFFFF29] text-white py-2 px-4 rounded-md text-sm font-semibold">
