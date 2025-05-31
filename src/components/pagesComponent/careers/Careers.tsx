@@ -17,9 +17,11 @@ interface Vacancy {
 // Fetch vacancies data on the server
 async function fetchVacancies(): Promise<Vacancy[]> {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
-      }/api/get-vacancies`);
+
+    let url = `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
+      }/api/get-vacancies`;
+
+    const response = await fetch(url);
 
     const data = await response.json();
 
