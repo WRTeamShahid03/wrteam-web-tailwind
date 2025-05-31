@@ -74,7 +74,7 @@ const BonusSect = () => {
                             className="w-auto h-auw-auto mx-auto mb-4"
                         />
                         <p className="text-lg md:text-3xl lg:w-[90%] text-center mx-auto">{bonus.text}</p>
-                        <div className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg mt-4 inline-block text-xl md:text-3xl">
+                        <div className="primaryBg text-white font-semibold py-2 px-4 rounded-lg mt-4 inline-block text-xl md:text-3xl">
                             <span className='!font-light'>Worth :</span> ${bonus.price}
                         </div>
                     </div>

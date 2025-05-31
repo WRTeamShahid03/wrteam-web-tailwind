@@ -54,7 +54,7 @@ export default function Breadcrumb({ items, className = "" }) {
                 ) : (
                   <Link
                     href={item.url}
-                    className="text-gray-500 hover:text-blue-600 hover:underline"
+                    className="text-gray-500 hover:primaryColor hover:underline"
                     aria-current={
                       index === items.length - 1 ? "page" : undefined
                     }

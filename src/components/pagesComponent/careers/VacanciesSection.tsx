@@ -24,7 +24,7 @@ export default function VacanciesSection({
           <span className="sectionTag">Career Opportunities</span>
 
           <h2 className="sectionTitle">
-            Current <span className="text-blue-600">Job Openings</span> At
+            Current <span className="primaryColor">Job Openings</span> At
             WRTeam
           </h2>
 
@@ -45,7 +45,7 @@ export default function VacanciesSection({
               className="border-2 border-[#545a684d] p-8 text-left rounded-[16px]"
             >
               <div className="flex items-center mb-4">
-                <div className="p-[6px] bg-blue-600 rounded-full mr-2 flex-shrink-0"></div>
+                <div className="p-[6px] primaryBg rounded-full mr-2 flex-shrink-0"></div>
                 <h3 className="text-xl font-bold font-montserrat">
                   {job.title}
                 </h3>
@@ -55,7 +55,7 @@ export default function VacanciesSection({
               </p>
               <a
                 href="#applySection"
-                className="inline-flex items-center text-blue-600 font-medium border border-blue-600 rounded-md px-6 py-2 transition-all duration-300 hover:primaryBg hover:text-white hover:shadow-[0_20px_36px_#2e71ef5c]"
+                className="inline-flex items-center primaryColor font-medium border primaryBorder rounded-md px-6 py-2 transition-all duration-300 hover:primaryBg hover:text-white hover:shadow-[0_20px_36px_#2e71ef5c]"
               >
                 Apply Now
                 <BsArrowRightCircle className="ml-2" /> 

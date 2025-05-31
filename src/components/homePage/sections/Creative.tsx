@@ -25,7 +25,7 @@ const HeroSection: React.FC = () => {
 
             {/* This div arranges button and creative minds section in one row */}
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between mt-4 gap-4">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md flex items-center gap-2">
+              <button className="primaryBg hover:bg-blue-700 text-white px-5 py-2 rounded-md flex items-center gap-2">
                 Get to Know Us <span>→</span>
               </button>
 

@@ -95,7 +95,7 @@ const Careers = async () => {
               <div className="space-y-4">
                 {/* Benefit 1 */}
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-medium">
+                  <div className="w-10 h-10 rounded-full primaryBg text-white flex items-center justify-center font-medium">
                     01
                   </div>
                   <span className="font-medium text-gray-800">
@@ -105,7 +105,7 @@ const Careers = async () => {
 
                 {/* Benefit 2 */}
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-medium">
+                  <div className="w-10 h-10 rounded-full primaryBg text-white flex items-center justify-center font-medium">
                     02
                   </div>
                   <span className="font-medium text-gray-800">
@@ -115,7 +115,7 @@ const Careers = async () => {
 
                 {/* Benefit 3 */}
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-medium">
+                  <div className="w-10 h-10 rounded-full primaryBg text-white flex items-center justify-center font-medium">
                     03
                   </div>
                   <span className="font-medium text-gray-800">
@@ -125,7 +125,7 @@ const Careers = async () => {
 
                 {/* Benefit 4 */}
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-medium">
+                  <div className="w-10 h-10 rounded-full primaryBg text-white flex items-center justify-center font-medium">
                     04
                   </div>
                   <span className="font-medium text-gray-800">
@@ -135,7 +135,7 @@ const Careers = async () => {
 
                 {/* Benefit 5 */}
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-medium">
+                  <div className="w-10 h-10 rounded-full primaryBg text-white flex items-center justify-center font-medium">
                     05
                   </div>
                   <span className="font-medium text-gray-800">
@@ -145,7 +145,7 @@ const Careers = async () => {
 
                 {/* Benefit 6 */}
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-medium">
+                  <div className="w-10 h-10 rounded-full primaryBg text-white flex items-center justify-center font-medium">
                     06
                   </div>
                   <span className="font-medium text-gray-800">
@@ -155,7 +155,7 @@ const Careers = async () => {
 
                 {/* Benefit 7 */}
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-medium">
+                  <div className="w-10 h-10 rounded-full primaryBg text-white flex items-center justify-center font-medium">
                     07
                   </div>
                   <span className="font-medium text-gray-800">
@@ -207,7 +207,7 @@ const Careers = async () => {
         <section className="commonBg py-16 max-575:px-3 px-10 rounded-[16px]" id="applySection">
           <div className="flexColCenter commonTextGap text-center">
             <h2 className="text-4xl font-bold mb-6 font-montserrat">
-              Apply <span className="text-blue-600">Now</span>
+              Apply <span className="primaryColor">Now</span>
             </h2>
 
             <p className="text-gray-600 max-w-3xl mx-auto mb-12 font-poppins">
