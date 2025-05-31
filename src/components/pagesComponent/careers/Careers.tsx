@@ -43,7 +43,7 @@ async function fetchVacancies(): Promise<Vacancy[]> {
  * - Server-side data fetching for vacancies
  * - Client components for interactive elements (form, animations)
  */
-export default async function Careers() {
+const Careers = async () => {
   // Fetch vacancies on the server
   const vacancies = await fetchVacancies();
 
@@ -222,3 +222,5 @@ export default async function Careers() {
     </Layout>
   );
 }
+
+export default Careers;
