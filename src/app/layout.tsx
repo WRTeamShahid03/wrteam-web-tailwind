@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import { Montserrat, Poppins, Roboto } from "next/font/google";
+import { Archivo, Montserrat, Poppins, Roboto } from "next/font/google";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
@@ -26,6 +26,12 @@ const roboto = Roboto({
   subsets: ["latin"],
   weight: ["100", "300", "400", "500", "700", "900"],
   variable: "--font-roboto",
+  display: "swap",
+});
+const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-archivo",
   display: "swap",
 });
 
@@ -90,7 +96,7 @@ export default function RootLayout({
 
       </head>
       <body
-        className={`${montserrat.variable} ${poppins.variable} ${roboto.variable} font-sans`}
+        className={`${montserrat.variable} ${poppins.variable} ${roboto.variable} ${archivo.variable} font-sans`}
         suppressHydrationWarning
       >
         <ClientBackgroundInitializer />

@@ -18,6 +18,7 @@ export default {
         montserrat: ["var(--font-montserrat)", "sans-serif"],
         poppins: ["var(--font-poppins)", "sans-serif"],
         roboto: ["var(--font-roboto)", "sans-serif"],
+        archivo: ["var(--font-archivo)", "sans-serif"],
         sans: ["var(--font-poppins)", "system-ui", "sans-serif"],
       },
       borderRadius: {
