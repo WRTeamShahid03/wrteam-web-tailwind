@@ -6,6 +6,7 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import ClientBackgroundInitializer from "@/components/ClientBackgroundInitializer";
 import { Metadata } from "next";
+import "aos/dist/aos.css";
 
 // Define the fonts with their respective weights
 const montserrat = Montserrat({
@@ -35,18 +36,19 @@ const archivo = Archivo({
   display: "swap",
 });
 
-// // Default metadata (will be overridden by page-specific metadata)
-// export const metadata: Metadata = {
-//   title: {
-//     template: "%s | WRTeam",
-//     default: "WRTeam - Web and Mobile App Development",
-//   },
-//   description:
-//     "WRTeam specializes in creating custom web and mobile applications for businesses of all sizes.",
-//   icons: {
-//     icon: "./favicon.ico",
-//   },
-// };
+// Default metadata (will be overridden by page-specific metadata)
+export const metadata: Metadata = {
+  title: {
+    template: "%s | WRTeam",
+    default: "WRTeam - Web and Mobile App Development",
+  },
+  description:
+    "WRTeam specializes in creating custom web and mobile applications for businesses of all sizes.",
+  icons: {
+    icon: "https://www.wrteam.in/favicon.ico",
+  },
+  viewport: "width=device-width, initial-scale=1",
+};
 
 export default function RootLayout({
   children,
@@ -55,29 +57,43 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-        <link rel="icon" href="https://www.wrteam.in/favicon.ico" sizes="32x32" type="image/png" />
-        {/* <!-- Google Tag Manager --> */}
-        <script dangerouslySetInnerHTML={{
-          __html: `(function(w,d,s,l,i){w[l] = w[l] || [];w[l].push({'gtm.start':
-                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                                        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                    })(window,document,'script','dataLayer','GTM-MG5P53R')
+      <body
+        className={`${montserrat.variable} ${poppins.variable} ${roboto.variable} ${archivo.variable} font-sans`}
+        suppressHydrationWarning
+      >
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MG5P53R"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
 
-                `}}></script>
-        {/* <!-- End Google Tag Manager --> */}
+        <ClientBackgroundInitializer />
+        <Toaster position="top-center" reverseOrder={false} />
+        {children}
 
-        {/* whatsapp widget  */}
+        {/* Scripts that were in head */}
         <script
           type="text/javascript"
           src="https://d3mkw6s8thqya7.cloudfront.net/integration-plugin.js"
           id="aisensy-wa-widget"
           widget-id="aaa1a0"
-        >
-        </script>
-
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l] = w[l] || [];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-MG5P53R')
+            `
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -90,18 +106,9 @@ export default function RootLayout({
                 scriptElement.src = 'https://sitebehaviour-cdn.fra1.cdn.digitaloceanspaces.com/index.min.js?sitebehaviour-secret=' + sbSiteSecret;
                 document.head.appendChild(scriptElement); 
               })();
-            `,
+            `
           }}
         />
-
-      </head>
-      <body
-        className={`${montserrat.variable} ${poppins.variable} ${roboto.variable} ${archivo.variable} font-sans`}
-        suppressHydrationWarning
-      >
-        <ClientBackgroundInitializer />
-        <Toaster position="top-center" reverseOrder={false} />
-        {children}
       </body>
     </html>
   );
