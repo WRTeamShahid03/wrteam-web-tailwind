@@ -44,6 +44,8 @@ const Header = () => {
   const [morePagesDropdown, setMorePagesDropdown] = useState<boolean>(false);
   const [ourWorkDropdown, setOurWorkDropdown] = useState<boolean>(false);
 
+  const [showSaleStripe, setShowSaleStripe] = useState(true)
+
   useEffect(() => {
     if (servicesDropdown) {
       setMorePagesDropdown(false);
@@ -58,7 +60,7 @@ const Header = () => {
     }
   }, [morePagesDropdown])
 
-  useEffect(() => {    
+  useEffect(() => {
     if (ourWorkDropdown) {
       setServicesDropdown(false);
       setMorePagesDropdown(false);
@@ -68,7 +70,11 @@ const Header = () => {
 
   return (
     <header className={`sticky top-0 w-full z-[20] border-b shadow-none ${scroll > (navRef.current?.offsetTop || 0) ? "stickky" : ""}`}>
-      <SaleStripe />
+      {
+        showSaleStripe && (
+          <SaleStripe setShowSaleStripe={setShowSaleStripe} />
+        )
+      }
       <TopBar />
       <div className='py-6 bg-white'>
         <div className="max-1680:!container 2xl:max-w-[1620px] mx-auto">
@@ -85,9 +91,9 @@ const Header = () => {
                 <Link href={'/products'} className={`relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black font-medium ${pathname === '/products' && 'after:!bg-black font-semibold'}`}>
                   Products
                 </Link>
-                <ServicesDropdown servicesDropdown={servicesDropdown} setServicesDropdown={setServicesDropdown} />
-                <MorePagesDropdown morePagesDropdown={morePagesDropdown} setMorePagesDropdown={setMorePagesDropdown} />
-                <OurWorkDropdown ourWorkDropdown={ourWorkDropdown} setOurWorkDropdown={setOurWorkDropdown} />
+                <ServicesDropdown servicesDropdown={servicesDropdown} setServicesDropdown={setServicesDropdown} showSaleStripe={showSaleStripe}/>
+                <MorePagesDropdown morePagesDropdown={morePagesDropdown} setMorePagesDropdown={setMorePagesDropdown} showSaleStripe={showSaleStripe}  />
+                <OurWorkDropdown ourWorkDropdown={ourWorkDropdown} setOurWorkDropdown={setOurWorkDropdown} showSaleStripe={showSaleStripe}/>
                 <Link href={'/exclusive-license'} className={`relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black font-medium ${pathname === '/exclusive-license' && 'after:!bg-black font-semibold'}`}>
                   Exclusive License
                 </Link>

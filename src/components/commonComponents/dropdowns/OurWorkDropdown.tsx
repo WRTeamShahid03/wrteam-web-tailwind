@@ -9,10 +9,11 @@ import designImg from '../../../assets/images/homePage/ui-ux-portfolio.png'
 interface dataProps {
   ourWorkDropdown: boolean,
   setOurWorkDropdown: (value: boolean) => void,
-  isMobileNav?: boolean
+  isMobileNav?: boolean,
+  showSaleStripe: boolean
 } 
 
-const OurWorkDropdown: React.FC<dataProps> = ({ ourWorkDropdown, setOurWorkDropdown, isMobileNav }) => {
+const OurWorkDropdown: React.FC<dataProps> = ({ ourWorkDropdown, setOurWorkDropdown, isMobileNav, showSaleStripe }) => {
 
   const pathname = usePathname();
 
@@ -46,7 +47,7 @@ const OurWorkDropdown: React.FC<dataProps> = ({ ourWorkDropdown, setOurWorkDropd
 
       {ourWorkDropdown && (
         <div
-        className="absolute max-1199:!top-[28px] max-1680:top-[137px] top-[144px] left-0 right-0 mx-auto bg-white rounded-b-2xl shadow-md max-399:w-[250px] max-1199:w-[350px] between-1200-1399:w-[900px] w-[1000px] max-1199:p-3 p-6 z-50 pt-0"
+        className={`absolute max-1199:!top-[28px] ${showSaleStripe ? 'max-1680:top-[196px] top-[205px]' : 'max-1680:top-[137px] top-[144px]'} left-0 right-0 mx-auto bg-white rounded-b-2xl shadow-md max-399:w-[250px] max-1199:w-[350px] between-1200-1399:w-[900px] w-[1000px] max-1199:p-3 p-6 z-50 pt-0`}
         onMouseLeave={() => setOurWorkDropdown(false)}
         >
           <div className="flex gap-6 max-1199:flex-wrap">

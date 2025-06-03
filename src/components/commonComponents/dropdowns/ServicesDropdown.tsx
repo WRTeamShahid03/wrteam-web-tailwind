@@ -15,10 +15,11 @@ import { usePathname } from 'next/navigation'
 interface dataProps {
     isMobileNav?: boolean,
     servicesDropdown: boolean,
-    setServicesDropdown: (value: boolean) => void
+    setServicesDropdown: (value: boolean) => void,
+    showSaleStripe: boolean
   } 
 
-const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav, servicesDropdown, setServicesDropdown }) => {
+const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav, servicesDropdown, setServicesDropdown, showSaleStripe }) => {
     const pathname = usePathname();
 
     const dropData = [
@@ -72,7 +73,7 @@ const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav, servicesDropdown, 
 
             {servicesDropdown && (
                 <div
-                    className="absolute max-1199:!top-[28px] max-1680:top-[137px] top-[144px] left-0 right-0 mx-auto bg-white rounded-b-2xl shadow-md max-399:w-[250px] max-1199:w-[350px] between-1200-1399:w-[1100px] w-[1320px] max-1199:p-3 p-6 z-50"
+                    className={`absolute max-1199:!top-[28px] ${showSaleStripe ? 'max-1680:top-[196px] top-[205px]' : 'max-1680:top-[137px] top-[144px]'} left-0 right-0 mx-auto bg-white rounded-b-2xl shadow-md max-399:w-[250px] max-1199:w-[350px] between-1200-1399:w-[1100px] w-[1320px] max-1199:p-3 p-6 z-50`}
                     onMouseLeave={() => setServicesDropdown(false)}
                 >
                     <div className="flex flex-wrap">

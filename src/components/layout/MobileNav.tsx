@@ -8,9 +8,6 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
-import ServicesDropdown from "../commonComponents/dropdowns/ServicesDropdown";
-import MorePagesDropdown from "../commonComponents/dropdowns/MorePagesDropdown";
-import OurWorkDropdown from "../commonComponents/dropdowns/OurWorkDropdown";
 import { FaAngleDown, FaAngleRight, FaArrowRight } from "react-icons/fa6";
 import { LucidePhoneCall } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -30,10 +27,10 @@ interface dataProps {
   morePagesDropdown: boolean,
   setMorePagesDropdown: (value: boolean) => void,
   ourWorkDropdown: boolean,
-  setOurWorkDropdown: (value: boolean) => void
+  setOurWorkDropdown: (value: boolean) => void,
 }
 
-const MobileNav: React.FC<dataProps> = ({ servicesDropdown, setServicesDropdown, morePagesDropdown, setMorePagesDropdown, ourWorkDropdown, setOurWorkDropdown }) => {
+const MobileNav: React.FC<dataProps> = ({ servicesDropdown, setServicesDropdown, morePagesDropdown, setMorePagesDropdown, ourWorkDropdown, setOurWorkDropdown, }) => {
   const pathname = usePathname();
 
   const isMobileNav = true;
