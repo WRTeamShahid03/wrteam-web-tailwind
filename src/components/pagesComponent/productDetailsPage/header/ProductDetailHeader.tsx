@@ -81,17 +81,17 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
   useEffect(() => {
     const whatsappLinks: WhatsAppLinks = {
       "eshop-flutter-multi-vendor-ecommerce-full-app":
-        "https://wa.me/+916359302924?text=Hello+sir,+I+want+a+personalised+demo",
+        "https://wa.me/+916359302924?text=Hello+sir,+I+want+a+personalised+eshop-flutter-multi-vendor+demo",
       "eclassify-classified-buy-and-sell-marketplace-flutter-app-with-laravel-admin-panel":
-        "https://wa.me/+916359302924?text=Hello+sir,+I+want+a+personalised+demo",
+        "https://wa.me/+916359302924?text=Hello+sir,+I+want+a+personalised+eclassify+demo",
       "egrocer-online-grocery-store-ecommerce-marketplace-flutter-full-app-with-admin-panel":
-        "https://wa.me/+916359302924?text=Hello+sir,+I+want+a+personalised+demo",
+        "https://wa.me/+916359302924?text=Hello+sir,+I+want+a+personalised+egrocer+demo",
       "erestro-single-vendor-restaurant-flutter-app-food-ordering-app-with-admin-panel":
-        "https://wa.me/+916359302924?text=Hello+sir,+I+want+a+personalised+demo",
+        "https://wa.me/+916359302924?text=Hello+sir,+I+want+a+personalised+erestro-single-vendor+demo",
       "erestro-flutter-multi-restaurant-vendor-marketplace-food-ordering-app-for-hyperlocal-business":
-        "https://wa.me/+916359302924?text=Hello+sir,+I+want+a+personalised+demo",
+        "https://wa.me/+916359302924?text=Hello+sir,+I+want+a+personalised+erestro-flutter-multi+demo",
       "ebroker-real-estate-property-buy-rent-sell-flutter-app-with-laravel-admin-panel-web-version":
-        "https://wa.me/+916359302924?text=Hello+sir,+I+want+a+personalised+demo",
+        "https://wa.me/+916359302924?text=Hello+sir,+I+want+a+personalised+ebroker+demo",
     };
 
     if (typeof slug === "string") {
