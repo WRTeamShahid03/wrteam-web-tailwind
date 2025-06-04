@@ -99,7 +99,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                         <Image src={line} alt='line' width={0} height={0} className='w-[100px] h-[100px] hidden sm:block' />
                         <div className='relative'>
                             <Image src={grabDeal} alt='line' width={0} height={0} className='absolute -top-[18px] w-[140px] h-[12px] z-[1] hidden lg:block' />
-                            <Link href={'/products'} className='bg-white py-2 px-6 text-black rounded-[8px] font-bold border-2 border-[#ffad3f]'>Grap Deal</Link>
+                            <Link href={'https://www.wrteam.in/mid-year-sale?utm_source=website&utm_medium=strip&utm_campaign=mid-year-sale'} target='_blank' className='bg-white py-2 px-6 text-black rounded-[8px] font-bold border-2 border-[#ffad3f]'>Grap Deal</Link>
                         </div>
                     </div>
 

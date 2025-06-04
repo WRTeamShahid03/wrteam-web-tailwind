@@ -30,6 +30,8 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
   const extendedLicensePrice = productData?.extended_license_price;
   const extendedLicenseLink = productData?.extended_license_link;
   const regularLicensePrice = productData?.price;
+  const salePrice = productData?.sale_price || undefined;
+  const extendedLicenseSalePrice = productData?.extended_sale_price || undefined;
 
   const footerLogo = productData?.icon_image2;
   const supportData = productDetails?.product_description[0]?.help_section;
@@ -137,6 +139,8 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
             extendedLicensePrice={extendedLicensePrice}
             extendedLicenseLink={extendedLicenseLink}
             regularLicensePrice={regularLicensePrice}
+            salePrice={salePrice}
+            extendedLicenseSalePrice={extendedLicenseSalePrice}
             productName={productName}
           />
         ) : (
@@ -148,6 +152,8 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
             extendedLicensePrice={extendedLicensePrice}
             extendedLicenseLink={extendedLicenseLink}
             regularLicensePrice={regularLicensePrice}
+            salePrice={salePrice}
+            extendedLicenseSalePrice={extendedLicenseSalePrice}
           />
         ))}
       <ProductDetailFooter

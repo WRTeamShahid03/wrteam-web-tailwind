@@ -25,9 +25,11 @@ interface LayoutTwoProps {
     extendedLicensePrice: number;
     extendedLicenseLink: string;
     regularLicensePrice: number;
+    salePrice?: number;
+    extendedLicenseSalePrice?: number;
     productName: string;
 }
-const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, productName }) => {
+const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, salePrice, extendedLicenseSalePrice, productName }) => {
 
     const productDescription = productDetails?.product_description[0]
     const layoutOneDetails = productDescription
@@ -88,7 +90,7 @@ const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, exte
                 <ProductReviews testimonials={productDetails.product_testimonials} />
             }
 
-            <PerfectPlan checkoutUrl={checkoutUrl} extendedLicensePrice={extendedLicensePrice} extendedLicenseLink={extendedLicenseLink} regularLicensePrice={regularLicensePrice} />
+            <PerfectPlan checkoutUrl={checkoutUrl} extendedLicensePrice={extendedLicensePrice} extendedLicenseLink={extendedLicenseLink} regularLicensePrice={regularLicensePrice} salePrice={salePrice} extendedLicenseSalePrice={extendedLicenseSalePrice} />
 
             {
                 productFaqs &&

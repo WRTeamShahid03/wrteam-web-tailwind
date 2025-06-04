@@ -10,6 +10,7 @@ import { useParams } from "next/navigation";
 import ServicesDropdown from "./dropdowns/ServicesDropdown";
 import MorePagesDropdown from "./dropdowns/MorePagesDropdown";
 import MobileNav from "./MobileNav";
+import SaleStripe from "@/components/layout/SaleStripe";
 
 interface ProductDetailHeaderProps {
   icon_image?: string;
@@ -26,7 +27,7 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
   const router = useParams();
   const navRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(0);
-
+  const [showSaleStripe, setShowSaleStripe] = useState(true)
   const slug = router?.slug;
 
   const [whatsappUrl, setWhatsappUrl] = useState<string>(
@@ -54,7 +55,7 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
     // Wait for the DOM to load completely
     if (typeof window !== "undefined") {
       const hash = window.location.hash;
-  
+
       const scrollWithOffset = (selector: string, offset = 100) => {
         const element = document.querySelector(selector);
         if (element) {
@@ -62,22 +63,22 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
           window.scrollTo({ top: y, behavior: "smooth" });
         }
       };
-  
+
       if (hash === "#explore-demo") {
-        if(layoutType === 1){
+        if (layoutType === 1) {
           scrollWithOffset(hash, 100); // adjust offset as needed
         }
-        else{
+        else {
           scrollWithOffset(hash, -200);
         }
       }
-  
+
       if (hash === "#license") {
         scrollWithOffset(hash, -600);
       }
     }
   }, []);
-  
+
   useEffect(() => {
     const whatsappLinks: WhatsAppLinks = {
       "eshop-flutter-multi-vendor-ecommerce-full-app":
@@ -101,11 +102,17 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
 
   return (
     <header
-      className={`py-4 sticky top-0 w-full z-[20] ${scroll > (navRef.current?.offsetTop || 0)
-          ? "stickky bg-white shadow-sm"
-          : "!bg-none"
+      className={`sticky top-0 w-full z-[20] ${scroll > (navRef.current?.offsetTop || 0)
+        ? "stickky shadow-sm"
+        : "!bg-none"
         }`}
     >
+      {
+        showSaleStripe && (
+          <SaleStripe setShowSaleStripe={setShowSaleStripe} />
+        )
+      }
+      <div className="bg-white py-4">
       <div className="container">
         <div ref={navRef} className="flex items-center justify-between nav">
           <Link href={codecanyonLink ? codecanyonLink : "/"}>
@@ -171,6 +178,7 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
             <MobileNav whatsappUrl={whatsappUrl} />
           </div>
         </div>
+      </div>
       </div>
     </header>
   );

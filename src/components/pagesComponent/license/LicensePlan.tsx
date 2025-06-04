@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
-const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, checkoutUrl }: { detailPage: boolean, extendedLicensePrice?: number, extendedLicenseLink?: string, regularLicensePrice?: number, checkoutUrl?: string }) => {
+const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, checkoutUrl, salePrice, extendedLicenseSalePrice }: { detailPage: boolean, extendedLicensePrice?: number, extendedLicenseLink?: string, regularLicensePrice?: number, checkoutUrl?: string, salePrice?: number, extendedLicenseSalePrice?: number }) => {
 
   const regularLicenseData = [
     { id: 0, detail: "Lifetime License Validity", add: true },
@@ -37,7 +37,17 @@ const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, re
               <div className="flex flex-col gap-3 lg:pt-6 lg:pb-3">
                 {
                   detailPage &&
-                  <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${regularLicensePrice}</span>
+                  <div>
+                    {
+                      salePrice ?
+                        <div className="flexCenter gap-2">
+                          <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${salePrice}</span>
+                          <span className="text-[#475569] line-through text-sm sm:text-xl font-semibold">${regularLicensePrice}</span>
+                        </div>
+                        :
+                        <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${regularLicensePrice}</span>
+                    }
+                  </div>
                 }
                 <span className="text-sm sm:text-base md:text-lg ">Regular License</span>
                 {
@@ -57,7 +67,17 @@ const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, re
               <div className="flex flex-col gap-3 lg:pt-6 lg:pb-3">
                 {
                   detailPage &&
-                <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${extendedLicensePrice}</span>
+                  <div>
+                    {
+                      extendedLicenseSalePrice ?
+                        <div className="flexCenter gap-2">
+                          <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${extendedLicenseSalePrice}</span>
+                          <span className="text-[#475569] line-through text-sm sm:text-xl font-semibold">${extendedLicensePrice}</span>
+                        </div>
+                        :
+                        <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${extendedLicensePrice}</span>
+                    }
+                  </div>
                 }
                 <span className="text-sm sm:text-base md:text-lg ">Extended License</span>
                 {

@@ -5,10 +5,12 @@ interface dataProps {
   extendedLicensePrice?: number;
   extendedLicenseLink?: string;
   regularLicensePrice?: number;
+  salePrice?: number;
+  extendedLicenseSalePrice?: number;
   checkoutUrl?: string;
 }
 
-const PerfectPlan: React.FC<dataProps> = ({ layoutOne, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, checkoutUrl }) => {
+const PerfectPlan: React.FC<dataProps> = ({ layoutOne, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, salePrice, extendedLicenseSalePrice, checkoutUrl }) => {
   return (
     <div className={`relative ${layoutOne ? 'productDetailPrimaryBg' : ''} py-6 md:py-8 lg:py-10`} id="license">
       <div className="container commonMT">
@@ -25,7 +27,7 @@ const PerfectPlan: React.FC<dataProps> = ({ layoutOne, extendedLicensePrice, ext
         </div>
 
         {/* Pricing table with responsive scrolling */}
-        <LicensePlan checkoutUrl={checkoutUrl} detailPage={true} extendedLicensePrice={extendedLicensePrice} extendedLicenseLink={extendedLicenseLink} regularLicensePrice={regularLicensePrice} />
+        <LicensePlan checkoutUrl={checkoutUrl} detailPage={true} extendedLicensePrice={extendedLicensePrice} extendedLicenseLink={extendedLicenseLink} regularLicensePrice={regularLicensePrice} salePrice={salePrice} extendedLicenseSalePrice={extendedLicenseSalePrice} />
       </div>
     </div>
   );

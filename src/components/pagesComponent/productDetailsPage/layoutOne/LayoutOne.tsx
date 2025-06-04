@@ -20,10 +20,12 @@ interface LayoutOneProps {
   extendedLicensePrice: number;
   extendedLicenseLink: string;
   regularLicensePrice: number;
+  salePrice?: number;
+  extendedLicenseSalePrice?: number;
   productName: string;
 }
 
-const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, productName }: LayoutOneProps) => {
+const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, salePrice, extendedLicenseSalePrice, productName }: LayoutOneProps) => {
 
   const productDescription = productDetails.product_description[0];
   const productTestimonial = productDetails.product_testimonials;
@@ -134,7 +136,7 @@ const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extended
         <ClientReview testimonials={productTestimonials} productName={productName}/>
       }
 
-      <PerfectPlan layoutOne={true} checkoutUrl={checkoutUrl} extendedLicensePrice={extendedLicensePrice} extendedLicenseLink={extendedLicenseLink} regularLicensePrice={regularLicensePrice} />
+      <PerfectPlan layoutOne={true} checkoutUrl={checkoutUrl} extendedLicensePrice={extendedLicensePrice} extendedLicenseLink={extendedLicenseLink} regularLicensePrice={regularLicensePrice} salePrice={salePrice} extendedLicenseSalePrice={extendedLicenseSalePrice} />
 
       {
         productFaqs &&
