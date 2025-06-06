@@ -57,6 +57,7 @@ export default function RootLayout({
     <html suppressHydrationWarning>
       <head>
         <html lang="en" />
+        <meta name="google-site-verification" content="YEM013Z9B_iSdZEpTl001Tw1e-xXhOiMof7xqYqRd7Y" />
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link rel="icon" href="https://www.wrteam.in/favicon.ico" sizes="32x32" type="image/png" />
         {/* <!-- Google Tag Manager --> */}
@@ -79,7 +80,7 @@ export default function RootLayout({
         >
         </script>
 
-        <script
+        {/* <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -93,7 +94,7 @@ export default function RootLayout({
               })();
             `,
           }}
-        />
+        /> */}
 
       </head>
       <body

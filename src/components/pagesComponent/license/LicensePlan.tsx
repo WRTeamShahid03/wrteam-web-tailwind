@@ -19,7 +19,7 @@ const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, re
     { id: 8, detail: "Admin Panel FREE Installation in cPanel", otherText: "One Time", add: false },
     { id: 9, detail: "1 Year Priority Support", add: false },
     { id: 10, detail: "AnyDesk Support", add: false },
-    { id: 11, detail: "FREE Website Setup", add: false },
+    { id: 11, detail: "FREE Website Setup", otherText: "One Time If Applicable", add: false },
   ];
 
   const extendedLicenseData = regularLicenseData.map((item, index) => ({
