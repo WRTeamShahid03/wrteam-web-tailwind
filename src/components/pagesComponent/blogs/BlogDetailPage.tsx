@@ -84,9 +84,9 @@ async function BlogContent({ slug }: { slug: string }) {
             <span>{calculateReadTime(blog?.description)} minutes read</span>
           </div>
         </div>
-        <h2 className="text-xl md:text-3xl lg:text-4xl/[50px] !font-medium">
+        <h1 className="text-xl md:text-3xl lg:text-4xl/[50px] !font-medium">
           {blog.title}
-        </h2>
+        </h1>
         <div className="relative overflow-hidden rounded-[16px]">
           <BlogImage
             src={blog.image || (blogImg.src as string)}
@@ -110,7 +110,7 @@ async function BlogContent({ slug }: { slug: string }) {
 const BlogDetailPage = ({ slug }: { slug: string }) => {
   return (
     <Layout>
-      <Breadcrumb blueText="Blogs" secondElement="Blogs" thirdElement={slug} />
+      {/* <Breadcrumb blueText="Blogs" secondElement="Blogs" thirdElement={slug} /> */}
       <section className="container commonMT">
         <div className="grid grid-cols-12 gap-6">
           <Suspense fallback={<BlogLoading />}>

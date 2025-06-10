@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Countdown from 'react-countdown'
@@ -13,20 +13,25 @@ import grabDeal from '../../assets/images/grapDealBg.png'
 
 const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean) => void }) => {
 
+    const [isClient, setIsClient] = useState<boolean>(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
     // Set target date to June 12th, 2025 at 7:30 PM
-    const targetDate = new Date(2025, 5, 12, 18, 39, 0);
+    const targetDate = new Date(2025, 5, 12, 19, 39, 0);
 
     // Renderer for the countdown
     const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
         if (completed) {
             return null;
         }
-        console.log(days)
 
         const formatNumber = (num: number) => String(num).padStart(2, '0');
 
         return (
-            <div className="flex items-baseline justify-center gap-1 sm:gap-2 bg-white rounded-[6px] p-1">
+            <div className="flex items-baseline justify-center gap-1 sm:gap-2 bg-white rounded-[6px] p-1 mt-2 lg:mt-0">
                 {days > 0 && (
                     <>
                         <div className='flex items-center'>
@@ -77,7 +82,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
             </div>
             <div className="max-1680:!container 2xl:max-w-[1620px] mx-auto w-full">
                 <div className='flex flex-col sm:flex-row flex-wrap xl:flex-nowrap items-center gap-3 sm:gap-2 justify-between relative z-[2] py-3 lg:py-0 w-full'>
-                    <span className='text-[16px] sm:text-[20px] md:text-[22px] lg:text-[26px] font-extrabold !font-lexend textShadowSale saleText text-center sm:text-left' data-fill-text="Mid-Year Sale Extended — Last Chance!">Mid-Year Sale Extended — Last Chance!</span>
+                    <span className='text-[16px] sm:text-[20px] md:text-[22px] lg:text-[26px] font-extrabold !font-lexend textShadowSale lg:!saleText text-center sm:text-left' data-fill-text="Mid-Year Sale Extended — Last Chance!">Mid-Year Sale Extended — Last Chance!</span>
                     <div className='flex flex-col sm:flex-row flex-wrap xl:flex-nowrap items-center gap-3 sm:gap-4'>
                         <div className='flex items-center sm:flex-col'>
                             <span className='font-bold text-base sm:text-lg'>Limited</span>
@@ -90,17 +95,21 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                                 <Link href={'https://www.wrteam.in/mid-year-sale?utm_source=website&utm_medium=strip&utm_campaign=mid-year-sale'} target='_blank'
                                     className='py-3 px-4 sm:px-6 bg-white text-black rounded-[8px] border-2 border-[#ffad3f] text-xs sm:text-sm font-semibold !font-lexend whitespace-nowrap'>Grab Deal</Link>
                             </div>
-                            <Countdown 
-                                date={targetDate} 
-                                renderer={renderer}
-                                onComplete={() => setShowSaleStripe(false)}
-                                onMount={({ completed }) => {
-                                    if (completed) {
-                                        setTimeout(() => setShowSaleStripe(false), 0);
-                                    }
-                                }}
-                            />
                         </div>
+                        {
+                            isClient && (
+                                <Countdown
+                                    date={targetDate}
+                                    renderer={renderer}
+                                    onComplete={() => setShowSaleStripe(false)}
+                                    onMount={({ completed }) => {
+                                        if (completed) {
+                                            setTimeout(() => setShowSaleStripe(false), 0);
+                                        }
+                                    }}
+                                />
+                            )
+                        }
                     </div>
                 </div>
             </div>

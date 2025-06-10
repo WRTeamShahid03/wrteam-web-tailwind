@@ -43,11 +43,11 @@ const lexend = Lexend({
   display: "swap",
 });
 
-// export const metadata: Metadata = {
-//   verification: {
-//     google: "YEM013Z9B_iSdZEpTl001Tw1e-xXhOiMof7xqYqRd7Y",
-//   },
-// };
+export const metadata: Metadata = {
+  other: {
+    'google-site-verification': 'YEM013Z9B_iSdZEpTl001Tw1e-xXhOiMof7xqYqRd7Y',
+  },
+};
 
 export default function RootLayout({
   children,
@@ -55,27 +55,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html suppressHydrationWarning>
       <head>
+        <html lang="en" />
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link rel="icon" href="https://www.wrteam.in/favicon.ico" sizes="32x32" type="image/png" />
+
         {/* <!-- Google Tag Manager --> */}
-        {/* <Script id="google-tag-manager" strategy="afterInteractive">
+        <Script id="google-tag-manager" strategy="beforeInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-MG5P53R');`}
-        </Script> */}
-
-        <Script id="google-tag-manager" strategy="beforeInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MG5P53R');`}
         </Script>
-        
         {/* <!-- End Google Tag Manager --> */}
 
         {/* whatsapp widget  */}
@@ -86,22 +79,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           widget-id="aaafas"
         >
         </Script>
-
-        {/* <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var sbSiteSecret = '373837b5-5528-4c86-aa44-48d1f2a1b479';
-                window.sitebehaviourTrackingSecret = sbSiteSecret;
-                var scriptElement = document.createElement('script');
-                scriptElement.async = true;
-                scriptElement.id = 'site-behaviour-script-v2';
-                scriptElement.src = 'https://sitebehaviour-cdn.fra1.cdn.digitaloceanspaces.com/index.min.js?sitebehaviour-secret=' + sbSiteSecret;
-                document.head.appendChild(scriptElement); 
-              })();
-            `,
-          }}
-        /> */}
 
       </head>
       <body

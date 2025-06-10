@@ -107,7 +107,7 @@ const RightSideContent = () => {
     isLoading ? <div className="max-1199:col-span-12 col-span-4">
       <div className="border border-[#51535892] rounded-[16px] p-5 space-y-8">
         <div className='relative after:content-[""] after:absolute after:left-0 after:-bottom-2 after:primaryBg after:h-[5px] after:w-[14%] after:rounded-[8px]'>
-          <h2 className="font-semibold text-2xl">Category</h2>
+          <h3 className="font-semibold text-2xl">Category</h3>
         </div>
 
         <div className="flexColCenter !items-start gap-6">
@@ -127,7 +127,7 @@ const RightSideContent = () => {
       <div className="max-1199:col-span-12 col-span-4">
         <div className="border border-[#51535892] rounded-[16px] p-5 space-y-8">
           <div className='relative after:content-[""] after:absolute after:left-0 after:-bottom-2 after:primaryBg after:h-[5px] after:w-[14%] after:rounded-[8px]'>
-            <h2 className="font-semibold text-2xl">Category</h2>
+            <h3 className="font-semibold text-2xl">Category</h3>
           </div>
           <Suspense fallback={<div>Loading categories...</div>}>
             <CategoryContent />

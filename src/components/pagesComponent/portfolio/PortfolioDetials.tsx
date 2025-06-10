@@ -117,15 +117,19 @@ const PortfolioDetials = () => {
 
   return (
     <Layout>
+      <head>
+        <title>{portfolioDetail?.app_headline} | WRTeam's Work Portfolio</title>
+      </head>
+
       {/* Page header with breadcrumbs */}
-      <PageHeader
+      {/* <PageHeader
         title="Portfolio Details"
         breadcrumbs={[
           { name: "Home", path: "/" },
           { name: "Our Work", },
           { name: portfolioDetail?.title || "Details" }, // Current page, no path
         ]}
-      />
+      /> */}
 
       <div className='container commonMT'>
         {isLoading ? (

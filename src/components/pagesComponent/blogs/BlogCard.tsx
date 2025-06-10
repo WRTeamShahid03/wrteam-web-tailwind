@@ -39,9 +39,9 @@ const BlogCard: React.FC<BlogCardProps> = ({
             </span>
             <span>{formatDate(blog.created_at)}</span>
           </div>
-          <h1 className="font-bold text-lg md:text-2xl line-clamp-2">
+          <h2 className="font-bold text-lg md:text-2xl line-clamp-2">
             {blog.title}
-          </h1>
+          </h2>
           <p className="sectionPara !leading-6 line-clamp-3">
             {blog.short_description}
           </p>

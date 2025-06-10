@@ -18,7 +18,8 @@ export async function generateMetadata(
     const response = await fetch(
       `${
         process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
-      }/api/blogs?slug=${slug}`
+      }/api/blogs?slug=${slug}`,
+      { next: { revalidate: 3600 } } // Cache for 1 hour
     );
     const data = await response.json();
 
@@ -39,6 +40,22 @@ export async function generateMetadata(
             ? [blog.image]
             : [],
           type: "article",
+          siteName: "WRTeam",
+          locale: "en_US",
+        },
+        twitter: {
+          card: "summary_large_image",
+          title: blog.seo_title || blog.title,
+          description: blog.seo_description || blog.short_description,
+          images: blog.seo_image
+            ? [blog.seo_image]
+            : blog.image
+            ? [blog.image]
+            : [],
+        },
+        robots: {
+          index: true,
+          follow: true,
         },
         alternates: {
           canonical: `https://www.wrteam.in/blog/${slug}`,
@@ -53,6 +70,13 @@ export async function generateMetadata(
   return {
     title: "Blog Post | WRTeam",
     description: "Read our latest blog post",
+    robots: {
+      index: true,
+      follow: true,
+    },
+    alternates: {
+      canonical: `https://www.wrteam.in/blog/${slug}`,
+    },
   };
 }
 
