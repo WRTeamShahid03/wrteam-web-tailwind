@@ -1,11 +1,12 @@
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import { Archivo, Montserrat, Poppins, Roboto } from "next/font/google";
+import { Archivo, Lexend, Montserrat, Poppins, Roboto } from "next/font/google";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import ClientBackgroundInitializer from "@/components/ClientBackgroundInitializer";
 import { Metadata } from "next";
+import Script from "next/script";
 
 // Define the fonts with their respective weights
 const montserrat = Montserrat({
@@ -35,16 +36,16 @@ const archivo = Archivo({
   display: "swap",
 });
 
-// // Default metadata (will be overridden by page-specific metadata)
+const lexend = Lexend({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-lexend",
+  display: "swap",
+});
+
 // export const metadata: Metadata = {
-//   title: {
-//     template: "%s | WRTeam",
-//     default: "WRTeam - Web and Mobile App Development",
-//   },
-//   description:
-//     "WRTeam specializes in creating custom web and mobile applications for businesses of all sizes.",
-//   icons: {
-//     icon: "./favicon.ico",
+//   verification: {
+//     google: "YEM013Z9B_iSdZEpTl001Tw1e-xXhOiMof7xqYqRd7Y",
 //   },
 // };
 
@@ -54,31 +55,37 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <html lang="en" />
-        <meta name="google-site-verification" content="YEM013Z9B_iSdZEpTl001Tw1e-xXhOiMof7xqYqRd7Y" />
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link rel="icon" href="https://www.wrteam.in/favicon.ico" sizes="32x32" type="image/png" />
         {/* <!-- Google Tag Manager --> */}
-        <script dangerouslySetInnerHTML={{
-          __html: `(function(w,d,s,l,i){w[l] = w[l] || [];w[l].push({'gtm.start':
-                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                                        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                    })(window,document,'script','dataLayer','GTM-MG5P53R')
+        {/* <Script id="google-tag-manager" strategy="afterInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-MG5P53R');`}
+        </Script> */}
 
-                `}}></script>
+        <Script id="google-tag-manager" strategy="beforeInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MG5P53R');`}
+        </Script>
+        
         {/* <!-- End Google Tag Manager --> */}
 
         {/* whatsapp widget  */}
-        <script
+        <Script
           type="text/javascript"
           src="https://d3mkw6s8thqya7.cloudfront.net/integration-plugin.js"
           id="aisensy-wa-widget"
-          widget-id="aaa1a0"
+          widget-id="aaafas"
         >
-        </script>
+        </Script>
 
         {/* <script
           dangerouslySetInnerHTML={{
@@ -101,6 +108,17 @@ export default function RootLayout({
         className={`${montserrat.variable} ${poppins.variable} ${roboto.variable} ${archivo.variable} font-sans`}
         suppressHydrationWarning
       >
+        {/* <!-- Google Tag Manager (noscript) --> */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MG5P53R"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
+        </noscript>
+        {/* <!-- End Google Tag Manager (noscript) --> */}
+
         <ClientBackgroundInitializer />
         <Toaster position="top-center" reverseOrder={false} />
         {children}

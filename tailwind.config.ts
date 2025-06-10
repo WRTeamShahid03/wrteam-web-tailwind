@@ -19,6 +19,7 @@ export default {
         poppins: ["var(--font-poppins)", "sans-serif"],
         roboto: ["var(--font-roboto)", "sans-serif"],
         archivo: ["var(--font-archivo)", "sans-serif"],
+        lexend: ["var(--font-lexend)"],
         sans: ["var(--font-poppins)", "system-ui", "sans-serif"],
       },
       borderRadius: {

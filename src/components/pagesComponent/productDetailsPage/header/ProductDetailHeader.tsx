@@ -109,7 +109,7 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
     >
       {
         showSaleStripe && (
-          <SaleStripe setShowSaleStripe={setShowSaleStripe} />
+          <SaleStripe setShowSaleStripe={() => setShowSaleStripe} />
         )
       }
       <div className="bg-white py-4">
