@@ -1,14 +1,7 @@
 import DigitalMarketing from '@/components/pagesComponent/services/DigitalMarketing'
 import React from 'react'
-import { generatePageMetadata } from '@/lib/generate-metadata'
 import { Metadata } from 'next'
-
-// export async function generateMetadata(): Promise<Metadata> {
-//   return generatePageMetadata({
-//     pageType: "digital_marketing",
-//   });
-// }
-
+import JsonLd from '@/components/Schema/JsonLd';
 
 // Generate metadata for the page
 async function fetchSeoData() {
@@ -29,8 +22,7 @@ async function fetchSeoData() {
 }
 
 // Generate metadata for the product details page
-export async function generateMetadata(
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const seoData = await fetchSeoData();
 
   if (!seoData || seoData.error) {
@@ -39,27 +31,23 @@ export async function generateMetadata(
       title: process.env.NEXT_PUBLIC_TITLE,
       description: process.env.NEXT_PUBLIC_DESCRIPTION,
       keywords: process.env.NEXT_PUBLIC_META_KEYWORD,
+      alternates: {
+        canonical: `https://www.wrteam.in/services/digital-marketing`,
+      }
     };
   }
 
   const seo = seoData.data;
 
-  console.log(seo,"seo - digital marketing");
-
   // Use SEO fields if available, otherwise fallback to product data
   return {
     title: seo.title || process.env.NEXT_PUBLIC_TITLE,
-    description:
-      seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
-    keywords:
-      seo.keywords || process.env.NEXT_PUBLIC_META_KEYWORD,
+    description: seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
+    keywords: seo.keywords || process.env.NEXT_PUBLIC_META_KEYWORD,
     openGraph: {
       title: seo.title || process.env.NEXT_PUBLIC_TITLE,
-      description:
-        seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
-      images: seo.image
-        ? [seo.image]
-        : [],
+      description: seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
+      images: seo.image ? [seo.image] : [],
       type: "website",
       siteName: "WRTeam",
       locale: "en_US",
@@ -67,11 +55,8 @@ export async function generateMetadata(
     twitter: {
       card: "summary_large_image",
       title: seo.title || process.env.NEXT_PUBLIC_TITLE,
-      description:
-        seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
-      images: seo.image
-        ? [seo.image]
-        : [],
+      description: seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
+      images: seo.image ? [seo.image] : [],
     },
     robots: {
       index: true,
@@ -79,15 +64,43 @@ export async function generateMetadata(
     },
     alternates: {
       canonical: `https://www.wrteam.in/services/digital-marketing`,
-    },
+    }
   };
 }
 
+export default function Page() {
+  const ourJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Digital Marketing Services",
+    "description": "Looking for top digital marketing services in Bhuj, India? WRTeam is a leading digital marketing agency and company offering expert internet marketing solutions. Your trusted digital marketing service provider, consultant, and experts in Bhuj.",
+    "serviceType": "Digital Marketing",
+    "provider": {
+      "@type": "Organization",
+      "name": "WRTeam",
+      "url": "https://www.wrteam.in",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.wrteam.in/_next/static/media/logo.4609846a.svg"
+      }
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": "India"
+    },
+    "url": "https://www.wrteam.in/services/digital-marketing",
+    "image": "https://www.wrteam.in/_next/static/media/Digital_Marketing%20Service.210d5b39.webp",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "256"
+    }
+  };
 
-const Page = () => {
-    return (
-        <div><DigitalMarketing /></div>
-    )
+  return (
+    <main>
+      <JsonLd data={ourJsonLd} />
+      <DigitalMarketing />
+    </main>
+  )
 }
-
-export default Page

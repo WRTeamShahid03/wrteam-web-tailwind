@@ -1,14 +1,7 @@
 import WebDevelopment from '@/components/pagesComponent/services/WebDevelopment'
 import React from 'react'
-import { generatePageMetadata } from '@/lib/generate-metadata'
 import { Metadata } from 'next'
-
-// export async function generateMetadata(): Promise<Metadata> {
-//   return generatePageMetadata({
-//     pageType: "web_development",
-//   });
-// }
-
+import JsonLd from '@/components/Schema/JsonLd';
 
 // Generate metadata for the page
 async function fetchSeoData() {
@@ -29,8 +22,7 @@ async function fetchSeoData() {
 }
 
 // Generate metadata for the product details page
-export async function generateMetadata(
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const seoData = await fetchSeoData();
 
   if (!seoData || seoData.error) {
@@ -39,6 +31,9 @@ export async function generateMetadata(
       title: process.env.NEXT_PUBLIC_TITLE,
       description: process.env.NEXT_PUBLIC_DESCRIPTION,
       keywords: process.env.NEXT_PUBLIC_META_KEYWORD,
+      alternates: {
+        canonical: `https://www.wrteam.in/services/web-development`,
+      }
     };
   }
 
@@ -47,29 +42,21 @@ export async function generateMetadata(
   // Use SEO fields if available, otherwise fallback to product data
   return {
     title: seo.title || process.env.NEXT_PUBLIC_TITLE,
-    description:
-      seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
-    keywords:
-      seo.keywords || process.env.NEXT_PUBLIC_META_KEYWORD,
+    description: seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
+    keywords: seo.keywords || process.env.NEXT_PUBLIC_META_KEYWORD,
     openGraph: {
       title: seo.title || process.env.NEXT_PUBLIC_TITLE,
-      description:
-        seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
-      images: seo.image
-        ? [seo.image]
-        : [],
-      type: "website",
-      siteName: "WRTeam",
-      locale: "en_US",
+      description: seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
+      images: seo.image ? [seo.image] : [],
+      type: 'website',
+      siteName: 'WRTeam',
+      locale: 'en_US',
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title: seo.title || process.env.NEXT_PUBLIC_TITLE,
-      description:
-        seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
-      images: seo.image
-        ? [seo.image]
-        : [],
+      description: seo.description || process.env.NEXT_PUBLIC_DESCRIPTION,
+      images: seo.image ? [seo.image] : [],
     },
     robots: {
       index: true,
@@ -77,16 +64,45 @@ export async function generateMetadata(
     },
     alternates: {
       canonical: `https://www.wrteam.in/services/web-development`,
-    },
+    }
   };
 }
 
-const Page = () => {
+export default function Page() {
+
+   const ourJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Web Development Services",
+    "description": "WRTeam is a leading web design & development company in Bhuj, India, offering professional website development services and web development consultancy. Our expert web designers and developers deliver high-quality web design solutions.",
+    "serviceType": "Web Development",
+    "provider": {
+      "@type": "Organization",
+      "name": "WRTeam",
+      "url": "https://www.wrteam.in",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.wrteam.in/_next/static/media/logo.4609846a.svg"
+      }
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": "India"
+    },
+    "url": "https://www.wrteam.in/services/web-development",
+    "image": "https://www.wrteam.in/_next/static/media/Web%20Devlopment.c3ed4f0e.webp",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "180"
+    }
+  }
   return (
     <>
-      <WebDevelopment />
+      <JsonLd data={ourJsonLd} />
+      <main>
+        <WebDevelopment />
+      </main>
     </>
   )
 }
-
-export default Page
