@@ -47,6 +47,9 @@ export const metadata: Metadata = {
   other: {
     'google-site-verification': 'YEM013Z9B_iSdZEpTl001Tw1e-xXhOiMof7xqYqRd7Y',
   },
+  icons: {
+    icon: 'https://www.wrteam.in/favicon.ico',
+  }
 };
 
 export default function RootLayout({
@@ -58,17 +61,15 @@ export default function RootLayout({
     <html suppressHydrationWarning>
       <head>
         <html lang="en" />
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-        <link rel="icon" href="https://www.wrteam.in/favicon.ico" sizes="32x32" type="image/png" />
-
         {/* <!-- Google Tag Manager --> */}
-        <Script id="google-tag-manager" strategy="beforeInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-MG5P53R');`}
-        </Script>
+        <script dangerouslySetInnerHTML={{
+          __html: `(function(w,d,s,l,i){w[l] = w[l] || [];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                                        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                    })(window,document,'script','dataLayer','GTM-MG5P53R')
+
+                `}}></script>
         {/* <!-- End Google Tag Manager --> */}
 
         {/* whatsapp widget  */}

@@ -70,30 +70,18 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Page() {
   const ourJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "UI/UX Design Services",
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "name": "UI/UX Design Service",
     "description": "WRTeam is a premier UI/UX web design services company in Bhuj, India, offering expert UI/UX design and development and UI/UX design solutions. As a trusted UI/UX design agency in Bhuj, we craft engaging digital experiences.",
-    "serviceType": "UI/UX Design",
-    "provider": {
-      "@type": "Organization",
-      "name": "WRTeam",
-      "url": "https://www.wrteam.in",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.wrteam.in/_next/static/media/logo.4609846a.svg"
-      }
-    },
-    "areaServed": {
-      "@type": "Place",
-      "name": "India"
-    },
     "url": "https://www.wrteam.in/services/ui-ux-design",
-    "image": "https://www.wrteam.in/_next/static/media/ux-ui-design.99a958fb.webp",
-    "aggregateRating": {
+    "AggregateRating":
+    {
       "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "194"
+      "ratingValue": "4.90",
+      "reviewCount": "137",
+      "worstRating": 1,
+      "bestRating": 5
     }
   };
 

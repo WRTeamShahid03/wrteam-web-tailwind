@@ -5,6 +5,7 @@ import {
   LocalBusinessSchema,
   OrganizationSchema,
 } from "@/components/JsonLdSchema";
+import JsonLd from "@/components/Schema/JsonLd";
 
 // Generate metadata for the page
 // export async function generateMetadata(): Promise<Metadata> {
@@ -90,8 +91,26 @@ export async function generateMetadata(
 }
 
 export default function Home() {
+
+  const ourJsonLd = {
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "name": "Mobile App And Web Development Service",
+    "description": "WRTeam is a leading mobile app, website, and software development company in Bhuj. We offer expert UI/UX design, IT services, and digital marketing solutions to help businesses grow with scalable and innovative strategies.",
+    "url": "https://www.wrteam.in/",
+    "AggregateRating":
+    {
+      "@type": "AggregateRating",
+      "ratingValue": "4.90",
+      "reviewCount": "189",
+      "worstRating": 1,
+      "bestRating": 5
+    }
+  };
+
   return (
     <>
+      <JsonLd data={ourJsonLd} />
       <OrganizationSchema />
       <LocalBusinessSchema />
       <HomePage />

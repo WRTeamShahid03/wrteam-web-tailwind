@@ -70,31 +70,19 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Page() {
 
-   const ourJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Web Development Services",
+  const ourJsonLd = {
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "name": "Web Development Service",
     "description": "WRTeam is a leading web design & development company in Bhuj, India, offering professional website development services and web development consultancy. Our expert web designers and developers deliver high-quality web design solutions.",
-    "serviceType": "Web Development",
-    "provider": {
-      "@type": "Organization",
-      "name": "WRTeam",
-      "url": "https://www.wrteam.in",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.wrteam.in/_next/static/media/logo.4609846a.svg"
-      }
-    },
-    "areaServed": {
-      "@type": "Place",
-      "name": "India"
-    },
     "url": "https://www.wrteam.in/services/web-development",
-    "image": "https://www.wrteam.in/_next/static/media/Web%20Devlopment.c3ed4f0e.webp",
-    "aggregateRating": {
+    "AggregateRating":
+    {
       "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "180"
+      "ratingValue": "4.90",
+      "reviewCount": "125",
+      "worstRating": 1,
+      "bestRating": 5
     }
   }
   return (

@@ -70,30 +70,18 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Page() {
   const ourJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "App Development Services",
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "name": "App Development Service",
     "description": "WRTeam is a mobile application development company in Bhuj, India, offering expert mobile app development services. As a mobile application development firm and consultant, our skilled mobile app developers deliver innovative and scalable mobile app solutions.",
-    "serviceType": "Mobile App Development",
-    "provider": {
-      "@type": "Organization",
-      "name": "WRTeam",
-      "url": "https://www.wrteam.in",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.wrteam.in/_next/static/media/logo.4609846a.svg"
-      }
-    },
-    "areaServed": {
-      "@type": "Place",
-      "name": "India"
-    },
     "url": "https://www.wrteam.in/services/app-development",
-    "image": "https://www.wrteam.in/_next/static/media/AppDevlopment.f90978d1.webp",
-    "aggregateRating": {
+    "AggregateRating":
+    {
       "@type": "AggregateRating",
-      "ratingValue": "4.7",
-      "reviewCount": "210"
+      "ratingValue": "4.80",
+      "reviewCount": "117",
+      "worstRating": 1,
+      "bestRating": 5
     }
   };
 
