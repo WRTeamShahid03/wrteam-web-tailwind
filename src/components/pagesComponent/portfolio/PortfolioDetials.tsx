@@ -61,7 +61,7 @@ const PortfolioDetials = () => {
         setError(null);
 
         // Use the same API endpoint but with the slug parameter
-        const response = await fetch(`/api/portfolio?offset=0&limit=5& slug=${slug}`);
+        const response = await fetch(`/api/portfolio?offset=0&limit=5&slug=${slug}`);
         const data = await response.json();
 
         if (data && !data.error) {

@@ -52,7 +52,7 @@ const FeatureSections: React.FC<FeatureSection> = ({ title, features }) => {
       <div className="container">
         <div className="grid grid-cols-12 gap-y-12 lg:gap-10">
           <div className="col-span-12 lg:col-span-5 flexColCenter !items-start gap-8">
-            <h1 className="sectionTitle text-white">{title}</h1>
+            <h2 className="sectionTitle text-white">{title}</h2>
             <div className="flexCenter gap-4">
               <div
                 className="w-[40px] h-[40px] flexCenter rounded-full cursor-pointer bg-white"

@@ -101,10 +101,10 @@ const AboutUs: React.FC<{ page?: number }> = ({ page = 1 }) => {
               <span className="sectionTag">
                 Get to <span>know more</span>
               </span>
-              <PageTitle className="sectionTitle">
+              <h3 className="sectionTitle">
                 Your Work Partner in <span>Transforming</span> Your Vision into
                 Reality.
-              </PageTitle>
+              </h3>
               <p className="sectionPara">
                 WRTeam is, a software development company located in Bhuj -
                 India, serving IT services & digital solutions around the globe.

@@ -65,7 +65,7 @@ export default function SliderSection({
     <div className="container commonMT" id="explore-demo">
       <div className="mb-12 flex items-end justify-between">
         <div className="flexColCenter !items-start commonTextGap max-399:text-center">
-          <PageTitle className="sectionTitle !font-bold">{title}</PageTitle>
+          <h2 className="sectionTitle !font-bold">{title}</h2>
           <div
             className="sectionPara !font-medium text-gray-700 max-w-3xl"
             dangerouslySetInnerHTML={{ __html: description }}

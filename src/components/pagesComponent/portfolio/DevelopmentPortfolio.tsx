@@ -412,9 +412,9 @@ export default function DevelopmentPortfolio() {
                       {index + 1}
                     </motion.span>
                     <div className="flex-1 ml-3 sm:ml-4">
-                      <h3 className="font-semibold max-479:text-sm  text-base sm:text-lg">
+                      <h1 className="font-semibold max-479:text-sm  text-base sm:text-lg">
                         {item.title}
-                      </h3>
+                      </h1>
                       <p className="text-gray-600 text-xs sm:text-sm mt-2">
                         {item.description}
                       </p>

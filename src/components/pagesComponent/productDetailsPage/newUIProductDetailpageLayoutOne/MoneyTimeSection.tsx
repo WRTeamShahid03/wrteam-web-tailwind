@@ -39,9 +39,9 @@ const MoneyTimeSection: React.FC<{ productName: string }> = ({ productName }) =>
           {/* Left side - Text content */}
           <div className="w-full lg:w-1/2 text-white mb-10 lg:mb-0">
             <div className="flexColCenter commonTextGap mb-6 md:mb-12">
-              <h1 className="sectionTitle !font-bold">
+              <h5 className="sectionTitle !font-bold">
                 {`Save Money & Time With ${productName} Script`}
-              </h1>
+              </h5>
 
               {/* Show the first part of short_description (before bullet points) */}
               <p className="sectionPara !text-gray-100">
