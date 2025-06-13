@@ -1,19 +1,16 @@
 import HireUs from '@/components/pagesComponent/hireUs/HireUs'
 import React from 'react'
-import { generatePageMetadata } from '@/lib/generate-metadata'
 import { Metadata } from 'next'
-
-// export async function generateMetadata(): Promise<Metadata> {
-//   return generatePageMetadata({
-//     pageType: "hire_us",
-//   });
-// }
 
 // Generate metadata for the page
 async function fetchSeoData() {
   try {
     const response = await fetch(
       `https://backend.wrteam.in/api/seo-settings?type=hire_us`,
+      {
+        next: { revalidate: 0 },
+        cache: 'no-store'
+      }
     );
 
     if (!response.ok) {
@@ -82,7 +79,7 @@ export async function generateMetadata(
 
 const Page = () => {
   return (
-    <div><HireUs/></div>
+    <div><HireUs /></div>
   )
 }
 

@@ -1,27 +1,19 @@
 import type { Metadata } from "next";
 import HomePage from "@/components/homePage";
-import { generatePageMetadata } from "@/lib/generate-metadata";
 import {
   LocalBusinessSchema,
   OrganizationSchema,
 } from "@/components/JsonLdSchema";
-import JsonLd from "@/components/Schema/JsonLd";
-
-// Generate metadata for the page
-// export async function generateMetadata(): Promise<Metadata> {
-//   return generatePageMetadata({
-//     pageType: "home",
-//     additionalMetadata: {
-//       // You can add page-specific overrides here if needed
-//     },
-//   });
-// }
 
 // Generate metadata for the page
 async function fetchSeoData() {
   try {
     const response = await fetch(
       `https://backend.wrteam.in/api/seo-settings?type=home`,
+      {
+        next: { revalidate: 0 },
+        cache: 'no-store'
+      }
     );
 
     if (!response.ok) {
@@ -91,26 +83,8 @@ export async function generateMetadata(
 }
 
 export default function Home() {
-
-  const ourJsonLd = {
-    "@context": "http://schema.org",
-    "@type": "Product",
-    "name": "Mobile App And Web Development Service",
-    "description": "WRTeam is a leading mobile app, website, and software development company in Bhuj. We offer expert UI/UX design, IT services, and digital marketing solutions to help businesses grow with scalable and innovative strategies.",
-    "url": "https://www.wrteam.in/",
-    "AggregateRating":
-    {
-      "@type": "AggregateRating",
-      "ratingValue": "4.90",
-      "reviewCount": "189",
-      "worstRating": 1,
-      "bestRating": 5
-    }
-  };
-
   return (
     <>
-      <JsonLd data={ourJsonLd} />
       <OrganizationSchema />
       <LocalBusinessSchema />
       <HomePage />

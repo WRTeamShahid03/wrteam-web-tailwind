@@ -1,19 +1,18 @@
 import Products from "@/components/pagesComponent/products/Products";
 import React from "react";
-import { generatePageMetadata } from "@/lib/generate-metadata";
 import { Metadata } from "next";
 
-// export async function generateMetadata(): Promise<Metadata> {
-//   return generatePageMetadata({
-//     pageType: "web_products",
-//   });
-// }
+
 
 // Generate metadata for the page
 async function fetchSeoData() {
   try {
     const response = await fetch(
       `https://backend.wrteam.in/api/seo-settings?type=app_products`,
+      {
+        next: { revalidate: 0 },
+        cache: 'no-store'
+      }
     );
 
     if (!response.ok) {

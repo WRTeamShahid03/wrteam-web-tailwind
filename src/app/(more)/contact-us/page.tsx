@@ -1,19 +1,16 @@
 import ContactUs from '@/components/pagesComponent/contact-us/ContactUs'
 import React from 'react'
-import { generatePageMetadata } from '@/lib/generate-metadata'
 import { Metadata } from 'next'
-
-// export async function generateMetadata(): Promise<Metadata> {
-//   return generatePageMetadata({
-//     pageType: "contact_us",
-//   });
-// }
 
 // Generate metadata for the page
 async function fetchSeoData() {
   try {
     const response = await fetch(
       `https://backend.wrteam.in/api/seo-settings?type=contact_us`,
+      {
+        next: { revalidate: 0 },
+        cache: 'no-store'
+      }
     );
 
     if (!response.ok) {

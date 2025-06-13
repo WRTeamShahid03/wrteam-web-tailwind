@@ -98,7 +98,7 @@ const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, exte
             }
 
             {
-                helpSection &&
+                helpSection && helpSection.sections && helpSection.sections.length > 0 &&
                 <HelpAndSupport helpSection={helpSection} />
             }
 

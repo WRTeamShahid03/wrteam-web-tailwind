@@ -21,6 +21,7 @@ const nextConfig = {
       },
     ],
   },
+  htmlLimitedBots: ".*",
   reactStrictMode: true,
   eslint: {
     // Warning: This allows production builds to successfully complete even if

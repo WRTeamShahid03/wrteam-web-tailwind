@@ -4,11 +4,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Countdown from 'react-countdown'
 import line from '../../assets/images/stripeLine.svg'
-import shape1 from '../../assets/images/circleShape.png'
 import circle1 from '../../assets/images/circle1.png'
 import circle2 from '../../assets/images/circle2.png'
 import squareShape from '../../assets/images/squaresShape.png'
-import limitedShape from '../../assets/images/limitedBg.png'
 import grabDeal from '../../assets/images/grapDealBg.png'
 
 const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean) => void }) => {

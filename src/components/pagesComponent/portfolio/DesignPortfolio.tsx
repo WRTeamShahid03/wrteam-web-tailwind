@@ -265,14 +265,14 @@ export default function DesignPortfolio() {
 
   return (
     <Layout>
-      <PageHeader
+      {/* <PageHeader
         title="Design Portfolio"
         breadcrumbs={[
           { name: "Home", path: "/" },
           { name: "Our Work" },
           { name: "Design" }, // Current page, no path
         ]}
-      />
+      /> */}
       <div className="container commonMT">
         {/* Section heading */}
         <SectionHeading
@@ -379,10 +379,9 @@ export default function DesignPortfolio() {
         {/* Portfolio grid */}
         {!loadingItems && portfolioItems.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {portfolioItems.map((item) => (
-              <Link href={`/our-work/design/${item?.slug}`} title={item.title}>
+            {portfolioItems.map((item: PortfolioItem) => (
+              <Link href={`/our-work/design/${item?.slug}`} title={item.title} key={item.id}>
                 <motion.div
-                  key={item.id}
                   className="group rounded-2xl overflow-hidden p-2 sm:p-3 bg-[#2E71FE0A] border border-[#2E71FE1F] transition-all duration-300"
                   onMouseEnter={() => setHoveredCardId(item.id.toString())}
                   onMouseLeave={() => setHoveredCardId(null)}
@@ -407,7 +406,7 @@ export default function DesignPortfolio() {
                       <div className="flex justify-between items-center">
                         <div>
                           <p className="text-sm text-[#2A2E35]">{item.category}</p>
-                          <h3 className="text-[#181C24] font-bold mt-1 group-hover:primaryColor transition-all duration-300">{item.title}</h3>
+                          <h2 className="text-[#181C24] font-bold mt-1 group-hover:primaryColor transition-all duration-300">{item.title}</h2>
                         </div>
 
                         {/* {hoveredCardId === item.id.toString() && (

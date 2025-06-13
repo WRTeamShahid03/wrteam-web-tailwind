@@ -11,8 +11,8 @@
     return (
       <script
         id="schema-jsonld"
-        async
-        src=" "
+        // async
+        // src=" "
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(data),

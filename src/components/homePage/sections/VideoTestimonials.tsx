@@ -2,12 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
-import { FaPlay } from 'react-icons/fa';
 import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import clientImg from '@/assets/images/homePage/clientImg.jpeg';
 import VideoPlayerModal from '@/components/commonComponents/VideoPlayerModal';
 import { axiosClient } from '@/lib/api';
 import { VideoTestimonial } from '@/types/videoTestimonials';

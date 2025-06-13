@@ -27,7 +27,7 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
   const router = useParams();
   const navRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(0);
-  const [showSaleStripe, setShowSaleStripe] = useState(true)
+  const [showSaleStripe, setShowSaleStripe] = useState(false)
   const slug = router?.slug;
 
   const [whatsappUrl, setWhatsappUrl] = useState<string>(
@@ -113,72 +113,72 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
         )
       }
       <div className="bg-white py-4">
-      <div className="container">
-        <div ref={navRef} className="flex items-center justify-between nav">
-          <Link href={codecanyonLink ? codecanyonLink : "/"}>
-            {icon_image ? (
-              <Image
-                src={icon_image}
-                width={162}
-                height={46}
-                className="object-cover"
-                alt="WRTeam Logo"
-                unoptimized={true}
-                loader={({ src }) => src}
-              />
-            ) : (
-              <Image
-                src={logo}
-                width={250}
-                height={100}
-                className="!w-[175px] md:!w-[200px] xl:!w-[250px] h-auto"
-                alt="WRTeam Logo"
-              />
-            )}
-          </Link>
-          <div className="hidden lg:block">
-            <ul className="flex items-center lg:gap-6 xl:gap-12 textPrimary font-semibold">
-              <Link
-                href={"/"}
-                className='relative transition-all duration-300 hover:productPrimaryColor after:contents-[""] after:absolute after:-bottom-1 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:productPrimaryBg'
-              >
-                Home
-              </Link>
-              <Link
-                href={"/products"}
-                title="Products"
-                className='relative transition-all duration-300 hover:productPrimaryColor after:contents-[""] after:absolute after:-bottom-1 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:productPrimaryBg'
-              >
-                Products
-              </Link>
-              <ServicesDropdown />
-              <Link
-                href={"#assistanceSection"}
-                title="Help"
-                className='relative transition-all duration-300 hover:productPrimaryColor after:contents-[""] after:absolute after:-bottom-1 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:productPrimaryBg'
-              >
-                Help
-              </Link>
-              <MorePagesDropdown />
-            </ul>
-          </div>
-
-          <div className="hidden lg:block">
-            <Link
-              href={whatsappUrl}
-              title="Book Personalized Demo"
-              target="_blank"
-              className="productCommonBtn"
-            >
-              Book Personalized Demo
+        <div className="container">
+          <div ref={navRef} className="flex items-center justify-between nav">
+            <Link href={codecanyonLink ? codecanyonLink : "/"}>
+              {icon_image ? (
+                <Image
+                  src={icon_image}
+                  width={162}
+                  height={46}
+                  className="object-cover"
+                  alt="WRTeam Logo"
+                  unoptimized={true}
+                  loader={({ src }) => src}
+                />
+              ) : (
+                <Image
+                  src={logo}
+                  width={250}
+                  height={100}
+                  className="!w-[175px] md:!w-[200px] xl:!w-[250px] h-auto"
+                  alt="WRTeam Logo"
+                />
+              )}
             </Link>
-          </div>
+            <div className="hidden lg:block">
+              <ul className="flex items-center lg:gap-6 xl:gap-12 textPrimary font-semibold">
+                <Link
+                  href={"/"}
+                  className='relative transition-all duration-300 hover:productPrimaryColor after:contents-[""] after:absolute after:-bottom-1 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:productPrimaryBg'
+                >
+                  Home
+                </Link>
+                <Link
+                  href={"/products"}
+                  title="Products"
+                  className='relative transition-all duration-300 hover:productPrimaryColor after:contents-[""] after:absolute after:-bottom-1 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:productPrimaryBg'
+                >
+                  Products
+                </Link>
+                <ServicesDropdown />
+                <Link
+                  href={"#assistanceSection"}
+                  title="Help"
+                  className='relative transition-all duration-300 hover:productPrimaryColor after:contents-[""] after:absolute after:-bottom-1 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:productPrimaryBg'
+                >
+                  Help
+                </Link>
+                <MorePagesDropdown />
+              </ul>
+            </div>
 
-          <div className="block lg:hidden">
-            <MobileNav whatsappUrl={whatsappUrl} />
+            <div className="hidden lg:block">
+              <Link
+                href={whatsappUrl}
+                title="Book Personalized Demo"
+                target="_blank"
+                className="productCommonBtn"
+              >
+                Book Personalized Demo
+              </Link>
+            </div>
+
+            <div className="block lg:hidden">
+              <MobileNav whatsappUrl={whatsappUrl} />
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </header>
   );

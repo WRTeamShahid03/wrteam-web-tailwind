@@ -44,7 +44,7 @@ const Header = () => {
   const [morePagesDropdown, setMorePagesDropdown] = useState<boolean>(false);
   const [ourWorkDropdown, setOurWorkDropdown] = useState<boolean>(false);
 
-  const [showSaleStripe, setShowSaleStripe] = useState(true)
+  const [showSaleStripe, setShowSaleStripe] = useState(false)
 
   useEffect(() => {
     if (servicesDropdown) {

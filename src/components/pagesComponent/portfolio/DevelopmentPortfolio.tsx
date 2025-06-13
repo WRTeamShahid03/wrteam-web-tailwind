@@ -280,14 +280,14 @@ export default function DevelopmentPortfolio() {
     <Layout>
       <div className="w-full overflow-hidden">
         {/* Page header with breadcrumbs */}
-        <PageHeader
+        {/* <PageHeader
           title="Development Portfolio"
           breadcrumbs={[
             { name: "Home", path: "/" },
             { name: "Our Work" },
             { name: "Development" }, // Current page, no path
           ]}
-        />
+        /> */}
 
         <div className="container commonMT">
           {/* Section heading */}
@@ -412,9 +412,9 @@ export default function DevelopmentPortfolio() {
                       {index + 1}
                     </motion.span>
                     <div className="flex-1 ml-3 sm:ml-4">
-                      <h1 className="font-semibold max-479:text-sm  text-base sm:text-lg">
+                      <h2 className="font-semibold max-479:text-sm  text-base sm:text-lg">
                         {item.title}
-                      </h1>
+                      </h2>
                       <p className="text-gray-600 text-xs sm:text-sm mt-2">
                         {item.description}
                       </p>

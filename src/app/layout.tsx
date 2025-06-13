@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import ClientBackgroundInitializer from "@/components/ClientBackgroundInitializer";
 import { Metadata } from "next";
 import Script from "next/script";
+import Head from "next/head";
 
 // Define the fonts with their respective weights
 const montserrat = Montserrat({
@@ -58,18 +59,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning>
-      <head>
-        <html lang="en" />
+    <html lang="en" suppressHydrationWarning>
+      <Head>
         {/* <!-- Google Tag Manager --> */}
-        <script dangerouslySetInnerHTML={{
-          __html: `(function(w,d,s,l,i){w[l] = w[l] || [];w[l].push({'gtm.start':
-                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                                        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                    })(window,document,'script','dataLayer','GTM-MG5P53R')
-
-                `}}></script>
+        <Script
+          id="gtm-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+      (function(w,d,s,l,i){w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MG5P53R');
+    `,
+          }}
+        >
+        </Script>
         {/* <!-- End Google Tag Manager --> */}
 
         {/* whatsapp widget  */}
@@ -81,7 +89,7 @@ export default function RootLayout({
         >
         </Script>
 
-      </head>
+      </Head>
       <body
         className={`${montserrat.variable} ${poppins.variable} ${roboto.variable} ${archivo.variable} font-sans`}
         suppressHydrationWarning

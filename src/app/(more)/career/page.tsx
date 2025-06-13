@@ -1,19 +1,16 @@
 import Careers from "@/components/pagesComponent/careers/Careers";
-import { generatePageMetadata } from "@/lib/generate-metadata";
 import { Metadata } from "next";
 
-
-// export async function generateMetadata(): Promise<Metadata> {
-//   return generatePageMetadata({
-//     pageType: "career_seo",
-//   });
-// }
 
 // Generate metadata for the page
 async function fetchSeoData() {
   try {
     const response = await fetch(
       `https://backend.wrteam.in/api/seo-settings?type=career_seo`,
+      {
+        next: { revalidate: 0 },
+        cache: 'no-store'
+      }
     );
 
     if (!response.ok) {
@@ -84,7 +81,7 @@ export async function generateMetadata(
 export default function page() {
   return (
     <div>
-        <Careers/>
+      <Careers />
     </div>
   )
 }

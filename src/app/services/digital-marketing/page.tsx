@@ -8,6 +8,10 @@ async function fetchSeoData() {
   try {
     const response = await fetch(
       `https://backend.wrteam.in/api/seo-settings?type=digital_marketing`,
+      {
+        next: { revalidate: 0 },
+        cache: 'no-store'
+      }
     );
 
     if (!response.ok) {
@@ -70,19 +74,18 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Page() {
   const ourJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Digital Marketing Services",
-    "description": "WRTeam offers expert digital marketing services in Bhuj, India, including SEO, PPC, social media marketing, and content strategy.",
-    "serviceType": "Digital Marketing",
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "name": "Digital Marketing Service",
+    "description": "Looking for top digital marketing services in Bhuj, India? WRTeam is a leading digital marketing agency and company offering expert internet marketing solutions. Your trusted digital marketing service provider, consultant, and experts in Bhuj.",
     "url": "https://www.wrteam.in/services/digital-marketing",
-    "image": "https://www.wrteam.in/_next/static/media/Digital_Marketing%20Service.210d5b39.webp",
-    "provider": {
-    "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "256",
-      "bestRating": "5",
-      "worstRating": "1"
+    "AggregateRating":
+    {
+      "@type": "AggregateRating",
+      "ratingValue": "4.90",
+      "reviewCount": "141",
+      "worstRating": 1,
+      "bestRating": 5
     }
   };
 
