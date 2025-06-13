@@ -398,7 +398,7 @@ export default function DevelopmentPortfolio() {
                   className="bg-[#2E71FE0A] rounded-xl max-575:p-2 p-4 sm:p-6 shadow-sm relative overflow-hidden cursor-pointer border border-[#2E71FE1F]"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ all: 0.3 }}
+                  transition={{ all: 0.3 as any }}
                   onHoverStart={() => setHoveredCard(item.id.toString())}
                   onHoverEnd={() => setHoveredCard(null)}
                 >
@@ -444,7 +444,7 @@ export default function DevelopmentPortfolio() {
                           initial={{ y: 100, opacity: 0 }}
                           animate={{ y: 0, opacity: 1 }}
                           exit={{ y: 100, opacity: 0 }}
-                          transition={{ all: 0.3 }}
+                          transition={{ all: 0.3 as any }}
                         >
                           <p className="text-xs sm:text-sm font-medium mb-3 sm:mb-4">
                             Experience the Demo
