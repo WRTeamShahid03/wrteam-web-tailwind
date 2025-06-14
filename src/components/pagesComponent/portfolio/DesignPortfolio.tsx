@@ -140,9 +140,6 @@ export default function DesignPortfolio() {
 
       const response = await fetch(url);
       const data = await response.json();
-      console.log('data', data);
-
-      // console.log('data?.data[0]?.category?.name',data?.data[0]?.category?.name)
 
       // Check for valid response structure before processing
       if (data && !data.error) {
@@ -152,8 +149,6 @@ export default function DesignPortfolio() {
         if (data.data && Array.isArray(data.data)) {
           // If data.data is directly an array
           itemsData = data.data;
-
-          console.log('itemsData', itemsData);
 
         } else if (Array.isArray(data)) {
           // If data itself is an array
@@ -261,7 +256,6 @@ export default function DesignPortfolio() {
     setShowFilterDropdown(false);
   };
 
-  console.log('portfolioItems', portfolioItems);
 
   return (
     <Layout>

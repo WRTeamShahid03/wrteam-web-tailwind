@@ -1,12 +1,104 @@
-import PortfolioDetials from '@/components/pagesComponent/portfolio/PortfolioDetials'
-import React from 'react'
+import React from 'react';
+import { Metadata } from "next";
+import PortfolioDetials from '@/components/pagesComponent/portfolio/PortfolioDetials';
 
-const Page = () => {
-  return (
-    <div>
-        <PortfolioDetials />
-    </div>
-  )
+// Function to fetch portfolio data from the API
+async function fetchPortfolioData(slug: string) {
+  try {
+    const response = await fetch(
+      `https://backend.wrteam.in/api/portfolios?offset=0&limit=5&slug=${slug}`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch portfolio data: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    // Handle different possible response structures
+    let portfolioData = null;
+    if (data.data && Array.isArray(data.data) && data.data.length > 0) {
+      // If data.data is directly an array, take the first item
+      portfolioData = data.data[0];
+    } else if (data.data && !Array.isArray(data.data)) {
+      // If data.data is a single object
+      portfolioData = data.data;
+    } else if (Array.isArray(data) && data.length > 0) {
+      // If data itself is an array
+      portfolioData = data[0];
+    }
+
+    return portfolioData;
+  } catch (error) {
+    console.error("Error fetching portfolio data:", error);
+    return null;
+  }
 }
 
-export default Page
+// Generate metadata for the portfolio details page
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
+  const slug = params.slug;
+  const portfolioData = await fetchPortfolioData(slug);
+
+  if (!portfolioData) {
+    // Fallback metadata if portfolio data not found
+    return {
+      title: process.env.NEXT_PUBLIC_TITLE,
+      description: process.env.NEXT_PUBLIC_DESCRIPTION,
+      keywords: process.env.NEXT_PUBLIC_META_KEYWORD,
+    };
+  }
+
+  return {
+    title: portfolioData.app_headline || portfolioData.products?.name || "Portfolio Details",
+    description: portfolioData.short_description || portfolioData.description || "View our portfolio work",
+    keywords: portfolioData.tag || "portfolio, design, work",
+    openGraph: {
+      title: portfolioData.app_headline || portfolioData.products?.name || "Portfolio Details",
+      description: portfolioData.short_description || portfolioData.description || "View our portfolio work",
+      images: portfolioData.image || portfolioData.app_image ? [portfolioData.image || portfolioData.app_image] : [],
+      type: "website",
+      siteName: "WRTeam",
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: portfolioData.app_headline || portfolioData.products?.name || "Portfolio Details",
+      description: portfolioData.short_description || portfolioData.description || "View our portfolio work",
+      images: portfolioData.image || portfolioData.app_image ? [portfolioData.image || portfolioData.app_image] : [],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    alternates: {
+      canonical: `https://www.wrteam.in/our-work/design/${slug}`,
+    },
+  };
+}
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+
+  const { slug } = await params;
+  const portfolioData = await fetchPortfolioData(slug);
+
+  return (
+    <div>
+      <PortfolioDetials portfolioData={portfolioData} />
+    </div>
+  );
+}

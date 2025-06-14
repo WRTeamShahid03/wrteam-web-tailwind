@@ -12,7 +12,7 @@ const Custom404 = () => {
   const pathname = usePathname();
   const [redirecting, setRedirecting] = useState(true);
 
-  console.log(pathname);
+  // console.log(pathname);
 
   const salePages = [
     '/cyber-week-sale',
