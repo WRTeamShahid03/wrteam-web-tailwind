@@ -31,22 +31,12 @@ const Loader = () => {
       `}</style>
       
       <div className="text-center">
-        <div className="flex justify-center mb-4">
-          {['W', 'R', 'T', 'e', 'a', 'm'].map((letter, index) => (
-            <span 
-              key={index}
-              className="text-5xl font-bold"
-              style={{ 
-                color: index < 2 ? '#3b82f6' : (index >= 4 ? '#8b5cf6' : '#6366f1')
-              }}
-            >
-              {letter}
-            </span>
-          ))}
-        </div>
-        <div className="h-1.5 w-80 mx-auto bg-gray-200 rounded-full overflow-hidden mt-4">
+      <div className='relative w-full flexCenter loader'>
+      <h2 className='loaderFillTextAnimation !text-[34px] sm:!text-[44px] md:!text-[54px] !rotate-0' data-fill-text="WRTEAM">WRTEAM</h2>
+    </div>
+        <div className="h-1.5 w-40 md:w-72 lg:w-80 mx-auto bg-gray-200 rounded-full overflow-hidden">
           <div 
-            className="h-full bg-gradient-to-r from-blue-600 to-purple-600 rounded-full progress-bar"
+            className="h-full bg-[linear-gradient(to_right,_#869E11,_#EC8C25,_#E5016F,_#43A2A1)] rounded-full progress-bar"
             style={{ width: `${progress}%` }}
           ></div>
         </div>

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useParams, usePathname, useRouter } from 'next/navigation';   // ← `next/navigation` for App Router
 import noDataImg from '@/assets/images/404_Image.svg';
+import Loader from '@/components/commonComponents/Loader/Loader';
 
 const Custom404 = () => {
   const router = useRouter();
@@ -114,7 +115,7 @@ const Custom404 = () => {
   }
 
   return (
-    redirecting ? null :
+    redirecting ? <Loader /> :
       <div className="flex flex-col items-center justify-center gap-5 px-6 pt-8 pb-16 font-montserrat text-center h-screen">
         <h1 className='text-[#031C49] font-extrabold sectionTitle'>OPPS...</h1>
         <Image

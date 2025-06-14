@@ -4,11 +4,11 @@ import ProductDetailHeader from "./header/ProductDetailHeader";
 import LayoutOne from "./layoutOne/LayoutOne";
 import LayoutTwo from "./layoutTwo/LayoutTwo";
 import Script from "next/script";
-import LoaderThree from "@/components/commonComponents/Loader/LoaderThree";
 import { OldUiProductData, ProductDetails } from "@/types";
 import { axiosClient } from "@/lib/api";
 import ProductDetailFooter from "./footer/ProductDetailFooter";
 import { HelpSection } from "@/types";
+import Loader from "@/components/commonComponents/Loader/Loader";
 
 interface Props {
   slug: string;
@@ -81,7 +81,7 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
   }, [slug, fetchProductDetails]);
 
   if (isLoading) {
-    return <LoaderThree />;
+    return <Loader />;
   }
 
   // Only render product schema if we have product details

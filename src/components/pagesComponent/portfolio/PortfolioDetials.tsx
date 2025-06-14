@@ -3,7 +3,7 @@ import Layout from '@/components/layout/Layout'
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import PageHeader from "@/components/commonComponents/PageHeader";
-import LoaderThree from '@/components/commonComponents/Loader/LoaderThree';
+import Loader from '@/components/commonComponents/Loader/Loader';
 
 // Skeleton component for loading state
 const SkeletonDetail = () => (
@@ -133,7 +133,7 @@ const PortfolioDetials = () => {
 
       <div className='container commonMT'>
         {isLoading ? (
-          <LoaderThree />
+          <Loader />
         ) : error ? (
           <div className="bg-red-50 text-red-700 p-4 rounded-md">
             {error}
