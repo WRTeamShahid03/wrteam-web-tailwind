@@ -47,8 +47,10 @@ const Custom404 = () => {
         redirected = true;
         break;
       case '/products/app-products':
+        router.replace(`/products`);
+        redirected = true;
+        break;
       case '/products/web-products':
-      case '/product':
         router.replace(`/products`);
         redirected = true;
         break;
@@ -78,6 +80,8 @@ const Custom404 = () => {
 
     // Check product or blog redirect cases
     if (
+      pathname !== '/products/app-products' &&
+      pathname !== '/products/web-products' &&
       pathname.startsWith('/products/') ||
       pathname.startsWith('/product/') ||
       pathname.startsWith('/blogs/')
