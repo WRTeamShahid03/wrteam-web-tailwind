@@ -60,22 +60,22 @@ export async function generateMetadata(
   }
 
   return {
-    title: portfolioData.app_headline || portfolioData.products?.name || "Portfolio Details",
-    description: portfolioData.short_description || portfolioData.description || "View our portfolio work",
-    keywords: portfolioData.tag || "portfolio, design, work",
+    title: portfolioData.seo_title || process.env.NEXT_PUBLIC_TITLE,
+    description: portfolioData.seo_description || process.env.NEXT_PUBLIC_DESCRIPTION,
+    keywords: portfolioData.seo_keywords || process.env.NEXT_PUBLIC_META_KEYWORD,
     openGraph: {
-      title: portfolioData.app_headline || portfolioData.products?.name || "Portfolio Details",
-      description: portfolioData.short_description || portfolioData.description || "View our portfolio work",
-      images: portfolioData.image || portfolioData.app_image ? [portfolioData.image || portfolioData.app_image] : [],
+      title: portfolioData.seo_title || process.env.NEXT_PUBLIC_TITLE,
+      description: portfolioData.seo_description || process.env.NEXT_PUBLIC_DESCRIPTION,
+      images: portfolioData.seo_image || portfolioData.app_image ? [portfolioData.image || portfolioData.app_image] : [],
       type: "website",
       siteName: "WRTeam",
       locale: "en_US",
     },
     twitter: {
       card: "summary_large_image",
-      title: portfolioData.app_headline || portfolioData.products?.name || "Portfolio Details",
-      description: portfolioData.short_description || portfolioData.description || "View our portfolio work",
-      images: portfolioData.image || portfolioData.app_image ? [portfolioData.image || portfolioData.app_image] : [],
+      title: portfolioData.seo_title || process.env.NEXT_PUBLIC_TITLE,
+      description: portfolioData.seo_description || process.env.NEXT_PUBLIC_DESCRIPTION,
+      images: portfolioData.seo_image || portfolioData.app_image ? [portfolioData.image || portfolioData.app_image] : [],
     },
     robots: {
       index: true,
