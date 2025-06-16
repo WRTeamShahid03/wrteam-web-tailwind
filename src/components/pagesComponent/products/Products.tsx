@@ -215,12 +215,7 @@ const ProductsPage = ({
     setHasFilterChanged(true);
   };
 
-  // Handle external link click without bubbling to parent
-  const handleBuyClick = (e: React.MouseEvent, url: string) => {
-    e.preventDefault();
-    e.stopPropagation();
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
+
 
   return (
     <Layout>
@@ -332,7 +327,7 @@ const ProductsPage = ({
                   </div>
 
                   {/* Product Name - Clickable */}
-                  <Link href={`/product-details/${product?.slug}`} target="_blank">
+                  <Link href={`/product-details/${product?.slug}`} target="_blank" title="Product Details">
                     <h3 className="md:text-lg font-bold line-clamp-2 sm:h-[52px] md:h-[56px]">
                       {product?.name}
                     </h3>
@@ -359,10 +354,9 @@ const ProductsPage = ({
                     </div>
                     <div className="flexCenter textSecondary py-1.5 px-2.5 rounded-sm transition-all duration-300 group-hover:bg-[#22a869] group-hover:text-white">
                       {/* Buy Button - Uses custom handler */}
-                      <button
-                        onClick={(e) =>
-                          handleBuyClick(e, product?.codecanyon_link)
-                        }
+                      <Link
+                        href={`/product-details/${product?.slug}`}
+                        target="_blank"
                         title="Buy product"
                         className="flexCenter gap-2"
                       >
@@ -370,7 +364,7 @@ const ProductsPage = ({
                           <RiShoppingCartFill />
                         </span>
                         Buy
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
