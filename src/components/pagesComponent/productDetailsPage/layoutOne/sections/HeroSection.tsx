@@ -40,7 +40,11 @@ const HeroSection: React.FC<HeroSectionProps> = (
             Buy Now
           </Link>
         </div>
-        <Image src={mainImage} height={600} width={796} className="w-[796px] object-contain mt-[25px] sm:mt-[50px]" alt='product-img' />
+        <Image src={mainImage} height={600} width={796}
+         alt='product-img' 
+         loading='eager'
+         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+         className="w-[796px] object-contain mt-[25px] sm:mt-[50px]"/>
         {/* <div> */}
         <h2 className="text-2xl font-semibold text-center mt-2">{technologySection?.title}</h2>
         <div className="flexCenter flex-wrap xl:flex-nowrap gap-[8px] sm:gap-[30px] mb-[30px] xl:mb-0 mt-[30px]">

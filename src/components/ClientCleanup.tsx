@@ -15,15 +15,15 @@ export default function ClientCleanup() {
           node.nodeType === Node.TEXT_NODE &&
           node.textContent?.includes('google-site-verification')
         ) {
-          console.log('Found verification text:', node.textContent);
+          // console.log('Found verification text:', node.textContent);
           node.textContent = ''; // remove it
           found = true;
         }
       });
 
-      if (!found) {
-        console.log('No verification text found');
-      }
+      // if (!found) {
+      //   console.log('No verification text found');
+      // }
     };
 
     // Run cleanup after a short delay

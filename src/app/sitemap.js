@@ -4,7 +4,7 @@
  * @returns {import('next').MetadataRoute.Sitemap} The sitemap configuration
  */
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://wrteam.in";
+  const baseUrl = process.env.NEXT_PUBLIC_WEB_URL || "https://www.wrteam.in/";
 
   // Define static routes
   const staticRoutes = [
