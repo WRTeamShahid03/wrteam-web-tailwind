@@ -2,7 +2,7 @@
 import Image from "next/image";
 import teamImg from "../../../assets/images/homePage/teamImg.png";
 import { FaArrowRight } from "react-icons/fa";
-import heroImg from "../../../assets/images/homePage/heroSectImg.svg";
+import heroImg from "../../../assets/images/homePage/heroSectImg.webp";
 import { PageTitle } from "@/components/HeadingComponent";
 import Link from "next/link";
 
