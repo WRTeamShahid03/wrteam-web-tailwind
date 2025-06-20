@@ -85,7 +85,7 @@ export default function Home() {
     "@type": "Organization",
     "name": "WRTeam",
     "url": "https://www.wrteam.in",
-    "logo": "https://www.wrteam.in/_next/static/media/logo.4609846a.svg",
+    "logo": "https://www.wrteam.in/next/static/media/logo.4609846a.svg",
     "description": "WRTeam is a leading mobile app, website, and software development company in Bhuj. We offer expert UI/UX design, IT services, and digital marketing solutions to help businesses grow with scalable and innovative strategies.",
     "contactPoint": [
       {
@@ -102,7 +102,7 @@ export default function Home() {
       "addressLocality": "Bhuj",
       "addressRegion": "Gujarat",
       "postalCode": "370001",
-      "addressCountry": "India"
+      "addressCountry": "IN"
     },
     "sameAs": [
       "https://www.facebook.com/wrteam.in",
