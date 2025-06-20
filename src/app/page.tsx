@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import HomePage from "@/components/homePage";
-import {
-  LocalBusinessSchema,
-  OrganizationSchema,
-} from "@/components/JsonLdSchema";
 import JsonLd from "@/components/Schema/JsonLd";
 
 // Generate metadata for the page
@@ -118,8 +114,6 @@ export default function Home() {
   return (
     <main>
       <JsonLd data={ourJsonLd} />
-      <OrganizationSchema />
-      <LocalBusinessSchema />
       <HomePage />
     </main>
   );
