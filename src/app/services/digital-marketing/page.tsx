@@ -91,8 +91,8 @@ export default function Page() {
 
   return (
     <main>
-      <JsonLd data={ourJsonLd} />
       <DigitalMarketing />
+      <JsonLd data={ourJsonLd} />
     </main>
   )
 }

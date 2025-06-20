@@ -91,9 +91,9 @@ export default function Page() {
   }
   return (
     <>
-      <JsonLd data={ourJsonLd} />
       <main>
         <WebDevelopment />
+        <JsonLd data={ourJsonLd} />
       </main>
     </>
   )
