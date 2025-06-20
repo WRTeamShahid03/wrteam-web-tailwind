@@ -4,6 +4,7 @@ import {
   LocalBusinessSchema,
   OrganizationSchema,
 } from "@/components/JsonLdSchema";
+import JsonLd from "@/components/Schema/JsonLd";
 
 // Generate metadata for the page
 async function fetchSeoData() {
@@ -83,11 +84,43 @@ export async function generateMetadata(
 }
 
 export default function Home() {
+  const ourJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "WRTeam",
+    "url": "https://www.wrteam.in",
+    "logo": "https://www.wrteam.in/_next/static/media/logo.4609846a.svg",
+    "description": "WRTeam is a leading mobile app, website, and software development company in Bhuj. We offer expert UI/UX design, IT services, and digital marketing solutions to help businesses grow with scalable and innovative strategies.",
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+91 97979 45459",
+        "email": "Support@wrteam.in",
+        "contactType": "customer support",
+        "areaServed": ["IN", "US", "TR", "NG", "GB", "CA"]
+      }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "#262-263, Time Square Empire, SH 42 Mirjapar Highway",
+      "addressLocality": "Bhuj",
+      "addressRegion": "Gujarat",
+      "postalCode": "370001",
+      "addressCountry": "India"
+    },
+    "sameAs": [
+      "https://www.facebook.com/wrteam.in",
+      "https://www.linkedin.com/company/wrteam/",
+      "https://www.instagram.com/wrteam.in/",
+      "https://www.youtube.com/channel/UCLt9XRUuiWsqKng4681_6cQ"
+    ]
+  };
   return (
-    <>
+    <main>
+      <JsonLd data={ourJsonLd} />
       <OrganizationSchema />
       <LocalBusinessSchema />
       <HomePage />
-    </>
+    </main>
   );
 }

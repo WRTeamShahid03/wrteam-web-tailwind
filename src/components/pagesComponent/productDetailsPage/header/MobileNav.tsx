@@ -47,7 +47,7 @@ const MobileNav: React.FC<dataProps> = ({ whatsappUrl }) => {
               </Link>
               <ServicesDropdown />
               <Link
-                href={"#assistanceSection"}
+                href={"#help-and-support"}
                 title="Help"
                 className='relative transition-all duration-300 hover:productPrimaryColor after:contents-[""] after:absolute after:-bottom-1 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:productPrimaryBg'
               >

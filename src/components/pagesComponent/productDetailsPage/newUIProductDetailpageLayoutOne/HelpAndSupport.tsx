@@ -44,7 +44,7 @@ const btnsName = [
 
 
   return (
-    <div className="py-5 md:py-10 container">
+    <div className="py-5 md:py-10 container" id="help-and-support">
       <div className="flexColCenter commonTextGap text-center mb-8">
         <h5 className="sectionTitle !font-bold">
           {helpSection?.title}
