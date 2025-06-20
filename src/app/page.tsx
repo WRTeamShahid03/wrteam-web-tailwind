@@ -113,8 +113,8 @@ export default function Home() {
   };
   return (
     <main>
-      <JsonLd data={ourJsonLd} />
       <HomePage />
+      <JsonLd data={ourJsonLd} />
     </main>
   );
 }
