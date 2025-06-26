@@ -48,11 +48,11 @@ export default function SuccessStatics() {
 
         {
           data.map((item: servicesProcessDataTypes) => {
-            return <div className="text-center text-white flex flex-col items-center gap-3 w-[124px] lg:w-auto" key={item.id}>
+            return <div className="text-center text-white flex flex-col items-center gap-2 sm:gap-3 w-[136px] lg:w-auto" key={item.id}>
               <div className="">
-                <Image src={item.img} width={0} height={0} alt={item.title} className='w-[50px] lg:w-auto h-auto' />
+                <Image src={item.img} width={0} height={0} alt={item.title} className='w-[40px] sm:w-[50px] lg:w-auto h-auto' />
               </div>
-              <h6 className="md:text-2xl font-semibold mb-0 mt-1">
+              <h6 className="text-sm sm:text-base md:text-2xl font-semibold mb-0 mt-1">
                 {item.title}
               </h6>
               <p className="text-sm md:text-lg">{item.desc}</p>

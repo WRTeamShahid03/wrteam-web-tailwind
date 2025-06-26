@@ -41,11 +41,11 @@ const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, re
                     {
                       salePrice ?
                         <div className="flexCenter gap-2">
-                          <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${salePrice}</span>
+                          <span className="productPrimaryColor text-2xl lg:text-3xl font-bold">${salePrice}</span>
                           <span className="text-[#475569] line-through text-sm sm:text-xl font-semibold">${regularLicensePrice}</span>
                         </div>
                         :
-                        <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${regularLicensePrice}</span>
+                        <span className="productPrimaryColor text-2xl lg:text-3xl font-bold">${regularLicensePrice}</span>
                     }
                   </div>
                 }
@@ -71,11 +71,11 @@ const LicensePlan = ({ detailPage, extendedLicensePrice, extendedLicenseLink, re
                     {
                       extendedLicenseSalePrice ?
                         <div className="flexCenter gap-2">
-                          <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${extendedLicenseSalePrice}</span>
+                          <span className="productPrimaryColor text-2xl lg:text-3xl font-bold">${extendedLicenseSalePrice}</span>
                           <span className="text-[#475569] line-through text-sm sm:text-xl font-semibold">${extendedLicensePrice}</span>
                         </div>
                         :
-                        <span className="productPrimaryColor text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold">${extendedLicensePrice}</span>
+                        <span className="productPrimaryColor text-2xl lg:text-3xl font-bold">${extendedLicensePrice}</span>
                     }
                   </div>
                 }
