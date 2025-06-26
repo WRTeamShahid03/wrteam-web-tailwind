@@ -49,7 +49,7 @@ const HeroSection: React.FC<HeroSectionProps> = (
         <h2 className="text-2xl font-semibold text-center mt-2">{technologySection?.title}</h2>
         <div className="flexCenter flex-wrap xl:flex-nowrap gap-[8px] sm:gap-[30px] mb-[30px] xl:mb-0 mt-[30px]">
           {technologySection?.technologies?.map((image: { image_url: string, name: string }, index: number) => (
-            <div key={index} className="flexColCenter gap-1.5 productCommonAfterBg py-5 sm:py-[36px] rounded-[8px] lg:roun  ded-lg xl:rounded-t-[90px] max-399:w-[90px] w-[150px] 2xl:w-[168px] relative overflow-hidden">
+            <div key={index} className="flexColCenter gap-1.5 productCommonAfterBg py-5 sm:py-[36px] rounded-[8px] lg:roun  ded-lg xl:rounded-t-[90px] max-399:w-[108px] w-[150px] 2xl:w-[168px] relative overflow-hidden">
               <Image src={image?.image_url} height={36} width={36} alt='language-img' />
               <span className="sm:text-xl font-semibold productDetailPrimaryColor">{image?.name}</span>
             </div>
