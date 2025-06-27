@@ -109,11 +109,11 @@ const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description,
                                         </p>
                                         <p className='sectionPara !font-medium !text-sm max-[356px]:h-[144px] max-399:h-[130px] max-575:block hidden' >
                                             {
-                                                detail.short_description?.length > 105 ?
+                                                detail.short_description?.length > 100 ?
                                                     <>
-                                                        `${detail?.short_description?.slice(0, 105)}...
+                                                        `${detail?.short_description?.slice(0, 100)}...
                                                         {
-                                                            detail?.short_description.length > 105 &&
+                                                            detail?.short_description.length > 100 &&
                                                             <ReadMoreModal desc={detail?.short_description} />
                                                         }
                                                     </>
