@@ -151,7 +151,7 @@ const Installation: React.FC = () => {
 
     return (
         <Layout>
-            <Breadcrumb title='Installtion &' blueText='Setup' secondElement='Services' thirdElement='Installtion' />
+            <Breadcrumb title='Installation &' blueText='Setup' secondElement='Services' thirdElement='installation' />
             <section className='container commonMT space-y-8 md:space-y-12 lg:space-y-20'>
                 <div className='flexCenter flex-col gap-6'>
 
