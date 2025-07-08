@@ -698,10 +698,6 @@ footer .commonBtn:after {
 .rich-text-content li,
 .rich-text-content blockquote,
 .rich-text-content pre,
-.rich-text-content table,
-.rich-text-content tr,
-.rich-text-content td,
-.rich-text-content th ,
 .rich-text-content a {
   all: revert; /* This resets all properties to their natural values */
 }

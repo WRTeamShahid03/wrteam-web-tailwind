@@ -1,7 +1,7 @@
 "use client";
-
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 interface BlogPaginationProps {
   currentPage: number;
@@ -25,31 +25,25 @@ export default function BlogPagination({
     }
 
     // Navigate with the URL parameters
-    router.push(url, { scroll: false });
+    router.push(url, { scroll: true });
   };
 
   return (
-    <div className="flex justify-center mt-8">
+    <div className="flex justify-center mt-12">
       <div className="flex items-center gap-2">
         <button
           onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
           disabled={currentPage === 1}
-          className={`px-4 py-2 rounded ${
-            currentPage === 1
-              ? "bg-gray-200 cursor-not-allowed"
-              : "primaryBg text-white"
-          }`}
+          className={`w-10 h-10 rounded-full flexCenter text-white secondaryBg ${currentPage === 1 ? "!cursor-not-allowed" : ""}`}
         >
-          Previous
+          <FaAngleLeft />
         </button>
 
         {Array.from({ length: lastPage }, (_, i) => i + 1).map((page) => (
           <button
             key={page}
             onClick={() => handlePageChange(page)}
-            className={`w-10 h-10 rounded-full ${
-              page === currentPage ? "primaryBg text-white" : "border"
-            }`}
+            className={`w-10 h-10 rounded-full flexCenter text-white ${page === currentPage ? "primaryBg" : "border secondaryBg"}`}
           >
             {page}
           </button>
@@ -58,13 +52,9 @@ export default function BlogPagination({
         <button
           onClick={() => handlePageChange(Math.min(currentPage + 1, lastPage))}
           disabled={currentPage === lastPage}
-          className={`px-4 py-2 rounded ${
-            currentPage === lastPage
-              ? "bg-gray-200 cursor-not-allowed"
-              : "primaryBg text-white"
-          }`}
+          className={`w-10 h-10 rounded-full flexCenter text-white secondaryBg ${currentPage === lastPage ? "!cursor-not-allowed" : ""}`}
         >
-          Next
+          <FaAngleRight />
         </button>
       </div>
     </div>
