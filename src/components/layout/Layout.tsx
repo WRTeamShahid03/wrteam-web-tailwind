@@ -13,6 +13,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     if (pathname === "/portfolio") {
       router.replace("/our-work/development");
     } 
+    if (pathname === "/blog/why-choose-a-flutter-news-app-source-code-for-your-next-project-2") {
+      router.replace("/blog/why-choose-a-flutter-news-app-source-code-for-your-next-project");
+    }
   }, [pathname]);
 
   return (
