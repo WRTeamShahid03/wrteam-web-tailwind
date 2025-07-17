@@ -18,7 +18,7 @@ const InfoSect: React.FC = () => {
     {
       id: 1,
       img: smileImg,
-      title: "19000+",
+      title: "21000+",
       desc: "Global Clients",
     },
     {

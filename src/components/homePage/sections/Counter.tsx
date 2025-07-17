@@ -13,7 +13,7 @@ const Counter: React.FC = () => {
     const data = [
         {
             img: happy,
-            counts: '20k+',
+            counts: '21k+',
             text: 'Happy Clients'
         },
         {
