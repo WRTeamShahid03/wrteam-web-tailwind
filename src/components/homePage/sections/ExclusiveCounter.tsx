@@ -13,8 +13,8 @@ import { FaArrowRight } from "react-icons/fa6";
 const counterData = [
   {
     img: happy,
-    counts: 21000,
-    display: "21k+",
+    counts: Number(process.env.NEXT_PUBLIC_SALE_COUNTS),
+    display: `${process.env.NEXT_PUBLIC_SALE_COUNTS?.replace('000', "")}k+`,
     text: "Happy Client",
   },
   {

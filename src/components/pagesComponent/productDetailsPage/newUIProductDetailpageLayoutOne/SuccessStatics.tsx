@@ -19,7 +19,7 @@ export default function SuccessStatics() {
     {
       id: 1,
       img: icon2,
-      title: '19000+',
+      title: `${process.env.NEXT_PUBLIC_SALE_COUNTS}+`,
       desc: 'Global Clients'
     },
     {

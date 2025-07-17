@@ -13,7 +13,7 @@ const Counter: React.FC = () => {
     const data = [
         {
             img: happy,
-            counts: '21k+',
+            counts: `${process.env.NEXT_PUBLIC_SALE_COUNTS?.replace('000', "")}k+`,
             text: 'Happy Clients'
         },
         {

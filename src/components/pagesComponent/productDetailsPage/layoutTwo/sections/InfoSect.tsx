@@ -18,7 +18,7 @@ const InfoSect: React.FC = () => {
     {
       id: 1,
       img: smileImg,
-      title: "21000+",
+      title: `${process.env.NEXT_PUBLIC_SALE_COUNTS}+`,
       desc: "Global Clients",
     },
     {
