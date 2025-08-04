@@ -123,9 +123,8 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
                   height={46}
                   className="object-cover"
                   alt="WRTeam Logo"
-                  unoptimized={true}
-                  loader={({ src }) => src}
                 />
+
               ) : (
                 <Image
                   src={logo}

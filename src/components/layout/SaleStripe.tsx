@@ -21,7 +21,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
     const targetDate = new Date(2025, 5, 12, 19, 39, 0);
 
     // Renderer for the countdown
-    const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
+    const renderer = ({ days, hours, minutes, seconds, completed }: { days: number, hours: number, minutes: number, seconds: number, completed: boolean }) => {
         if (completed) {
             return null;
         }

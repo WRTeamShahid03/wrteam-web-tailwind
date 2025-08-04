@@ -2,7 +2,7 @@ import { PaymentGatewaySection } from "@/types";
 import Image from "next/image";
 
 export default function PaymentGateway({ title, description, image_url, gateways }: PaymentGatewaySection) {
-  
+
   return (
     <div className="container commonMT">
       {/* Title Section */}
@@ -24,7 +24,7 @@ export default function PaymentGateway({ title, description, image_url, gateways
                 <div className="bg-white rounded-[8px] lg:rounded-full p-4 w-[80px] sm:w-[120px] h-[80px] sm:h-[120px] flex items-center justify-center shadow-sm border-[7px] border-[#0383fe17]">
                   <div className="flex flex-col items-center justify-center">
                     <div className="mb-1">
-                      <Image src={gateway.image_url} alt={gateway.name} width={40} height={40} className="w-[24px] sm:w-[40px] h-[24px] sm:h-[40px]"/>
+                      <Image src={gateway.image_url} alt={gateway.name} width={40} height={40} className="w-[24px] sm:w-[40px] h-[24px] sm:h-[40px]" />
                     </div>
                     <span className="text-[10px] sm:text-sm text-gray-700 text-center font-bold">{gateway.name}</span>
                   </div>
@@ -32,7 +32,7 @@ export default function PaymentGateway({ title, description, image_url, gateways
               </div>
             ))}
 
-            
+
           </div>
         </div>
 
@@ -44,8 +44,11 @@ export default function PaymentGateway({ title, description, image_url, gateways
               alt={title}
               width={500}
               height={512}
-              className="max-575:w-[337px] w-[400px] lg:w-[500px] max-575:h-[337px] h-[400px] lg:h-[512px] rounded-3xl object-cover"
+              sizes="(max-width: 575px) 337px, (max-width: 1024px) 400px, 500px"
+              className="w-full max-w-[500px] aspect-[1/1.02] rounded-3xl object-cover"
+              quality={75} // optional compression setting
             />
+
           </div>
         </div>
       </div>
