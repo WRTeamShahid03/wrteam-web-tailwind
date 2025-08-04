@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 // either Static metadata
 export const metadata: Metadata = {
   title: 'Exclusive License',
-  description: 'We prioritize customer satisfaction and transparency.',
+  description: 'Discover the benefits and conditions of WRTeam’s Exclusive License for premium rights, resale options, and complete ownership control.',
   alternates: {
     canonical: `https://www.wrteam.in/exclusive-license`,
   },
