@@ -63,12 +63,11 @@ const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description,
                     <div className='flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-3 pb-2 md:pb-0 scrollbar-hide justify-center max-1199:justify-start'>
                         {tabs.map((tab: Tab, index: number): React.ReactNode => {
                             return (
-                                <button key={index} className={`px-4 py-3 rounded-md text-sm font-medium whitespace-nowrap flex-shrink-0 ${
-                                    activeTab.tab_name === tab.tab_name
-                                      ? "bg-white text-black"
-                                      : "border-2 border-white bg-transparent text-white"
-                                  }`}
-                                onClick={() => handleTabClick(tab)}>
+                                <button key={index} className={`px-4 py-3 rounded-md text-sm font-medium whitespace-nowrap flex-shrink-0 ${activeTab.tab_name === tab.tab_name
+                                        ? "bg-white text-black"
+                                        : "border-2 border-white bg-transparent text-white"
+                                    }`}
+                                    onClick={() => handleTabClick(tab)}>
                                     {tab.tab_name}
                                 </button>
                             )
@@ -90,7 +89,15 @@ const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description,
                         {activeTab.details.map((detail, index: number): React.ReactNode => (
                             <SwiperSlide key={index}>
                                 <div className='flexColCenter gap-4 sm:gap-6 !items-start bg-white rounded-[8px] p-5'>
-                                    <Image src={detail.image_url} height={0} width={0} alt='feature-img' className='h-[164px] sm:h-[286px] w-full rounded-[8px] border-2 border-[#64748b]' />
+                                    <Image
+                                        src={detail.image_url}
+                                        width={259}
+                                        height={160}
+                                        sizes="(max-width: 768px) 100vw, 259px"
+                                        alt='feature-img'
+                                        className='w-full h-auto rounded-[8px] border-2 border-[#64748b] object-cover'
+                                    />
+
                                     <div className='flexColCenter gap-2 !items-start !justify-start max-399:h-[144px] between-400-575:h-[140px]'>
                                         <span className='font-bold'>{detail.title}</span>
                                         <p className='sectionPara !font-medium !text-sm max-575:hidden between-400-575:h-[110px] between-576-767:h-[86px] between-768-991:h-[66px] between-992-1199:h-[104px] between-1200-1399:h-[86px] h-[72px]' >
