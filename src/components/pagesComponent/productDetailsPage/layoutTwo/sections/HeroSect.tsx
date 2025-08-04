@@ -25,13 +25,14 @@ const HeroSect: React.FC<HeroSectProps> = ({ title, description, imageUrl }) => 
                     </Link>
                 </div>
                 <div className='w-full h-full relative z-[1]'>
-                    <Image 
-                        src={imageUrl} 
-                        width={800} 
-                        height={600} 
-                        alt='product-img' 
-                        className='w-full h-auto' 
-                        loading='eager'
+                    <Image
+                        src={imageUrl}
+                        width={800}
+                        height={600}
+                        alt='product-img'
+                        className='w-full h-auto'
+                        priority
+                        fetchPriority="high"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                 </div>
