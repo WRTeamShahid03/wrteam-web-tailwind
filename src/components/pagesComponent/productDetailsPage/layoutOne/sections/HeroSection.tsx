@@ -45,7 +45,7 @@ const HeroSection: React.FC<HeroSectionProps> = (
           width={796}
           height={600}
           alt="product-img"
-          loading="eager"
+          priority 
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="w-full max-w-[796px] object-contain mt-[25px] sm:mt-[50px]"
           fetchPriority="high"
