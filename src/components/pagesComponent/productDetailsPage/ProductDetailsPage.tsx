@@ -60,11 +60,6 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
 
         setLayoutType(productData.style === 1 ? 1 : 2);
         setProductDetails(productData);
-
-        // Add a small delay before hiding loader to ensure smooth transition
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
       } else {
         setIsLoading(false);
       }
