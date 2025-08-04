@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import saveMoneyImg from "../../../../assets/images/productDetailPage/layoutOne/saveMoneyImg.png"
+import saveMoneyImg from "../../../../assets/images/productDetailPage/layoutOne/saveMoneyImg.webp"
 import leftShape from '../../../../assets/images/productDetailPage/layoutTwo/leftShape.png'
 import rightShape from '../../../../assets/images/productDetailPage/layoutTwo/rightShape.png'
 

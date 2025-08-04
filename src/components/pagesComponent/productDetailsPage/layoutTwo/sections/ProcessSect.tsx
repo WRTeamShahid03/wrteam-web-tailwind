@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import icon1 from "../../../../../assets/images/productDetailPage/layoutTwo/process1.png";
-import icon2 from "../../../../../assets/images/productDetailPage/layoutTwo/process2.png";
-import icon3 from "../../../../../assets/images/productDetailPage/layoutTwo/process3.png";
+import icon1 from "../../../../../assets/images/productDetailPage/layoutTwo/process1.webp";
+import icon2 from "../../../../../assets/images/productDetailPage/layoutTwo/process2.webp";
+import icon3 from "../../../../../assets/images/productDetailPage/layoutTwo/process3.webp";
 
 import arrIcon from "../../../../../assets/images/productDetailPage/layoutTwo/guideArrow.png";
 import Image from "next/image";

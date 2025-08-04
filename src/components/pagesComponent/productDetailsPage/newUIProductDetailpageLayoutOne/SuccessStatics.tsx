@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import icon1 from '../../../../assets/images/productDetailPage/layoutTwo/infoIcons/icon1.png'
-import icon2 from '../../../../assets/images/productDetailPage/layoutTwo/infoIcons/icon2.png'
-import icon3 from '../../../../assets/images/productDetailPage/layoutTwo/infoIcons/icon3.png'
-import icon4 from '../../../../assets/images/productDetailPage/layoutTwo/infoIcons/icon4.png'
-import icon5 from '../../../../assets/images/productDetailPage/layoutTwo/infoIcons/icon5.png'
+import icon1 from '../../../../assets/images/productDetailPage/layoutOne/infoIcons/icon1.webp'
+import icon2 from '../../../../assets/images/productDetailPage/layoutOne/infoIcons/icon2.webp'
+import icon3 from '../../../../assets/images/productDetailPage/layoutOne/infoIcons/icon3.webp'
+import icon4 from '../../../../assets/images/productDetailPage/layoutOne/infoIcons/icon4.webp'
+import icon5 from '../../../../assets/images/productDetailPage/layoutOne/infoIcons/icon5.webp'
 import { servicesProcessDataTypes } from '@/types'
 
 

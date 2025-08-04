@@ -1,10 +1,10 @@
 import Image from "next/image";
 import React from "react";
-import eliteAuthor from "../../../../../assets/images/productDetailPage/layoutTwo/Elite author.png";
-import smileImg from "../../../../../assets/images/productDetailPage/layoutTwo/Smile.png";
-import updateImg from "../../../../../assets/images/productDetailPage/layoutTwo/update.png";
-import customizable from "../../../../../assets/images/productDetailPage/layoutTwo/customizable.png";
-import buy from "../../../../../assets/images/productDetailPage/layoutTwo/buy.png";
+import eliteAuthor from "../../../../../assets/images/productDetailPage/layoutTwo/EliteAuthor.webp";
+import smileImg from "../../../../../assets/images/productDetailPage/layoutTwo/Smile.webp";
+import updateImg from "../../../../../assets/images/productDetailPage/layoutTwo/update.webp";
+import customizable from "../../../../../assets/images/productDetailPage/layoutTwo/customizable.webp";
+import buy from "../../../../../assets/images/productDetailPage/layoutTwo/buy.webp";
 import { servicesProcessDataTypes } from "@/types";
 
 const InfoSect: React.FC = () => {
