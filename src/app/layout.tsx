@@ -77,7 +77,7 @@ export default function RootLayout({
           type="text/javascript"
           src="https://d3mkw6s8thqya7.cloudfront.net/integration-plugin.js"
           id="aisensy-wa-widget"
-          widget-id="aaafas"
+          widget-id="aaajmc"
         >
         </Script>
 
