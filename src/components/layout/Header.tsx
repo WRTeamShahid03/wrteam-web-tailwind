@@ -91,9 +91,9 @@ const Header = () => {
                 <Link href={'/products'} className={`relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black font-medium ${pathname === '/products' && 'after:!bg-black font-semibold'}`}>
                   Products
                 </Link>
-                <ServicesDropdown servicesDropdown={servicesDropdown} setServicesDropdown={setServicesDropdown} showSaleStripe={showSaleStripe}/>
-                <MorePagesDropdown morePagesDropdown={morePagesDropdown} setMorePagesDropdown={setMorePagesDropdown} showSaleStripe={showSaleStripe}  />
-                <OurWorkDropdown ourWorkDropdown={ourWorkDropdown} setOurWorkDropdown={setOurWorkDropdown} showSaleStripe={showSaleStripe}/>
+                <ServicesDropdown servicesDropdown={servicesDropdown} setServicesDropdown={setServicesDropdown} showSaleStripe={showSaleStripe} />
+                <MorePagesDropdown morePagesDropdown={morePagesDropdown} setMorePagesDropdown={setMorePagesDropdown} showSaleStripe={showSaleStripe} />
+                <OurWorkDropdown ourWorkDropdown={ourWorkDropdown} setOurWorkDropdown={setOurWorkDropdown} showSaleStripe={showSaleStripe} />
                 <Link href={'/exclusive-license'} className={`relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black font-medium ${pathname === '/exclusive-license' && 'after:!bg-black font-semibold'}`}>
                   Exclusive License
                 </Link>

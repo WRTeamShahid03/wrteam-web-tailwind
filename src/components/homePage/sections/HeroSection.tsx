@@ -5,6 +5,7 @@ import { FaArrowRight } from "react-icons/fa";
 import heroImg from "../../../assets/images/homePage/heroSectImg.webp";
 import { PageTitle } from "@/components/HeadingComponent";
 import Link from "next/link";
+import saleBanner from "../../../assets/images/homePage/sale_banner.webp";
 
 const HeroSection: React.FC = () => {
 
@@ -97,15 +98,17 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
         <div className="hidden w-full lg:flexCenter mt-12 md:mt-16">
-          <Image
-            src={heroImg}
-            alt="Creative agency hero banner"
-            width={1600}           // real intrinsic size
-            height={900}
-            priority               // 👈 critical for LCP
-            sizes="(max-width:768px) 100vw, 80vw"
-            className="w-full h-auto"
-          />
+          <Link href={'https://www.wrteam.in/freedom-sale?utm_source=website&utm_medium=strip&utm_campaign=freedom-sale'} title="Sale Banner" target="_blank">
+            <Image
+              src={saleBanner}
+              alt="Creative agency hero banner"
+              width={1600}           // real intrinsic size
+              height={900}
+              priority               // 👈 critical for LCP
+              sizes="(max-width:768px) 100vw, 80vw"
+              className="w-full h-auto"
+            />
+          </Link>
         </div>
 
       </div>

@@ -102,7 +102,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                         >
 
                             <div className='relative'>
-                                <Link href={'https://www.wrteam.in/mid-year-sale?utm_source=website&utm_medium=strip&utm_campaign=mid-year-sale'} target='_blank'
+                                <Link href={'https://www.wrteam.in/freedom-sale?utm_source=website&utm_medium=strip&utm_campaign=freedom-sale'} target='_blank'
                                     className='p-2 md:py-3 sm:px-4 md:px-6 bg-white text-[#364ED2] rounded-full border-2 border-[#ffad3f] text-sm sm:text-base font-semibold !font-lexend whitespace-nowrap flexCenter gap-2'>Grab Deal <RiArrowRightCircleFill size={18} /></Link>
                             </div>
                         </motion.div>
