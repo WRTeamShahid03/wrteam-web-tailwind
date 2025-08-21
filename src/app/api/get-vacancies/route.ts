@@ -5,26 +5,25 @@ import axios from "axios";
 export async function GET() {
   try {
     // Try to fetch vacancies from your backend API
-    try {
-      const response = await axios.get(
-        "https://backend.wrteam.in/api/get-vacancies",
-        {
-          headers: {
-            Accept: "application/json",
-          },
-          timeout: 10000,
-        }
-      );
+    const response = await axios.get(
+      "https://backend.wrteam.in/api/get-vacancies",
+      {
+        headers: {
+          Accept: "application/json",
+        },
+        timeout: 10000,
+      }
+    );
 
-      // Return the vacancies data
-      return NextResponse.json(response.data);
-    } catch (error) {
-      console.log(
-        "API request failed, using fallback data:",
-        error instanceof Error ? error.message : String(error)
-      );
-    }
+    // Return the vacancies data
+    return NextResponse.json(response.data);
   } catch (error: unknown) {
+    // Log the error for debugging
+    console.error(
+      "API request failed:",
+      error instanceof Error ? error.message : String(error)
+    );
+
     // Type cast error to access properties
     const err = error as {
       message: string;
@@ -33,13 +32,6 @@ export async function GET() {
         status: number;
       };
     };
-
-    // Error handling
-    console.error("API Error:", {
-      message: err.message,
-      response: err.response?.data,
-      status: err.response?.status,
-    });
 
     // Return error response
     return NextResponse.json(
