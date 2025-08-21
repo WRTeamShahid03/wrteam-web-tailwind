@@ -16,6 +16,7 @@ interface Props {
 }
 
 const ProductDetailsPage = ({ slug, productData }: Props) => {
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [layoutType, setLayoutType] = useState<1 | 2>(2);
   const [productDetails, setProductDetails] = useState<ProductDetails | null>(
@@ -60,6 +61,7 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
 
         setLayoutType(productData.style === 1 ? 1 : 2);
         setProductDetails(productData);
+        setIsLoading(false);
       } else {
         setIsLoading(false);
       }

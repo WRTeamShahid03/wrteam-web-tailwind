@@ -44,7 +44,7 @@ const Header = () => {
   const [morePagesDropdown, setMorePagesDropdown] = useState<boolean>(false);
   const [ourWorkDropdown, setOurWorkDropdown] = useState<boolean>(false);
 
-  const [showSaleStripe, setShowSaleStripe] = useState(false)
+  const [showSaleStripe, setShowSaleStripe] = useState(true)
 
   useEffect(() => {
     if (servicesDropdown) {
@@ -71,7 +71,7 @@ const Header = () => {
   return (
     <header className={`sticky top-0 w-full z-[20] border-b shadow-none ${scroll > (navRef.current?.offsetTop || 0) ? "stickky" : ""}`}>
       {
-        !showSaleStripe && (
+        showSaleStripe && (
           <SaleStripe setShowSaleStripe={setShowSaleStripe} />
         )
       }

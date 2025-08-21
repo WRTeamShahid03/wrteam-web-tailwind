@@ -17,9 +17,9 @@ interface dataProps {
     servicesDropdown: boolean,
     setServicesDropdown: (value: boolean) => void,
     showSaleStripe: boolean
-  } 
+}
 
-const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav, servicesDropdown, setServicesDropdown, showSaleStripe }) => {
+const ServiceDropdown: React.FC<dataProps> = ({ isMobileNav, servicesDropdown, setServicesDropdown, showSaleStripe }) => {
     const pathname = usePathname();
 
     const dropData = [
@@ -65,7 +65,7 @@ const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav, servicesDropdown, 
 
     return (
         <div className="max-1199:relative  w-max">
-            <div className="flex items-center gap-1 cursor-pointer" onClick={() => setServicesDropdown(isMobileNav? !servicesDropdown : true)} onMouseEnter={() => setServicesDropdown(isMobileNav? !servicesDropdown : true)}>
+            <div className="flex items-center gap-1 cursor-pointer" onClick={() => setServicesDropdown(isMobileNav ? !servicesDropdown : true)} onMouseEnter={() => setServicesDropdown(isMobileNav ? !servicesDropdown : true)}>
                 <span className={`flex items-center gap-1 relative transition-all duration-300 after:contents-[""] after:absolute between-1400-1680:after:-bottom-[36px] after:-bottom-[40px] max-1199:after:-bottom-2 after:left-0 after:bg-transparent after:h-[3px] after:w-full hover:after:bg-black font-medium ${active && 'after:!bg-black font-semibold'}`}>
                     Services <FaAngleDown />
                 </span>
@@ -73,7 +73,7 @@ const ServiceDropdown: React.FC<dataProps>  = ({ isMobileNav, servicesDropdown, 
 
             {servicesDropdown && (
                 <div
-                    className={`absolute max-1199:!top-[28px] ${showSaleStripe ? 'max-1680:top-[196px] top-[205px]' : 'max-1680:top-[137px] top-[144px]'} left-0 right-0 mx-auto bg-white rounded-b-2xl shadow-md max-399:w-[250px] max-1199:w-[350px] between-1200-1399:w-[1100px] w-[1320px] max-1199:p-3 p-6 z-50`}
+                    className={`absolute max-1199:!top-[28px] ${showSaleStripe ? 'between-1400-1680:!top-[216px] between-1200-1399:!top-[198px] top-[225px]' : 'max-1680:top-[137px] top-[144px]'} left-0 right-0 mx-auto bg-white rounded-b-2xl shadow-md max-399:w-[250px] max-1199:w-[350px] between-1200-1399:w-[1100px] w-[1320px] max-1199:p-3 p-6 z-50`}
                     onMouseLeave={() => setServicesDropdown(false)}
                 >
                     <div className="flex flex-wrap">

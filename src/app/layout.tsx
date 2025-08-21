@@ -8,6 +8,7 @@ import ClientBackgroundInitializer from "@/components/ClientBackgroundInitialize
 import { Metadata } from "next";
 import Script from "next/script";
 import ClientCleanup from "@/components/ClientCleanup";
+import StickyWhatsapp from "@/components/commonComponents/StickyWhatsapp";
 
 // Define the fonts with their respective weights
 const montserrat = Montserrat({
@@ -73,13 +74,13 @@ export default function RootLayout({
         {/* <!-- End Google Tag Manager --> */}
 
         {/* whatsapp widget  */}
-        <Script
+        {/* <Script
           type="text/javascript"
           src="https://d3mkw6s8thqya7.cloudfront.net/integration-plugin.js"
           id="aisensy-wa-widget"
           widget-id="aaajmc"
         >
-        </Script>
+        </Script> */}
 
       </head>
       <body
@@ -96,7 +97,7 @@ export default function RootLayout({
           ></iframe>
         </noscript>
         {/* <!-- End Google Tag Manager (noscript) --> */}
-
+        <StickyWhatsapp />
         <ClientBackgroundInitializer />
         <Toaster position="top-center" reverseOrder={false} />
         <ClientCleanup />

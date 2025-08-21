@@ -106,7 +106,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                                     className='p-2 md:py-3 sm:px-4 md:px-6 bg-white text-[#364ED2] rounded-full border-2 border-[#ffad3f] text-sm sm:text-base font-semibold !font-lexend whitespace-nowrap flexCenter gap-2'>Grab Deal <RiArrowRightCircleFill size={18} /></Link>
                             </div>
                         </motion.div>
-                        {
+                        {/* {
                             isClient && (
                                 <Countdown
                                     date={targetDate}
@@ -119,7 +119,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                                     }}
                                 />
                             )
-                        }
+                        } */}
                     </div>
                 </div>
             </div>

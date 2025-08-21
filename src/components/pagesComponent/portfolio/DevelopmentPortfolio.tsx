@@ -274,8 +274,6 @@ export default function DevelopmentPortfolio() {
     setShowFilterDropdown(false);
   };
 
-  console.log("portfolioItems", portfolioItems)
-
   return (
     <Layout>
       <div className="w-full overflow-hidden">
