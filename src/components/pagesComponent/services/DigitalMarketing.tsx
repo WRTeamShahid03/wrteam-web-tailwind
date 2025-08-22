@@ -192,19 +192,19 @@ const DigitalMarketing: React.FC = () => {
     <Layout>
       <Breadcrumb
         title="Digital Marketing"
-        blueText="Services"
+         blueText="Service"
         secondElement="Services"
-        thirdElement="Digital Marketing Services"
+        thirdElement="Digital Marketing Service"
       />
       <section className="container commonMT">
         <div className="grid max-1199:grid-cols-1 grid-cols-2 gap-8">
           <div className="flexColCenter !items-start commonTextGap">
             <span className="sectionTag">
-              Digital Marketing <span>Services</span>
+              Digital Marketing <span>Service</span>
             </span>
             <h2 className="sectionTitle">
               Grow your business with the Best <span>Digital Marketing</span>{" "}
-              Services
+              Service
             </h2>
             <p className="sectionPara">
               Allow your business to grow globally with our best digital

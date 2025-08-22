@@ -174,15 +174,15 @@ const UiUxDesign: React.FC = () => {
     <Layout>
       <Breadcrumb
         title="UI-UX"
-        blueText="Servies"
-        secondElement="Services"
+        blueText="Service"
+        secondElement="Service"
         thirdElement="UI-UX-Design"
       />
       <section className="container commonMT">
         <div className="grid max-1199:grid-cols-1 grid-cols-2 gap-8">
           <div className="flexColCenter !items-start commonTextGap">
             <span className="sectionTag">
-              UI-UX <span>Services</span>
+              UI-UX <span>Service</span>
             </span>
             <h2 className="sectionTitle">
               Make Innovative App & Web Designs with the Best <span>UI/UX</span>{" "}

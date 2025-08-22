@@ -70,7 +70,7 @@ const WebDevelopment: React.FC = () => {
       id: 3,
       img: completeSolution,
       title: "Customization",
-      desc: "Not only web development we also offer customization in source codes by WRTeam making it tailored to your needs, & our web development experts can also customize your existing website to make it personalized for your requirements and ensure a unique, userfriendly, & visually appealing online presence.",
+      desc: "Not only web development we also offer customization in source codes by WRTeam making it tailored to your needs, & our web development experts can also customize your existing website to make it personalized for your requirements and ensure a unique, user-friendly, & visually appealing online presence.",
       alt: "get complete every digital solutions  with the best web development company WRTeam",
     },
   ];

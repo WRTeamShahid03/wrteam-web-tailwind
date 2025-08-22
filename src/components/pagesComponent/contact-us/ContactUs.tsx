@@ -23,7 +23,7 @@ const ContactUs: React.FC = () => {
                     <div className='flexColCenter gap-3 text-center border border-[#51535892] py-4 px-8 rounded-[16px] transition-all duration-300 hover:primaryBg group hover:shadow-[0px_8px_34px_0px_#2e71fe94] overflow-hidden'>
                         <div className='w-[74px] h-[74px] flexCenter primaryBg text-white rounded-full group-hover:bg-white transition-all duration-300 group-hover:primary group-hover:primaryColor'><IoLocationOutline size={50} /></div>
                         <span className='font-bold text-lg group-hover:text-white'>Our Address</span>
-                        <Link href={'#contactUs'} className='sectionPara hover:underline group-hover:text-white !font-medium'>#262-263, Time Square Empire, SH 42 Mirjapar highway,Bhuj - Kutch 370001 Gujarat India.</Link>
+                        <Link href={'#contactUs'} className='sectionPara hover:underline group-hover:text-white !font-medium'>#262-263, Time Square Empire, SH 42 Mirjapar Highway, Bhuj - Kutch 370001 Gujarat India.</Link>
                     </div>
                     <div className='flexColCenter gap-3 text-center border border-[#51535892] py-4 px-8 rounded-[16px] transition-all duration-300 hover:primaryBg group hover:shadow-[0px_8px_34px_0px_#2e71fe94] overflow-hidden'>
                         <div className='w-[74px] h-[74px] flexCenter primaryBg text-white rounded-full group-hover:bg-white transition-all duration-300 group-hover:primary group-hover:primaryColor'><IoMailOutline size={50} /></div>
