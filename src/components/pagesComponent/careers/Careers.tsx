@@ -25,8 +25,6 @@ async function fetchVacancies() {
       cache: 'no-store' // This prevents caching
     });
 
-    console.log(response, 'response');
-
     const data = await response.json();
 
     if (data.error) {

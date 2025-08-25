@@ -1137,3 +1137,9 @@ textarea{
 .textShadowSale{
   text-shadow: 0px 2px 0px #17171712;
 }
+
+@media screen and (min-width: 1200px) {
+  .countdown-timer div div{
+    flex-direction: column !important;
+  }
+}

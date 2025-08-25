@@ -20,7 +20,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
     }, [])
 
     // Set target date to June 12th, 2025 at 7:30 PM
-    const targetDate = new Date(2025, 5, 12, 19, 39, 0);
+    const targetDate = new Date(2025, 7, 26, 19, 30, 0);
 
     // Renderer for the countdown
     const renderer = ({ days, hours, minutes, seconds, completed }: { days: number, hours: number, minutes: number, seconds: number, completed: boolean }) => {
@@ -91,10 +91,10 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                         {/* <Image src={line} alt='line' width={0} height={0} className='w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] hidden sm:block' /> */}
                         <motion.div
                             className="flex !flex-row items-center gap-4"
-                            animate={{ 
-                                x: [10, -10,10],
+                            animate={{
+                                x: [10, -10, 10],
                             }}
-                            transition={{ 
+                            transition={{
                                 duration: 2,
                                 repeat: Infinity,
                                 ease: "easeInOut"
@@ -106,20 +106,24 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                                     className='p-2 md:py-3 sm:px-4 md:px-6 bg-white text-[#364ED2] rounded-full border-2 border-[#ffad3f] text-sm sm:text-base font-semibold !font-lexend whitespace-nowrap flexCenter gap-2'>Grab Deal <RiArrowRightCircleFill size={18} /></Link>
                             </div>
                         </motion.div>
-                        {/* {
+                        {
                             isClient && (
-                                <Countdown
-                                    date={targetDate}
-                                    renderer={renderer}
-                                    onComplete={() => setShowSaleStripe(false)}
-                                    onMount={({ completed }) => {
-                                        if (completed) {
-                                            setTimeout(() => setShowSaleStripe(false), 0);
-                                        }
-                                    }}
-                                />
+                                <div className='countdown-timer'>
+
+                                    <Countdown
+                                        date={targetDate}
+                                        renderer={renderer}
+                                        onComplete={() => setShowSaleStripe(false)}
+                                        onMount={({ completed }) => {
+                                            if (completed) {
+                                                setTimeout(() => setShowSaleStripe(false), 0);
+                                            }
+                                        }}
+
+                                    />
+                                </div>
                             )
-                        } */}
+                        }
                     </div>
                 </div>
             </div>
