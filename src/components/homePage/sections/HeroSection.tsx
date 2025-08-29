@@ -100,7 +100,7 @@ const HeroSection: React.FC = () => {
         <div className="hidden w-full lg:flexCenter mt-12 md:mt-16">
           <Link href={'https://www.wrteam.in/freedom-sale?utm_source=website&utm_medium=strip&utm_campaign=freedom-sale'} title="Sale Banner" target="_blank">
             <Image
-              src={saleBanner}
+              src={heroImg}
               alt="Creative agency hero banner"
               width={1600}           // real intrinsic size
               height={900}

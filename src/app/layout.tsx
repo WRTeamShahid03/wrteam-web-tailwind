@@ -74,13 +74,13 @@ export default function RootLayout({
         {/* <!-- End Google Tag Manager --> */}
 
         {/* whatsapp widget  */}
-        {/* <Script
+        <Script
           type="text/javascript"
           src="https://d3mkw6s8thqya7.cloudfront.net/integration-plugin.js"
           id="aisensy-wa-widget"
           widget-id="aaajmc"
         >
-        </Script> */}
+        </Script>
 
       </head>
       <body

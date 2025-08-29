@@ -20,7 +20,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
     }, [])
 
     // Set target date to June 12th, 2025 at 7:30 PM
-    const targetDate = new Date(2025, 7, 26, 19, 30, 0);
+    const targetDate = new Date(2025, 7, 28, 19, 30, 0);
 
     // Renderer for the countdown
     const renderer = ({ days, hours, minutes, seconds, completed }: { days: number, hours: number, minutes: number, seconds: number, completed: boolean }) => {
@@ -82,7 +82,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                     <div className='max-1199:hidden'>
                         <Image src={saleImg} alt='sale' width={0} height={0} className='w-auto h-auto  z-[1] hidden lg:block' />
                     </div>
-                    <span className='max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[26px] font-extrabold !font-lexend textShadowSale lg:!saleText text-center sm:text-left' data-fill-text="Mid-Year Sale Extended — Last Chance!">Build App & Web at Half Price <span className='max-399:bg-transparent bg-white text-[#2B49DD] px-2 py-1 rounded-md'>50% OFF</span> Freedom SALE is LIVE</span>
+                    <span className='max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[26px] font-extrabold !font-lexend textShadowSale lg:!saleText text-center sm:text-left' data-fill-text="Mid-Year Sale Extended — Last Chance!">Freedom Sale: Extended 2 Days | <span className='max-399:bg-transparent bg-white text-[#2B49DD] px-2 py-1 rounded-md'>50% OFF</span></span>
                     <div className='flex flex-col sm:flex-row flex-wrap xl:flex-nowrap items-center gap-3 sm:gap-4'>
                         {/* <div className='flex items-center sm:flex-col'>
                             <span className='font-bold text-base sm:text-lg'>Limited</span>
