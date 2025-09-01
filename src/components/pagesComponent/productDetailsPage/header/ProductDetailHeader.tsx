@@ -27,7 +27,7 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
   const router = useParams();
   const navRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(0);
-  const [showSaleStripe, setShowSaleStripe] = useState(true)
+  const [showSaleStripe, setShowSaleStripe] = useState(false)
   const slug = router?.slug;
 
   const [whatsappUrl, setWhatsappUrl] = useState<string>(
