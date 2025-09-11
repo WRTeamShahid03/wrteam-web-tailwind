@@ -26,6 +26,7 @@ import upwork from '../../assets/images/footerLogos/Upwork.svg'
 import { FaStar } from "react-icons/fa";
 import FeedbackDialog from '../commonComponents/FeedbackDialog';
 import { FaAngleRight } from "react-icons/fa";
+import BuyMeCoffee from '../commonComponents/BuyMeCoffee';
 
 const NewFooter = () => {
 
@@ -229,7 +230,7 @@ const NewFooter = () => {
                 Share your thoughts with us to help improve your experience!
               </p>
             </div>
-              <FeedbackDialog />
+            <FeedbackDialog />
           </div>
 
           {/* Trust Badges */}
@@ -266,6 +267,22 @@ const NewFooter = () => {
                   </div>
                   <Image src={trustpilot} alt="Trustpilot" width={98} height={24} className='pl-1' />
                 </div>
+              </Link>
+              <Link
+                href="https://www.buymeacoffee.com/WRTeamITPRIVATELIMITED"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Buy Me A Coffee"
+                className='mt-2'
+              >
+                <Image
+                  src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+                  alt="Buy Me A Coffee"
+                  width={217}
+                  height={60}
+                  className="!h-[60px] !w-[217px]"
+                  priority={false}
+                />
               </Link>
             </div>
           </div>

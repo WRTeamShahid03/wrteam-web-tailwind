@@ -170,9 +170,9 @@ export default function SliderSection({
                     ) : (
                       <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-[160px] sm:max-w-[200px]">
                         {/* Use panel_link as a fallback if link is null */}
-                        {(card?.link || card?.panel_link) && (
+                        {(card?.panel_link || card?.link) && (
                           <a
-                            href={card?.link || card?.panel_link}
+                            href={card?.panel_link || card?.link}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-full py-2 sm:py-3 text-sm sm:text-base bg-gray-100 text-gray-800 font-medium rounded text-center hover:bg-white transition-colors duration-300"
@@ -212,9 +212,9 @@ export default function SliderSection({
                   ) : (
                     <div className="flexCenter w-full">
                       {/* Use panel_link as a fallback if link is null */}
-                      {(card?.link || card?.panel_link) && (
+                      {(card?.panel_link || card?.link) && (
                         <a
-                          href={card?.link || card?.panel_link}
+                          href={card?.panel_link || card?.link}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="w-full p-1 text-sm sm:text-base productPrimaryColor productDetailPrimaryBorder border bg-white font-medium rounded-[6px] text-center"
