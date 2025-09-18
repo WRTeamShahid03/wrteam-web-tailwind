@@ -26,7 +26,6 @@ import upwork from '../../assets/images/footerLogos/Upwork.svg'
 import { FaStar } from "react-icons/fa";
 import FeedbackDialog from '../commonComponents/FeedbackDialog';
 import { FaAngleRight } from "react-icons/fa";
-import BuyMeCoffee from '../commonComponents/BuyMeCoffee';
 
 const NewFooter = () => {
 
@@ -263,7 +262,7 @@ const NewFooter = () => {
                 <div className="flex items-center bg-[#2a2e35] rounded-[12px] p-3 gap-1">
                   <div className='flex items-center gap-2 border-r pr-2 border-[#ffffff3d]'>
                     <FaStar color='#f38844' />
-                    <span className="font-bold">4.2</span>
+                    <span className="font-bold">4.6</span>
                   </div>
                   <Image src={trustpilot} alt="Trustpilot" width={98} height={24} className='pl-1' />
                 </div>

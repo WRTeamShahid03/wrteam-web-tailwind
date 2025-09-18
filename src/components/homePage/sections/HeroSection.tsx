@@ -2,7 +2,7 @@
 import Image from "next/image";
 import teamImg from "../../../assets/images/homePage/teamImg.png";
 import { FaArrowRight } from "react-icons/fa";
-import heroImg from "../../../assets/images/homePage/heroSectImg.webp";
+import heroImg from "../../../assets/images/homePage/heroSectImg-1.png";
 import { PageTitle } from "@/components/HeadingComponent";
 import Link from "next/link";
 import saleBanner from "../../../assets/images/homePage/sale_banner.webp";
@@ -30,15 +30,17 @@ const HeroSection: React.FC = () => {
             </p>
 
             <div className="lg:hidden w-full flexCenter mt-8 md:mt-12">
-              <Image
-                src={heroImg}
-                alt="Creative agency hero banner"
-                width={1600}           // real intrinsic size
-                height={900}
-                priority               // 👈 critical for LCP
-                sizes="(max-width:768px) 100vw, 80vw"
-                className="w-full h-auto"
-              />
+              <Link href={'https://www.wrteam.ai/?utm_source=site&utm_medium=banner&utm_campaign=wrteamsite'} target="_blank">
+                <Image
+                  src={heroImg}
+                  alt="Creative agency hero banner"
+                  width={1600}           // real intrinsic size
+                  height={900}
+                  priority               // 👈 critical for LCP
+                  sizes="(max-width:768px) 100vw, 80vw"
+                  className="w-full h-auto rounded-2xl"
+                />
+              </Link>
             </div>
 
             {/* This div arranges button and creative minds section in one row */}
@@ -98,7 +100,7 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
         <div className="hidden w-full lg:flexCenter mt-12 md:mt-16">
-          <Link href={'https://www.wrteam.in/freedom-sale?utm_source=website&utm_medium=strip&utm_campaign=freedom-sale'} title="Sale Banner" target="_blank">
+          <Link href={'https://www.wrteam.ai/?utm_source=site&utm_medium=banner&utm_campaign=wrteamsite'} target="_blank">
             <Image
               src={heroImg}
               alt="Creative agency hero banner"
@@ -106,7 +108,7 @@ const HeroSection: React.FC = () => {
               height={900}
               priority               // 👈 critical for LCP
               sizes="(max-width:768px) 100vw, 80vw"
-              className="w-full h-auto"
+              className="w-full h-auto rounded-2xl"
             />
           </Link>
         </div>
