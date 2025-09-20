@@ -97,7 +97,7 @@ export default function RootLayout({
           ></iframe>
         </noscript>
         {/* <!-- End Google Tag Manager (noscript) --> */}
-        <StickyWhatsapp />
+        {/* <StickyWhatsapp /> */}
         <ClientBackgroundInitializer />
         <Toaster position="top-center" reverseOrder={false} />
         <ClientCleanup />
