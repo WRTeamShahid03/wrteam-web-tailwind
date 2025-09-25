@@ -68,7 +68,7 @@ const ProductsPage = ({
   const pathname = usePathname();
 
   const [products, setProducts] = useState<Products[]>(initialProducts);
-  const [isLoading, setIsLoading] = useState(initialProducts.length === 0);
+  const [isLoading, setIsLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [totalProducts, setTotalProducts] = useState(initialTotal);
   const [filter, setFilter] = useState<FilterOption>(
@@ -370,7 +370,7 @@ const ProductsPage = ({
                 </div>
               ))
             ) : (
-              <div className="col-span-full text-center py-10">
+              <div className="col-span-full text-center h-[300px] md:h-[400px] flexCenter">
                 <p>No products found. Please try again later.</p>
               </div>
             )}
