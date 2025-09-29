@@ -9,6 +9,7 @@ import { axiosClient } from "@/lib/api";
 import ProductDetailFooter from "./footer/ProductDetailFooter";
 import { HelpSection } from "@/types";
 import Loader from "@/components/commonComponents/Loader/Loader";
+import StickyBookDemo from "./StickyBookDemo";
 
 interface Props {
   slug: string;
@@ -127,7 +128,8 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
         />
       )}
 
-      <ProductDetailHeader icon_image={productDetails?.icon_image} codecanyonLink={codecanyonLink} layoutType={layoutType}/>
+      <ProductDetailHeader icon_image={productDetails?.icon_image} codecanyonLink={codecanyonLink} layoutType={layoutType} />
+      <StickyBookDemo />
       {productDetails &&
         (layoutType === 1 ? (
           <LayoutOne

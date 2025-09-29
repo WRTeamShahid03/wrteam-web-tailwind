@@ -162,14 +162,22 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
               </ul>
             </div>
 
-            <div className="hidden lg:block">
+            <div className="hidden lg:flex items-center gap-4">
               <Link
                 href={whatsappUrl}
                 title="Book Personalized Demo"
                 target="_blank"
-                className="productCommonBtn"
+                className="bg-transparent p-3 rounded-md flexCenter max-399:text-sm max-399:w-[130px] w-[151px] productDetailPrimaryColor font-semibold border-[1px] productDetailPrimaryBorder"
               >
-                Book Personalized Demo
+                Book Demo
+              </Link>
+              <Link
+                href={'#license'}
+                title="Buy Now"
+                target="_blank"
+                className="productPrimaryBg p-3 rounded-md flexCenter max-399:text-sm max-399:w-[130px] w-[131px] text-white font-semibold border-[1px] productDetailPrimaryBorder"
+              >
+                Buy Now
               </Link>
             </div>
 

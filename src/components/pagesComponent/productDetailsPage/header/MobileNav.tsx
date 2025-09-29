@@ -56,14 +56,22 @@ const MobileNav: React.FC<dataProps> = ({ whatsappUrl }) => {
               <MorePagesDropdown />
             </ul>
           </div>
-          <div className="mt-6">
+          <div className="mt-6 flex items-center flex-wrap gap-4">
             <Link
               href={whatsappUrl}
               title="Book Personalized Demo"
               target="_blank"
-              className="productCommonBtn"
+              className="bg-transparent p-2 rounded-md flexCenter max-399:text-sm w-[128px] productDetailPrimaryColor font-semibold border-[1px] productDetailPrimaryBorder"
             >
-              Book Personalized Demo
+              Book Demo
+            </Link>
+            <Link
+              href={'#license'}
+              title="Buy Now"
+              target="_blank"
+              className="productPrimaryBg p-2 rounded-md flexCenter max-399:text-sm w-[128px] text-white font-semibold border-[1px] productDetailPrimaryBorder"
+            >
+              Buy Now
             </Link>
           </div>
         </SheetContent>
