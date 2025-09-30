@@ -89,6 +89,9 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                             <span className='font-bold text-xs ml-2 sm:ml-0'>Time Only ⌛</span>
                         </div> */}
                         {/* <Image src={line} alt='line' width={0} height={0} className='w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] hidden sm:block' /> */}
+                        <div className='rive-animation-div'>
+
+                        </div>
                         <motion.div
                             className="flex !flex-row items-center gap-4"
                             animate={{

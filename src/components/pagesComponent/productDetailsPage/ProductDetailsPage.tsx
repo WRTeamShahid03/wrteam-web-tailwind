@@ -128,7 +128,7 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
         />
       )}
 
-      <ProductDetailHeader icon_image={productDetails?.icon_image} codecanyonLink={codecanyonLink} layoutType={layoutType} />
+      <ProductDetailHeader icon_image={productDetails?.icon_image} codecanyonLink={codecanyonLink} layoutType={layoutType}  checkoutUrl={checkoutUrl}/>
       <StickyBookDemo />
       {productDetails &&
         (layoutType === 1 ? (

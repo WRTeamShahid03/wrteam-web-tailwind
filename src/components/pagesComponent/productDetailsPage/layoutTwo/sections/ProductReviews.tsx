@@ -11,9 +11,10 @@ import { ProductTestimonial } from '@/types';
 
 interface ProductReviewsProps {
     testimonials: ProductTestimonial[];
+    productName: string;
 }
 
-const ProductReviews: React.FC<ProductReviewsProps> = ({ testimonials }): React.ReactNode => {
+const ProductReviews: React.FC<ProductReviewsProps> = ({ testimonials, productName }): React.ReactNode => {
 
     const sliderRef = useRef<SwiperRef | null>(null);
 
@@ -70,9 +71,9 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ testimonials }): React.
                         </div>
                     </div>
                     <div className='flexColCenter commonTextGap !items-start'>
-                        <h4 className='sectionTitle'>Our Product Has Received Rav Reviews.</h4>
+                        <h4 className='sectionTitle'>Our Product Has Received Rave Reviews.</h4>
                         <p className='sectionPara'>
-                            Discover what our customers are saying about their experience with our eClassify
+                            Discover what our customers are saying about their experience with our {productName}
                         </p>
                         <p className='text-black font-[600]'>Join thousands of satisfied users who trust us</p>
                         <div className='flex flex-col gap-3'>

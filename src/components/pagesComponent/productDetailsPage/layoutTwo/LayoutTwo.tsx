@@ -87,7 +87,7 @@ const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, exte
 
             {
                 productDetails?.product_testimonials &&
-                <ProductReviews testimonials={productDetails.product_testimonials} />
+                <ProductReviews testimonials={productDetails.product_testimonials} productName={productName} />
             }
 
             <PerfectPlan checkoutUrl={checkoutUrl} extendedLicensePrice={extendedLicensePrice} extendedLicenseLink={extendedLicenseLink} regularLicensePrice={regularLicensePrice} salePrice={salePrice} extendedLicenseSalePrice={extendedLicenseSalePrice} />

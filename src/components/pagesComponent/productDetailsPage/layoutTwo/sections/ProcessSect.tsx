@@ -39,7 +39,7 @@ const ProcessSect = () => {
       id: 1,
       img: icon2,
       title: "Install & Configure",
-      desc: `Once downloaded from the Envato Marketplace, reach out to us for assistance with configuration, or handle it yourself if you possess coding expertise.`,
+      desc: `Once downloaded from the Envato Marketplace, Refer the doc and follow the steps, or handle it yourself if you possess coding expertise.`,
     },
     {
       id: 2,

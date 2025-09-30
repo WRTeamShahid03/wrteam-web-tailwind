@@ -13,6 +13,7 @@ import HelpAndSupport from "../newUIProductDetailpageLayoutOne/HelpAndSupport";
 import ReadyToPower from "../newUIProductDetailpageLayoutOne/ReadyToPower";
 import { ProductDetails } from "@/types";
 import InnerPagesSect from "../layoutTwo/sections/InnerPagesSect";
+import SelectedProjects from "../SelectedProjects";
 
 interface LayoutOneProps {
   productDetails: ProductDetails;
@@ -133,7 +134,7 @@ const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extended
       {/* Pass testimonials data to ClientReview */}
       {
         productTestimonials &&
-        <ClientReview testimonials={productTestimonials} productName={productName}/>
+        <ClientReview testimonials={productTestimonials} productName={productName} />
       }
 
       <PerfectPlan layoutOne={true} checkoutUrl={checkoutUrl} extendedLicensePrice={extendedLicensePrice} extendedLicenseLink={extendedLicenseLink} regularLicensePrice={regularLicensePrice} salePrice={salePrice} extendedLicenseSalePrice={extendedLicenseSalePrice} />
@@ -143,12 +144,14 @@ const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extended
         <FaqSection faqs={productFaqs} />
       }
 
+      <SelectedProjects />
+
       {
         helpSection &&
         <HelpAndSupport helpSection={helpSection} />
       }
 
-      <ReadyToPower checkoutUrl={checkoutUrl} productName={productName}/>
+      <ReadyToPower checkoutUrl={checkoutUrl} productName={productName} />
     </div>
   );
 };

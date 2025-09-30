@@ -16,6 +16,7 @@ interface ProductDetailHeaderProps {
   icon_image?: string;
   codecanyonLink?: string;
   layoutType?: number;
+  checkoutUrl?: string;
 }
 
 // Define an interface for the whatsapp links
@@ -23,7 +24,7 @@ interface WhatsAppLinks {
   [key: string]: string;
 }
 
-const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: ProductDetailHeaderProps) => {
+const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType, checkoutUrl }: ProductDetailHeaderProps) => {
   const router = useParams();
   const navRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(0);
@@ -172,7 +173,7 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
                 Book Demo
               </Link>
               <Link
-                href={'#license'}
+                href={checkoutUrl || '#license'}
                 title="Buy Now"
                 target="_blank"
                 className="productPrimaryBg p-3 rounded-md flexCenter max-399:text-sm max-399:w-[130px] w-[131px] text-white font-semibold border-[1px] productDetailPrimaryBorder"
@@ -182,7 +183,7 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType }: Product
             </div>
 
             <div className="block lg:hidden">
-              <MobileNav whatsappUrl={whatsappUrl} />
+              <MobileNav whatsappUrl={whatsappUrl} checkoutUrl={checkoutUrl} />
             </div>
           </div>
         </div>

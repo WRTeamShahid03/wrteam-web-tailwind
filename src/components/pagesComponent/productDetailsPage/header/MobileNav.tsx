@@ -13,9 +13,10 @@ import MorePagesDropdown from "./dropdowns/MorePagesDropdown";
 
 interface dataProps {
   whatsappUrl: string;
+  checkoutUrl?: string;
 }
 
-const MobileNav: React.FC<dataProps> = ({ whatsappUrl }) => {
+const MobileNav: React.FC<dataProps> = ({ whatsappUrl, checkoutUrl }) => {
   return (
     <>
       <Sheet>
@@ -66,7 +67,7 @@ const MobileNav: React.FC<dataProps> = ({ whatsappUrl }) => {
               Book Demo
             </Link>
             <Link
-              href={'#license'}
+              href={checkoutUrl || '#license'}
               title="Buy Now"
               target="_blank"
               className="productPrimaryBg p-2 rounded-md flexCenter max-399:text-sm w-[128px] text-white font-semibold border-[1px] productDetailPrimaryBorder"
