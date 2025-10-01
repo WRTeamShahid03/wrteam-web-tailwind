@@ -33,19 +33,19 @@ const ProcessSect = () => {
       id: 0,
       img: icon1,
       title: "Purchase Script",
-      desc: `Choose ${productName} and complete transactions using available payment methods on Envato Marketplace`,
+      desc: `Buy ${productName} on Envato Marketplace with secure payment options.`,
     },
     {
       id: 1,
       img: icon2,
       title: "Install & Configure",
-      desc: `Once downloaded from the Envato Marketplace, Refer the doc and follow the steps, or handle it yourself if you possess coding expertise.`,
+      desc: `Download the code from Envato, set it up using the docs, and configure your app, web, and panel—with our team ready to assist if you're stuck`,
     },
     {
       id: 2,
       img: icon3,
       title: "Publish App",
-      desc: `Customize ${productName} with your branding and share with world.`,
+      desc: `Customize with your branding and launch to reach your audience worldwide.`,
     },
   ];
 
@@ -53,11 +53,10 @@ const ProcessSect = () => {
     <section className="container commonMT space-y-12 md:space-y-16 lg:space-y-20">
       <div className="flexColCenter commonTextGap md:w-[60%] lg:w-[55%] m-auto text-center">
         <h2 className="sectionTitle">
-          Process From Purchase to Publication in 3 Simple Steps
+          Launch Your Marketplace in 3 Easy Steps
         </h2>
         <p className="sectionPara">
-          Get the app from purchase to publication in 3 simple steps. It&apos;s
-          quick, easy, and hassle-free
+          Transform your app, web, and admin into a live marketplace—fast, simple, and with expert support.
         </p>
       </div>
       <div className="flexColCenter sm:grid sm:grid-cols-2 lg:grid-cols-3 relative gap-6">

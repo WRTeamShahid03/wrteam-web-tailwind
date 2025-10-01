@@ -13,7 +13,6 @@ import WorkChain from "./sections/WorkChain";
 import ExclusiveCounter from "./sections/ExclusiveCounter";
 import ClientReviewSection from "./sections/ClientReviewSection";
 import VideoTestimonials from "./sections/VideoTestimonials";
-import RiveAnimation from "../layout/RiveAnimation";
 
 const HomePage: React.FC = () => {
   useEffect(() => {
@@ -22,9 +21,6 @@ const HomePage: React.FC = () => {
 
   return (
     <Layout>
-      {/* <div className="flex justify-center items-center">
-        <RiveAnimation />
-      </div> */}
       <HeroSection />
       <ExclusiveCounter />
       <AboutWrteam />
