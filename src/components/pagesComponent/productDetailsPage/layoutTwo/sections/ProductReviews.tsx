@@ -71,7 +71,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ testimonials, productNa
                         </div>
                     </div>
                     <div className='flexColCenter commonTextGap !items-start'>
-                        <h4 className='sectionTitle'>Our Product Has Received Rave Reviews.</h4>
+                        <h4 className='sectionTitle'>Rave Reviews for {productName}—See Why Users Love It!</h4>
                         <p className='sectionPara'>
                             Discover what our customers are saying about their experience with our {productName}
                         </p>
