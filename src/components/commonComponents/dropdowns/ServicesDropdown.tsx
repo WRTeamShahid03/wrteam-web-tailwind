@@ -73,7 +73,7 @@ const ServiceDropdown: React.FC<dataProps> = ({ isMobileNav, servicesDropdown, s
 
             {servicesDropdown && (
                 <div
-                    className={`absolute max-1199:!top-[28px] ${showSaleStripe ? 'between-1400-1680:!top-[216px] between-1200-1399:!top-[198px] top-[225px]' : 'max-1680:top-[137px] top-[144px]'} left-0 right-0 mx-auto bg-white rounded-b-2xl shadow-md max-399:w-[250px] max-1199:w-[350px] between-1200-1399:w-[1100px] w-[1320px] max-1199:p-3 p-6 z-50`}
+                    className={`absolute max-1199:!top-[28px] ${showSaleStripe ? 'between-1400-1680:!top-[202px] between-1200-1399:!top-[202px] top-[210px]' : 'max-1680:top-[137px] top-[144px]'} left-0 right-0 mx-auto bg-white rounded-b-2xl shadow-md max-399:w-[250px] max-1199:w-[350px] between-1200-1399:w-[1100px] w-[1320px] max-1199:p-3 p-6 z-50`}
                     onMouseLeave={() => setServicesDropdown(false)}
                 >
                     <div className="flex flex-wrap">

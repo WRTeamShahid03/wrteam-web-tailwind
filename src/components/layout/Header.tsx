@@ -45,7 +45,7 @@ const Header = () => {
   const [morePagesDropdown, setMorePagesDropdown] = useState<boolean>(false);
   const [ourWorkDropdown, setOurWorkDropdown] = useState<boolean>(false);
 
-  const [showSaleStripe, setShowSaleStripe] = useState(false)
+  const [showSaleStripe, setShowSaleStripe] = useState(true)
 
   useEffect(() => {
     if (servicesDropdown) {
@@ -72,11 +72,11 @@ const Header = () => {
   return (
     <header className={`sticky top-0 w-full z-[20] border-b shadow-none ${scroll > (navRef.current?.offsetTop || 0) ? "stickky" : ""}`}>
       <RiveAnimation />
-      {
+      {/* {
         showSaleStripe && (
           <SaleStripe setShowSaleStripe={setShowSaleStripe} />
         )
-      }
+      } */}
       <TopBar />
       <div className='py-6 bg-white'>
         <div className="max-1680:!container 2xl:max-w-[1620px] mx-auto">

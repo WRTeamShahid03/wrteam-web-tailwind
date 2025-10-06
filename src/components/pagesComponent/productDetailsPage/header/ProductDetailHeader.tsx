@@ -11,6 +11,7 @@ import ServicesDropdown from "./dropdowns/ServicesDropdown";
 import MorePagesDropdown from "./dropdowns/MorePagesDropdown";
 import MobileNav from "./MobileNav";
 import SaleStripe from "@/components/layout/SaleStripe";
+import RiveAnimation from "@/components/layout/RiveAnimation";
 
 interface ProductDetailHeaderProps {
   icon_image?: string;
@@ -108,6 +109,7 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType, checkoutU
         : "!bg-none"
         }`}
     >
+      <RiveAnimation />
       {
         showSaleStripe && (
           <SaleStripe setShowSaleStripe={() => setShowSaleStripe} />
