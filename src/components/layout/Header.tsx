@@ -71,7 +71,10 @@ const Header = () => {
 
   return (
     <header className={`sticky top-0 w-full z-[20] border-b shadow-none ${scroll > (navRef.current?.offsetTop || 0) ? "stickky" : ""}`}>
-      <RiveAnimation />
+      {
+        showSaleStripe &&
+        <RiveAnimation setShowSaleStripe={setShowSaleStripe}/>
+      }
       {/* {
         showSaleStripe && (
           <SaleStripe setShowSaleStripe={setShowSaleStripe} />

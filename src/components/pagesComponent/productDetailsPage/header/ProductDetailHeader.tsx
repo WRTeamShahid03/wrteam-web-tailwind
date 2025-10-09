@@ -29,7 +29,7 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType, checkoutU
   const router = useParams();
   const navRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(0);
-  const [showSaleStripe, setShowSaleStripe] = useState(false)
+  const [showSaleStripe, setShowSaleStripe] = useState(true)
   const slug = router?.slug;
 
   const [whatsappUrl, setWhatsappUrl] = useState<string>(
@@ -109,12 +109,15 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType, checkoutU
         : "!bg-none"
         }`}
     >
-      <RiveAnimation />
       {
+        showSaleStripe &&
+        <RiveAnimation setShowSaleStripe={() => setShowSaleStripe} />
+      }
+      {/* {
         showSaleStripe && (
           <SaleStripe setShowSaleStripe={() => setShowSaleStripe} />
         )
-      }
+      } */}
       <div className="bg-white py-4">
         <div className="container">
           <div ref={navRef} className="flex items-center justify-between nav">

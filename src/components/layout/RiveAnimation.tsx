@@ -2,9 +2,18 @@
 
 import { useRive, useStateMachineInput } from "@rive-app/react-canvas";
 import Link from "next/link";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
+import Countdown from 'react-countdown'
 
-export default function RiveAnimation() {
+export default function RiveAnimation({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean) => void }) {
+
+  const [isClient, setIsClient] = useState<boolean>(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+
   // Optimized Rive configuration for performance
   const riveConfig = {
     src: '/diwali_sale_strip_components.riv',
@@ -83,6 +92,59 @@ export default function RiveAnimation() {
   });
 
 
+  // Set target date to June 12th, 2025 at 7:30 PM
+  const targetDate = new Date(2025, 9, 11, 18, 30, 0);
+
+  // Renderer for the countdown
+  const renderer = ({ days, hours, minutes, seconds, completed }: { days: number, hours: number, minutes: number, seconds: number, completed: boolean }) => {
+    if (completed) {
+      return null;
+    }
+
+    const formatNumber = (num: number) => String(num).padStart(2, '0');
+
+    return (
+      <div className="flex items-baseline justify-center gap-1 sm:gap-2 bg-[#3b076426] rounded-[6px] p-1 mt-2 lg:mt-0">
+        {days > 0 && (
+          <>
+            <div className='flex items-center'>
+              <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
+                <span className='text-base sm:text-lg font-bold'>{formatNumber(days)}</span>
+                <span className="text-[10px] sm:text-xs font-medium hidden sm:inline">Days</span>
+                <span className="text-[14px] sm:text-xs font-medium sm:hidden">D</span>
+              </div>
+            </div>
+            <span className="text-xs sm:text-sm font-bold text-[#FF6B21]">:</span>
+          </>
+        )}
+        <div className="flex flex-col items-center">
+          <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
+            <span className='text-base sm:text-lg font-bold'>{formatNumber(hours)}</span>
+            <span className="text-[10px] sm:text-xs font-medium hidden sm:inline">Hours</span>
+            <span className="text-[14px] sm:text-xs font-medium sm:hidden">H</span>
+          </div>
+        </div>
+        <span className="text-xs sm:text-sm font-bold text-[#FF6B21]">:</span>
+        <div className="flex flex-col items-center">
+          <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
+            <span className='text-base sm:text-lg font-bold'>{formatNumber(minutes)}</span>
+            <span className="text-[10px] sm:text-xs font-medium hidden sm:inline">Minutes</span>
+            <span className="text-[14px] sm:text-xs font-medium sm:hidden">M</span>
+          </div>
+        </div>
+        <span className="text-xs sm:text-sm font-bold text-[#FF6B21]">:</span>
+        <div className="flex flex-col items-center">
+          <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
+            <span className='text-base sm:text-lg font-bold'>{formatNumber(seconds)}</span>
+            <span className="text-[10px] sm:text-xs font-medium hidden sm:inline">Seconds</span>
+            <span className="text-[14px] sm:text-xs font-medium sm:hidden">S</span>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+
   return (
     <div className='w-full h-auto min-h-[70px] md:min-h-[54px] relative bg-gradient-to-r from-orange-50 to-yellow-50 overflow-hidden py-2 sm:py-2.5 md:py-2' style={{
       willChange: 'transform',
@@ -158,6 +220,23 @@ export default function RiveAnimation() {
           <div className="hidden xl:block w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 flex-shrink-0">
             <DiyoRive2 />
           </div>
+          {
+            isClient && (
+              <div className='countdown-timer'>
+
+                <Countdown
+                  date={targetDate}
+                  renderer={renderer}
+                  onComplete={() => setShowSaleStripe(false)}
+                  onMount={({ completed }) => {
+                    if (completed) {
+                      setTimeout(() => setShowSaleStripe(false), 0);
+                    }
+                  }}
+                />
+              </div>
+            )
+          }
         </div>
 
         {/* Right Section: Rocket + Buy Now Button */}
@@ -169,15 +248,15 @@ export default function RiveAnimation() {
           </div>
 
           {/* Buy Now Button with Hover States */}
-           <Link target="_blank" href={"http://www.wrteam.in/diwali-sale?utm_source=website&utm_medium=strip&utm_campaign=diwali-sale"}>
-             <div
-               className="w-20 h-6 sm:w-24 sm:h-8 md:w-28 md:h-9 lg:w-28 lg:h-9 xl:w-32 xl:h-10 flex-shrink-0 cursor-pointer transition-transform duration-150 ease-out"
-               onMouseEnter={handleMouseEnter}
-               onMouseLeave={handleMouseLeave}
-             >
-               <ButtonRive />
-             </div>
-           </Link>
+          <Link target="_blank" href={"http://www.wrteam.in/diwali-sale?utm_source=website&utm_medium=strip&utm_campaign=diwali-sale"}>
+            <div
+              className="w-20 h-6 sm:w-24 sm:h-8 md:w-28 md:h-9 lg:w-28 lg:h-9 xl:w-32 xl:h-10 flex-shrink-0 cursor-pointer transition-transform duration-150 ease-out"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <ButtonRive />
+            </div>
+          </Link>
         </div>
       </div>
 
