@@ -29,7 +29,7 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType, checkoutU
   const router = useParams();
   const navRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(0);
-  const [showSaleStripe, setShowSaleStripe] = useState(true)
+  const [showSaleStripe, setShowSaleStripe] = useState(false)
   const slug = router?.slug;
 
   const [whatsappUrl, setWhatsappUrl] = useState<string>(
@@ -109,10 +109,10 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType, checkoutU
         : "!bg-none"
         }`}
     >
-      {
+      {/* {
         showSaleStripe &&
         <RiveAnimation setShowSaleStripe={() => setShowSaleStripe} />
-      }
+      } */}
       {/* {
         showSaleStripe && (
           <SaleStripe setShowSaleStripe={() => setShowSaleStripe} />

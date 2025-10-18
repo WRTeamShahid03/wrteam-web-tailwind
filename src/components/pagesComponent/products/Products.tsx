@@ -187,6 +187,17 @@ const ProductsPage = ({
 
   const renderStars = (rating: number) => {
     const totalStars = 5;
+    
+    // Special case: if rating is greater than 4.5, show 5 full stars
+    if (rating > 4.5) {
+      const stars = [];
+      for (let i = 0; i < totalStars; i++) {
+        stars.push(<LiaStarSolid key={i} size={20} color="#FFA800" />);
+      }
+      return stars;
+    }
+    
+    // Regular logic for ratings 4.5 and below
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
 
