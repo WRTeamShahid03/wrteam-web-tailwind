@@ -4,12 +4,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Countdown from 'react-countdown'
 import line from '../../assets/images/stripeLine.svg'
-import circle1 from '../../assets/images/stripeRightImg.svg'
-import squareShape from '../../assets/images/stripeLeftImg.svg'
-import grabDeal from '../../assets/images/grapDealBg.png'
-import { RiArrowRightCircleFill } from "react-icons/ri";
 import saleImg from '../../assets/images/saleImg.png'
 import { motion } from 'framer-motion'
+import { RiAlarmFill } from "react-icons/ri";
+import saleIcon from '../../assets/images/cyber-sale-icons.svg'
 
 const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean) => void }) => {
 
@@ -73,25 +71,26 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
 
     return (
         <div className='bg-[#B037A6] text-white xl:h-[70px] flexCenter !font-lexend relative px-4 lg:px-0 overflow-hidden'>
-            {/* <div className='max-1199:hidden'>
-                <Image src={circle1} alt='sale' width={0} height={0} className='absolute top-0 left-0 w-auto h-auto  z-[1] hidden lg:block' />
-                <Image src={squareShape} alt='sale' width={0} height={0} className='absolute top-0 right-0 w-auto h-auto  z-[1] hidden lg:block' />
-            </div> */}
+
             <div className="mx-auto w-full">
                 <div className='flex flex-col sm:flex-row flex-wrap sm:flex-nowrap items-center justify-center gap-3 sm:gap-6 md:gap-10 relative z-[2] py-3 xl:py-0 w-full'>
-                    <div className='max-1199:hidden'>
-                        <Image src={saleImg} alt='sale' width={0} height={0} className='w-auto max-h-[50px]  z-[1] hidden lg:block' />
+                    <div className='flex items-center gap-8'>
+
+                        <div className='max-1199:hidden'>
+                            <Image src={saleImg} alt='sale' width={0} height={0} className='w-auto max-h-[50px]  z-[1] hidden lg:block' />
+                        </div>
+                        <Image src={saleIcon} alt='sale' width={0} height={0} className='w-auto max-h-[32px]  z-[1] hidden lg:block' />
+                        <span className='max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[26px] font-extrabold !font-archivo textShadowSale lg:!saleText text-center sm:text-left uppercase'>Best Deals of the Year</span>
+                        <Image src={saleIcon} alt='sale' width={0} height={0} className='w-auto max-h-[32px]  z-[1] hidden lg:block' />
+                        <span className='bg-[#86E54A] text-white max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[24px] font-extrabold py-1 w-[146px] h-[36px] flexCenter rounded-[10px] border-2 border-black textShadowSale2'>50% OFF</span>
                     </div>
-                    <span className='max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[26px] font-extrabold !font-lexend textShadowSale lg:!saleText text-center sm:text-left' data-fill-text="Mid-Year Sale Extended — Last Chance!">Cyber Sale Coming Soon - Starting  <span className='text-[#86E54A]'>19 Nov</span>
-                        {/* <span className='max-399:bg-transparent bg-white text-[#2B49DD] px-2 py-1 rounded-md'>50% OFF</span> */}
-                        </span>
                     <div className='flex flex-col sm:flex-row flex-wrap xl:flex-nowrap items-center gap-3 sm:gap-4'>
-                        {/* <div className='flex items-center sm:flex-col'>
-                            <span className='font-bold text-base sm:text-lg'>Limited</span>
-                            <span className='font-bold text-xs ml-2 sm:ml-0'>Time Only ⌛</span>
-                        </div> */}
-                        {/* <Image src={line} alt='line' width={0} height={0} className='w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] hidden sm:block' /> */}
-                        {/* <motion.div
+                        <div className='flex items-center max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[26px] font-extrabold !font-archivo gap-2'>
+                            <span className='font-black text-[#86E54A] text-3xl'><RiAlarmFill /></span>
+                            <span className='textShadowSale'>Limited Time Offer</span>
+                        </div>
+                        <Image src={line} alt='line' width={0} height={0} className='w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] hidden sm:block' />
+                        <motion.div
                             className="flex !flex-row items-center gap-4"
                             animate={{
                                 x: [10, -10, 10],
@@ -105,9 +104,9 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
 
                             <div className='relative'>
                                 <Link href={'https://www.wrteam.in/freedom-sale?utm_source=website&utm_medium=strip&utm_campaign=freedom-sale'} target='_blank'
-                                    className='p-2 md:py-3 sm:px-4 md:px-6 bg-white text-[#364ED2] rounded-full border-2 border-[#ffad3f] text-sm sm:text-base font-semibold !font-lexend whitespace-nowrap flexCenter gap-2'>Grab Deal <RiArrowRightCircleFill size={18} /></Link>
+                                    className='w-[210px] h-[37px] block flexCenter bg-[#86E54A] text-white rounded-[10px] border-2 border-black max-399:text-sm text-[16px] sm:text-[20px] font-extrabold !font-archivo whitespace-nowrap uppercase textShadowSale2'>Grab Deal Now</Link>
                             </div>
-                        </motion.div> */}
+                        </motion.div>
                         {/* {
                             isClient && (
                                 <div className='countdown-timer'>
