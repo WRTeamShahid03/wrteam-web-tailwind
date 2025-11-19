@@ -80,12 +80,13 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                             <Image src={saleImg} alt='sale' width={0} height={0} className='w-auto max-h-[50px]  z-[1] hidden lg:block' />
                         </div>
                         <Image src={saleIcon} alt='sale' width={0} height={0} className='w-auto max-h-[32px]  z-[1] hidden between-1800-2500:block' />
-                        <span className='max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[26px] font-extrabold !font-archivo textShadowSale lg:!saleText text-center sm:text-left uppercase'>Best Deals of the Year</span>
+                        <span className='hidden lg:flex max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[26px] font-extrabold !font-archivo textShadowSale lg:!saleText text-center sm:text-left uppercase'>Best Deals of the Year</span>
                         <Image src={saleIcon} alt='sale' width={0} height={0} className='w-auto max-h-[32px]  z-[1] hidden between-1800-2500:block' />
-                        <span className='bg-[#86E54A] w-max p-2 2xl:p-0 2xl:w-[146px] text-white max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold py-1 h-[36px] flexCenter rounded-[10px] border-2 border-black textShadowSale2'>50% OFF</span>
+                        <span className='!hidden lg:flex bg-[#86E54A] w-max p-2 2xl:p-0 2xl:w-[146px] text-white max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold py-1 h-[36px] flexCenter rounded-[10px] border-2 border-black textShadowSale2'>50% OFF</span>
+                        <span className='max-399:text-sm text-[16px] sm:text-[18px]  font-extrabold !font-archivo block lg:hidden'>Cyber Sale is Live - 50% OFF</span>
                     </div>
                     <div className='flex flex-col sm:flex-row flex-wrap lg:flex-nowrap items-center gap-3 sm:gap-4'>
-                        <div className='flex items-center max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[26px] font-extrabold !font-archivo gap-2'>
+                        <div className='hidden lg:flex items-center max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[26px] font-extrabold !font-archivo gap-2'>
                             <span className='font-black text-[#86E54A] text-3xl md:block hidden'><RiAlarmFill /></span>
                             <span className='textShadowSale'>Limited Time Offer</span>
                         </div>
@@ -104,7 +105,9 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
 
                             <div className='relative'>
                                 <Link href={'https://www.wrteam.in/freedom-sale?utm_source=website&utm_medium=strip&utm_campaign=freedom-sale'} target='_blank'
-                                    className='p-2 2xl:p-0 w-auto 2xl:w-[210px] h-[37px] block flexCenter bg-[#86E54A] text-white rounded-[10px] border-2 border-black max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold !font-archivo whitespace-nowrap uppercase textShadowSale2'>Grab Deal Now</Link>
+                                    className='p-2 2xl:p-0 w-auto 2xl:w-[210px] h-[37px] bg-[#86E54A] text-white rounded-[10px] border-2 border-black max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold !font-archivo whitespace-nowrap uppercase textShadowSale2 hidden sm:flexCenter'>Grab Deal Now</Link>
+                                <Link href={'https://www.wrteam.in/freedom-sale?utm_source=website&utm_medium=strip&utm_campaign=freedom-sale'} target='_blank'
+                                    className='p-2 2xl:p-0 w-auto 2xl:w-[210px] h-[37px] block flexCenter bg-[#86E54A] text-white rounded-[10px] border-2 border-black max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold !font-archivo whitespace-nowrap uppercase textShadowSale2 sm:hidden'>Grab Deal</Link>
                             </div>
                         </motion.div>
                         {/* {
