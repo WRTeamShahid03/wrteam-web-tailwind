@@ -88,7 +88,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                     <div className='flex flex-col sm:flex-row flex-wrap lg:flex-nowrap items-center gap-3 sm:gap-4'>
                         <div className='hidden lg:flex items-center max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[26px] font-extrabold !font-archivo gap-2'>
                             <span className='font-black text-[#86E54A] text-3xl md:block hidden'><RiAlarmFill /></span>
-                            <span className='textShadowSale'>Limited Time Offer</span>
+                            <span className='textShadowSale'>Limited Time Offerrr</span>
                         </div>
                         <Image src={line} alt='line' width={0} height={0} className='w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] hidden between-1800-2500:block' />
                         <motion.div
