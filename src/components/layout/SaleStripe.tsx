@@ -73,23 +73,23 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
         <div className='bg-[#B037A6] text-white xl:h-[70px] flexCenter !font-lexend relative px-4 lg:px-0 overflow-hidden'>
 
             <div className="mx-auto w-full">
-                <div className='flex flex-col sm:flex-row flex-wrap sm:flex-nowrap items-center justify-center gap-3 sm:gap-6 md:gap-10 relative z-[2] py-3 xl:py-0 w-full'>
-                    <div className='flex items-center gap-8'>
+                <div className='flex items-center justify-center gap-3 sm:gap-6 lg :gap-10 relative z-[2] py-3 xl:py-0 w-full'>
+                    <div className='flex items-center gap-4 lg:gap-6 2xl:gap-8 flex-wrap 2xl:flex-nowrap'>
 
                         <div className='max-1199:hidden'>
                             <Image src={saleImg} alt='sale' width={0} height={0} className='w-auto max-h-[50px]  z-[1] hidden lg:block' />
                         </div>
-                        <Image src={saleIcon} alt='sale' width={0} height={0} className='w-auto max-h-[32px]  z-[1] hidden lg:block' />
+                        <Image src={saleIcon} alt='sale' width={0} height={0} className='w-auto max-h-[32px]  z-[1] hidden between-1800-2500:block' />
                         <span className='max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[26px] font-extrabold !font-archivo textShadowSale lg:!saleText text-center sm:text-left uppercase'>Best Deals of the Year</span>
-                        <Image src={saleIcon} alt='sale' width={0} height={0} className='w-auto max-h-[32px]  z-[1] hidden lg:block' />
-                        <span className='bg-[#86E54A] text-white max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[24px] font-extrabold py-1 w-[146px] h-[36px] flexCenter rounded-[10px] border-2 border-black textShadowSale2'>50% OFF</span>
+                        <Image src={saleIcon} alt='sale' width={0} height={0} className='w-auto max-h-[32px]  z-[1] hidden between-1800-2500:block' />
+                        <span className='bg-[#86E54A] w-max p-2 2xl:p-0 2xl:w-[146px] text-white max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold py-1 h-[36px] flexCenter rounded-[10px] border-2 border-black textShadowSale2'>50% OFF</span>
                     </div>
-                    <div className='flex flex-col sm:flex-row flex-wrap xl:flex-nowrap items-center gap-3 sm:gap-4'>
+                    <div className='flex flex-col sm:flex-row flex-wrap lg:flex-nowrap items-center gap-3 sm:gap-4'>
                         <div className='flex items-center max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[26px] font-extrabold !font-archivo gap-2'>
-                            <span className='font-black text-[#86E54A] text-3xl'><RiAlarmFill /></span>
+                            <span className='font-black text-[#86E54A] text-3xl md:block hidden'><RiAlarmFill /></span>
                             <span className='textShadowSale'>Limited Time Offer</span>
                         </div>
-                        <Image src={line} alt='line' width={0} height={0} className='w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] hidden sm:block' />
+                        <Image src={line} alt='line' width={0} height={0} className='w-[80px] sm:w-[100px] h-[80px] sm:h-[100px] hidden between-1800-2500:block' />
                         <motion.div
                             className="flex !flex-row items-center gap-4"
                             animate={{
@@ -104,7 +104,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
 
                             <div className='relative'>
                                 <Link href={'https://www.wrteam.in/freedom-sale?utm_source=website&utm_medium=strip&utm_campaign=freedom-sale'} target='_blank'
-                                    className='w-[210px] h-[37px] block flexCenter bg-[#86E54A] text-white rounded-[10px] border-2 border-black max-399:text-sm text-[16px] sm:text-[20px] font-extrabold !font-archivo whitespace-nowrap uppercase textShadowSale2'>Grab Deal Now</Link>
+                                    className='p-2 2xl:p-0 w-auto 2xl:w-[210px] h-[37px] block flexCenter bg-[#86E54A] text-white rounded-[10px] border-2 border-black max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold !font-archivo whitespace-nowrap uppercase textShadowSale2'>Grab Deal Now</Link>
                             </div>
                         </motion.div>
                         {/* {
