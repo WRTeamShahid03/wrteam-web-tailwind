@@ -1139,11 +1139,25 @@ textarea{
   .countdown-timer div div{
     flex-direction: column !important;
   }
-  .textShadowSale{
-    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.8), 4px 4px 2px rgba(0, 0, 0, 0.5);
-  }
   
-  .textShadowSale2{
-    text-shadow: 1px 1px 16px rgba(0, 0, 0, 0.8), 4px 4px 2px rgba(0, 0, 0, 0.5);
+}
+
+.textShadowSale {
+  text-transform: uppercase;
+  color: white;
+  line-height: 1.1;
+  
+  /* Black text stroke/border */
+  -webkit-text-stroke: 6px black;
+  text-stroke: 6px black;
+  paint-order: stroke fill;
+  font-family: 'Archivo', sans-serif !important;
+}
+
+/* Make it responsive */
+@media (max-width: 768px) {
+  .textShadowSale {
+      -webkit-text-stroke: 4px black;
+      text-stroke: 4px black;
   }
 }
