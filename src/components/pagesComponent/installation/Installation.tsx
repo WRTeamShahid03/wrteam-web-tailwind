@@ -62,8 +62,8 @@ const Installation: React.FC = () => {
                 // "Third-party API Integration",
             ],
             // New INR values
-            cutPriceINR: 20990,
-            priceINR: 16499,
+            cutPriceINR: 25990,
+            priceINR: 19499,
         },
         {
             id: 1,
@@ -85,8 +85,8 @@ const Installation: React.FC = () => {
                 "Live over PlayStore OR App Store",
             ],
             excludedServices: ["Live Website on Server"],
-            cutPriceINR: 40990,
-            priceINR: 34499,
+            cutPriceINR: 45990,
+            priceINR: 39499,
         },
         {
             id: 2,
@@ -96,7 +96,6 @@ const Installation: React.FC = () => {
             cutPrice: 998,
             price: 599,
             services: [
-                "Logo Design (1 - Logo Concept)",
                 "Change App Name (Re-Brand)",
                 "Package Name",
                 "Notification Configuration",
@@ -110,7 +109,7 @@ const Installation: React.FC = () => {
             ],
             excludedServices: ["Live Website on Server"],
             cutPriceINR: 80990,
-            priceINR: 49499,
+            priceINR: 54499,
         },
         {
             id: 3,
@@ -120,7 +119,6 @@ const Installation: React.FC = () => {
             cutPrice: 1297,
             price: 699,
             services: [
-                "Logo Design (3 - Logo Concepts, 1 Revision)",
                 "Change App Name (Re-Brand)",
                 "Package Name",
                 "Notification Configuration",
@@ -134,8 +132,8 @@ const Installation: React.FC = () => {
                 "Live over PlayStore AND App Store",
             ],
             excludedServices: [],
-            cutPriceINR: 99990,
-            priceINR: 55499,
+            cutPriceINR: 90990,
+            priceINR: 59999,
         },
     ];
 
@@ -229,7 +227,7 @@ const Installation: React.FC = () => {
                                 </div>
                                 {
                                     currency === 'INR' &&
-                                    <span className='text-sm font-medium text-center'>(excl. GST)</span>
+                                    <span className='text-sm font-medium text-center'>(Incl. GST)</span>
                                 }
                             </div>
 

@@ -82,7 +82,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                         <Image src={saleIcon} alt='sale' width={0} height={0} className='w-auto max-h-[32px]  z-[1] hidden between-1800-2500:block' />
                         <span className='hidden lg:flex max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[26px] font-extrabold  textShadowSale lg:!saleText text-center sm:text-left uppercase'>Best Deals of the Year</span>
                         <Image src={saleIcon} alt='sale' width={0} height={0} className='w-auto max-h-[32px]  z-[1] hidden between-1800-2500:block' />
-                        <span className='hidden lg:flexCenter bg-[#86E54A] w-max p-2 2xl:p-0 2xl:w-[146px] text-white max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold py-1 h-[36px] rounded-[10px] border-2 border-black  textShadowSale'>50% OFF</span>
+                        <span className='hidden lg:flexCenter bg-[#86E54A] w-max p-2 2xl:p-0 2xl:w-[146px] text-white max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold py-1 h-[36px] rounded-[10px] textShadowSale neo-button'>50% OFF</span>
                         <span className='max-399:text-sm text-[16px] sm:text-[18px]  font-extrabold  block lg:hidden textShadowSale'>Cyber Sale is Live - 50% OFF</span>
                     </div>
                     <div className='flex flex-col sm:flex-row flex-wrap lg:flex-nowrap items-center gap-3 sm:gap-4'>
@@ -104,10 +104,10 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                         >
 
                             <div className='relative'>
-                                <Link href={'https://www.wrteam.in/freedom-sale?utm_source=website&utm_medium=strip&utm_campaign=freedom-sale'} target='_blank'
-                                    className='p-2 2xl:p-0 w-auto 2xl:w-[210px] h-[37px] bg-[#86E54A] text-white rounded-[10px] border-2 border-black max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold  whitespace-nowrap uppercase textShadowSale hidden sm:flexCenter'>Grab Deal Now</Link>
-                                <Link href={'https://www.wrteam.in/freedom-sale?utm_source=website&utm_medium=strip&utm_campaign=freedom-sale'} target='_blank'
-                                    className='p-2 2xl:p-0 w-auto 2xl:w-[210px] h-[37px] block flexCenter bg-[#86E54A] text-white rounded-[10px] border-2 border-black max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold  whitespace-nowrap uppercase textShadowSale sm:hidden'>Grab Deal</Link>
+                                <Link href={'https://www.wrteam.in/cyber-sale?utm_source=website&utm_medium=strip&utm_campaign=cyber-sale'} target='_blank'
+                                    className='p-2 2xl:p-0 w-auto 2xl:w-[210px] h-[37px] bg-[#86E54A] text-white rounded-[10px] max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold  whitespace-nowrap uppercase textShadowSale hidden sm:flexCenter neo-button'>Grab Deal Now</Link>
+                                <Link href={'https://www.wrteam.in/cyber-sale?utm_source=website&utm_medium=strip&utm_campaign=cyber-sale'} target='_blank'
+                                    className='p-2 2xl:p-0 w-auto 2xl:w-[210px] h-[37px] block flexCenter bg-[#86E54A] text-white rounded-[10px] max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold  whitespace-nowrap uppercase textShadowSale sm:hidden neo-button'>Grab Deal</Link>
                             </div>
                         </motion.div>
                         {/* {

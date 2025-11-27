@@ -1148,16 +1148,18 @@ textarea{
   line-height: 1.1;
   
   /* Black text stroke/border */
-  -webkit-text-stroke: 6px black;
-  text-stroke: 6px black;
+  -webkit-text-stroke: 5px black;
+  text-stroke: 5px black;
   paint-order: stroke fill;
   font-family: 'Archivo', sans-serif !important;
+  text-shadow:
+  -2px 5px 0 black,  /* Top-left */
+   2px 4px 0 black,  /* Top-right */
+  0px  5px 0 black,  /* Bottom-left */
+   0px  4px 0 black
 }
 
-/* Make it responsive */
-@media (max-width: 768px) {
-  .textShadowSale {
-      -webkit-text-stroke: 4px black;
-      text-stroke: 4px black;
-  }
+.neo-button {
+  border: 1px solid black;
+  box-shadow: 0px 3px 0px 0px #231F20;
 }
