@@ -55,7 +55,7 @@ export default function ProcessPurchase({ productName }: { productName: string }
       id: 1,
       icon: icon2,
       title: 'Download & Configure Description',
-      desc: 'Once downloaded from the Envato Marketplace, reach out to us for assistance with configuration'
+      desc: 'Download the script and follow our step-by-step documentation for a quick setup.'
 
     },
     {

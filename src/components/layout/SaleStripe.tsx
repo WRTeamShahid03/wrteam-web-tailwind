@@ -31,7 +31,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
 
 
         return (
-            <div className="flex  items-baseline justify-center gap-1 sm:gap-2 p-1 mt-2 lg:mt-0 rounded-[10px] bg-[#FFF5ED] neo-button">
+            <div className="flex  items-baseline justify-center gap-1 sm:gap-2 p-1 mt-2 lg:mt-0 rounded-[10px] bg-[#FFF5ED] [box-shadow:0px_3px_0px_0px_#231F20]">
                 {/* {days > 0 && (
                     <>
                         <div className='flex items-center'>
@@ -45,7 +45,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                     </>
                 )} */}
                 <div className="flex flex-col items-center">
-                    <div className="text-black font-black text-xs sm:text-sm rounded-md flex items-center justify-center gap-1">
+                    <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
                         <div className='flex flex-col items-center gap-0'>
                             <span className='text-base sm:text-lg font-bold text-[#212121]'>{formatNumber(totalHours)}</span>
                             <span className="text-[10px] sm:text-xs font-medium hidden sm:inline text-[#212121]">Hours</span>
@@ -55,7 +55,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                 </div>
                 <span className="text-xs sm:text-sm font-bold text-[#231F20]">:</span>
                 <div className="flex flex-col items-center">
-                    <div className="text-black font-black text-xs sm:text-sm rounded-md flex items-center justify-center gap-1">
+                    <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
                         <div className='flex flex-col items-center gap-0'>
                             <span className='text-base sm:text-lg font-bold text-[#212121]'>{formatNumber(minutes)}</span>
                             <span className="text-[10px] sm:text-xs font-medium hidden sm:inline text-[#212121]">Minutes</span>
@@ -65,7 +65,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                 </div>
                 <span className="text-xs sm:text-sm font-bold text-[#231F20]">:</span>
                 <div className="flex flex-col items-center">
-                    <div className="text-black font-black text-xs sm:text-sm rounded-md flex items-center justify-center gap-1">
+                    <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
                         <div className='flex flex-col items-center gap-0'>
                         <span className='text-base sm:text-lg font-bold text-[#212121]'>{formatNumber(seconds)}</span>
                         <span className="text-[10px] sm:text-xs font-medium hidden sm:inline text-[#212121]">Seconds</span>

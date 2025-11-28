@@ -17,26 +17,26 @@ export default function ClientReview({ testimonials, productName }: { testimonia
 
   const breakpoints = {
     0: {
-        slidesPerView: 1.2,
-        // spaceBetween: 40
+      slidesPerView: 1.2,
+      // spaceBetween: 40
     },
     576: {
-        slidesPerView: 1.3,
-        // spaceBetween: 40
+      slidesPerView: 1.3,
+      // spaceBetween: 40
     },
     768: {
-        slidesPerView: 1.3,
+      slidesPerView: 1.3,
 
     },
     992: {
-        slidesPerView: 2.2,
+      slidesPerView: 2.2,
 
     },
     1400: {
-        slidesPerView: 3,
+      slidesPerView: 3,
 
     }
-};
+  };
 
   return (
     <div className="w-full py-12 productSecondaryBg text-white">
@@ -44,7 +44,7 @@ export default function ClientReview({ testimonials, productName }: { testimonia
         {/* Section Title */}
         <div className="text-center mb-12">
           <h4 className="sectionTitle !font-bold mb-2">
-            What Customers Have to say about
+            What Our Customers Say About
           </h4>
           <h5 className="text-3xl font-bold">{productName}</h5>
         </div>
@@ -94,7 +94,7 @@ export default function ClientReview({ testimonials, productName }: { testimonia
                   {/* Green Icon */}
                   <div className="absolute -bottom-6 left-8 z-10">
                     <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-[0_2px_8px_0_rgba(99,99,99,.2)]">
-                      <Image src={envatoIcon} height={36} width={30} alt="envatoIcon"/>
+                      <Image src={envatoIcon} height={36} width={30} alt="envatoIcon" />
                     </div>
                   </div>
                 </div>

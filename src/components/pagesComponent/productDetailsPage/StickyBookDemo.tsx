@@ -47,7 +47,7 @@ const StickyBookDemo = () => {
                 target="_blank"
                 className="productPrimaryBg p-2 sm:p-3 rounded-md flexCenter max-399:text-sm max-399:w-[130px] w-[151px] text-white font-semibold border-[1px] productDetailPrimaryBorder"
             >
-                Book Demo
+                Book Now
             </Link>
         </div>
     )
