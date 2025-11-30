@@ -129,9 +129,9 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                         >
 
                             <div className='relative'>
-                                <Link href={'https://www.wrteam.in/freedom-sale?utm_source=website&utm_medium=strip&utm_campaign=freedom-sale'} target='_blank'
+                                <Link href={'https://www.wrteam.in/cyber-sale?utm_source=website&utm_medium=strip&utm_campaign=cyber-sale'} target='_blank'
                                     className='p-2 2xl:p-0 w-auto 2xl:w-[210px] h-[37px] bg-[#86E54A] text-white rounded-[10px] border-2 border-black max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold  whitespace-nowrap uppercase textShadowSale hidden sm:flexCenter neo-button'>Grab Deal Now</Link>
-                                <Link href={'https://www.wrteam.in/freedom-sale?utm_source=website&utm_medium=strip&utm_campaign=freedom-sale'} target='_blank'
+                                <Link href={'https://www.wrteam.in/cyber-sale?utm_source=website&utm_medium=strip&utm_campaign=cyber-sale'} target='_blank'
                                     className='p-2 2xl:p-0 w-auto 2xl:w-[210px] h-[37px] block flexCenter bg-[#86E54A] text-white rounded-[10px] border-2 border-black max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold  whitespace-nowrap uppercase textShadowSale sm:hidden neo-button'>Grab Deal</Link>
                             </div>
                         </motion.div>
