@@ -18,7 +18,7 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
     }, [])
 
     // Set target date to June 12th, 2025 at 7:30 PM    
-    const targetDate = new Date(2025, 10, 29, 18, 30, 0);
+    const targetDate = new Date(2025, 11, 2, 18, 30, 0);
 
     // Renderer for the countdown
     const renderer = ({ days, hours, minutes, seconds, completed }: { days: number, hours: number, minutes: number, seconds: number, completed: boolean }) => {
