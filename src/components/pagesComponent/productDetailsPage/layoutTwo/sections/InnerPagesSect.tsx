@@ -104,7 +104,7 @@ const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description,
                                             {
                                                 detail.short_description?.length > 196 ?
                                                     <>
-                                                        `${detail?.short_description?.slice(0, 196)}...
+                                                        {detail?.short_description?.slice(0, 196)}...
                                                         {
                                                             detail?.short_description.length > 196 &&
                                                             <ReadMoreModal desc={detail?.short_description} />
@@ -118,7 +118,7 @@ const InnerPagesSect: React.FC<PanelWiseFeatureSection> = ({ title, description,
                                             {
                                                 detail.short_description?.length > 100 ?
                                                     <>
-                                                        `${detail?.short_description?.slice(0, 100)}...
+                                                        {detail?.short_description?.slice(0, 100)}...
                                                         {
                                                             detail?.short_description.length > 100 &&
                                                             <ReadMoreModal desc={detail?.short_description} />

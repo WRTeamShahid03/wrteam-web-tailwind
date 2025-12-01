@@ -144,7 +144,7 @@ const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extended
         <FaqSection faqs={productFaqs} />
       }
 
-      <SelectedProjects />
+      {/* <SelectedProjects /> */}
 
       {
         helpSection &&

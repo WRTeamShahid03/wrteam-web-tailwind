@@ -49,7 +49,7 @@ const InfoSect: React.FC = () => {
             Why Purchase WRTeam&apos;s Source Codes?
           </h6>
           <p className="sectionPara">
-            We are an elite author trusted by 18,000+ customers, we provide
+            We are an elite author trusted by {process.env.NEXT_PUBLIC_SALE_COUNTS}+ customers, we provide
             easily customizable codes with lifetime free updates.
           </p>
         </div>

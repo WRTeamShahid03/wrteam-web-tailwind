@@ -123,7 +123,7 @@ export default function SliderSection({
                       alt={card?.name}
                       width={40}
                       height={40}
-                      className="w-8 h-8 sm:w-10 sm:h-10 transition-all duration-300 delay-100 lg:group-hover:opacity-0"
+                      className="w-12 h-12 sm:w-16 sm:h-16 transition-all duration-300 delay-100 lg:group-hover:opacity-0"
                     />
                   ) : (
                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-md flex items-center justify-center group-hover:bg-white/20 transition-all duration-300 delay-100 lg:group-hover:opacity-0">
