@@ -82,6 +82,13 @@ export default function RootLayout({
         >
         </Script>
 
+        {/* Calendly inline widget script */}
+        <Script
+          type="text/javascript"
+          src="https://assets.calendly.com/assets/external/widget.js"
+          async
+        />
+
       </head>
       <body
         className={`${montserrat.variable} ${poppins.variable} ${roboto.variable} ${archivo.variable} font-sans`}
@@ -98,6 +105,7 @@ export default function RootLayout({
         </noscript>
         {/* <!-- End Google Tag Manager (noscript) --> */}
         {/* <StickyWhatsapp /> */}
+        
         <ClientBackgroundInitializer />
         <Toaster position="top-center" reverseOrder={false} />
         <ClientCleanup />

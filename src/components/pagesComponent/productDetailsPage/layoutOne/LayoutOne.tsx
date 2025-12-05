@@ -14,6 +14,7 @@ import ReadyToPower from "../newUIProductDetailpageLayoutOne/ReadyToPower";
 import { ProductDetails } from "@/types";
 import InnerPagesSect from "../layoutTwo/sections/InnerPagesSect";
 import SelectedProjects from "../SelectedProjects";
+import PortfolioProducts from "../PortfolioProducts";
 
 interface LayoutOneProps {
   productDetails: ProductDetails;
@@ -24,9 +25,10 @@ interface LayoutOneProps {
   salePrice?: number;
   extendedLicenseSalePrice?: number;
   productName: string;
+  slug: string;
 }
 
-const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, salePrice, extendedLicenseSalePrice, productName }: LayoutOneProps) => {
+const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, salePrice, extendedLicenseSalePrice, productName, slug }: LayoutOneProps) => {
 
   const productDescription = productDetails.product_description[0];
   const productTestimonial = productDetails.product_testimonials;
@@ -139,6 +141,9 @@ const LayoutOne = ({ productDetails, checkoutUrl, extendedLicensePrice, extended
 
       <PerfectPlan layoutOne={true} checkoutUrl={checkoutUrl} extendedLicensePrice={extendedLicensePrice} extendedLicenseLink={extendedLicenseLink} regularLicensePrice={regularLicensePrice} salePrice={salePrice} extendedLicenseSalePrice={extendedLicenseSalePrice} />
 
+
+      {/* Portfolio Products Section */}
+      <PortfolioProducts slug={slug} />
       {
         productFaqs &&
         <FaqSection faqs={productFaqs} />

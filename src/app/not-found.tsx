@@ -23,7 +23,8 @@ const Custom404 = () => {
     '/freedom-sale',
     '/extended-license-sale-25?utm_source=website&utm_medium=strip&utm_campaign=extended_lice_sale_25',
     '/mid-year-sale',
-    '/diwali-sale'
+    '/diwali-sale',
+    '/cyber-sale'
   ];
 
   useEffect(() => {

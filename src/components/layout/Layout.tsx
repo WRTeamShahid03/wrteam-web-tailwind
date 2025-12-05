@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Header from "./Header";
 import Footer from "./Footer";
+import StickyBookMeeting from "../commonComponents/StickyBookMeeting";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 
@@ -23,6 +24,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <Header />
       {children}
       <Footer />
+      {/* {pathname !== "/book-a-meeting" && (
+        <StickyBookMeeting />
+      )} */}
     </div>
   );
 };

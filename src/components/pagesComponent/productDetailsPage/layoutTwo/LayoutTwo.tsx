@@ -16,6 +16,7 @@ import ReadyToPower from '../newUIProductDetailpageLayoutOne/ReadyToPower'
 import FaqSection from '../newUIProductDetailpageLayoutOne/FaqSection'
 import HelpAndSupport from '../newUIProductDetailpageLayoutOne/HelpAndSupport'
 import ClientProductReviews from './ClientProductReviews'
+import PortfolioProducts from '../PortfolioProducts'
 
 
 interface LayoutTwoProps {
@@ -28,8 +29,9 @@ interface LayoutTwoProps {
     salePrice?: number;
     extendedLicenseSalePrice?: number;
     productName: string;
+    slug: string;
 }
-const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, salePrice, extendedLicenseSalePrice, productName }) => {
+const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, extendedLicensePrice, extendedLicenseLink, regularLicensePrice, salePrice, extendedLicenseSalePrice, productName, slug }) => {
 
     const productDescription = productDetails?.product_description[0]
     const layoutOneDetails = productDescription
@@ -103,6 +105,9 @@ const LayoutTwo: React.FC<LayoutTwoProps> = ({ productDetails, checkoutUrl, exte
             }
 
             <ReadyToPower checkoutUrl={checkoutUrl} productName={productName} />
+
+            {/* Portfolio Products Section */}
+            <PortfolioProducts slug={slug} />
 
             {/* <ClientProductReviews /> */}
 

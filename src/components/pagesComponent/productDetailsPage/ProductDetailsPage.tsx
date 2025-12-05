@@ -141,6 +141,7 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
             salePrice={salePrice}
             extendedLicenseSalePrice={extendedLicenseSalePrice}
             productName={productName}
+            slug={slug}
           />
         ) : (
           <LayoutTwo
@@ -153,6 +154,7 @@ const ProductDetailsPage = ({ slug, productData }: Props) => {
             regularLicensePrice={regularLicensePrice}
             salePrice={salePrice}
             extendedLicenseSalePrice={extendedLicenseSalePrice}
+            slug={slug}
           />
         ))}
       <ProductDetailFooter

@@ -12,6 +12,7 @@ import MorePagesDropdown from "./dropdowns/MorePagesDropdown";
 import MobileNav from "./MobileNav";
 import SaleStripe from "@/components/layout/SaleStripe";
 import RiveAnimation from "@/components/layout/RiveAnimation";
+import { parseSaleDate, isSaleDatePassed } from "@/lib/utils";
 
 interface ProductDetailHeaderProps {
   icon_image?: string;
@@ -29,8 +30,18 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType, checkoutU
   const router = useParams();
   const navRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(0);
-  const [showSaleStripe, setShowSaleStripe] = useState(true)
   const slug = router?.slug;
+
+  // Get target date from environment variable and check if sale has ended
+  // Format: "02/12/2025-6:30PM" (DD/MM/YYYY-HH:MMAM or DD/MM/YYYY-HH:MMPM)
+  const saleDateString = process.env.NEXT_PUBLIC_SALE_END_DATE;
+  const targetDate = parseSaleDate(saleDateString);
+  
+  // Initialize showSaleStripe based on whether the sale date has passed
+  const [showSaleStripe, setShowSaleStripe] = useState(() => {
+    // Only show if target date exists and hasn't passed yet
+    return targetDate !== null && !isSaleDatePassed(targetDate);
+  });
 
   const [whatsappUrl, setWhatsappUrl] = useState<string>(
     "/https://cbl.link/q8Zb3AN"
@@ -52,6 +63,49 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType, checkoutU
   const handleScroll = () => {
     setScroll(window.scrollY);
   };
+
+  // Check periodically if the sale date has passed and hide the stripe automatically
+  useEffect(() => {
+    // If no target date is set, don't show the stripe
+    if (!targetDate) {
+      setShowSaleStripe(false);
+      return;
+    }
+
+    // Check immediately if sale has passed
+    if (isSaleDatePassed(targetDate)) {
+      setShowSaleStripe(false);
+      return;
+    }
+
+    // Calculate time remaining until target date
+    const now = new Date();
+    const timeRemaining = targetDate.getTime() - now.getTime();
+
+    // If time has already passed, hide immediately
+    if (timeRemaining <= 0) {
+      setShowSaleStripe(false);
+      return;
+    }
+
+    // Set a timeout to hide the stripe when the target time is reached
+    const timeoutId = setTimeout(() => {
+      setShowSaleStripe(false);
+    }, timeRemaining);
+
+    // Also check every minute to ensure we catch any edge cases
+    const intervalId = setInterval(() => {
+      if (isSaleDatePassed(targetDate)) {
+        setShowSaleStripe(false);
+      }
+    }, 60000); // Check every minute
+
+    // Cleanup function to clear timeout and interval
+    return () => {
+      clearTimeout(timeoutId);
+      clearInterval(intervalId);
+    };
+  }, [targetDate]);
 
   useEffect(() => {
     // Wait for the DOM to load completely
@@ -111,11 +165,11 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType, checkoutU
     >
       {/* {
         showSaleStripe &&
-        <RiveAnimation setShowSaleStripe={() => setShowSaleStripe} />
+        <RiveAnimation setShowSaleStripe={setShowSaleStripe} />
       } */}
       {
         showSaleStripe && (
-          <SaleStripe setShowSaleStripe={() => setShowSaleStripe} />
+          <SaleStripe setShowSaleStripe={setShowSaleStripe} />
         )
       }
       <div className="bg-white py-4">

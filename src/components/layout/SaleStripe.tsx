@@ -101,10 +101,10 @@ const SaleStripe = ({ setShowSaleStripe }: { setShowSaleStripe: (value: boolean)
                         <span className='hidden lg:flex max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[22px] font-extrabold  textShadowSale lg:!saleText text-center sm:text-left uppercase'>Cyber Sale Ends Soon</span>
                         <Image src={saleIcon} alt='sale' width={0} height={0} className='w-auto max-h-[32px]  z-[1] hidden between-1800-2500:block' />
                         <span className='hidden lg:flexCenter bg-[#86E54A] w-max p-2 2xl:p-0 2xl:w-[146px] text-white max-399:text-sm text-[16px] 2xl:text-[20px] font-extrabold py-1 h-[36px] rounded-[10px] textShadowSale neo-button'>50% OFF</span>
-                        <span className='max-399:text-sm text-[16px] sm:text-[18px]  font-extrabold  block lg:hidden textShadowSale'>Cyber Sale is Live - 50% OFF</span>
+                        <span className='max-399:text-sm text-[16px] sm:text-[18px]  font-extrabold  block lg:hidden textShadowSale'>Cyber Sale Ends Soon - 50% OFF</span>
                     </div>
                     <div className='flex items-center justify-center flex-wrap lg:flex-nowrap gap-3 sm:gap-4'>
-                        <div className='max-1465:hidden flex items-center max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[22px] font-extrabold  gap-2'>
+                        <div className='hidden sm:flex max-1465:hidden items-center max-399:text-sm text-[16px] sm:text-[18px] md:text-[22px] between-1200-1399:!text-xl lg:text-[22px] font-extrabold gap-2'>
                             <span className='font-black text-[#86E54A] text-3xl md:block hidden'><RiAlarmFill /></span>
                             <span className='textShadowSale'>Last Few Hours!</span>
                         </div>
