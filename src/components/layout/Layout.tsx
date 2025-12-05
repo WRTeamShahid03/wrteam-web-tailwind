@@ -24,9 +24,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <Header />
       {children}
       <Footer />
-      {pathname !== "/book-a-meeting" && (
+      {/* {pathname !== "/book-a-meeting" && (
         <StickyBookMeeting />
-      )}
+      )} */}
     </div>
   );
 };
