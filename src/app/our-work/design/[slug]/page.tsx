@@ -1,11 +1,12 @@
 import React from 'react';
 import { Metadata } from "next";
 import PortfolioDetials from '@/components/pagesComponent/portfolio/PortfolioDetials';
+import { fetchWithRetry } from '@/lib/fetchWithRetry';
 
 // Function to fetch portfolio data from the API
 async function fetchPortfolioData(slug: string) {
   try {
-    const response = await fetch(
+    const response = await fetchWithRetry(
       `https://backend.wrteam.in/api/portfolios?offset=0&limit=5&slug=${slug}`,
       {
         headers: {

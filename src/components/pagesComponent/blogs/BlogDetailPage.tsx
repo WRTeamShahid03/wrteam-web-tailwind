@@ -11,6 +11,7 @@ import RichTextContent from "@/components/commonComponents/RichTextContent";
 import SocialShareButtons from "./SocialShareButtons";
 import BlogImage from "./BlogImage"; // Import the client component directly
 import { calculateReadTime, extractTextFromHTML, formatDate } from "@/utils/helpers";
+import { fetchWithRetry } from "@/lib/fetchWithRetry";
 
 // Loading component
 function BlogLoading() {
@@ -37,7 +38,12 @@ async function fetchBlogDetail(slug: string): Promise<Blog | null> {
       }/api/blogs?slug=${slug}`;
 
     // Server-side fetch with revalidation
-    const response = await fetch(url);
+    const response = await fetchWithRetry(url);
+
+    if (!response.ok) {
+      if (response.status === 404) return null; // Handle 404 specifically
+      throw new Error(`Failed to fetch blog detail: ${response.statusText}`);
+    }
 
     const data = await response.json();
 

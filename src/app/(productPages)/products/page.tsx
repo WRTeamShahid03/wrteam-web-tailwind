@@ -1,4 +1,5 @@
 import Products from "@/components/pagesComponent/products/Products";
+import { fetchWithRetry } from "@/lib/fetchWithRetry";
 import React from "react";
 import { Metadata } from "next";
 
@@ -94,17 +95,16 @@ async function fetchInitialProducts(filter?: string, category?: string) {
     }
 
     const queryString = params.toString() ? `?${params.toString()}` : "";
+    const url = `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"}/api/products${queryString}`;
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
-      }/api/products${queryString}`
-    );
+    const response = await fetchWithRetry(url);
 
     if (!response.ok) {
       return { data: [], total: 0, last_page: 1 };
     }
 
     const data = await response.json();
+
     return {
       data: data?.data?.data || [],
       total: data?.data?.total || 0,

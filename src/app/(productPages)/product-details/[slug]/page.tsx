@@ -1,14 +1,16 @@
 import React from "react";
 import { use } from "react";
+import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import ProductDetailsPage from "@/components/pagesComponent/productDetailsPage/ProductDetailsPage";
 import OldProductDetailPage from "@/components/pagesComponent/productDetailsPage/oldUi/OldProductDetailPage";
 import { SoftwareProductSchema } from "@/components/JsonLdSchema";
+import { fetchWithRetry } from "@/lib/fetchWithRetry";
 
 // Function to fetch product data from the API
 async function fetchProductData(slug: string) {
   try {
-    const response = await fetch(
+    const response = await fetchWithRetry(
       `https://backend.wrteam.in/api/products?slug=${slug}`,
     );
 
@@ -61,8 +63,8 @@ export async function generateMetadata(
       images: product.seo_image
         ? [product.seo_image]
         : product.banner_image
-        ? [product.banner_image]
-        : [],
+          ? [product.banner_image]
+          : [],
       type: "website",
       siteName: "WRTeam",
       locale: "en_US",
@@ -76,8 +78,8 @@ export async function generateMetadata(
       images: product.seo_image
         ? [product.seo_image]
         : product.banner_image
-        ? [product.banner_image]
-        : [],
+          ? [product.banner_image]
+          : [],
     },
     robots: {
       index: true,
@@ -100,10 +102,15 @@ export default function Page({
 }) {
   // Use the 'use' hook to handle the Promise synchronously
   const { slug } = use(params);
-  
+
   // Use server component async data fetching
   const productData = use(fetchProductData(slug));
   const product = productData?.data;
+
+  if (!product) {
+    return notFound();
+  }
+
   const isNewUI = product?.display_new_ui;
 
   return (

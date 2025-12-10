@@ -6,11 +6,13 @@ import { OldUiProductData } from '@/types'
 
 interface ProductDetailPageProps {
     productData: OldUiProductData;
-  }
-  
-  const OldProductDetailPage: React.FC<ProductDetailPageProps> = ({ productData }) => {
+}
 
-    const data = JSON.parse(productData?.codecanyon_other_data);
+const OldProductDetailPage: React.FC<ProductDetailPageProps> = ({ productData }) => {
+
+    const data = productData?.codecanyon_other_data
+        ? JSON.parse(productData.codecanyon_other_data)
+        : null;
 
     const landscape_preview = data?.previews?.landscape_preview?.landscape_url;
 
@@ -24,7 +26,7 @@ interface ProductDetailPageProps {
                             {
                                 productData?.codecanyon_other_data ?
                                     <div className="promoImgWrapper">
-                                        <Image src={landscape_preview} height={0} width={0} alt='preview' className='w-full h-full object-contain mb-5'/>
+                                        <Image src={landscape_preview} height={0} width={0} alt='preview' className='w-full h-full object-contain mb-5' />
                                     </div> : null
                             }
 

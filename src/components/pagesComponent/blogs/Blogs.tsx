@@ -5,6 +5,7 @@ import BlogCard from "./BlogCard";
 import { Blog } from "@/types/blogs";
 import BlogPagination from "./BlogPagination";
 import Breadcrumb from "@/components/commonComponents/Breadcrumb";
+import { fetchWithRetry } from "@/lib/fetchWithRetry";
 
 /**
  * Server component for blog listing with server-side data fetching
@@ -13,15 +14,19 @@ import Breadcrumb from "@/components/commonComponents/Breadcrumb";
 async function fetchBlogs(page: number, categorySlug?: string | null) {
   try {
     // Construct the URL with appropriate parameters
-    let url = `${
-      process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
-    }/api/blogs?page=${page}`;
+    let url = `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"
+      }/api/blogs?page=${page}`;
     if (categorySlug) {
       url += `&category_slug=${categorySlug}`;
     }
 
-    // Server-side fetch with revalidation
-    const response = await fetch(url);
+    // Server-side fetch with retry logic
+    const response = await fetchWithRetry(url, { next: { revalidate: 60 } });
+
+    if (!response.ok) {
+      // Should be caught by fetchWithRetry but handling just in case
+      return { blogs: [] as Blog[], totalBlogs: 0, lastPage: 1 };
+    }
 
     const data = await response.json();
 

@@ -108,11 +108,15 @@ const ProductsPage = ({
 
   // Fetch products whenever filter or category changes
   useEffect(() => {
-    // Skip initial fetch if we have server-side data and filters haven't changed yet
+    // Skip initial fetch ONLY if we have server-side data AND filters haven't changed yet
     if (initialProducts.length > 0 && !hasFilterChanged) {
       setHasFilterChanged(true);
       return;
     }
+
+    // If initialProducts is empty, we allow the fetch to proceed (fallback to client-side fetch)
+    // This handles cases where server-side fetch failed or returned no data, 
+    // giving us a second chance on the client.
 
     const fetchProducts = async () => {
       try {
@@ -187,7 +191,7 @@ const ProductsPage = ({
 
   const renderStars = (rating: number) => {
     const totalStars = 5;
-    
+
     // Special case: if rating is greater than 4.5, show 5 full stars
     if (rating > 4.5) {
       const stars = [];
@@ -196,7 +200,7 @@ const ProductsPage = ({
       }
       return stars;
     }
-    
+
     // Regular logic for ratings 4.5 and below
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
