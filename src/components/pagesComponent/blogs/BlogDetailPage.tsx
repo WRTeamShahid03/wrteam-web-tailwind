@@ -11,6 +11,7 @@ import RichTextContent from "@/components/commonComponents/RichTextContent";
 import SocialShareButtons from "./SocialShareButtons";
 import BlogImage from "./BlogImage"; // Import the client component directly
 import { calculateReadTime, extractTextFromHTML, formatDate } from "@/utils/helpers";
+import { fetchWithRetry } from "@/lib/fetchWithRetry";
 
 // Loading component
 function BlogLoading() {
@@ -37,7 +38,7 @@ async function fetchBlogDetail(slug: string): Promise<Blog | null> {
       }/api/blogs?slug=${slug}`;
 
     // Server-side fetch with revalidation
-    const response = await fetch(url);
+    const response = await fetchWithRetry(url);
 
     const data = await response.json();
 
