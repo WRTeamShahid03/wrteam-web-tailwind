@@ -40,6 +40,11 @@ async function fetchBlogDetail(slug: string): Promise<Blog | null> {
     // Server-side fetch with revalidation
     const response = await fetchWithRetry(url);
 
+    if (!response.ok) {
+      if (response.status === 404) return null; // Handle 404 specifically
+      throw new Error(`Failed to fetch blog detail: ${response.statusText}`);
+    }
+
     const data = await response.json();
 
     if (data?.data) {
