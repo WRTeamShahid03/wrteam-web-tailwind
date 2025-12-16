@@ -1,13 +1,8 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
 import Layout from '@/components/layout/Layout'
-import Image from 'next/image'
-import Link from 'next/link'
-import { FaWhatsapp } from 'react-icons/fa6'
-import { HiClock } from 'react-icons/hi2'
 import { MdVideoCall } from 'react-icons/md'
 import { FaCheckCircle } from 'react-icons/fa'
-import logo from '@/assets/images/logo.svg'
 
 // TypeScript declaration for Calendly window object
 declare global {
@@ -99,7 +94,7 @@ const BookAMeeting: React.FC = () => {
                 const widgetIframe = calendlyRef.current.querySelector('iframe')
                 if (widgetIframe && widgetIframe.src) {
                     setIsCalendlyLoaded(true)
-                    
+
                     // Hide scrollbar on the iframe
                     try {
                         widgetIframe.style.overflow = 'hidden'
@@ -111,7 +106,7 @@ const BookAMeeting: React.FC = () => {
                         // Cross-origin restrictions may prevent iframe style changes
                         console.log('Could not modify iframe styles due to cross-origin restrictions')
                     }
-                    
+
                     if (checkInterval) clearInterval(checkInterval)
                     if (timeoutId) clearTimeout(timeoutId)
                     return true
@@ -295,8 +290,8 @@ const BookAMeeting: React.FC = () => {
                                 <div
                                     ref={calendlyRef}
                                     className={`calendly-inline-widget ${!isCalendlyLoaded ? 'hidden' : 'block'} overflow-hidden`}
-                                    data-url="https://calendly.com/wrteam-sales/30min"
-                                    style={{ minWidth: '320px', height: '900px', width: '100%', overflow: 'hidden', margin:"0px !important" }}
+                                    data-url="https://calendly.com/wrteam-sales/meeting?hide_gdpr_banner=1"
+                                    style={{ minWidth: '320px', height: '700px', width: '100%', overflow: 'hidden', margin: "0px !important" }}
                                 ></div>
                             </div>
                         </div>
