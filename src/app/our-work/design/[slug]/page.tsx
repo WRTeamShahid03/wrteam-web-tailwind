@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import PortfolioDetials from '@/components/pagesComponent/portfolio/PortfolioDetials';
 import { fetchWithRetry } from '@/lib/fetchWithRetry';
 
+const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 // Function to fetch portfolio data from the API
 async function fetchPortfolioData(slug: string) {
   try {
@@ -79,8 +80,8 @@ export async function generateMetadata(
       images: portfolioData.seo_image || portfolioData.app_image ? [portfolioData.image || portfolioData.app_image] : [],
     },
     robots: {
-      index: true,
-      follow: true,
+      index: isProduction,
+      follow: isProduction,
     },
     alternates: {
       canonical: `https://www.wrteam.in/our-work/design/${slug}`,

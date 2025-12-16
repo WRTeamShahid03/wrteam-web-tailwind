@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import React from "react";
 import { use } from "react";
 
+const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";  
+
 // Generate metadata for the blog page
 export async function generateMetadata(
   props: {
@@ -54,8 +56,8 @@ export async function generateMetadata(
             : [],
         },
         robots: {
-          index: true,
-          follow: true,
+          index: isProduction,
+          follow: isProduction,
         },
         alternates: {
           canonical: `https://www.wrteam.in/blog/${slug}`,
@@ -71,8 +73,8 @@ export async function generateMetadata(
     title: "Blog Post | WRTeam",
     description: "Read our latest blog post",
     robots: {
-      index: true,
-      follow: true,
+      index: isProduction,
+      follow: isProduction,
     },
     alternates: {
       canonical: `https://www.wrteam.in/blog/${slug}`,

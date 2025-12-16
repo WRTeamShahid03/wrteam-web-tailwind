@@ -7,6 +7,7 @@ import OldProductDetailPage from "@/components/pagesComponent/productDetailsPage
 import { SoftwareProductSchema } from "@/components/JsonLdSchema";
 import { fetchWithRetry } from "@/lib/fetchWithRetry";
 
+const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 // Function to fetch product data from the API
 async function fetchProductData(slug: string) {
   try {
@@ -82,8 +83,8 @@ export async function generateMetadata(
           : [],
     },
     robots: {
-      index: true,
-      follow: true,
+      index: isProduction,
+      follow: isProduction,
     },
     alternates: {
       canonical: `https://www.wrteam.in/product-details/${slug}`,
