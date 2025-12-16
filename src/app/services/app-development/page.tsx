@@ -3,6 +3,7 @@ import React from 'react'
 import { Metadata } from 'next'
 import JsonLd from '@/components/Schema/JsonLd';
 
+const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";  
 // Generate metadata for the page
 async function fetchSeoData() {
   try {
@@ -63,8 +64,8 @@ export async function generateMetadata(): Promise<Metadata> {
       images: seo.image ? [seo.image] : [],
     },
     robots: {
-      index: true,
-      follow: true,
+      index: isProduction,
+      follow: isProduction,
     },
     alternates: {
       canonical: `https://www.wrteam.in/services/app-development`,

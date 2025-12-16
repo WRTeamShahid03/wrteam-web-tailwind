@@ -59,7 +59,8 @@ const MobileNav: React.FC<dataProps> = ({ whatsappUrl, checkoutUrl }) => {
           </div>
           <div className="mt-6 flex items-center flex-wrap gap-4">
             <Link
-              href={whatsappUrl}
+              // href={whatsappUrl}
+              href="/book-a-meeting"
               title="Book Personalized Demo"
               target="_blank"
               className="bg-transparent p-2 rounded-md flexCenter max-399:text-sm w-[128px] productDetailPrimaryColor font-semibold border-[1px] productDetailPrimaryBorder"

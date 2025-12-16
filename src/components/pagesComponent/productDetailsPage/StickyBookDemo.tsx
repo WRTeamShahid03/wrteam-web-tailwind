@@ -42,7 +42,8 @@ const StickyBookDemo = () => {
         <div className='fixed bottom-20 lg:bottom-5 left-0 right-0 z-50 w-[90%] sm:w-max m-auto rounded-2xl bg-white py-3 px-6 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.24)] flexCenter gap-4 sm:gap-10 flex-wrap'>
             <span className='font-bold sm:text-lg md:text-xl'>Get Your Personalized Demo</span>
             <Link
-                href={whatsappUrl}
+                // href={whatsappUrl}
+                href="/book-a-meeting"
                 title="Book Personalized Demo"
                 target="_blank"
                 className="productPrimaryBg p-2 sm:p-3 rounded-md flexCenter max-399:text-sm max-399:w-[130px] w-[151px] text-white font-semibold border-[1px] productDetailPrimaryBorder"

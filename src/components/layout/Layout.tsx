@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Header from "./Header";
 import Footer from "./Footer";
-import StickyBookMeeting from "../commonComponents/StickyBookMeeting";
+// import StickyBookMeeting from "../commonComponents/StickyBookMeeting";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 

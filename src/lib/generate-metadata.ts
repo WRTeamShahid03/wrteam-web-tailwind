@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { fetchSeoData } from "./api/seo";
 
+const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
+
 export interface PageMetadataOptions {
   pageType: string;
   additionalMetadata?: Partial<Metadata>;
@@ -39,8 +41,8 @@ export async function generatePageMetadata(
       creator: "@wrteam",
     },
     robots: {
-      index: true,
-      follow: true,
+      index: isProduction,
+      follow: isProduction,
     },
     alternates: {
       canonical: `https://wrteam.in`,

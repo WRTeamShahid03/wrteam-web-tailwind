@@ -1,7 +1,7 @@
 import Careers from "@/components/pagesComponent/careers/Careers";
 import { Metadata } from "next";
 
-
+const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 // Generate metadata for the page
 async function fetchSeoData() {
   try {
@@ -68,8 +68,8 @@ export async function generateMetadata(
         : [],
     },
     robots: {
-      index: true,
-      follow: true,
+      index: isProduction,
+      follow: isProduction,
     },
     alternates: {
       canonical: `https://www.wrteam.in/career`,

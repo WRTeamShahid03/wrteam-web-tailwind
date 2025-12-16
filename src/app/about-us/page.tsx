@@ -2,6 +2,7 @@ import React from "react";
 import AboutUs from "@/components/pagesComponent/aboutUs/AboutUs";
 import type { Metadata } from "next";
 
+const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 // Generate metadata for the page
 async function fetchSeoData() {
   try {
@@ -68,8 +69,8 @@ export async function generateMetadata(
         : [],
     },
     robots: {
-      index: true,
-      follow: true,
+      index: isProduction,
+      follow: isProduction,
     },
     alternates: {
       canonical: `https://www.wrteam.in/about-us`,

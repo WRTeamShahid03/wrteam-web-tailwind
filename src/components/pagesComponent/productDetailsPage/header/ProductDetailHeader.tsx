@@ -224,7 +224,8 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType, checkoutU
 
             <div className="hidden lg:flex items-center gap-4">
               <Link
-                href={whatsappUrl}
+                // href={whatsappUrl}
+                href="/book-a-meeting"
                 title="Book Personalized Demo"
                 target="_blank"
                 className="bg-transparent p-3 rounded-md flexCenter max-399:text-sm max-399:w-[130px] w-[151px] productDetailPrimaryColor font-semibold border-[1px] productDetailPrimaryBorder"
