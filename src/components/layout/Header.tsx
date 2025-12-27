@@ -129,10 +129,7 @@ const Header = () => {
         <RiveAnimation setShowSaleStripe={setShowSaleStripe}/>
       } */}
       {
-        // showSaleStripe && (
-        //   <SaleStripe setShowSaleStripe={setShowSaleStripe} />
-        // )
-        true && (
+        showSaleStripe && (
           <SaleStripe setShowSaleStripe={setShowSaleStripe} />
         )
       }
