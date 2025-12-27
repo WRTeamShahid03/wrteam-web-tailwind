@@ -16,7 +16,12 @@ export async function GET() {
             });
         }
 
-        const htmlContent = fs.readFileSync(htmlFilePath, 'utf-8');
+        let htmlContent = fs.readFileSync(htmlFilePath, 'utf-8');
+
+        // Replace all asset paths from /_next/ to /year-end-sale/_next/
+        // This fixes the 404 errors for CSS, JS, and media files
+        // The assets are located in public/year-end-sale/_next/ but HTML references /_next/
+        htmlContent = htmlContent.replace(/\/_next\//g, '/year-end-sale/_next/');
 
         // Return the HTML content with proper headers
         return new Response(htmlContent, {

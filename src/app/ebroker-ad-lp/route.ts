@@ -2,12 +2,41 @@ import fs from 'fs';
 import path from 'path';
 
 export async function GET() {
-    const htmlFilePath = path.join(process.cwd(), 'src/landing-pages/ebroker-ad-lp/index.html');
-    const htmlContent = fs.readFileSync(htmlFilePath, 'utf-8');
+    try {
+        // Read the HTML file from the landing-pages directory
+        const htmlFilePath = path.join(process.cwd(), 'src/landing-pages/ebroker-ad-lp/index.html');
+        
+        // Check if file exists before reading
+        if (!fs.existsSync(htmlFilePath)) {
+            return new Response('HTML file not found', { 
+                status: 404,
+                headers: {
+                    'Content-Type': 'text/plain',
+                },
+            });
+        }
 
-    return new Response(htmlContent, {
-        headers: {
-            'Content-Type': 'text/html; charset=utf-8',
-        },
-    });
+        let htmlContent = fs.readFileSync(htmlFilePath, 'utf-8');
+
+        // Replace all asset paths from /_next/ to /ebroker-ad-lp/_next/
+        // This fixes the 404 errors for CSS, JS, and media files
+        // The assets are located in public/ebroker-ad-lp/_next/ but HTML references /_next/
+        htmlContent = htmlContent.replace(/\/_next\//g, '/ebroker-ad-lp/_next/');
+
+        // Return the HTML content with proper headers
+        return new Response(htmlContent, {
+            headers: {
+                'Content-Type': 'text/html; charset=utf-8',
+            },
+        });
+    } catch (error) {
+        // Handle any errors that occur during file reading
+        console.error('Error serving ebroker-ad-lp page:', error);
+        return new Response('Internal Server Error', { 
+            status: 500,
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+        });
+    }
 }
