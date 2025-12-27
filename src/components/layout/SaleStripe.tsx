@@ -145,11 +145,11 @@ const SaleStripe = ({
     const formatNumber = (num: number) => String(num).padStart(2, "0");
 
     const TimeBox = ({ value, label }: { value: number; label: string }) => (
-      <div className="bg-white rounded-[5px] w-[50px] h-[46px] flex flex-col items-center justify-center">
-        <span className="text-[#212121] font-bold text-lg leading-none mb-[2px]">
+      <div className="bg-white rounded-[5px] w-[35px]  sm:w-[50px] h-[36px] sm:h-[46px] flex flex-col items-center justify-center">
+        <span className="text-[#212121] font-bold text-xs sm:text-lg leading-none mb-[2px]">
           {formatNumber(value)}
         </span>
-        <span className="text-[#212121] text-[9px] font-medium leading-none">
+        <span className="text-[#212121] text-[7px] sm:text-[9px] font-medium leading-none">
           {label}
         </span>
       </div>
@@ -251,8 +251,8 @@ const SaleStripe = ({
             <FaArrowRight className="bg-[#D01818] text-white rounded-full p-[3px] text-sm" />
           </Link>
         </div>
-        <div className="flex justify-center items-center gap-2 my-2 sm:hidden">
-            {/* {targetDate && !isSaleDatePassed(targetDate) && isClient && (
+        <div className="flex justify-center items-center gap-2 my-2 sm:hidden z-10 relative">
+            {targetDate && !isSaleDatePassed(targetDate) && isClient && (
             <div className="">
               <Countdown
                 date={targetDate}
@@ -260,7 +260,7 @@ const SaleStripe = ({
                 onComplete={() => setShowSaleStripe(false)}
               />
             </div>
-          )} */}
+          )}
           <Link
             href={
               "https://www.wrteam.in/year-end-sale"
