@@ -182,9 +182,9 @@ const SaleStripe = ({
 
         {/* Content Container */}
         <div>
-        <div className="relative z-10 flex items-center sm:gap-4 gap-2 xl:gap-6 w-full sm:justify-center max-w-[1920px] justify-between mt-2">
-          {/* Left Buy Now Button (Hidden on smaller screens, shown if space permits or based on design) */}
-          {/* <Link
+          <div className="relative z-10 flex items-center sm:gap-4 gap-2 xl:gap-6 w-full sm:justify-center max-w-[1920px] justify-between mt-2">
+            {/* Left Buy Now Button (Hidden on smaller screens, shown if space permits or based on design) */}
+            {/* <Link
             href={
               "https://www.wrteam.in/year-end-sale?utm_source=website&utm_medium=strip&utm_campaign=year-end-sale"
             }
@@ -195,83 +195,83 @@ const SaleStripe = ({
             <FaArrowRight className="bg-[#D01818] text-white rounded-full p-[3px] text-sm" />
           </Link> */}
 
-          {/* Year End Sale Text Image */}
-          <Image
-            src={yearEndSaleText}
-            alt="Year End Sale"
-            className="h-[25px] md:h-[30px] lg:h-[25px] xl:h-[40px] w-auto object-contain"
-          />
+            {/* Year End Sale Text Image */}
+            <Image
+              src={yearEndSaleText}
+              alt="Year End Sale"
+              className="h-[25px] md:h-[30px] lg:h-[25px] xl:h-[40px] w-auto object-contain"
+            />
 
-          {/* Flash Deals Text */}
-          <span className="hidden lg:block text-white font-bold text-sm lg:text-md xl:text-xl whitespace-nowrap">
-            Flash Deals - Year-End Savings
-          </span>
+            {/* Flash Deals Text */}
+            <span className="hidden lg:block text-white font-bold text-sm lg:text-md xl:text-xl whitespace-nowrap">
+              Last Chance for Year-End Savings
+            </span>
 
-          {/* Flower Icon */}
-          <Image
-            src={flowerIcon}
-            alt="flower"
-            className="hidden lg:block h-[24px] w-auto object-contain"
-          />
+            {/* Flower Icon */}
+            <Image
+              src={flowerIcon}
+              alt="flower"
+              className="hidden lg:block h-[24px] w-auto object-contain"
+            />
 
-          {/* 60% OFF Image */}
-          <Image
-            src={offText}
-            alt="60% OFF"
-            className="h-[30px] sm:h-[22px] lg:h-[30px] xl:h-[40px] w-auto object-contain"
-          />
+            {/* 60% OFF Image */}
+            <Image
+              src={offText}
+              alt="60% OFF"
+              className="h-[30px] sm:h-[22px] lg:h-[30px] xl:h-[40px] w-auto object-contain"
+            />
 
-          {/* Flower Icon */}
-          <Image
-            src={flowerIcon}
-            alt="flower"
-            className="hidden lg:block h-[24px] w-auto object-contain"
-          />
+            {/* Flower Icon */}
+            <Image
+              src={flowerIcon}
+              alt="flower"
+              className="hidden lg:block h-[24px] w-auto object-contain"
+            />
 
-          {/* Countdown */}
-          {targetDate && !isSaleDatePassed(targetDate) && isClient && (
-            <div className="hidden sm:block">
-              <Countdown
-                date={targetDate}
-                renderer={yearEndRenderer}
-                onComplete={() => setShowSaleStripe(false)}
-              />
-            </div>
-          )}
-
-          {/* Right Buy Now Button */}
-          <Link
-            href={
-              "https://www.wrteam.in/year-end-sale"
-            }
-            target="_blank"
-            className=" bg-white text-[#D01818] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform hidden sm:flex"
-          >
-            Buy Now{" "}
-            <FaArrowRight className="bg-[#D01818] text-white rounded-full p-[3px] text-sm" />
-          </Link>
-        </div>
-        <div className="flex justify-center items-center gap-2 my-2 sm:hidden z-10 relative">
+            {/* Countdown */}
             {targetDate && !isSaleDatePassed(targetDate) && isClient && (
-            <div className="">
-              <Countdown
-                date={targetDate}
-                renderer={yearEndRenderer}
-                onComplete={() => setShowSaleStripe(false)}
-              />
-            </div>
-          )}
-          <Link
-            href={
-              "https://www.wrteam.in/year-end-sale"
-            }
-            target="_blank"
-            className="flex bg-white text-[#D01818] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"
-          >
-            Buy Now{" "}
-            <FaArrowRight className="bg-[#D01818] text-white rounded-full p-[3px] text-sm" />
-          </Link>
-        </div>
+              <div className="hidden sm:block">
+                <Countdown
+                  date={targetDate}
+                  renderer={yearEndRenderer}
+                  onComplete={() => setShowSaleStripe(false)}
+                />
+              </div>
+            )}
+
+            {/* Right Buy Now Button */}
+            <Link
+              href={
+                "https://www.wrteam.in/year-end-sale"
+              }
+              target="_blank"
+              className=" bg-white text-[#D01818] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform hidden sm:flex"
+            >
+              Buy Now{" "}
+              <FaArrowRight className="bg-[#D01818] text-white rounded-full p-[3px] text-sm" />
+            </Link>
+          </div>
+          <div className="flex justify-center items-center gap-2 my-2 sm:hidden z-10 relative">
+            {targetDate && !isSaleDatePassed(targetDate) && isClient && (
+              <div className="">
+                <Countdown
+                  date={targetDate}
+                  renderer={yearEndRenderer}
+                  onComplete={() => setShowSaleStripe(false)}
+                />
+              </div>
+            )}
+            <Link
+              href={
+                "https://www.wrteam.in/year-end-sale"
+              }
+              target="_blank"
+              className="flex bg-white text-[#D01818] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"
+            >
+              Buy Now{" "}
+              <FaArrowRight className="bg-[#D01818] text-white rounded-full p-[3px] text-sm" />
+            </Link>
+          </div>
         </div>
       </div>
     </>
