@@ -211,7 +211,7 @@ const SaleStripe = ({
             <Image
               src={flowerIcon}
               alt="flower"
-              className="hidden lg:block h-[24px] w-auto object-contain"
+              className="hidden lg:block h-[50px] w-auto object-contain"
             />
 
             {/* 60% OFF Image */}
@@ -225,7 +225,7 @@ const SaleStripe = ({
             <Image
               src={flowerIcon}
               alt="flower"
-              className="hidden lg:block h-[24px] w-auto object-contain"
+              className="hidden lg:block h-[50px] w-auto object-contain"
             />
 
             {/* Countdown */}
