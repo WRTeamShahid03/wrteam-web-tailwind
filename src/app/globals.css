@@ -1188,5 +1188,5 @@ textarea{
   -ms-overflow-style: none !important;
 }
 .strip-bg{
-  background: radial-gradient(50% 50% at 50% 50%, #ED1C28 0%, #861618 100%), linear-gradient(90deg, rgba(234, 157, 57, 0.10) -7.67%, rgba(255, 255, 255, 0.10) 42.02%, rgba(2, 120, 76, 0.10) 100%), #FFF;
+  background: radial-gradient(50% 50% at 50% 50%, #FFD801 0%, #E89003 100%), linear-gradient(90deg, rgba(234, 157, 57, 0.10) -7.67%, rgba(255, 255, 255, 0.10) 42.02%, rgba(2, 120, 76, 0.10) 100%), #FFF;
 }
