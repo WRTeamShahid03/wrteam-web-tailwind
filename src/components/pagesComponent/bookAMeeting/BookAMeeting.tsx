@@ -4,21 +4,23 @@ import Layout from '@/components/layout/Layout'
 import { MdVideoCall } from 'react-icons/md'
 import { FaCheckCircle } from 'react-icons/fa'
 
-// TypeScript declaration for Calendly window object
+// TypeScript declaration for Cal.com window object
 declare global {
     interface Window {
-        Calendly?: {
-            initInlineWidget: (options: {
-                url: string
-                parentElement: HTMLElement
-            }) => void
+        Cal?: {
+            loaded?: boolean
+            ns?: {
+                [key: string]: any
+            }
+            q?: any[]
+            (command: string, namespace?: string, options?: any): void
         }
     }
 }
 
 /**
- * Calendly Skeleton Loader Component
- * Shows a loading skeleton while Calendly widget is loading
+ * Cal.com Skeleton Loader Component
+ * Shows a loading skeleton while Cal.com widget is loading
  */
 const CalendlySkeleton = () => {
     return (
@@ -74,61 +76,100 @@ const CalendlySkeleton = () => {
  * - A prominent heading
  * - Two WhatsApp-style contact cards for phone numbers
  * - A WRTeam branding card with meeting details
- * - Calendly calendar embed for scheduling with skeleton loader
+ * - Cal.com calendar embed for scheduling with skeleton loader
  * 
- * Note: Calendly script is loaded globally in layout.tsx
- * The widget uses the standard Calendly inline widget approach with data-url attribute
+ * Note: Cal.com script is loaded globally in layout.tsx
+ * The widget uses the Cal.com inline embed approach
  */
 const BookAMeeting: React.FC = () => {
-    const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false)
-    const calendlyRef = useRef<HTMLDivElement>(null)
+    const [isCalLoaded, setIsCalLoaded] = useState(false)
+    const calRef = useRef<HTMLDivElement>(null)
 
-    // Check if Calendly widget has loaded
+    // Initialize Cal.com widget when script is loaded
     useEffect(() => {
         let checkInterval: NodeJS.Timeout
         let timeoutId: NodeJS.Timeout
 
-        const checkCalendlyLoaded = () => {
-            if (calendlyRef.current) {
-                // Check if widget has iframe content (Calendly creates an iframe)
-                const widgetIframe = calendlyRef.current.querySelector('iframe')
-                if (widgetIframe && widgetIframe.src) {
-                    setIsCalendlyLoaded(true)
+        const initializeCal = () => {
+            // Check if Cal.com script is loaded
+            if (typeof window !== 'undefined' && window.Cal && window.Cal.loaded && calRef.current) {
+                try {
+                    // Initialize Cal.com inline widget
+                    if (window.Cal.ns && window.Cal.ns.meeting) {
+                        window.Cal.ns.meeting("inline", {
+                            elementOrSelector: "#my-cal-inline-meeting",
+                            config: { "layout": "month_view", "theme": "light" },
+                            calLink: "wrteam-meeting/meeting",
+                        })
 
-                    // Hide scrollbar on the iframe
-                    try {
-                        widgetIframe.style.overflow = 'hidden'
-                        // Also try to hide scrollbar via CSS classes
-                        if (calendlyRef.current) {
-                            calendlyRef.current.style.overflow = 'hidden'
+                        // Set UI theme
+                        window.Cal.ns.meeting("ui", {
+                            "theme": "light",
+                            "cssVarsPerTheme": {
+                                "light": { "cal-brand": "#2e71fe" },
+                                "dark": { "cal-brand": "#2e71fe" }
+                            },
+                            "hideEventTypeDetails": true,
+                            "layout": "month_view"
+                        })
+
+                        // Check if widget has loaded (iframe or content)
+                        const checkCalLoaded = () => {
+                            if (calRef.current) {
+                                // Check if widget has iframe or other content
+                                const widgetIframe = calRef.current.querySelector('iframe')
+                                const widgetContent = calRef.current.querySelector('[data-cal-namespace]')
+                                if (widgetIframe || widgetContent) {
+                                    setIsCalLoaded(true)
+                                    if (checkInterval) clearInterval(checkInterval)
+                                    if (timeoutId) clearTimeout(timeoutId)
+                                    return true
+                                }
+                            }
+                            return false
                         }
-                    } catch (e) {
-                        // Cross-origin restrictions may prevent iframe style changes
-                        console.log('Could not modify iframe styles due to cross-origin restrictions')
-                    }
 
-                    if (checkInterval) clearInterval(checkInterval)
-                    if (timeoutId) clearTimeout(timeoutId)
-                    return true
+                        // Start checking after a short delay
+                        setTimeout(() => {
+                            if (!checkCalLoaded()) {
+                                // Check periodically until loaded (max 10 seconds)
+                                checkInterval = setInterval(() => {
+                                    if (checkCalLoaded()) {
+                                        clearInterval(checkInterval)
+                                    }
+                                }, 500)
+
+                                // Fallback: hide skeleton after 10 seconds even if not detected
+                                timeoutId = setTimeout(() => {
+                                    setIsCalLoaded(true)
+                                    if (checkInterval) clearInterval(checkInterval)
+                                }, 10000)
+                            }
+                        }, 500)
+                    }
+                } catch (error) {
+                    console.error('Error initializing Cal.com widget:', error)
+                    // Fallback: hide skeleton after error
+                    setTimeout(() => setIsCalLoaded(true), 2000)
                 }
             }
-            return false
         }
 
         // Start checking after a short delay to allow script to load
         const startChecking = setTimeout(() => {
-            // Check immediately
-            if (!checkCalendlyLoaded()) {
-                // Check periodically until loaded (max 10 seconds)
+            initializeCal()
+            if (!window.Cal || !window.Cal.loaded) {
+                // Check periodically until Cal.com is loaded
                 checkInterval = setInterval(() => {
-                    if (checkCalendlyLoaded()) {
+                    if (window.Cal && window.Cal.loaded) {
                         clearInterval(checkInterval)
+                        initializeCal()
                     }
                 }, 500)
 
                 // Fallback: hide skeleton after 10 seconds even if not detected
                 timeoutId = setTimeout(() => {
-                    setIsCalendlyLoaded(true)
+                    setIsCalLoaded(true)
                     if (checkInterval) clearInterval(checkInterval)
                 }, 10000)
             }
@@ -280,18 +321,18 @@ const BookAMeeting: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Right Column - Calendly Calendar */}
-                        <div className="w-full bg-white rounded-2xl border border-[#e5e7eb shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+                        {/* Right Column - Cal.com Calendar */}
+                        <div className="w-full bg-white rounded-2xl border border-[#e5e7eb] shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
                             <div className="relative overflow-hidden">
                                 {/* Show skeleton while loading */}
-                                {!isCalendlyLoaded && <CalendlySkeleton />}
+                                {!isCalLoaded && <CalendlySkeleton />}
 
-                                {/* Calendly widget */}
+                                {/* Cal.com widget */}
                                 <div
-                                    ref={calendlyRef}
-                                    className={`calendly-inline-widget ${!isCalendlyLoaded ? 'hidden' : 'block'} overflow-hidden`}
-                                    data-url="https://calendly.com/wrteam-sales/meeting?hide_gdpr_banner=1"
-                                    style={{ minWidth: '320px', height: '700px', width: '100%', overflow: 'hidden', margin: "0px !important" }}
+                                    id="my-cal-inline-meeting"
+                                    ref={calRef}
+                                    className={`${!isCalLoaded ? 'hidden' : 'block'}`}
+                                    style={{ width: '100%', height: '700px', overflow: 'scroll' }}
                                 ></div>
                             </div>
                         </div>

@@ -245,10 +245,10 @@ const SaleStripe = ({
                 "/new-year-sale"
               }
               target="_blank"
-              className=" bg-white text-[#D01818] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform hidden sm:flex"
+              className=" bg-white border-2 border-[#FEC101] text-[#A40410] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform hidden sm:flex"
             >
               Buy Now{" "}
-              <FaArrowRight className="bg-[#D01818] text-white rounded-full p-[3px] text-sm" />
+              <FaArrowRight className="bg-[#A40410] text-white rounded-full p-[3px] text-sm" />
             </Link>
           </div>
           <div className="flex justify-center items-center gap-2 my-2 sm:hidden z-10 relative">
@@ -266,10 +266,10 @@ const SaleStripe = ({
                 "/new-year-sale"
               }
               target="_blank"
-              className="flex bg-white text-[#D01818] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"
+              className="flex bg-white border-2 border-[#FEC101] text-[#A40410] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"
             >
               Buy Now{" "}
-              <FaArrowRight className="bg-[#D01818] text-white rounded-full p-[3px] text-sm" />
+              <FaArrowRight className="bg-[#A40410] text-white rounded-full p-[3px] text-sm" />
             </Link>
           </div>
         </div>
