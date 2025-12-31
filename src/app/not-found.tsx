@@ -34,6 +34,12 @@ const Custom404 = () => {
   useEffect(() => {
     let redirected = false;
 
+    // Redirect year-end-sale to new-year-sale
+    if (pathname.startsWith("/year-end-sale")) {
+      router.replace("/new-year-sale");
+      redirected = true;
+    }
+
     // All redirect logic now runs only for non-sale URLs.
     if (!isSalePage) {
       switch (pathname) {
@@ -189,7 +195,7 @@ const Custom404 = () => {
 
 // Dedicated UI for expired sale pages so visitors get context instead of a redirect.
 const SaleEndedView = () => {
-  const whatsappChannelUrl = "https://cbl.link/q8Zb3AN";
+  const whatsappChannelUrl = "https://www.whatsapp.com/channel/0029VaFfBBP2ER6eCc3E8y0M?utm_source=website&utm_medium=blog&utm_campaign=fi";
 
   return (
     <>

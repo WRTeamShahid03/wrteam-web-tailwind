@@ -203,8 +203,8 @@ const SaleStripe = ({
             />
 
             {/* Flash Deals Text */}
-            <span className="hidden lg:block text-white font-bold text-sm lg:text-md xl:text-xl whitespace-nowrap">
-              Last Chance for Year-End Savings
+            <span className="hidden lg:block text-[#A40410] font-bold text-sm lg:text-md xl:text-xl whitespace-nowrap">
+              Missed Year-End? It's Time for 2026
             </span>
 
             {/* Flower Icon */}
@@ -242,7 +242,7 @@ const SaleStripe = ({
             {/* Right Buy Now Button */}
             <Link
               href={
-                "https://www.wrteam.in/year-end-sale"
+                "/new-year-sale"
               }
               target="_blank"
               className=" bg-white text-[#D01818] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform hidden sm:flex"
@@ -263,7 +263,7 @@ const SaleStripe = ({
             )}
             <Link
               href={
-                "https://www.wrteam.in/year-end-sale"
+                "/new-year-sale"
               }
               target="_blank"
               className="flex bg-white text-[#D01818] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"

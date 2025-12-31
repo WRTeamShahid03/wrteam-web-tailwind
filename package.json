@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8003",
     "build": "next build",
     "start": "NODE_ENV=production NODE_PORT=8003 node server.js",
     "export": "next build",
