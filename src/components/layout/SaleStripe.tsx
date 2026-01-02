@@ -204,7 +204,7 @@ const SaleStripe = ({
 
             {/* Flash Deals Text */}
             <span className="hidden lg:block text-[#A40410] font-bold text-sm lg:text-md xl:text-xl whitespace-nowrap">
-              Missed Year-End? It's Time for 2026
+              Final 2 Days to Celebrate 2026
             </span>
 
             {/* Flower Icon */}
