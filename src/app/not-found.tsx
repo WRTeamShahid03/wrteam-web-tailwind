@@ -22,6 +22,8 @@ const Custom404 = () => {
     "/mid-year-sale",
     "/diwali-sale",
     "/cyber-sale",
+    "/year-end-sale",
+    "/new-year-sale",
   ];
   const isSalePage = salePages.some((salePath) =>
     pathname.startsWith(salePath)
@@ -33,12 +35,6 @@ const Custom404 = () => {
   // console.log(pathname);
   useEffect(() => {
     let redirected = false;
-
-    // Redirect year-end-sale to new-year-sale
-    if (pathname.startsWith("/year-end-sale")) {
-      router.replace("/new-year-sale");
-      redirected = true;
-    }
 
     // All redirect logic now runs only for non-sale URLs.
     if (!isSalePage) {
@@ -195,12 +191,12 @@ const Custom404 = () => {
 
 // Dedicated UI for expired sale pages so visitors get context instead of a redirect.
 const SaleEndedView = () => {
-  const whatsappChannelUrl = "https://www.whatsapp.com/channel/0029VaFfBBP2ER6eCc3E8y0M?utm_source=website&utm_medium=blog&utm_campaign=fi";
+  const whatsappChannelUrl = "https://whatsapp.com/channel/0029VaFfBBP2ER6eCc3E8y0M";
 
   return (
     <>
       <div className="flex min-h-screen flex-col justify-center bg-[#F7F9FC] text-[#0A2D75] items-center relative">
-        
+
         <div className="mx-auto flex w-full flex-col items-center gap-8 px-6 py-10 lg:flex-row lg:py-14 mb-[60px] lg:mb-0">
           <div className="relative flex w-full justify-center lg:w-1/2">
             <Image
@@ -238,16 +234,16 @@ const SaleEndedView = () => {
             </Link>
           </div>
         </div>
-      
-      <div className="bg-[#1E73F0] py-3 text-sm font-semibold text-white w-full overflow-hidden absolute bottom-0 h-[60px] flex items-center  ">
-        <Marquee direction="right" autoFill speed={50} gradient={false}>
-          <div className="flex items-center gap-4 sm:gap-6 px-4">
-            {Array.from({ length: 10 }).map((_, idx) => (
-              <span key={`sale-end-${idx}`} className="text-[30px] leading-7">Sale End</span>
-            ))}
-          </div>
-        </Marquee>
-      </div>
+
+        <div className="bg-[#1E73F0] py-3 text-sm font-semibold text-white w-full overflow-hidden absolute bottom-0 h-[60px] flex items-center  ">
+          <Marquee direction="right" autoFill speed={50} gradient={false}>
+            <div className="flex items-center gap-12 px-4">
+              {Array.from({ length: 10 }).map((_, idx) => (
+                <span key={`sale-end-${idx}`} className="text-[30px] leading-7">Sale End</span>
+              ))}
+            </div>
+          </Marquee>
+        </div>
       </div>
     </>
   );
