@@ -94,7 +94,8 @@ export default function RootLayout({
         {/* ---------------- WhatsApp Widget ---------------- */}
         {isProduction && (
           <Script
-            id="whatsapp-widget"
+            type="text/javascript"
+            id="aisensy-wa-widget"
             src="https://d3mkw6s8thqya7.cloudfront.net/integration-plugin.js"
             strategy="afterInteractive"
             widget-id="aaajmc"
