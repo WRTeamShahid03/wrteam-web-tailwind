@@ -203,8 +203,8 @@ const Installation: React.FC = () => {
 
 
                     {/* Currency Switch Toggle */}
-                    <div className="flex items-center gap-3 mt-6">
-                        <span>Switch Between USD & INR : </span>
+                    <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-6">
+                        <span className="text-sm sm:text-base">Switch Between USD & INR : </span>
                         <button
                             className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white ${currency === 'INR' ? "bg-[#2e71fe46]" : "bg-gray-200"}`}
                             onClick={toggleCurrency}
@@ -218,36 +218,36 @@ const Installation: React.FC = () => {
                         </button>
                     </div>
                 </div>
-                <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 lg:gap-8'>
                     {packages.map((pkg: installationPackagesDataTypes, index) => (
                         <div
                             key={pkg.id}
-                            className={`flex flex-col h-full p-4 border-[1.5px] rounded-[16px] relative bg-white ${index === 4 ? "primaryBorder max-xl:mt-12" : "border-[#2E71FE29]"
+                            className={`flex flex-col h-full p-4 lg:p-5 border-[1.5px] rounded-[16px] relative bg-white ${index === 4 ? "primaryBorder xl:mt-0 lg:mt-12 sm:mt-12 mt-12" : "border-[#2E71FE29]"
                                 }`}
                         >
                             {
                                 index === 4 && (
-                                    <div className='absolute -top-9 right-0 gap-2 primaryBg text-white w-full text-center pt-2 pb-8 px-2 rounded-t-[16px] rounded-b-[16px] flexCenter -z-[1]'>
+                                    <div className='absolute -top-9 left-0 right-0 gap-2 primaryBg text-white w-full text-center pt-2 pb-8 px-2 rounded-t-[16px] rounded-b-[16px] flexCenter -z-[1]'>
                                         <Image src={fullSetup} height={15} width={15} loading='lazy' className='' alt='full-setup-icon' />
-                                        <span className='text-sm font-semibold'>Buisness Ready</span>
+                                        <span className='text-xs sm:text-sm font-semibold'>Business Ready</span>
                                         <Image src={fullSetup} height={15} width={15} loading='lazy' className='' alt='full-setup-icon' />
                                     </div>
                                 )
                             }
-                            <div className='flex flex-col gap-3 border-b pb-4 border-dashed border-black'>
+                            <div className='flex flex-col gap-3 border-b pb-3 lg:pb-4 border-dashed border-black'>
 
                                 <div className='flex gap-4'>
                                     {/* <div className='bg-[#181C2414] rounded-[6px] p-2 flexCenter h-[72px] w-[72px]'>
                                         <Image src={pkg.icon} height={42} width={42} loading='lazy' className='' alt='bg' />
                                     </div> */}
                                     <div className='flex flex-col gap-1'>
-                                        <h3 className="text-xl lg:text-2xl font-semibold">{pkg.packageName}</h3>
-                                        <p className="text-[#545A68] text-sm font-semibold">{pkg.setups}</p>
+                                        <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold">{pkg.packageName}</h3>
+                                        <p className="text-[#545A68] text-xs sm:text-sm font-semibold">{pkg.setups}</p>
                                     </div>
                                 </div>
 
-                                <div className='bg-[#2E71FE14] rounded-[8px] p-3 lg:p-4 flexCenter gap-1 lg:gap-2 font-extrabold !items-end flex-wrap'>
-                                    <span className={`text-center text-base lg:text-lg line-through font-semibold text-gray-500`}>
+                                <div className='bg-[#2E71FE14] rounded-[8px] p-2 sm:p-3 lg:p-4 flexCenter gap-1 sm:gap-2 font-extrabold !items-end flex-wrap justify-center'>
+                                    <span className={`text-center text-sm sm:text-base lg:text-lg line-through font-semibold text-gray-500`}>
                                         {
                                             currency === 'INR' ? (
                                                 <span>{currencySymbol}{pkg.cutPriceINR.toLocaleString()}</span>
@@ -256,7 +256,7 @@ const Installation: React.FC = () => {
                                             )
                                         }
                                     </span>
-                                    <span className={`text-center text-xl lg:text-2xl xl:text-3xl font-bold primaryColor`}>
+                                    <span className={`text-center text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold primaryColor`}>
                                         {
                                             currency === 'INR' ? (
                                                 <span>{currencySymbol}{pkg.priceINR.toLocaleString()}</span>
@@ -272,18 +272,18 @@ const Installation: React.FC = () => {
                                 }
                             </div>
 
-                            <ul className="mt-4 space-y-3 lg:space-y-6">
-                                <span className='font-semibold text-sm lg:text-base'>What&apos;s included :</span>
+                            <ul className="mt-3 lg:mt-4 space-y-2 sm:space-y-3 lg:space-y-4">
+                                <span className='font-semibold text-xs sm:text-sm lg:text-base mb-1 block'>What&apos;s included :</span>
                                 {pkg.services.map((service, i) => (
-                                    <li key={i} className={`flex items-start gap-2 justify-between`}>
-                                        <span className='text-xs lg:text-sm font-medium inline-block w-[84%] leading-relaxed'>{service}</span>
-                                        <span className='w-[20px] h-[20px] min-w-[20px] flexCenter bg-[#48b02c] text-white rounded-full mt-0.5'><FaCheck size={10} /></span>
+                                    <li key={i} className={`flex items-start gap-1 sm:gap-2 justify-between`}>
+                                        <span className='text-[10px] sm:text-xs lg:text-sm font-medium inline-block w-[82%] sm:w-[84%] leading-relaxed'>{service}</span>
+                                        <span className='w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] min-w-[18px] sm:min-w-[20px] flexCenter bg-[#48b02c] text-white rounded-full mt-0.5'><FaCheck size={9} /></span>
                                     </li>
                                 ))}
                                 {pkg.excludedServices.map((service, i) => (
-                                    <li key={i} className={`flex items-start gap-2 justify-between`}>
-                                        <span className='text-xs lg:text-sm font-medium inline-block w-[84%] leading-relaxed'>{service}</span>
-                                        <span className='w-[20px] h-[20px] min-w-[20px] flexCenter bg-[#ff4141] text-white rounded-full mt-0.5'><IoMdClose size={14} /></span>
+                                    <li key={i} className={`flex items-start gap-1 sm:gap-2 justify-between`}>
+                                        <span className='text-[10px] sm:text-xs lg:text-sm font-medium inline-block w-[82%] sm:w-[84%] leading-relaxed'>{service}</span>
+                                        <span className='w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] min-w-[18px] sm:min-w-[20px] flexCenter bg-[#ff4141] text-white rounded-full mt-0.5'><IoMdClose size={12} /></span>
                                     </li>
                                 ))}
                             </ul>
