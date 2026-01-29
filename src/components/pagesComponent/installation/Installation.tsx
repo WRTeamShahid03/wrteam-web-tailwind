@@ -42,9 +42,10 @@ const Installation: React.FC = () => {
             packageName: "Basic",
             icon: basicIcon,
             setups: "Web Setup",
-            cutPrice: 299,
-            price: 199,
+            cutPrice: 349,
+            price: 249,
             services: [
+                "AWS, GCP, Azure Setup",
                 "Notification Configuration",
                 "Login Configuration (Firebase and Everything)",
                 "Change Theme colour according to LOGO (reskin)",
@@ -59,20 +60,21 @@ const Installation: React.FC = () => {
                 "Domain & Hosting",
                 "Content Writing",
                 "Google Analytics Setup",
-                // "Third-party API Integration",
+                "1 Year Support",
             ],
-            // New INR values
-            cutPriceINR: 25990,
-            priceINR: 19499,
+            cutPriceINR: 29799,
+            priceINR: 21277,
         },
         {
             id: 1,
             packageName: "Standard",
             icon: standardIcon,
             setups: "Android OR iOS Setup",
-            cutPrice: 499,
-            price: 399,
+            cutPrice: 599,
+            price: 499,
             services: [
+                "1 Year Support",
+                "AWS, GCP, Azure Setup",
                 "Change App Name (Re-Brand)",
                 "Package Name",
                 "Notification Configuration",
@@ -84,18 +86,23 @@ const Installation: React.FC = () => {
                 "In-app Purchase Configuration (If Applicable)",
                 "Live over PlayStore OR App Store",
             ],
-            excludedServices: ["Live Website on Server"],
-            cutPriceINR: 45990,
-            priceINR: 39499,
+            excludedServices: [
+                "Live Website on Server",
+                "Customised Screenshot + Feature Graphic",
+            ],
+            cutPriceINR: 51200,
+            priceINR: 42645,
         },
         {
             id: 2,
-            packageName: "Advance",
+            packageName: "Advanced",
             icon: advanceIcon,
             setups: "Android + iOS Setup (Combo)",
-            cutPrice: 998,
-            price: 599,
+            cutPrice: 1198,
+            price: 699,
             services: [
+                "1 Year Support",
+                "AWS, GCP, Azure Setup",
                 "Change App Name (Re-Brand)",
                 "Package Name",
                 "Notification Configuration",
@@ -107,18 +114,23 @@ const Installation: React.FC = () => {
                 "In-app Purchase Configuration (If Applicable)",
                 "Live over PlayStore AND App Store",
             ],
-            excludedServices: ["Live Website on Server"],
-            cutPriceINR: 80990,
-            priceINR: 54499,
+            excludedServices: [
+                "Live Website on Server",
+                "Customised Screenshot + Feature Graphic",
+            ],
+            cutPriceINR: 102377,
+            priceINR: 59737,
         },
         {
             id: 3,
             packageName: "Premium",
             icon: premiumIcon,
             setups: "Android + iOS + Web Setup",
-            cutPrice: 1297,
-            price: 699,
+            cutPrice: 1547,
+            price: 799,
             services: [
+                "1 Year Support",
+                "AWS, GCP, Azure Setup",
                 "Change App Name (Re-Brand)",
                 "Package Name",
                 "Notification Configuration",
@@ -126,14 +138,43 @@ const Installation: React.FC = () => {
                 "Change Theme colour according to LOGO (reskin)",
                 "Configuration Firebase",
                 "Setup Admin panel",
-                "Live Website on Server",
                 "Configuration Advertisement (If Applicable)",
                 "In-app Purchase Configuration (If Applicable)",
                 "Live over PlayStore AND App Store",
+                "Live Website on Server",
+            ],
+            excludedServices: [
+                "Customised Screenshot + Feature Graphic",
+            ],
+            cutPriceINR: 132187,
+            priceINR: 68292,
+        },
+        {
+            id: 4,
+            packageName: "Super",
+            icon: fullSetup,
+            setups: "Android + iOS + Web Setup",
+            cutPrice: 1796,
+            price: 999,
+            services: [
+                "1 Year Support",
+                "AWS, GCP, Azure Setup",
+                "Customised Screenshot + Feature Graphic",
+                "Change App Name (Re-Brand)",
+                "Package Name",
+                "Notification Configuration",
+                "Login Configuration (Firebase and Everything)",
+                "Change Theme colour according to LOGO (reskin)",
+                "Configuration Firebase",
+                "Setup Admin panel",
+                "Configuration Advertisement (If Applicable)",
+                "In-app Purchase Configuration (If Applicable)",
+                "Live over PlayStore AND App Store",
+                "Live Website on Server",
             ],
             excludedServices: [],
-            cutPriceINR: 90990,
-            priceINR: 59999,
+            cutPriceINR: 153486,
+            priceINR: 85385,
         },
     ];
 
@@ -150,7 +191,7 @@ const Installation: React.FC = () => {
     return (
         <Layout>
             <Breadcrumb title='Installation &' blueText='Setup' secondElement='Services' thirdElement='installation' />
-            <section className='container commonMT space-y-8 md:space-y-12 lg:space-y-20'>
+            <section className='max-1680:!container 2xl:max-w-[1620px] mx-auto commonMT space-y-8 md:space-y-12 lg:space-y-20'>
                 <div className='flexCenter flex-col gap-6'>
 
                     <div className='flexCenter flex-col gap-4 text-center lg:w-[60%] m-auto'>
@@ -177,18 +218,18 @@ const Installation: React.FC = () => {
                         </button>
                     </div>
                 </div>
-                <div className='grid sm:grid-cols-2 lg:grid-cols-3 between-1200-1399:grid-cols-4 xl:grid-cols-4 gap-6'>
+                <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6'>
                     {packages.map((pkg: installationPackagesDataTypes, index) => (
                         <div
                             key={pkg.id}
-                            className={`max-1199:h-max ${currency === 'INR' ? "between-1200-1399:h-[70rem] h-[64rem]" : "between-1200-1399:h-[68rem] h-[62rem]"} p-4 border-[1.5px] rounded-[16px] relative bg-white ${index === 3 ? "primaryBorder max-1199:mt-12" : "border-[#2E71FE29]"
+                            className={`flex flex-col h-full p-4 border-[1.5px] rounded-[16px] relative bg-white ${index === 4 ? "primaryBorder max-xl:mt-12" : "border-[#2E71FE29]"
                                 }`}
                         >
                             {
-                                index === 3 && (
-                                    <div className='absolute -top-9 right-0  gap-2 primaryBg text-white w-full text-center pt-2 pb-8 px-2 rounded-t-[16px] rounded-b-[16px] flexCenter -z-[1]'>
+                                index === 4 && (
+                                    <div className='absolute -top-9 right-0 gap-2 primaryBg text-white w-full text-center pt-2 pb-8 px-2 rounded-t-[16px] rounded-b-[16px] flexCenter -z-[1]'>
                                         <Image src={fullSetup} height={15} width={15} loading='lazy' className='' alt='full-setup-icon' />
-                                        <span className='text-sm font-semibold'>Full Setup</span>
+                                        <span className='text-sm font-semibold'>Buisness Ready</span>
                                         <Image src={fullSetup} height={15} width={15} loading='lazy' className='' alt='full-setup-icon' />
                                     </div>
                                 )
@@ -200,25 +241,25 @@ const Installation: React.FC = () => {
                                         <Image src={pkg.icon} height={42} width={42} loading='lazy' className='' alt='bg' />
                                     </div> */}
                                     <div className='flex flex-col gap-1'>
-                                        <h3 className="text-2xl font-semibold">{pkg.packageName}</h3>
-                                        <p className="text-[#545A68] font-semibold">{pkg.setups}</p>
+                                        <h3 className="text-xl lg:text-2xl font-semibold">{pkg.packageName}</h3>
+                                        <p className="text-[#545A68] text-sm font-semibold">{pkg.setups}</p>
                                     </div>
                                 </div>
 
-                                <div className='bg-[#2E71FE14] rounded-[8px] p-4 flexCenter gap-2 font-extrabold !items-end'>
-                                    <span className={`text-center text-lg sm:text-xl line-through font-semibold`}>
+                                <div className='bg-[#2E71FE14] rounded-[8px] p-3 lg:p-4 flexCenter gap-1 lg:gap-2 font-extrabold !items-end flex-wrap'>
+                                    <span className={`text-center text-base lg:text-lg line-through font-semibold text-gray-500`}>
                                         {
                                             currency === 'INR' ? (
-                                                <span>{currencySymbol}{pkg.cutPriceINR}</span>
+                                                <span>{currencySymbol}{pkg.cutPriceINR.toLocaleString()}</span>
                                             ) : (
                                                 <span>{currencySymbol}{pkg.cutPrice}</span>
                                             )
                                         }
                                     </span>
-                                    <span className={`text-center text-2xl sm:text-3xl font-bold primaryColor`}>
+                                    <span className={`text-center text-xl lg:text-2xl xl:text-3xl font-bold primaryColor`}>
                                         {
                                             currency === 'INR' ? (
-                                                <span>{currencySymbol}{pkg.priceINR}</span>
+                                                <span>{currencySymbol}{pkg.priceINR.toLocaleString()}</span>
                                             ) : (
                                                 <span>{currencySymbol}{pkg.price}</span>
                                             )
@@ -227,22 +268,22 @@ const Installation: React.FC = () => {
                                 </div>
                                 {
                                     currency === 'INR' &&
-                                    <span className='text-sm font-medium text-center'>(Incl. GST)</span>
+                                    <span className='text-xs lg:text-sm font-medium text-center text-gray-600'>(Incl. GST)</span>
                                 }
                             </div>
 
-                            <ul className="mt-4 space-y-8 [&>li-las]">
-                                <span className='font-semibold'>What&apos;s included :</span>
+                            <ul className="mt-4 space-y-3 lg:space-y-6">
+                                <span className='font-semibold text-sm lg:text-base'>What&apos;s included :</span>
                                 {pkg.services.map((service, i) => (
-                                    <li key={i} className={`flex items-center gap-2 justify-between`}>
-                                        <span className='text-sm between-1200-1399:text-sm font-medium inline-block w-[84%]'>{service}</span>
-                                        <span className='w-[22px] h-[22px] flexCenter bg-[#48b02c] text-white rounded-full'><FaCheck size={12} /></span>
+                                    <li key={i} className={`flex items-start gap-2 justify-between`}>
+                                        <span className='text-xs lg:text-sm font-medium inline-block w-[84%] leading-relaxed'>{service}</span>
+                                        <span className='w-[20px] h-[20px] min-w-[20px] flexCenter bg-[#48b02c] text-white rounded-full mt-0.5'><FaCheck size={10} /></span>
                                     </li>
                                 ))}
                                 {pkg.excludedServices.map((service, i) => (
-                                    <li key={i} className={`flex items-center gap-2 justify-between`}>
-                                        <span className='text-sm font-medium inline-block w-[84%]'>{service}</span>
-                                        <span className='w-[22px] h-[22px] flexCenter bg-[#ff4141] text-white rounded-full'><IoMdClose /></span>
+                                    <li key={i} className={`flex items-start gap-2 justify-between`}>
+                                        <span className='text-xs lg:text-sm font-medium inline-block w-[84%] leading-relaxed'>{service}</span>
+                                        <span className='w-[20px] h-[20px] min-w-[20px] flexCenter bg-[#ff4141] text-white rounded-full mt-0.5'><IoMdClose size={14} /></span>
                                     </li>
                                 ))}
                             </ul>
@@ -251,7 +292,7 @@ const Installation: React.FC = () => {
                 </div>
             </section>
 
-            <div className="container">
+            <div className="max-1680:!container 2xl:max-w-[1620px] mx-auto">
                 <section className="secondaryBg commonMT text-white rounded-[16px] p-6 md:p-8">
                     <div className="grid md:grid-cols-12 gap-y-8 md:gap-12">
                         {/* Left Side */}
