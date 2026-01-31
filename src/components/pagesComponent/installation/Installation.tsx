@@ -62,8 +62,8 @@ const Installation: React.FC = () => {
                 "Google Analytics Setup",
                 "1 Year Support",
             ],
-            cutPriceINR: 29799,
-            priceINR: 21277,
+            cutPriceINR: 29990,
+            priceINR: 21999,
         },
         {
             id: 1,
@@ -90,8 +90,8 @@ const Installation: React.FC = () => {
                 "Live Website on Server",
                 "Customised Screenshot + Feature Graphic",
             ],
-            cutPriceINR: 51200,
-            priceINR: 42645,
+            cutPriceINR: 54990,
+            priceINR: 44999,
         },
         {
             id: 2,
@@ -118,8 +118,8 @@ const Installation: React.FC = () => {
                 "Live Website on Server",
                 "Customised Screenshot + Feature Graphic",
             ],
-            cutPriceINR: 102377,
-            priceINR: 59737,
+            cutPriceINR: 109990,
+            priceINR: 59999,
         },
         {
             id: 3,
@@ -146,8 +146,8 @@ const Installation: React.FC = () => {
             excludedServices: [
                 "Customised Screenshot + Feature Graphic",
             ],
-            cutPriceINR: 132187,
-            priceINR: 68292,
+            cutPriceINR: 139990,
+            priceINR: 69999,
         },
         {
             id: 4,
@@ -173,8 +173,8 @@ const Installation: React.FC = () => {
                 "Live Website on Server",
             ],
             excludedServices: [],
-            cutPriceINR: 153486,
-            priceINR: 85385,
+            cutPriceINR: 155990,
+            priceINR: 89999,
         },
     ];
 
@@ -268,7 +268,7 @@ const Installation: React.FC = () => {
                                 </div>
                                 {
                                     currency === 'INR' &&
-                                    <span className='text-xs lg:text-sm font-medium text-center text-gray-600'>(Incl. GST)</span>
+                                    <span className='text-xs lg:text-sm font-medium text-center text-gray-600'>(Excl. GST)</span>
                                 }
                             </div>
 
