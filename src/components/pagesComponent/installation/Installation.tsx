@@ -226,7 +226,7 @@ const Installation: React.FC = () => {
     return (
         <Layout>
             <Breadcrumb title='Installation &' blueText='Setup' secondElement='Services' thirdElement='installation' />
-            <section className='max-1680:!container 2xl:max-w-[1620px] mx-auto commonMT space-y-8 md:space-y-12 lg:space-y-20'>
+            <section className='container mx-auto commonMT space-y-8 md:space-y-12 lg:space-y-20'>
                 <div className='flexCenter flex-col gap-6'>
 
                     <div className='flexCenter flex-col gap-4 text-center lg:w-[60%] m-auto'>
@@ -359,7 +359,7 @@ const Installation: React.FC = () => {
                 </div>
             </section>
 
-            <div className="max-1680:!container 2xl:max-w-[1620px] mx-auto">
+            <div className="container mx-auto">
                 <section className="secondaryBg commonMT text-white rounded-[16px] p-6 md:p-8">
                     <div className="grid md:grid-cols-12 gap-y-8 md:gap-12">
                         {/* Left Side */}
