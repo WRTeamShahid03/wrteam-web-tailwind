@@ -4,8 +4,8 @@ import Layout from '@/components/layout/Layout'
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react'
-import { FaCheck } from 'react-icons/fa';
-import { IoMdClose } from 'react-icons/io';
+import { FaCheck, FaCheckCircle } from 'react-icons/fa';
+import { IoMdClose, IoMdCloseCircle } from 'react-icons/io';
 import sideImg from "@/assets/images/installation/installationSideImg.svg";
 import { installationPackagesDataTypes } from '@/types';
 import basicIcon from "@/assets/images/installation/basicIcon.svg";
@@ -13,6 +13,8 @@ import standardIcon from "@/assets/images/installation/standardIcon.svg";
 import advanceIcon from "@/assets/images/installation/advanceIcon.svg";
 import premiumIcon from "@/assets/images/installation/premiumIcon.svg";
 import fullSetup from "@/assets/images/installation/fullSetupIcon.svg";
+import { FaRocket } from 'react-icons/fa6';
+import { IoRocketOutline } from 'react-icons/io5';
 
 const Installation: React.FC = () => {
     // State for currency selection (USD is default)
@@ -212,10 +214,10 @@ const Installation: React.FC = () => {
 
     const renderStatus = (status: string, isHighlighted = false) => {
         if (status === "check") {
-            return <FaCheck className="mx-auto text-green-500" size={18} />;
+            return <FaCheckCircle className="mx-auto text-green-500" size={18} />;
         }
         if (status === "cross") {
-            return <IoMdClose className="mx-auto text-gray-400" size={20} />;
+            return <IoMdCloseCircle className="mx-auto text-gray-300 font-bold" size={18} />;
         }
         if (status === "OR") {
             return <span className="text-xs font-semibold text-gray-500">OR</span>;
@@ -226,7 +228,7 @@ const Installation: React.FC = () => {
     return (
         <Layout>
             <Breadcrumb title='Installation &' blueText='Setup' secondElement='Services' thirdElement='installation' />
-            <section className='container mx-auto commonMT space-y-8 md:space-y-12 lg:space-y-20'>
+            <section className='max-1680:!container 2xl:max-w-[1620px] mx-auto commonMT space-y-8 md:space-y-12 lg:space-y-20'>
                 <div className='flexCenter flex-col gap-6'>
 
                     <div className='flexCenter flex-col gap-4 text-center lg:w-[60%] m-auto'>
@@ -254,51 +256,73 @@ const Installation: React.FC = () => {
                     </div>
                 </div>
                 {/* Desktop view table */}
-                <div className="hidden lg:block w-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl mt-12">
+                <div className="hidden lg:block w-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm mt-12">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="border-b border-gray-200">
-                                <th className="p-6 bg-gray-50/50 w-1/6 align-bottom">
+                            <tr className="bg-gray-50/50">
+                                <th className="p-6 w-1/6 align-bottom border-b border-gray-200">
                                     <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Features</span>
                                 </th>
-                                {packages.map((pkg, index) => (
-                                    <th
-                                        key={pkg.id}
-                                        onMouseEnter={() => setHoveredPkg(index)}
-                                        onMouseLeave={() => setHoveredPkg(null)}
-                                        className={`p-6 text-center w-1/6 align-bottom transition-colors cursor-default ${index === 4 ? "bg-blue-50/50 border-x border-blue-100 relative" : "hover:bg-gray-50/50"}`}
-                                    >
-                                        {index === 4 && (
-                                            <>
-                                                <div className="absolute top-0 left-0 w-full h-1.5 primaryBg"></div>
-                                                <div className="flex justify-center items-center gap-1 mb-2">
-                                                    <Image src={fullSetup} height={12} width={12} alt="Business Ready" />
-                                                    <span className="text-[10px] font-bold primaryColor uppercase tracking-wide">Business Ready</span>
+                                {packages.map((pkg, index) => {
+                                    const isSuper = index === 4;
+
+                                    return (
+                                        <th
+                                            key={pkg.id}
+                                            className={`p-4 align-bottom border-b border-gray-200 ${isSuper ? "bg-blue-50/30" : ""}`}
+                                        >
+                                            <div className={`relative mx-auto rounded-2xl border-2 bg-white p-5 shadow-sm transition-all ${isSuper ? "border-blue-500" : "border-gray-200"}`}>
+                                                {/* BUSINESS READY STRIP */}
+                                                {isSuper && (
+                                                    <div className="absolute -top-[2px] left-[-2px] right-[-2px] h-9 rounded-t-2xl bg-blue-600 flex items-center justify-center gap-2 text-white text-[10px] font-bold uppercase tracking-wide">
+                                                        <IoRocketOutline className="text-white" size={18} /> Business Ready <IoRocketOutline className="text-white" size={18} />
+                                                    </div>
+                                                )}
+
+                                                {/* CARD BODY */}
+                                                <div className={`flex flex-col ${isSuper ? "pt-10" : ""}`}>
+                                                    {/* Title */}
+                                                    <h3 className="text-lg font-bold text-gray-900 text-left">
+                                                        {pkg.packageName}
+                                                    </h3>
+
+                                                    {/* Subtitle */}
+                                                    <p className="text-xs text-gray-500 mt-0.5 text-left">
+                                                        {pkg.setups}
+                                                    </p>
+
+                                                    {/* Price - Horizontal Layout */}
+                                                    <div className="mt-4 flex items-baseline gap-2">
+                                                        <span className="text-sm text-gray-400 line-through">
+                                                            {currencySymbol}{convertPrice(pkg.cutPrice, pkg.cutPriceINR)}
+                                                        </span>
+                                                        <span className="text-3xl font-extrabold text-blue-600">
+                                                            {currencySymbol}{convertPrice(pkg.price, pkg.priceINR)}
+                                                        </span>
+                                                    </div>
+
+                                                    {currency === "INR" && (
+                                                        <div className="text-[10px] text-gray-500 mt-1 text-left">
+                                                            (Excl. GST)
+                                                        </div>
+                                                    )}
                                                 </div>
-                                            </>
-                                        )}
-                                        <div className={`font-bold text-2xl ${index === 4 || hoveredPkg === index ? "primaryColor" : "text-gray-900"}`}>{pkg.packageName}</div>
-                                        <div className="text-sm text-gray-500 mt-1">{pkg.setups}</div>
-                                        <div className={`mt-3 font-bold text-3xl primaryColor`}>
-                                            {currencySymbol}{convertPrice(pkg.price, pkg.priceINR)}
-                                        </div>
-                                        {currency === 'INR' && (
-                                            <div className="text-[10px] font-medium text-gray-500 mt-1">(Excl. GST)</div>
-                                        )}
-                                    </th>
-                                ))}
+                                            </div>
+                                        </th>
+                                    );
+                                })}
                             </tr>
                         </thead>
                         <tbody className="text-sm">
                             {featuresList.map((feature, fIndex) => (
-                                <tr key={fIndex} className="hover:bg-gray-50 transition-colors border-b border-gray-100">
+                                <tr key={fIndex} className="hover:bg-gray-50/50 transition-colors border-b border-gray-100">
                                     <td className="p-4 px-6 font-medium text-gray-900">{feature.name}</td>
                                     {feature.status.map((status, pIndex) => (
                                         <td
                                             key={pIndex}
                                             onMouseEnter={() => setHoveredPkg(pIndex)}
                                             onMouseLeave={() => setHoveredPkg(null)}
-                                            className={`p-4 text-center transition-colors cursor-default ${pIndex === 4 ? "bg-blue-50/30 border-x border-blue-100" : ""}`}
+                                            className={`p-4 text-center transition-colors cursor-default ${pIndex === 4 ? "bg-blue-50/30" : ""}`}
                                         >
                                             {renderStatus(status, (fIndex === featuresList.length - 1 && (hoveredPkg === pIndex || pIndex === 4)))}
                                         </td>
@@ -359,7 +383,7 @@ const Installation: React.FC = () => {
                 </div>
             </section>
 
-            <div className="container mx-auto">
+            <div className="max-1680:!container 2xl:max-w-[1620px] mx-auto">
                 <section className="secondaryBg commonMT text-white rounded-[16px] p-6 md:p-8">
                     <div className="grid md:grid-cols-12 gap-y-8 md:gap-12">
                         {/* Left Side */}
