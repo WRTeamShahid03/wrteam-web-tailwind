@@ -199,10 +199,10 @@ const Installation: React.FC = () => {
         { name: "Firebase Configuration", status: ["check", "check", "check", "check", "check"] },
         { name: "Change Theme Colors", status: ["check", "check", "check", "check", "check"] },
         { name: "Live Website on Server", status: ["check", "cross", "cross", "check", "check"] },
-        { name: "Change App Name & Package", status: ["cross", "check", "check", "check", "check"] },
-        { name: "Push Notifications (If Applicable)", status: ["cross", "check", "check", "check", "check"] },
-        { name: "In-App Purchase Config (If Applicable)", status: ["cross", "check", "check", "check", "check"] },
-        { name: "Advertisement Config (If Applicable)", status: ["cross", "check", "check", "check", "check"] },
+        { name: "Change App & Package Name", status: ["cross", "check", "check", "check", "check"] },
+        { name: "Push Notifications Configuration (If Applicable)", status: ["cross", "check", "check", "check", "check"] },
+        { name: "In-App Purchase Configuration (If Applicable)", status: ["cross", "check", "check", "check", "check"] },
+        { name: "Advertisement Configuration (If Applicable)", status: ["cross", "check", "check", "check", "check"] },
         { name: "Live over Play Store", status: ["cross", "OR", "check", "check", "check"] },
         { name: "Live over App Store", status: ["cross", "OR", "check", "check", "check"] },
         { name: "Customised Screenshot + Feature Graphic", status: ["cross", "cross", "cross", "cross", "check"] },
@@ -217,10 +217,10 @@ const Installation: React.FC = () => {
             return <FaCheckCircle className="mx-auto text-green-500" size={18} />;
         }
         if (status === "cross") {
-            return <IoMdCloseCircle className="mx-auto text-gray-300 font-bold" size={18} />;
+            return <span className="text-base font-semibold text-gray-500">-</span>;
         }
         if (status === "OR") {
-            return <span className="text-xs font-semibold text-gray-500">OR</span>;
+            return <span className="text-base font-semibold text-gray-500">OR</span>;
         }
         return <span className={`font-semibold transition-colors duration-200 ${isHighlighted ? 'primaryColor' : (status === 'None' ? 'text-gray-400' : 'text-gray-700')}`}>{status}</span>;
     };
