@@ -256,7 +256,7 @@ const Installation: React.FC = () => {
                     </div>
                 </div>
                 {/* Desktop view table */}
-                <div className="hidden lg:block w-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm mt-12">
+                <div className="hidden lg:block w-full overflow-auto rounded-2xl border border-gray-200 bg-white shadow-sm mt-12">
                     <table className="w-full text-left border-collapse">
                         <thead>
                             <tr className="bg-gray-50/50">
@@ -269,9 +269,9 @@ const Installation: React.FC = () => {
                                     return (
                                         <th
                                             key={pkg.id}
-                                            className={`p-4 align-bottom border-b border-gray-200 ${isSuper ? "bg-blue-50/30" : ""}`}
+                                            className={`between-992-1199:!p-3 max-1680:p-2 p-4 align-bottom border-b border-gray-200 ${isSuper ? "bg-blue-50/30" : ""}`}
                                         >
-                                            <div className={`relative mx-auto rounded-2xl border-2 bg-white p-5 shadow-sm transition-all ${isSuper ? "border-blue-500" : "border-gray-200"}`}>
+                                            <div className={`relative mx-auto rounded-2xl border-2 bg-white between-992-1199:!p-4 max-1680:p-3 p-5 shadow-sm transition-all ${isSuper ? "border-blue-500" : "border-gray-200"}`}>
                                                 {/* BUSINESS READY STRIP */}
                                                 {isSuper && (
                                                     <div className="absolute -top-[2px] left-[-2px] right-[-2px] h-9 rounded-t-2xl bg-blue-600 flex items-center justify-center gap-2 text-white text-[10px] font-bold uppercase tracking-wide">
@@ -296,7 +296,7 @@ const Installation: React.FC = () => {
                                                         <span className="text-sm text-gray-400 line-through">
                                                             {currencySymbol}{convertPrice(pkg.cutPrice, pkg.cutPriceINR)}
                                                         </span>
-                                                        <span className="text-3xl font-extrabold text-blue-600">
+                                                        <span className="text-3xl font-bold text-blue-600">
                                                             {currencySymbol}{convertPrice(pkg.price, pkg.priceINR)}
                                                         </span>
                                                     </div>
