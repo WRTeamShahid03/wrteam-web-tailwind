@@ -359,15 +359,18 @@ const Installation: React.FC = () => {
                                 {activeTab === 4 && <Image src={fullSetup} height={20} width={20} alt="Super" className="bg-white rounded-full p-1 h-6 w-6" />}
                             </h2>
                             <p className="text-blue-100 text-sm font-medium mb-4">{packages[activeTab].setups}</p>
-                            <div className="text-5xl font-extrabold mb-1">
+                            <div className="max-575:text-3xl text-5xl font-bold mb-1 flex justify-center items-end gap-2">
+                                <span className="text-gray-300 line-through max-575:text-lg text-2xl">
+                                    {currencySymbol}{convertPrice(packages[activeTab].cutPrice, packages[activeTab].cutPriceINR)}
+                                </span>
                                 {currencySymbol}{convertPrice(packages[activeTab].price, packages[activeTab].priceINR)}
                             </div>
                             {currency === 'INR' && (
                                 <div className="text-xs font-medium text-blue-100 mb-6">(Excl. GST)</div>
                             )}
-                            <Link href={'/contact-us'} className="relative z-10 block w-full py-4 bg-white primaryColor font-bold rounded-xl shadow-sm hover:bg-gray-50 transition-colors text-lg">
+                            {/* <Link href={'/contact-us'} className="relative z-10 block w-full py-4 bg-white primaryColor font-bold rounded-xl shadow-sm hover:bg-gray-50 transition-colors text-lg">
                                 Contact Us
-                            </Link>
+                            </Link> */}
                         </div>
 
                         <div className="p-6 pt-2 space-y-4">
