@@ -78,6 +78,7 @@ const MobileNav: React.FC<dataProps> = ({ servicesDropdown, setServicesDropdown,
 
   const activeDrop = pathname?.startsWith('/about-us') || pathname?.startsWith('/career') || pathname?.startsWith('/blogs') || pathname?.startsWith('/contact-us');
 
+  const [contactDropdown, setContactDropdown] = useState<boolean>(false);
 
   const data = [
     {
@@ -282,21 +283,39 @@ const MobileNav: React.FC<dataProps> = ({ servicesDropdown, setServicesDropdown,
                 <span>Hire Us</span>
                 <FaArrowRight />
               </Link>
-              <div className="flexCenter gap-2">
-                <div className="flexCenter primaryBg text-white h-[48px] w-[48px] rounded-full">
-                  <LucidePhoneCall />
+              <div className="flex flex-col gap-2">
+                <div
+                  className="flex items-center gap-2 cursor-pointer"
+                  onClick={() => setContactDropdown(!contactDropdown)}
+                >
+                  <div className="flexCenter primaryBg text-white h-[48px] w-[48px] rounded-full">
+                    <LucidePhoneCall />
+                  </div>
+                  <div className="flex flex-col font-semibold">
+                    <span>24*7 Available</span>
+                    <span className="primaryColor flex items-center gap-2">
+                      +91 97979 45459 <FaAngleDown className={`transition-transform duration-300 ${contactDropdown ? 'rotate-180' : ''}`} />
+                    </span>
+                  </div>
                 </div>
-                <div className="flex flex-col font-semibold">
-                  <span>24/7 Available</span>
-                  <Link
-                    href={"tel:+91 97979 45459"}
-                    title="+91 97979 45459"
-                    className="primaryColor"
-                  >
-                    {" "}
-                    +91 97979 45459
-                  </Link>
-                </div>
+                {contactDropdown && (
+                  <div className="flex flex-col gap-2 pl-4 animate-in slide-in-from-top-2 duration-200 mt-2">
+                    <span className='text-xs font-semibold text-gray-400 uppercase tracking-wider pl-2'>Direct Lines</span>
+                    {[
+                      "+91 97124 45459",
+                      "+91 6359 302 924",
+                      "+91 82003 23468",
+                      "+91 97979 45459"
+                    ].map((num, idx) => (
+                      <a key={idx} href={`tel:${num.replace(/\s/g, '')}`} className='flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 transition-all active:bg-slate-100 group'>
+                        <div className='w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center'>
+                          <LucidePhoneCall size={14} />
+                        </div>
+                        <span className='font-medium text-gray-700 text-sm'>{num}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
             </nav>
           </div>

@@ -45,12 +45,13 @@ const Header = () => {
   const [servicesDropdown, setServicesDropdown] = useState<boolean>(false);
   const [morePagesDropdown, setMorePagesDropdown] = useState<boolean>(false);
   const [ourWorkDropdown, setOurWorkDropdown] = useState<boolean>(false);
+  const [contactDropdown, setContactDropdown] = useState<boolean>(false);
 
   // Get target date from environment variable and check if sale has ended
   // Format: "02/12/2025-6:30PM" (DD/MM/YYYY-HH:MMAM or DD/MM/YYYY-HH:MMPM)
   const saleDateString = process.env.NEXT_PUBLIC_SALE_END_DATE;
   const targetDate = parseSaleDate(saleDateString);
-  
+
   // Initialize showSaleStripe based on whether the sale date has passed
   const [showSaleStripe, setShowSaleStripe] = useState(() => {
     // Only show if target date exists and hasn't passed yet
@@ -104,6 +105,7 @@ const Header = () => {
     if (servicesDropdown) {
       setMorePagesDropdown(false);
       setOurWorkDropdown(false);
+      setContactDropdown(false);
     }
   }, [servicesDropdown])
 
@@ -111,6 +113,7 @@ const Header = () => {
     if (morePagesDropdown) {
       setServicesDropdown(false);
       setOurWorkDropdown(false);
+      setContactDropdown(false);
     }
   }, [morePagesDropdown])
 
@@ -118,8 +121,17 @@ const Header = () => {
     if (ourWorkDropdown) {
       setServicesDropdown(false);
       setMorePagesDropdown(false);
+      setContactDropdown(false);
     }
   }, [ourWorkDropdown])
+
+  useEffect(() => {
+    if (contactDropdown) {
+      setServicesDropdown(false);
+      setMorePagesDropdown(false);
+      setOurWorkDropdown(false);
+    }
+  }, [contactDropdown])
 
 
   return (
@@ -159,14 +171,45 @@ const Header = () => {
                   <span>Hire Us</span>
                   <FaArrowRight />
                 </Link>
-                <div className='flexCenter gap-2'>
+                <div
+                  className='relative flexCenter gap-2 cursor-pointer' // Removed z-index conflict if any, though not present
+                  onMouseEnter={() => setContactDropdown(true)}
+                  onMouseLeave={() => setContactDropdown(false)}
+                >
                   <div className='flexCenter primaryBg text-white h-[48px] w-[48px] rounded-full'>
                     <LucidePhoneCall />
                   </div>
                   <div className='flex flex-col font-semibold'>
-                    <span>24/7 Available</span>
-                    <Link href={'tel:+91 97979 45459'} title='+91 97979 45459' className='primaryColor'> +91 97979 45459</Link>
+                    <span className='text-[15px]'>24*7 Available</span>
+                    <span className='primaryColor text-[15px]'>Contact Us</span>
                   </div>
+
+                  {/* Dropdown */}
+                  {contactDropdown && (
+                    <div className='absolute top-[50px] right-0 bg-white shadow-xl border border-gray-100 rounded-xl p-3 w-[260px] flex flex-col gap-1 z-50 animate-in fade-in zoom-in-95 duration-200'>
+                      <div className='px-2 py-1 mb-1 border-b border-gray-100'>
+                        <span className='text-xs font-semibold text-gray-400 uppercase tracking-wider'>Direct Lines</span>
+                      </div>
+
+                      {[
+                        { num: "+91 97124 45459" },
+                        { num: "+91 6359 302 924" },
+                        { num: "+91 82003 23468" },
+                        { num: "+91 97979 45459" }
+                      ].map((item, idx) => (
+                        <a
+                          key={idx}
+                          href={`tel:${item.num.replace(/\s/g, '')}`}
+                          className='flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 transition-all group'
+                        >
+                          <div className='w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300'>
+                            <LucidePhoneCall size={14} />
+                          </div>
+                          <span className='font-medium text-gray-700 text-sm group-hover:text-blue-600 transition-colors'>{item.num}</span>
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </nav>
             </div>

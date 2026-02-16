@@ -3,7 +3,8 @@ import Breadcrumb from '@/components/commonComponents/Breadcrumb'
 import Layout from '@/components/layout/Layout'
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { FaCheck, FaCheckCircle } from 'react-icons/fa';
 import { IoMdClose, IoMdCloseCircle } from 'react-icons/io';
 import sideImg from "@/assets/images/installation/installationSideImg.svg";
@@ -17,15 +18,38 @@ import { FaRocket } from 'react-icons/fa6';
 import { IoRocketOutline } from 'react-icons/io5';
 
 const Installation: React.FC = () => {
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const pathname = usePathname();
+
     // State for currency selection (USD is default)
     const [currency, setCurrency] = useState<'USD' | 'INR'>('USD');
+
+    useEffect(() => {
+        const currentCurrency = searchParams.get('currency');
+        if (currentCurrency === 'INR') {
+            setCurrency('INR');
+        } else {
+            setCurrency('USD');
+        }
+    }, [searchParams]);
 
     // Exchange rate (1 USD to INR)
     const exchangeRate = 85.46;
 
     // Toggle currency function
     const toggleCurrency = () => {
-        setCurrency(prev => prev === 'USD' ? 'INR' : 'USD');
+        const newCurrency = currency === 'USD' ? 'INR' : 'USD';
+        setCurrency(newCurrency);
+
+        const params = new URLSearchParams(searchParams.toString());
+        if (newCurrency === 'INR') {
+            params.set('currency', 'INR');
+        } else {
+            params.delete('currency');
+        }
+
+        router.push(`${pathname}?${params.toString()}`, { scroll: false });
     };
 
     // Function to convert price based on selected currency
@@ -259,7 +283,7 @@ const Installation: React.FC = () => {
                     <table className="w-full text-left border-collapse">
                         <thead>
                             <tr className="bg-gray-50/50">
-                                <th className="p-6 w-1/6 align-bottom border-b border-gray-200">
+                                <th className="p-6 w-1/6 align-top border border-gray-200 bg-white">
                                     <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Features</span>
                                 </th>
                                 {packages.map((pkg, index) => {
@@ -268,44 +292,45 @@ const Installation: React.FC = () => {
                                     return (
                                         <th
                                             key={pkg.id}
-                                            className={`between-992-1199:!p-3 max-1680:p-2 p-4 align-bottom border-b border-gray-200 ${isSuper ? "bg-blue-50/30" : ""}`}
+                                            className={`p-4 align-bottom border border-gray-200 bg-white relative min-w-[200px]`}
                                         >
-                                            <div className={`relative mx-auto rounded-2xl border-2 bg-white between-992-1199:!p-4 max-1680:p-3 p-5 shadow-sm transition-all ${isSuper ? "border-blue-500" : "border-gray-200"}`}>
-                                                {/* BUSINESS READY STRIP */}
-                                                {isSuper && (
-                                                    <div className="absolute -top-[2px] left-[-2px] right-[-2px] h-9 rounded-t-2xl bg-blue-600 flex items-center justify-center gap-2 text-white text-[10px] font-bold uppercase tracking-wide">
-                                                        <IoRocketOutline className="text-white" size={18} /> Business Ready <IoRocketOutline className="text-white" size={18} />
-                                                    </div>
-                                                )}
+                                            {/* BUSINESS READY BADGE */}
+                                            {isSuper && (
+                                                <div className="absolute top-2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wide px-3 py-1 rounded-b-lg whitespace-nowrap shadow-sm z-10">
+                                                    Business Ready
+                                                </div>
+                                            )}
 
-                                                {/* CARD BODY */}
-                                                <div className={`flex flex-col ${isSuper ? "pt-10" : ""}`}>
-                                                    {/* Title */}
-                                                    <h3 className="text-lg font-bold text-gray-900 text-left">
-                                                        {pkg.packageName}
-                                                    </h3>
+                                            {/* CELL BODY */}
+                                            <div className={`flex flex-col items-center justify-end h-full pt-4`}>
+                                                {/* Title */}
+                                                <h3 className="text-lg font-bold text-gray-900 text-center">
+                                                    {pkg.packageName}
+                                                </h3>
 
-                                                    {/* Subtitle */}
-                                                    <p className="text-xs text-gray-500 mt-0.5 text-left">
-                                                        {pkg.setups}
-                                                    </p>
+                                                {/* Subtitle */}
+                                                <p className="text-xs text-gray-500 mt-1 text-center">
+                                                    {pkg.setups}
+                                                </p>
 
-                                                    {/* Price - Horizontal Layout */}
-                                                    <div className="mt-4 flex items-baseline gap-2">
-                                                        <span className="text-sm text-gray-400 line-through">
-                                                            {currencySymbol}{convertPrice(pkg.cutPrice, pkg.cutPriceINR)}
-                                                        </span>
-                                                        <span className="text-3xl font-bold text-blue-600">
+                                                {/* Price */}
+                                                <div className="mt-4 flex flex-col items-center">
+                                                    {currencySymbol && (
+                                                        <span className="text-4xl font-bold text-blue-600">
                                                             {currencySymbol}{convertPrice(pkg.price, pkg.priceINR)}
                                                         </span>
-                                                    </div>
-
-                                                    {currency === "INR" && (
-                                                        <div className="text-[10px] text-gray-500 mt-1 text-left">
-                                                            (Excl. GST)
-                                                        </div>
                                                     )}
+                                                    {/* Cut Price (Optional: Keep small if needed, or remove if strictly following clean UI. Keeping for value proposition) */}
+                                                    <span className="text-sm text-gray-400 line-through mt-1">
+                                                        {currencySymbol}{convertPrice(pkg.cutPrice, pkg.cutPriceINR)}
+                                                    </span>
                                                 </div>
+
+                                                {currency === "INR" && (
+                                                    <div className="text-[10px] text-gray-500 mt-1 text-center">
+                                                        (Excl. GST)
+                                                    </div>
+                                                )}
                                             </div>
                                         </th>
                                     );
@@ -314,14 +339,14 @@ const Installation: React.FC = () => {
                         </thead>
                         <tbody className="text-sm">
                             {featuresList.map((feature, fIndex) => (
-                                <tr key={fIndex} className="hover:bg-gray-50/50 transition-colors border-b border-gray-100">
-                                    <td className="p-4 px-6 font-medium text-gray-900">{feature.name}</td>
+                                <tr key={fIndex} className="hover:bg-gray-50/50 transition-colors">
+                                    <td className="p-4 px-6 font-medium text-gray-900 border border-gray-200">{feature.name}</td>
                                     {feature.status.map((status, pIndex) => (
                                         <td
                                             key={pIndex}
                                             onMouseEnter={() => setHoveredPkg(pIndex)}
                                             onMouseLeave={() => setHoveredPkg(null)}
-                                            className={`p-4 text-center transition-colors cursor-default ${pIndex === 4 ? "bg-blue-50/30" : ""}`}
+                                            className={`p-4 text-center border border-gray-200 transition-colors cursor-default ${pIndex === 4 ? "bg-blue-50/10" : ""}`}
                                         >
                                             {renderStatus(status, (fIndex === featuresList.length - 1 && (hoveredPkg === pIndex || pIndex === 4)))}
                                         </td>
