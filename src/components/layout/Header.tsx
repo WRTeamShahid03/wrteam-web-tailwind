@@ -10,7 +10,7 @@ import MorePagesDropdown from '../commonComponents/dropdowns/MorePagesDropdown'
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaArrowRight } from 'react-icons/fa'
-import { LucidePhoneCall } from 'lucide-react'
+import { LucidePhoneCall, ChevronDown } from 'lucide-react'
 import OurWorkDropdown from '../commonComponents/dropdowns/OurWorkDropdown'
 import { usePathname } from 'next/navigation'
 import TopBar from './TopBar'
@@ -172,7 +172,7 @@ const Header = () => {
                   <FaArrowRight />
                 </Link>
                 <div
-                  className='relative flexCenter gap-2 cursor-pointer' // Removed z-index conflict if any, though not present
+                  className='relative flexCenter gap-2 cursor-pointer group'
                   onMouseEnter={() => setContactDropdown(true)}
                   onMouseLeave={() => setContactDropdown(false)}
                 >
@@ -181,12 +181,15 @@ const Header = () => {
                   </div>
                   <div className='flex flex-col font-semibold'>
                     <span className='text-[15px]'>24*7 Available</span>
-                    <span className='primaryColor text-[15px]'>Contact Us</span>
+                    <div className='flex items-center gap-1'>
+                      <span className='primaryColor text-[15px]'>Contact Us</span>
+                      <ChevronDown size={14} className={`primaryColor transition-transform duration-300 ${contactDropdown ? 'rotate-180' : ''}`} />
+                    </div>
                   </div>
 
                   {/* Dropdown */}
                   {contactDropdown && (
-                    <div className='absolute top-[50px] right-0 bg-white shadow-xl border border-gray-100 rounded-xl p-3 w-[260px] flex flex-col gap-1 z-50 animate-in fade-in zoom-in-95 duration-200'>
+                    <div className='absolute top-[55px] right-0 bg-white shadow-xl border border-gray-100 rounded-xl p-3 w-[260px] flex flex-col gap-1 z-50 animate-in fade-in zoom-in-95 duration-200'>
                       <div className='px-2 py-1 mb-1 border-b border-gray-100'>
                         <span className='text-xs font-semibold text-gray-400 uppercase tracking-wider'>Direct Lines</span>
                       </div>

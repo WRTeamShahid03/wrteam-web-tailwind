@@ -395,7 +395,7 @@ const Installation: React.FC = () => {
                             </Link> */}
                         </div>
 
-                        <div className="p-6 pt-2 space-y-4">
+                        <div className="p-4 pt-2 space-y-4">
                             {featuresList.map((feature, fIndex) => (
                                 <div key={fIndex} className={`flex justify-between items-center py-2 ${fIndex === featuresList.length - 1 ? "" : "border-b border-gray-100"}`}>
                                     <span className="text-gray-700 font-medium">{feature.name}</span>
