@@ -14,9 +14,6 @@ import standardIcon from "@/assets/images/installation/standardIcon.svg";
 import advanceIcon from "@/assets/images/installation/advanceIcon.svg";
 import premiumIcon from "@/assets/images/installation/premiumIcon.svg";
 import fullSetup from "@/assets/images/installation/fullSetupIcon.svg";
-import { FaRocket } from 'react-icons/fa6';
-import { IoRocketOutline } from 'react-icons/io5';
-
 const Installation: React.FC = () => {
     const searchParams = useSearchParams();
     const router = useRouter();

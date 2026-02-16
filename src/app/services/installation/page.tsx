@@ -1,7 +1,7 @@
 import Installation from '@/components/pagesComponent/installation/Installation'
 import React from 'react'
 import type { Metadata } from 'next'
- 
+
 // either Static metadata
 export const metadata: Metadata = {
   title: 'Installation - Customisable App & Web Setup and Installation',
@@ -11,9 +11,13 @@ export const metadata: Metadata = {
   },
 }
 
+import Loader from '@/components/commonComponents/Loader/Loader'
+
 const Page = () => {
   return (
-    <div><Installation/></div>
+    <React.Suspense fallback={<Loader />}>
+      <Installation />
+    </React.Suspense>
   )
 }
 
