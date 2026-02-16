@@ -369,17 +369,23 @@ const Installation: React.FC = () => {
                         ))}
                     </div>
 
-                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                        <div className="primaryBg text-white p-8 text-center rounded-xl mx-4 mt-4 mb-2 shadow-sm relative overflow-hidden">
-                            {activeTab === 4 && (
-                                <div className="absolute top-0 right-0 p-2 opacity-10">
-                                    <Image src={fullSetup} height={120} width={120} alt="Super" className="rotate-12" />
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 relative mt-6">
+                        <div className="primaryBg text-white p-8 text-center rounded-xl mx-4 mt-4 mb-2 shadow-sm relative">
+                            {/* {activeTab === 4 && (
+                                <div className="absolute inset-0 overflow-hidden rounded-xl pointer-events-none">
+                                    <div className="absolute -top-6 -right-12 opacity-10">
+                                        <Image src={fullSetup} height={180} width={180} alt="Super" className="rotate-12" />
+                                    </div>
                                 </div>
-                            )}
-                            <h2 className="text-3xl font-bold mb-1 flex justify-center items-center gap-2">
+                            )} */}
+                            {/* <h2 className="text-3xl font-bold mb-1 flex justify-center items-center gap-2 relative z-10">
                                 {packages[activeTab].packageName}
-                                {activeTab === 4 && <Image src={fullSetup} height={20} width={20} alt="Super" className="bg-white rounded-full p-1 h-6 w-6" />}
-                            </h2>
+                                {activeTab === 4 && (
+                                    <div className="absolute -top-8 -right-8 bg-white rounded-full p-2 shadow-lg border-2 border-primaryBg z-20">
+                                        <Image src={fullSetup} height={28} width={28} alt="Super" />
+                                    </div>
+                                )}
+                            </h2> */}
                             <p className="text-blue-100 text-sm font-medium mb-4">{packages[activeTab].setups}</p>
                             <div className="max-575:text-3xl text-5xl font-bold mb-1 flex justify-center items-end gap-2">
                                 <span className="text-gray-300 line-through max-575:text-lg text-2xl">

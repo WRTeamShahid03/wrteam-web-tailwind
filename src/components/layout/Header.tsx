@@ -46,6 +46,21 @@ const Header = () => {
   const [morePagesDropdown, setMorePagesDropdown] = useState<boolean>(false);
   const [ourWorkDropdown, setOurWorkDropdown] = useState<boolean>(false);
   const [contactDropdown, setContactDropdown] = useState<boolean>(false);
+  const contactTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleContactEnter = () => {
+    if (contactTimeout.current) {
+      clearTimeout(contactTimeout.current);
+      contactTimeout.current = null;
+    }
+    setContactDropdown(true);
+  };
+
+  const handleContactLeave = () => {
+    contactTimeout.current = setTimeout(() => {
+      setContactDropdown(false);
+    }, 200);
+  };
 
   // Get target date from environment variable and check if sale has ended
   // Format: "02/12/2025-6:30PM" (DD/MM/YYYY-HH:MMAM or DD/MM/YYYY-HH:MMPM)
@@ -173,8 +188,8 @@ const Header = () => {
                 </Link>
                 <div
                   className='relative flexCenter gap-2 cursor-pointer group'
-                  onMouseEnter={() => setContactDropdown(true)}
-                  onMouseLeave={() => setContactDropdown(false)}
+                  onMouseEnter={handleContactEnter}
+                  onMouseLeave={handleContactLeave}
                 >
                   <div className='flexCenter primaryBg text-white h-[48px] w-[48px] rounded-full'>
                     <LucidePhoneCall />
