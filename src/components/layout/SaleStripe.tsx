@@ -15,6 +15,8 @@ import offText from "../../assets/images/yearEndSale/off.svg";
 import leftEffect from "../../assets/images/yearEndSale/left-effect.svg";
 import rightEffect from "../../assets/images/yearEndSale/right-effect.svg";
 import { parseSaleDate, isSaleDatePassed } from "../../lib/utils";
+import headerBg from "../../assets/images/header_bg.svg";
+import stripeLine from '@/assets/images/stripeLine.svg'
 
 const SaleStripe = ({
   setShowSaleStripe,
@@ -167,69 +169,30 @@ const SaleStripe = ({
 
   return (
     <>
-      <div className="strip-bg text-white xl:h-[70px] flexCenter relative px-4 lg:px-0 overflow-hidden min-h-[60px] ">
-        {/* Background Effects */}
-        <Image
-          src={leftEffect}
-          alt="effect"
-          className="absolute left-0 top-0 h-full w-auto object-cover z-0 pointer-events-none"
-        />
-        <Image
-          src={rightEffect}
-          alt="effect"
-          className="absolute right-0 top-0 h-full w-auto object-cover z-0 pointer-events-none"
-        />
+      <div className="text-white lg:h-[42px] 2xl:h-[50px]  flexCenter relative px-4 lg:px-0 overflow-hidden"
+      >
+
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={headerBg}
+            alt="background"
+            fill
+            className="max-1199:!object-cover object-fill"
+            priority
+          />
+        </div>
 
         {/* Content Container */}
         <div>
-          <div className="relative z-10 flex items-center sm:gap-4 gap-2 xl:gap-6 w-full sm:justify-center max-w-[1920px] justify-between mt-2">
-            {/* Left Buy Now Button (Hidden on smaller screens, shown if space permits or based on design) */}
-            {/* <Link
-            href={
-              "https://www.wrteam.in/year-end-sale?utm_source=website&utm_medium=strip&utm_campaign=year-end-sale"
-            }
-            target="_blank"
-            className=" 2xl:flex bg-white text-[#D01818] rounded-full px-5 py-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform hidden sm:block"
-          >
-            Buy Now{" "}
-            <FaArrowRight className="bg-[#D01818] text-white rounded-full p-[3px] text-sm" />
-          </Link> */}
-
-            {/* Year End Sale Text Image */}
-            <Image
-              src={yearEndSaleText}
-              alt="Year End Sale"
-              className="h-[25px] md:h-[30px] lg:h-[25px] xl:h-[40px] w-auto object-contain"
-            />
+          <div className="relative z-10 hidden lg:flex items-center sm:gap-4 gap-2 xl:gap-12 w-full sm:justify-center max-w-[1920px] justify-between">
 
             {/* Flash Deals Text */}
-            <span className="hidden lg:block text-[#A40410] font-bold text-sm lg:text-md xl:text-xl whitespace-nowrap">
-              Final 2 Days to Celebrate 2026
+            <span className="hidden lg:block text-black font-bold text-sm lg:text-md xl:text-lg whitespace-nowrap">
+              Break the Limits – Extended License at 50% Off!
             </span>
 
-            {/* Flower Icon */}
-            <Image
-              src={flowerIcon}
-              alt="flower"
-              className="hidden lg:block h-[50px] w-auto object-contain"
-            />
-
-            {/* 60% OFF Image */}
-            <Image
-              src={offText}
-              alt="60% OFF"
-              className="h-[30px] sm:h-[22px] lg:h-[30px] xl:h-[40px] w-auto object-contain"
-            />
-
-            {/* Flower Icon */}
-            <Image
-              src={flowerIcon}
-              alt="flower"
-              className="hidden lg:block h-[50px] w-auto object-contain"
-            />
-
             {/* Countdown */}
-            {targetDate && !isSaleDatePassed(targetDate) && isClient && (
+            {/* {targetDate && !isSaleDatePassed(targetDate) && isClient && (
               <div className="hidden sm:block">
                 <Countdown
                   date={targetDate}
@@ -237,22 +200,32 @@ const SaleStripe = ({
                   onComplete={() => setShowSaleStripe(false)}
                 />
               </div>
-            )}
+            )} */}
 
-            {/* Right Buy Now Button */}
-            <Link
-              href={
-                "/new-year-sale"
-              }
-              target="_blank"
-              className=" bg-white border-2 border-[#FEC101] text-[#A40410] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform hidden sm:flex"
-            >
-              Buy Now{" "}
-              <FaArrowRight className="bg-[#A40410] text-white rounded-full p-[3px] text-sm" />
-            </Link>
+            <div className="flexCenter gap-3">
+              <div className="flexCenter gap-1">
+                <span className="font-medium text-black">Limited Time Only!</span>
+                <Image src={stripeLine} className="" alt="stripeLine" />
+              </div>
+            </div>
+            <div>
+              <Link
+                href={
+                  "/extended-sale"
+                }
+                target="_blank"
+                className="flex bg-[#F11805] text-white rounded-[8px] sm:px-5 sm:py-2 py-1 px-6 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"
+              >
+                Get Offer
+              </Link>
+            </div>
           </div>
-          <div className="flex justify-center items-center gap-2 my-2 sm:hidden z-10 relative">
-            {targetDate && !isSaleDatePassed(targetDate) && isClient && (
+          <div className="flexCenter gap-3 flex-wrap py-4 lg:hidden z-10 relative">
+
+            <span className="text-black font-bold text-lg">
+              Break the Limits – Extended License at 50% Off!
+            </span>
+            {/* {targetDate && !isSaleDatePassed(targetDate) && isClient && (
               <div className="">
                 <Countdown
                   date={targetDate}
@@ -260,16 +233,15 @@ const SaleStripe = ({
                   onComplete={() => setShowSaleStripe(false)}
                 />
               </div>
-            )}
+            )} */}
             <Link
               href={
-                "/new-year-sale"
+                "/extended-sale"
               }
               target="_blank"
-              className="flex bg-white border-2 border-[#FEC101] text-[#A40410] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"
+              className="flex bg-[#F11805] text-white rounded-[8px] sm:px-5 sm:py-2 py-1 px-6 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"
             >
-              Buy Now{" "}
-              <FaArrowRight className="bg-[#A40410] text-white rounded-full p-[3px] text-sm" />
+              Get Offer
             </Link>
           </div>
         </div>
