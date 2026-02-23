@@ -3,18 +3,8 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Countdown from "react-countdown";
-import line from "../../assets/images/stripeLine.svg";
-import saleImg from "../../assets/images/saleImg.png";
-import { motion } from "framer-motion";
-import { RiAlarmFill } from "react-icons/ri";
-import { FaArrowRight } from "react-icons/fa6";
-import saleIcon from "../../assets/images/cyber-sale-icons.svg";
-import yearEndSaleText from "../../assets/images/yearEndSale/year-end-sale.svg";
-import flowerIcon from "../../assets/images/yearEndSale/flower.svg";
-import offText from "../../assets/images/yearEndSale/off.svg";
-import leftEffect from "../../assets/images/yearEndSale/left-effect.svg";
-import rightEffect from "../../assets/images/yearEndSale/right-effect.svg";
 import { parseSaleDate, isSaleDatePassed } from "../../lib/utils";
+import headerBg from "../../assets/images/header_bg.svg";
 
 const SaleStripe = ({
   setShowSaleStripe,
@@ -28,7 +18,6 @@ const SaleStripe = ({
   }, []);
 
   // Get target date from environment variable and parse it
-  // Format: "02/12/2025-6:30PM" (DD/MM/YYYY-HH:MMAM or DD/MM/YYYY-HH:MMPM)
   const saleDateString = process.env.NEXT_PUBLIC_SALE_END_DATE;
   const targetDate = parseSaleDate(saleDateString);
 
@@ -39,7 +28,6 @@ const SaleStripe = ({
     }
   }, [targetDate, setShowSaleStripe]);
 
-  // Renderer for the countdown
   const renderer = ({
     days,
     hours,
@@ -60,222 +48,101 @@ const SaleStripe = ({
     const formatNumber = (num: number) => String(num).padStart(2, "0");
     const totalHours = days * 24 + hours;
 
-    return (
-      <div className="flex  items-baseline justify-center gap-1 sm:gap-2 p-1 mt-2 lg:mt-0 rounded-[10px] bg-[#FFF5ED] [box-shadow:0px_3px_0px_0px_#231F20]">
-        {/* {days > 0 && (
-                    <>
-                        <div className='flex items-center'>
-                            <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
-                                <span className='text-base sm:text-lg font-bold'>{formatNumber(days)}</span>
-                                <span className="text-[10px] sm:text-xs font-medium hidden sm:inline">Days</span>
-                                <span className="text-[14px] sm:text-xs font-medium sm:hidden">D</span>
-                            </div>
-                        </div>
-                        <span className="text-xs sm:text-sm font-bold text-[#FF6B21]">:</span>
-                    </>
-                )} */}
-        <div className="flex flex-col items-center">
-          <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
-            <div className="flex flex-col items-center gap-0">
-              <span className="text-base sm:text-lg font-bold text-[#212121]">
-                {formatNumber(totalHours)}
-              </span>
-              <span className="text-[10px] sm:text-xs font-medium hidden sm:inline text-[#212121]">
-                Hours
-              </span>
-            </div>
-            <span className="text-[14px] sm:text-xs font-medium sm:hidden text-[#212121]">
-              H
-            </span>
-          </div>
-        </div>
-        <span className="text-xs sm:text-sm font-bold text-[#231F20]">:</span>
-        <div className="flex flex-col items-center">
-          <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
-            <div className="flex flex-col items-center gap-0">
-              <span className="text-base sm:text-lg font-bold text-[#212121]">
-                {formatNumber(minutes)}
-              </span>
-              <span className="text-[10px] sm:text-xs font-medium hidden sm:inline text-[#212121]">
-                Minutes
-              </span>
-            </div>
-            <span className="text-[14px] sm:text-xs font-medium sm:hidden text-[#212121]">
-              M
-            </span>
-          </div>
-        </div>
-        <span className="text-xs sm:text-sm font-bold text-[#231F20]">:</span>
-        <div className="flex flex-col items-center">
-          <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
-            <div className="flex flex-col items-center gap-0">
-              <span className="text-base sm:text-lg font-bold text-[#212121]">
-                {formatNumber(seconds)}
-              </span>
-              <span className="text-[10px] sm:text-xs font-medium hidden sm:inline text-[#212121]">
-                Seconds
-              </span>
-            </div>
-            <span className="text-[14px] sm:text-xs font-medium sm:hidden text-[#212121]">
-              S
-            </span>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  // Year End Sale Countdown Renderer
-  const yearEndRenderer = ({
-    days,
-    hours,
-    minutes,
-    seconds,
-    completed,
-  }: {
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
-    completed: boolean;
-  }) => {
-    if (completed) {
-      return null;
-    }
-    const formatNumber = (num: number) => String(num).padStart(2, "0");
-
     const TimeBox = ({ value, label }: { value: number; label: string }) => (
-      <div className="bg-white rounded-[5px] w-[35px]  sm:w-[50px] h-[36px] sm:h-[46px] flex flex-col items-center justify-center">
-        <span className="text-[#212121] font-bold text-xs sm:text-lg leading-none mb-[2px]">
+      <div className="flex items-center gap-1 sm:gap-1.5 bg-black/80 px-2 py-1.5 rounded-[6px] shadow-sm">
+        <span className="text-white font-bold text-base sm:text-xl leading-none">
           {formatNumber(value)}
         </span>
-        <span className="text-[#212121] text-[7px] sm:text-[9px] font-medium leading-none">
+        <span className="text-white text-[8px] sm:text-[10px] font-medium uppercase leading-none opacity-90">
           {label}
         </span>
       </div>
     );
 
     return (
-      <div className="flex items-center gap-2 my-2">
-        <TimeBox value={days} label="Days" />
-        <TimeBox value={hours} label="Hours" />
+      <div className="flex items-center gap-1 sm:gap-2">
+        <TimeBox value={totalHours} label="Hours" />
+        <span className="text-black font-bold text-lg">:</span>
         <TimeBox value={minutes} label="Minutes" />
+        <span className="text-black font-bold text-lg">:</span>
         <TimeBox value={seconds} label="Seconds" />
       </div>
     );
   };
 
   return (
-    <>
-      <div className="strip-bg text-white xl:h-[70px] flexCenter relative px-4 lg:px-0 overflow-hidden min-h-[60px] ">
-        {/* Background Effects */}
+    <div className="relative w-full h-[50px] sm:h-[60px] flex items-center overflow-hidden">
+      {/* Background SVG - Using object-fill to preserve the slanted trapezoid shape */}
+      <div className="absolute inset-0 z-0">
         <Image
-          src={leftEffect}
-          alt="effect"
-          className="absolute left-0 top-0 h-full w-auto object-cover z-0 pointer-events-none"
+          src={headerBg}
+          alt="background"
+          fill
+          className="!object-fill"
+          priority
         />
-        <Image
-          src={rightEffect}
-          alt="effect"
-          className="absolute right-0 top-0 h-full w-auto object-cover z-0 pointer-events-none"
-        />
+      </div>
 
-        {/* Content Container */}
-        <div>
-          <div className="relative z-10 flex items-center sm:gap-4 gap-2 xl:gap-6 w-full sm:justify-center max-w-[1920px] justify-between mt-2">
-            {/* Left Buy Now Button (Hidden on smaller screens, shown if space permits or based on design) */}
-            {/* <Link
-            href={
-              "https://www.wrteam.in/year-end-sale?utm_source=website&utm_medium=strip&utm_campaign=year-end-sale"
-            }
-            target="_blank"
-            className=" 2xl:flex bg-white text-[#D01818] rounded-full px-5 py-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform hidden sm:block"
-          >
-            Buy Now{" "}
-            <FaArrowRight className="bg-[#D01818] text-white rounded-full p-[3px] text-sm" />
-          </Link> */}
+      <div className="w-full px-4 sm:px-12 lg:px-24 z-10 flex items-center justify-between gap-4 overflow-x-auto no-scrollbar py-1">
+        {/* Sale Main Text */}
+        <div className="flex-shrink-0">
+          <h2 className="text-black font-extrabold text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg tracking-tight uppercase whitespace-nowrap">
+            BREAK THE LIMITS – EXTENDED LICENSE AT <span className="text-black">50% OFF!</span>
+          </h2>
+        </div>
 
-            {/* Year End Sale Text Image */}
-            <Image
-              src={yearEndSaleText}
-              alt="Year End Sale"
-              className="h-[25px] md:h-[30px] lg:h-[25px] xl:h-[40px] w-auto object-contain"
-            />
+        {/* Countdown and Call to Action Group */}
+        <div className="flex items-center gap-2 sm:gap-6 lg:gap-8 flex-shrink-0">
+          {/* Countdown */}
+          {targetDate && !isSaleDatePassed(targetDate) && isClient && (
+            <div className="hidden md:block scale-90 lg:scale-100">
+              <Countdown
+                date={targetDate}
+                renderer={renderer}
+                onComplete={() => setShowSaleStripe(false)}
+              />
+            </div>
+          )}
 
-            {/* Flash Deals Text */}
-            <span className="hidden lg:block text-[#A40410] font-bold text-sm lg:text-md xl:text-xl whitespace-nowrap">
-              Final 2 Days to Celebrate 2026
-            </span>
+          {/* Limited Time Only Group */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            <div className="hidden xl:flex flex-col">
+              <span className="text-black font-semibold text-[10px] whitespace-nowrap leading-tight text-right">Limited Time Only!</span>
+            </div>
 
-            {/* Flower Icon */}
-            <Image
-              src={flowerIcon}
-              alt="flower"
-              className="hidden lg:block h-[50px] w-auto object-contain"
-            />
+            {/* Squiggly Arrow (SVG) */}
+            <div className="hidden 2xl:block overflow-visible w-[40px] h-[15px]">
+              <svg width="100%" height="100%" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 10C10 5 15 15 25 10C35 5 40 15 50 10C53 8.5 55 8 58 10M58 10L54 6M58 10L54 14" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
 
-            {/* 60% OFF Image */}
-            <Image
-              src={offText}
-              alt="60% OFF"
-              className="h-[30px] sm:h-[22px] lg:h-[30px] xl:h-[40px] w-auto object-contain"
-            />
-
-            {/* Flower Icon */}
-            <Image
-              src={flowerIcon}
-              alt="flower"
-              className="hidden lg:block h-[50px] w-auto object-contain"
-            />
-
-            {/* Countdown */}
-            {targetDate && !isSaleDatePassed(targetDate) && isClient && (
-              <div className="hidden sm:block">
-                <Countdown
-                  date={targetDate}
-                  renderer={yearEndRenderer}
-                  onComplete={() => setShowSaleStripe(false)}
-                />
-              </div>
-            )}
-
-            {/* Right Buy Now Button */}
+            {/* Red Action Button */}
             <Link
-              href={
-                "/new-year-sale"
-              }
+              href="/sale-offer"
               target="_blank"
-              className=" bg-white border-2 border-[#FEC101] text-[#A40410] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform hidden sm:flex"
+              className="bg-[#FF0000] text-white rounded-[4px] px-3 sm:px-4 py-1 sm:py-1.5 flex items-center gap-2 text-[10px] sm:text-xs font-extrabold hover:bg-[#D00000] transition-colors shadow-md whitespace-nowrap"
             >
-              Buy Now{" "}
-              <FaArrowRight className="bg-[#A40410] text-white rounded-full p-[3px] text-sm" />
-            </Link>
-          </div>
-          <div className="flex justify-center items-center gap-2 my-2 sm:hidden z-10 relative">
-            {targetDate && !isSaleDatePassed(targetDate) && isClient && (
-              <div className="">
-                <Countdown
-                  date={targetDate}
-                  renderer={yearEndRenderer}
-                  onComplete={() => setShowSaleStripe(false)}
-                />
-              </div>
-            )}
-            <Link
-              href={
-                "/new-year-sale"
-              }
-              target="_blank"
-              className="flex bg-white border-2 border-[#FEC101] text-[#A40410] rounded-full sm:px-5 sm:py-2 py-1 px-2 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"
-            >
-              Buy Now{" "}
-              <FaArrowRight className="bg-[#A40410] text-white rounded-full p-[3px] text-sm" />
+              Get Offer
             </Link>
           </div>
         </div>
       </div>
-    </>
+
+
+      {/* Mobile View - Small divider if needed */}
+      <style jsx>{`
+          .no-scrollbar::-webkit-scrollbar {
+              display: none;
+          }
+          .no-scrollbar {
+              -ms-overflow-style: none;
+              scrollbar-width: none;
+          }
+      `}</style>
+    </div>
   );
 };
+
 
 export default SaleStripe;
