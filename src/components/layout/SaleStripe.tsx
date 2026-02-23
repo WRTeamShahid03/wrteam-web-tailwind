@@ -3,8 +3,20 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Countdown from "react-countdown";
+import line from "../../assets/images/stripeLine.svg";
+import saleImg from "../../assets/images/saleImg.png";
+import { motion } from "framer-motion";
+import { RiAlarmFill } from "react-icons/ri";
+import { FaArrowRight } from "react-icons/fa6";
+import saleIcon from "../../assets/images/cyber-sale-icons.svg";
+import yearEndSaleText from "../../assets/images/yearEndSale/year-end-sale.svg";
+import flowerIcon from "../../assets/images/yearEndSale/flower.svg";
+import offText from "../../assets/images/yearEndSale/off.svg";
+import leftEffect from "../../assets/images/yearEndSale/left-effect.svg";
+import rightEffect from "../../assets/images/yearEndSale/right-effect.svg";
 import { parseSaleDate, isSaleDatePassed } from "../../lib/utils";
 import headerBg from "../../assets/images/header_bg.svg";
+import stripeLine from '@/assets/images/stripeLine.svg'
 
 const SaleStripe = ({
   setShowSaleStripe,
@@ -18,6 +30,7 @@ const SaleStripe = ({
   }, []);
 
   // Get target date from environment variable and parse it
+  // Format: "02/12/2025-6:30PM" (DD/MM/YYYY-HH:MMAM or DD/MM/YYYY-HH:MMPM)
   const saleDateString = process.env.NEXT_PUBLIC_SALE_END_DATE;
   const targetDate = parseSaleDate(saleDateString);
 
@@ -28,6 +41,7 @@ const SaleStripe = ({
     }
   }, [targetDate, setShowSaleStripe]);
 
+  // Renderer for the countdown
   const renderer = ({
     days,
     hours,
@@ -48,101 +62,192 @@ const SaleStripe = ({
     const formatNumber = (num: number) => String(num).padStart(2, "0");
     const totalHours = days * 24 + hours;
 
+    return (
+      <div className="flex  items-baseline justify-center gap-1 sm:gap-2 p-1 mt-2 lg:mt-0 rounded-[10px] bg-[#FFF5ED] [box-shadow:0px_3px_0px_0px_#231F20]">
+        {/* {days > 0 && (
+                    <>
+                        <div className='flex items-center'>
+                            <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
+                                <span className='text-base sm:text-lg font-bold'>{formatNumber(days)}</span>
+                                <span className="text-[10px] sm:text-xs font-medium hidden sm:inline">Days</span>
+                                <span className="text-[14px] sm:text-xs font-medium sm:hidden">D</span>
+                            </div>
+                        </div>
+                        <span className="text-xs sm:text-sm font-bold text-[#FF6B21]">:</span>
+                    </>
+                )} */}
+        <div className="flex flex-col items-center">
+          <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
+            <div className="flex flex-col items-center gap-0">
+              <span className="text-base sm:text-lg font-bold text-[#212121]">
+                {formatNumber(totalHours)}
+              </span>
+              <span className="text-[10px] sm:text-xs font-medium hidden sm:inline text-[#212121]">
+                Hours
+              </span>
+            </div>
+            <span className="text-[14px] sm:text-xs font-medium sm:hidden text-[#212121]">
+              H
+            </span>
+          </div>
+        </div>
+        <span className="text-xs sm:text-sm font-bold text-[#231F20]">:</span>
+        <div className="flex flex-col items-center">
+          <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
+            <div className="flex flex-col items-center gap-0">
+              <span className="text-base sm:text-lg font-bold text-[#212121]">
+                {formatNumber(minutes)}
+              </span>
+              <span className="text-[10px] sm:text-xs font-medium hidden sm:inline text-[#212121]">
+                Minutes
+              </span>
+            </div>
+            <span className="text-[14px] sm:text-xs font-medium sm:hidden text-[#212121]">
+              M
+            </span>
+          </div>
+        </div>
+        <span className="text-xs sm:text-sm font-bold text-[#231F20]">:</span>
+        <div className="flex flex-col items-center">
+          <div className="text-black font-black text-xs sm:text-sm rounded-md px-1 sm:px-2 py-1 flex items-center justify-center gap-1">
+            <div className="flex flex-col items-center gap-0">
+              <span className="text-base sm:text-lg font-bold text-[#212121]">
+                {formatNumber(seconds)}
+              </span>
+              <span className="text-[10px] sm:text-xs font-medium hidden sm:inline text-[#212121]">
+                Seconds
+              </span>
+            </div>
+            <span className="text-[14px] sm:text-xs font-medium sm:hidden text-[#212121]">
+              S
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Year End Sale Countdown Renderer
+  const yearEndRenderer = ({
+    days,
+    hours,
+    minutes,
+    seconds,
+    completed,
+  }: {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+    completed: boolean;
+  }) => {
+    if (completed) {
+      return null;
+    }
+    const formatNumber = (num: number) => String(num).padStart(2, "0");
+
     const TimeBox = ({ value, label }: { value: number; label: string }) => (
-      <div className="flex items-center gap-1 sm:gap-1.5 bg-black/80 px-2 py-1.5 rounded-[6px] shadow-sm">
-        <span className="text-white font-bold text-base sm:text-xl leading-none">
+      <div className="bg-white rounded-[5px] w-[35px]  sm:w-[50px] h-[36px] sm:h-[46px] flex flex-col items-center justify-center">
+        <span className="text-[#212121] font-bold text-xs sm:text-lg leading-none mb-[2px]">
           {formatNumber(value)}
         </span>
-        <span className="text-white text-[8px] sm:text-[10px] font-medium uppercase leading-none opacity-90">
+        <span className="text-[#212121] text-[7px] sm:text-[9px] font-medium leading-none">
           {label}
         </span>
       </div>
     );
 
     return (
-      <div className="flex items-center gap-1 sm:gap-2">
-        <TimeBox value={totalHours} label="Hours" />
-        <span className="text-black font-bold text-lg">:</span>
+      <div className="flex items-center gap-2 my-2">
+        <TimeBox value={days} label="Days" />
+        <TimeBox value={hours} label="Hours" />
         <TimeBox value={minutes} label="Minutes" />
-        <span className="text-black font-bold text-lg">:</span>
         <TimeBox value={seconds} label="Seconds" />
       </div>
     );
   };
 
   return (
-    <div className="relative w-full h-[50px] sm:h-[60px] flex items-center overflow-hidden">
-      {/* Background SVG - Using object-fill to preserve the slanted trapezoid shape */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={headerBg}
-          alt="background"
-          fill
-          className="!object-fill"
-          priority
-        />
-      </div>
+    <>
+      <div className="text-white lg:h-[42px] 2xl:h-[50px]  flexCenter relative px-4 lg:px-0 overflow-hidden"
+      >
 
-      <div className="w-full px-4 sm:px-12 lg:px-24 z-10 flex items-center justify-between gap-4 overflow-x-auto no-scrollbar py-1">
-        {/* Sale Main Text */}
-        <div className="flex-shrink-0">
-          <h2 className="text-black font-extrabold text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg tracking-tight uppercase whitespace-nowrap">
-            BREAK THE LIMITS – EXTENDED LICENSE AT <span className="text-black">50% OFF!</span>
-          </h2>
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={headerBg}
+            alt="background"
+            fill
+            className="max-1199:!object-cover object-fill"
+            priority
+          />
         </div>
 
-        {/* Countdown and Call to Action Group */}
-        <div className="flex items-center gap-2 sm:gap-6 lg:gap-8 flex-shrink-0">
-          {/* Countdown */}
-          {targetDate && !isSaleDatePassed(targetDate) && isClient && (
-            <div className="hidden md:block scale-90 lg:scale-100">
-              <Countdown
-                date={targetDate}
-                renderer={renderer}
-                onComplete={() => setShowSaleStripe(false)}
-              />
-            </div>
-          )}
+        {/* Content Container */}
+        <div>
+          <div className="relative z-10 hidden lg:flex items-center sm:gap-4 gap-2 xl:gap-12 w-full sm:justify-center max-w-[1920px] justify-between">
 
-          {/* Limited Time Only Group */}
-          <div className="flex items-center gap-2 sm:gap-4">
-            <div className="hidden xl:flex flex-col">
-              <span className="text-black font-semibold text-[10px] whitespace-nowrap leading-tight text-right">Limited Time Only!</span>
-            </div>
+            {/* Flash Deals Text */}
+            <span className="hidden lg:block text-black font-bold text-sm lg:text-md xl:text-lg whitespace-nowrap">
+              Break the Limits – Extended License at 50% Off!
+            </span>
 
-            {/* Squiggly Arrow (SVG) */}
-            <div className="hidden 2xl:block overflow-visible w-[40px] h-[15px]">
-              <svg width="100%" height="100%" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 10C10 5 15 15 25 10C35 5 40 15 50 10C53 8.5 55 8 58 10M58 10L54 6M58 10L54 14" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </div>
+            {/* Countdown */}
+            {/* {targetDate && !isSaleDatePassed(targetDate) && isClient && (
+              <div className="hidden sm:block">
+                <Countdown
+                  date={targetDate}
+                  renderer={yearEndRenderer}
+                  onComplete={() => setShowSaleStripe(false)}
+                />
+              </div>
+            )} */}
 
-            {/* Red Action Button */}
+            <div className="flexCenter gap-3">
+              <div className="flexCenter gap-1">
+                <span className="font-medium text-black">Limited Time Only!</span>
+                <Image src={stripeLine} className="" alt="stripeLine" />
+              </div>
+            </div>
+            <div>
+              <Link
+                href={
+                  "/extended-sale"
+                }
+                target="_blank"
+                className="flex bg-[#F11805] text-white rounded-[8px] sm:px-5 sm:py-2 py-1 px-6 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"
+              >
+                Get Offer
+              </Link>
+            </div>
+          </div>
+          <div className="flexCenter gap-3 flex-wrap py-4 lg:hidden z-10 relative">
+
+            <span className="text-black font-bold text-lg">
+              Break the Limits – Extended License at 50% Off!
+            </span>
+            {/* {targetDate && !isSaleDatePassed(targetDate) && isClient && (
+              <div className="">
+                <Countdown
+                  date={targetDate}
+                  renderer={yearEndRenderer}
+                  onComplete={() => setShowSaleStripe(false)}
+                />
+              </div>
+            )} */}
             <Link
-              href="/sale-offer"
+              href={
+                "/extended-sale"
+              }
               target="_blank"
-              className="bg-[#FF0000] text-white rounded-[4px] px-3 sm:px-4 py-1 sm:py-1.5 flex items-center gap-2 text-[10px] sm:text-xs font-extrabold hover:bg-[#D00000] transition-colors shadow-md whitespace-nowrap"
+              className="flex bg-[#F11805] text-white rounded-[8px] sm:px-5 sm:py-2 py-1 px-6 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"
             >
               Get Offer
             </Link>
           </div>
         </div>
       </div>
-
-
-      {/* Mobile View - Small divider if needed */}
-      <style jsx>{`
-          .no-scrollbar::-webkit-scrollbar {
-              display: none;
-          }
-          .no-scrollbar {
-              -ms-overflow-style: none;
-              scrollbar-width: none;
-          }
-      `}</style>
-    </div>
+    </>
   );
 };
-
 
 export default SaleStripe;

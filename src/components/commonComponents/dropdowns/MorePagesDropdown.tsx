@@ -32,7 +32,7 @@ const MorePagesDropdown: React.FC<dataProps> = ({ morePagesDropdown, setMorePage
 
       {morePagesDropdown && (
         <div
-          className={`absolute max-[350px]:w-[250px] max-1199:!top-[28px] ${showSaleStripe ? 'between-1400-1680:!top-[202px] between-1200-1399:!top-[202px] top-[210px]' : 'max-1680:top-[137px] top-[144px]'} bg-white rounded-b-2xl shadow-md z-50`}
+          className={`absolute max-[350px]:w-[250px] max-1199:!top-[28px] ${showSaleStripe ? 'between-1400-1680:!top-[183px] between-1200-1399:!top-[180px] top-[197px]' : 'max-1680:top-[137px] top-[144px]'} bg-white rounded-b-2xl shadow-md z-50`}
           onMouseLeave={() => setMorePagesDropdown(false)}
         >
           <div className="flex flex-col p-4 gap-1">
