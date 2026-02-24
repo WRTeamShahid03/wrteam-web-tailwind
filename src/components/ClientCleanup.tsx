@@ -6,24 +6,20 @@ export default function ClientCleanup() {
   useEffect(() => {
     // Add a small delay to ensure DOM is fully loaded
     const cleanup = () => {
-      // Check all body children and remove suspicious text nodes
-      const bodyChildren = Array.from(document.body.childNodes);
-      let found = false;
-      
-      bodyChildren.forEach((node) => {
-        if (
-          node.nodeType === Node.TEXT_NODE &&
-          node.textContent?.includes('google-site-verification')
-        ) {
-          // console.log('Found verification text:', node.textContent);
-          node.textContent = ''; // remove it
-          found = true;
-        }
-      });
+      // Use TreeWalker to find all text nodes in the document
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        null
+      );
 
-      // if (!found) {
-      //   console.log('No verification text found');
-      // }
+      let node;
+      while (node = walker.nextNode()) {
+        if (node.textContent?.includes('google-site-verification')) {
+          // console.log('Found verification text nested:', node.textContent);
+          node.textContent = ''; // remove it
+        }
+      }
     };
 
     // Run cleanup after a short delay

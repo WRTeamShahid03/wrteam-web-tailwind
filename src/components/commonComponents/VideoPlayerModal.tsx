@@ -20,6 +20,7 @@ const VideoPlayerModal: React.FC<dataProps> = ({ initialOpen = false, videoUrl }
                     type="button"
                     aria-label="Play video"
                     className="absolute bottom-4 right-4 w-10 h-10 bg-white text-gray-900 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                    suppressHydrationWarning
                 >
                     <FaPlay />
                 </button>

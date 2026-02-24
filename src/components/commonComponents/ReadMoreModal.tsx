@@ -13,7 +13,7 @@ const ReadMoreModal: React.FC<dataProps> = ({ initialOpen = false, desc }) => {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <span className='productPrimaryColor font-semibold -mt-1 text-sm cursor-pointer ml-1'>Read More</span>
+                <span className='productPrimaryColor font-semibold -mt-1 text-sm cursor-pointer ml-1' suppressHydrationWarning>Read More</span>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md overflow-hidden">
                 <DialogHeader className=''>

@@ -185,7 +185,10 @@ const SaleStripe = ({
         {/* Content Container */}
         <div>
           <div className="relative z-10 hidden lg:flex items-center sm:gap-4 gap-2 xl:gap-12 w-full sm:justify-center max-w-[1920px] justify-between">
+            <div className="lex items-center justify-center">
 
+            <Image src={saleImg} alt="saleImg" width={0} height={0} className="w-[60px] h-[60px] xl:w-[80px] xl:h-[80px] object-contain" />
+            </div>
             {/* Flash Deals Text */}
             <span className="hidden lg:block text-black font-bold text-sm lg:text-md xl:text-lg whitespace-nowrap">
               Break the Limits – Extended License at 50% Off!

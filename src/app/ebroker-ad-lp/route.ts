@@ -5,10 +5,10 @@ export async function GET() {
     try {
         // Read the HTML file from the landing-pages directory
         const htmlFilePath = path.join(process.cwd(), 'src/landing-pages/ebroker-ad-lp/index.html');
-        
+
         // Check if file exists before reading
         if (!fs.existsSync(htmlFilePath)) {
-            return new Response('HTML file not found', { 
+            return new Response('HTML file not found', {
                 status: 404,
                 headers: {
                     'Content-Type': 'text/plain',
@@ -23,6 +23,23 @@ export async function GET() {
         // The assets are located in public/ebroker-ad-lp/_next/ but HTML references /_next/
         htmlContent = htmlContent.replace(/\/_next\//g, '/ebroker-ad-lp/_next/');
 
+        // Inject cleanup script to remove google-site-verification text leak
+        const cleanupScript = `
+        <script>
+          (function() {
+            function cleanup() {
+              var walker = document.createTreeWalker(document.body, 4, null);
+              var node; while (node = walker.nextNode()) {
+                if (node.textContent.includes('google-site-verification')) node.textContent = '';
+              }
+            }
+            cleanup(); setTimeout(cleanup, 100);
+            new MutationObserver(cleanup).observe(document.body, { childList: true, subtree: true, characterData: true });
+          })();
+        </script>`;
+
+        htmlContent = htmlContent.replace('</body>', cleanupScript + '</body>');
+
         // Return the HTML content with proper headers
         return new Response(htmlContent, {
             headers: {
@@ -32,7 +49,7 @@ export async function GET() {
     } catch (error) {
         // Handle any errors that occur during file reading
         console.error('Error serving ebroker-ad-lp page:', error);
-        return new Response('Internal Server Error', { 
+        return new Response('Internal Server Error', {
             status: 500,
             headers: {
                 'Content-Type': 'text/plain',
