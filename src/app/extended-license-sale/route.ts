@@ -4,7 +4,7 @@ import path from 'path';
 export async function GET() {
     try {
         // Read the HTML file from the landing-pages directory
-        const htmlFilePath = path.join(process.cwd(), 'src/landing-pages/extended-sale/index.html');
+        const htmlFilePath = path.join(process.cwd(), 'src/landing-pages/extended-license-sale/index.html');
         
         // Check if file exists before reading
         if (!fs.existsSync(htmlFilePath)) {
@@ -18,10 +18,10 @@ export async function GET() {
 
         let htmlContent = fs.readFileSync(htmlFilePath, 'utf-8');
 
-        // Replace all asset paths from /_next/ to /extended-sale/_next/
+        // Replace all asset paths from /_next/ to /extended-license-sale/_next/
         // This fixes the 404 errors for CSS, JS, and media files
-        // The assets are located in public/extended-sale/_next/ but HTML references /_next/
-        htmlContent = htmlContent.replace(/\/_next\//g, '/extended-sale/_next/');
+        // The assets are located in public/extended-license-sale/_next/ but HTML references /_next/
+        htmlContent = htmlContent.replace(/\/_next\//g, '/extended-license-sale/_next/');
 
         // Return the HTML content with proper headers
         return new Response(htmlContent, {

@@ -56,9 +56,8 @@ const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 
 // ---------------- Metadata ----------------
 export const metadata: Metadata = {
-  other: {
-    "google-site-verification":
-      "YEM013Z9B_iSdZEpTl001Tw1e-xXhOiMof7xqYqRd7Y",
+  verification: {
+    google: "YEM013Z9B_iSdZEpTl001Tw1e-xXhOiMof7xqYqRd7Y",
   },
   icons: {
     icon: "https://www.wrteam.in/favicon.ico",

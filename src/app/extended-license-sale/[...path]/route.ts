@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 // This route handles all static asset requests for the extended-sale page
-// It serves files from public/extended-sale/_next/ when requested at /extended-sale/_next/
+// It serves files from public/extended-license-sale/_next/ when requested at /extended-license-sale/_next/
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ path: string[] }> }
@@ -15,11 +15,11 @@ export async function GET(
         const filePath = pathSegments.join('/');
         
         // Build the full file system path
-        // Files are located in public/extended-sale/_next/...
-        const fullPath = path.join(process.cwd(), 'public', 'extended-sale', filePath);
+        // Files are located in public/extended-license-sale/_next/...
+        const fullPath = path.join(process.cwd(), 'public', 'extended-license-sale', filePath);
         
-        // Security check: ensure the path is within the public/extended-sale directory
-        const publicEbrokerPath = path.join(process.cwd(), 'public', 'extended-sale');
+        // Security check: ensure the path is within the public/extended-license-sale directory
+        const publicEbrokerPath = path.join(process.cwd(), 'public', 'extended-license-sale');
         const resolvedPath = path.resolve(fullPath);
         const resolvedPublicPath = path.resolve(publicEbrokerPath);
         
