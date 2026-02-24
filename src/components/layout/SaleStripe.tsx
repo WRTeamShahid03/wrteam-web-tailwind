@@ -211,7 +211,7 @@ const SaleStripe = ({
             <div>
               <Link
                 href={
-                  "/extended-sale"
+                  "/extended-license-sale"
                 }
                 target="_blank"
                 className="flex bg-[#F11805] text-white rounded-[8px] sm:px-5 sm:py-2 py-1 px-6 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"
@@ -236,7 +236,7 @@ const SaleStripe = ({
             )} */}
             <Link
               href={
-                "/extended-sale"
+                "/extended-license-sale"
               }
               target="_blank"
               className="flex bg-[#F11805] text-white rounded-[8px] sm:px-5 sm:py-2 py-1 px-6 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"
