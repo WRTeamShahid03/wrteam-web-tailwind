@@ -25,6 +25,7 @@ const MobileNav: React.FC<dataProps> = ({ whatsappUrl, checkoutUrl }) => {
             type="button"
             aria-label="Open navigation menu"
             className="productPrimaryBg block text-white p-1 rounded-sm"
+            suppressHydrationWarning
           >
             <RxHamburgerMenu size={26} />
           </button>

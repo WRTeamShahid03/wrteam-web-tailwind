@@ -107,6 +107,7 @@ const MobileNav: React.FC<dataProps> = ({ servicesDropdown, setServicesDropdown,
             type="button"
             aria-label="Open navigation menu"
             className="primaryBg block text-white p-1 rounded-sm"
+            suppressHydrationWarning
           >
             <RxHamburgerMenu size={26} />
           </button>

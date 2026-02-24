@@ -181,7 +181,10 @@ export default function FeedbackDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild className="">
-        <button className="inline-flex items-center bg-white text-[#171B26] px-4 py-2 rounded-md font-medium text-sm transition hover:bg-gray-200">
+        <button
+          className="inline-flex items-center bg-white text-[#171B26] px-4 py-2 rounded-md font-medium text-sm transition hover:bg-gray-200"
+          suppressHydrationWarning
+        >
           Feedback
           <svg
             xmlns="http://www.w3.org/2000/svg"
