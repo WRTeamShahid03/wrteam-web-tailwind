@@ -97,7 +97,7 @@ async function fetchInitialProducts(filter?: string, category?: string) {
     const queryString = params.toString() ? `?${params.toString()}` : "";
     const url = `${process.env.NEXT_PUBLIC_API_URL || "https://backend.wrteam.in"}/api/products${queryString}`;
 
-    const response = await fetchWithRetry(url);
+    const response = await fetchWithRetry(url, { cache: 'no-store' });
 
     if (!response.ok) {
       return { data: [], total: 0, last_page: 1 };

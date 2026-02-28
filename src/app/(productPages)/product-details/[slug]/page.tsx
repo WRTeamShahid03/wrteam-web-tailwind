@@ -13,6 +13,7 @@ async function fetchProductData(slug: string) {
   try {
     const response = await fetchWithRetry(
       `https://backend.wrteam.in/api/products?slug=${slug}`,
+      { cache: 'no-store' }
     );
 
     if (!response.ok) {

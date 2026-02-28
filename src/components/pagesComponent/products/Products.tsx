@@ -108,16 +108,6 @@ const ProductsPage = ({
 
   // Fetch products whenever filter or category changes
   useEffect(() => {
-    // Skip initial fetch ONLY if we have server-side data AND filters haven't changed yet
-    if (initialProducts.length > 0 && !hasFilterChanged) {
-      setHasFilterChanged(true);
-      return;
-    }
-
-    // If initialProducts is empty, we allow the fetch to proceed (fallback to client-side fetch)
-    // This handles cases where server-side fetch failed or returned no data, 
-    // giving us a second chance on the client.
-
     const fetchProducts = async () => {
       try {
         setIsLoading(true);
@@ -149,7 +139,8 @@ const ProductsPage = ({
       }
     };
 
-    if (hasFilterChanged) {
+    // If user changed filter, or if initial server fetch failed
+    if (hasFilterChanged || (!hasFilterChanged && initialProducts.length === 0)) {
       fetchProducts();
     }
   }, [filter, category, hasFilterChanged, initialProducts.length]);
