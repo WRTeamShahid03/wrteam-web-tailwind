@@ -72,7 +72,7 @@ const WhatYouGet: React.FC<WhatYouGetProps> = ({
 
   return (
     <section className="relative -mt-60 bg-white pt-48">
-      <MarqueSect />
+      {/* <MarqueSect /> */}
 
       <div className="container space-y-8 md:space-y-12 lg:space-y-16" id="explore-demo">
         <div className="flexColCenter commonTextGap lg:w-[50%] mx-auto text-center commonMT">
