@@ -8,7 +8,7 @@ const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 // Generate metadata for the page
 async function fetchSeoData() {
   try {
-    const response = await fetch(
+    const response = await fetchWithRetry(
       `https://backend.wrteam.in/api/seo-settings?type=app_products`,
       {
         next: { revalidate: 0 },
@@ -17,7 +17,7 @@ async function fetchSeoData() {
     );
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch product data: ${response.statusText}`);
+      throw new Error(`Failed to fetch SEO data: ${response.statusText}`);
     }
 
     return await response.json();
