@@ -105,7 +105,7 @@ export default function SliderSection({
           {elements.map((card) => (
             <SwiperSlide key={card?.id} className="h-auto">
               <div
-                className="flex flex-col items-center justify-center p-4 lg:p-8 border border-gray-200 rounded-lg hover:shadow-lg transition-all duration-500 bg-white h-full relative min-h-[220px] sm:min-h-[250px] overflow-hidden group"
+                className="flex flex-col items-center justify-between p-4 lg:p-8 border border-gray-200 rounded-lg hover:shadow-lg transition-all duration-500 bg-white h-full relative min-h-[280px] sm:min-h-[320px] overflow-hidden group"
                 onMouseEnter={() => setHoveredCard(card?.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
@@ -116,76 +116,77 @@ export default function SliderSection({
                 {/* Secondary circle gradient - larger expansion on hover with delay */}
                 <div className="absolute -left-[80px] -top-[80px] h-[150px] w-[150px] sm:h-full sm:w-full rounded-full hidden lg:block productSecondaryBg opacity-0 group-hover:opacity-90 transition-all duration-700 delay-200 z-0 group-hover:scale-[3.5]"></div>
 
-                <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 sm:mb-6 flex items-center justify-center relative z-20">
-                  {card?.image_url ? (
-                    <Image
-                      src={card?.image_url}
-                      alt={card?.name}
-                      width={40}
-                      height={40}
-                      className="w-12 h-12 sm:w-16 sm:h-16 transition-all duration-300 delay-100 lg:group-hover:opacity-0"
-                    />
-                  ) : (
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-md flex items-center justify-center group-hover:bg-white/20 transition-all duration-300 delay-100 lg:group-hover:opacity-0">
-                      <span className="text-blue-500 text-base sm:text-xl lg:group-hover:text-white transition-all duration-300 delay-100">
-                        {card?.name}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <h3 className="max-399:text-base text-lg lg:text-xl font-bold mb-1 sm:mb-2 text-center relative z-20 lg:group-hover:text-white transition-all duration-300 delay-100 lg:group-hover:opacity-0">
-                  {card?.name}
-                </h3>
-                <div
-                  dangerouslySetInnerHTML={{ __html: card?.details }}
-                  className="text-sm sm:text-base text-gray-600 text-center mb-3 sm:mb-4 relative z-20 lg:group-hover:text-white/80 transition-all duration-300 delay-100 lg:group-hover:opacity-0"
-                ></div>
-
-                {/* Hover overlay with buttons */}
-                {hoveredCard === card?.id && (
-                  <div className="hidden absolute inset-0 lg:flex flex-col justify-center items-center z-30 p-4 sm:p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-300">
-                    {card?.type === "app" ? (
-                      <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-[160px] sm:max-w-[200px]">
-                        {card?.android_link && (
-                          <a
-                            href={card?.android_link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-2 sm:py-3 text-sm sm:text-base productPrimaryBg text-white font-medium rounded text-center transition-colors duration-300"
-                          >
-                            Android
-                          </a>
-                        )}
-                        {card?.ios_link && (
-                          <a
-                            href={card?.ios_link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-2 sm:py-3 text-sm sm:text-base bg-gray-100 text-gray-800 font-medium rounded text-center hover:bg-white transition-colors duration-300"
-                          >
-                            iOS
-                          </a>
-                        )}
-                      </div>
+                {/* Top content: icon + title + description */}
+                <div className="flex flex-col items-center flex-1 justify-center relative z-20 w-full">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 sm:mb-6 flex items-center justify-center">
+                    {card?.image_url ? (
+                      <Image
+                        src={card?.image_url}
+                        alt={card?.name}
+                        width={40}
+                        height={40}
+                        className="w-12 h-12 sm:w-16 sm:h-16 transition-all duration-300 delay-100 lg:group-hover:opacity-0"
+                      />
                     ) : (
-                      <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-[160px] sm:max-w-[200px]">
-                        {/* Use panel_link as a fallback if link is null */}
-                        {(card?.panel_link || card?.link) && (
-                          <a
-                            href={card?.panel_link || card?.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-2 sm:py-3 text-sm sm:text-base bg-gray-100 text-gray-800 font-medium rounded text-center hover:bg-white transition-colors duration-300"
-                          >
-                            Explore
-                          </a>
-                        )}
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-md flex items-center justify-center group-hover:bg-white/20 transition-all duration-300 delay-100 lg:group-hover:opacity-0">
+                        <span className="text-blue-500 text-base sm:text-xl lg:group-hover:text-white transition-all duration-300 delay-100">
+                          {card?.name}
+                        </span>
                       </div>
                     )}
                   </div>
-                )}
+                  <h3 className="max-399:text-base text-lg lg:text-xl font-bold mb-1 sm:mb-2 text-center lg:group-hover:text-white transition-all duration-300 delay-100 lg:group-hover:opacity-0">
+                    {card?.name}
+                  </h3>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: card?.details }}
+                    className="text-sm sm:text-base text-gray-600 text-center lg:group-hover:text-white/80 transition-all duration-300 delay-100 lg:group-hover:opacity-0"
+                  ></div>
+                </div>
 
-                <div className="flexCenter gap-4 w-full lg:hidden">
+                {/* Hover overlay with buttons — always in DOM, CSS-driven show/hide */}
+                <div className="hidden absolute inset-0 lg:flex flex-col justify-center items-center z-30 p-4 sm:p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-300 pointer-events-none group-hover:pointer-events-auto">
+                  {card?.type === "app" ? (
+                    <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-[160px] sm:max-w-[200px]">
+                      {card?.android_link && (
+                        <a
+                          href={card?.android_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full py-2 sm:py-3 text-sm sm:text-base productPrimaryBg text-white font-medium rounded text-center transition-colors duration-300"
+                        >
+                          Android
+                        </a>
+                      )}
+                      {card?.ios_link && (
+                        <a
+                          href={card?.ios_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full py-2 sm:py-3 text-sm sm:text-base bg-white/90 text-gray-800 font-medium rounded text-center hover:bg-white transition-colors duration-300"
+                        >
+                          iOS
+                        </a>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-[160px] sm:max-w-[200px]">
+                      {(card?.panel_link || card?.link) && (
+                        <a
+                          href={card?.panel_link || card?.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full py-2 sm:py-3 text-sm sm:text-base bg-white/90 text-gray-800 font-medium rounded text-center hover:bg-white transition-colors duration-300"
+                        >
+                          Explore
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Mobile action buttons — always rendered in a fixed-height area */}
+                <div className="flex items-center justify-center w-full mt-4 lg:hidden min-h-[36px] relative z-20">
                   {card?.type === "app" ? (
                     <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full">
                       {card?.android_link && (
@@ -210,8 +211,7 @@ export default function SliderSection({
                       )}
                     </div>
                   ) : (
-                    <div className="flexCenter w-full">
-                      {/* Use panel_link as a fallback if link is null */}
+                    <div className="flex items-center justify-center w-full">
                       {(card?.panel_link || card?.link) && (
                         <a
                           href={card?.panel_link || card?.link}
