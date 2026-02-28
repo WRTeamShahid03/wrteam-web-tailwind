@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import HomePage from "@/components/homePage";
 import JsonLd from "@/components/Schema/JsonLd";
+import { fetchWithRetry } from "@/lib/fetchWithRetry";
 
 const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 
 // Generate metadata for the page
 async function fetchSeoData() {
   try {
-    const response = await fetch(
+    const response = await fetchWithRetry(
       `https://backend.wrteam.in/api/seo-settings?type=home`,
       {
         next: { revalidate: 0 },
@@ -16,12 +17,12 @@ async function fetchSeoData() {
     );
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch product data: ${response.statusText}`);
+      throw new Error(`Failed to fetch SEO data: ${response.statusText}`);
     }
 
     return await response.json();
   } catch (error) {
-    console.error("Error fetching product data:", error);
+    console.error("Error fetching SEO data:", error);
     return null;
   }
 }
