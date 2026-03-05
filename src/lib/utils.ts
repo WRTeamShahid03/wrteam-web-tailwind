@@ -21,7 +21,7 @@ export function parseSaleDate(dateString: string | undefined): Date | null {
   try {
     // Split the date string by "-" to separate date and time
     const [datePart, timePart] = dateString.split('-');
-    
+
     if (!datePart || !timePart) {
       console.error('Invalid date format. Expected format: DD/MM/YYYY-HH:MMAM or DD/MM/YYYY-HH:MMPM');
       return null;
@@ -29,7 +29,7 @@ export function parseSaleDate(dateString: string | undefined): Date | null {
 
     // Parse the date part (DD/MM/YYYY)
     const [day, month, year] = datePart.split('/').map(Number);
-    
+
     if (!day || !month || !year) {
       console.error('Invalid date format. Expected format: DD/MM/YYYY');
       return null;
@@ -57,7 +57,7 @@ export function parseSaleDate(dateString: string | undefined): Date | null {
     // Create and return the Date object
     // Note: month is 0-indexed in JavaScript Date (0 = January, 11 = December)
     const date = new Date(year, month - 1, day, hours24, minutes, 0);
-    
+
     // Validate the date
     if (isNaN(date.getTime())) {
       console.error('Invalid date values');
@@ -81,8 +81,39 @@ export function isSaleDatePassed(targetDate: Date | null): boolean {
   if (!targetDate) {
     return true; // If no date is set, consider it as passed
   }
-  
+
   const now = new Date();
   return now >= targetDate;
+}
+
+/**
+ * Checks if the countdown should be visible
+ * 
+ * @param targetDate - The target end date of the sale
+ * @param startDaysBefore - How many days before the target date the countdown should start showing
+ * @returns true if the countdown should be visible, false otherwise
+ */
+export function isCountdownActive(targetDate: Date | null, startDaysBefore: number = 0): boolean {
+  if (!targetDate) {
+    return false;
+  }
+
+  const now = new Date();
+
+  // If sale has already ended
+  if (now >= targetDate) {
+    return false;
+  }
+
+  // If no startDaysBefore is provided, or it's invalid/0, the countdown will not show
+  if (!startDaysBefore || isNaN(startDaysBefore) || startDaysBefore <= 0) {
+    return false;
+  }
+
+  // Calculate start date
+  const startDate = new Date(targetDate.getTime());
+  startDate.setDate(startDate.getDate() - startDaysBefore);
+
+  return now >= startDate;
 }
 
