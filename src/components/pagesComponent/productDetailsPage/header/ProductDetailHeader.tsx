@@ -36,7 +36,7 @@ const ProductDetailHeader = ({ icon_image, codecanyonLink, layoutType, checkoutU
   // Format: "02/12/2025-6:30PM" (DD/MM/YYYY-HH:MMAM or DD/MM/YYYY-HH:MMPM)
   const saleDateString = process.env.NEXT_PUBLIC_SALE_END_DATE;
   const targetDate = parseSaleDate(saleDateString);
-  
+
   // Initialize showSaleStripe based on whether the sale date has passed
   const [showSaleStripe, setShowSaleStripe] = useState(() => {
     // Only show if target date exists and hasn't passed yet

@@ -14,7 +14,7 @@ import flowerIcon from "../../assets/images/yearEndSale/flower.svg";
 import offText from "../../assets/images/yearEndSale/off.svg";
 import leftEffect from "../../assets/images/yearEndSale/left-effect.svg";
 import rightEffect from "../../assets/images/yearEndSale/right-effect.svg";
-import { parseSaleDate, isSaleDatePassed } from "../../lib/utils";
+import { parseSaleDate, isSaleDatePassed, isCountdownActive } from "../../lib/utils";
 import headerBg from "../../assets/images/header_bg.svg";
 import stripeLine from '@/assets/images/stripeLine.svg'
 
@@ -33,6 +33,8 @@ const SaleStripe = ({
   // Format: "02/12/2025-6:30PM" (DD/MM/YYYY-HH:MMAM or DD/MM/YYYY-HH:MMPM)
   const saleDateString = process.env.NEXT_PUBLIC_SALE_END_DATE;
   const targetDate = parseSaleDate(saleDateString);
+  const startDaysString = process.env.NEXT_PUBLIC_COUNTDOWN_START_DAYS;
+  const startDaysBefore = startDaysString ? parseInt(startDaysString, 10) : 0;
 
   // Check if sale date has passed and hide the stripe if it has
   useEffect(() => {
@@ -147,18 +149,19 @@ const SaleStripe = ({
     const formatNumber = (num: number) => String(num).padStart(2, "0");
 
     const TimeBox = ({ value, label }: { value: number; label: string }) => (
-      <div className="bg-white rounded-[5px] w-[35px]  sm:w-[50px] h-[36px] sm:h-[46px] flex flex-col items-center justify-center">
-        <span className="text-[#212121] font-bold text-xs sm:text-lg leading-none mb-[2px]">
+      <div className="bg-white rounded-[3px] sm:rounded-[4px] w-[24px] sm:w-[45px] h-[28px] sm:h-[40px] flex flex-col items-center justify-center shadow-sm">
+        <span className="text-[#212121] font-bold text-[11px] sm:text-base leading-none mb-[1px]">
           {formatNumber(value)}
         </span>
-        <span className="text-[#212121] text-[7px] sm:text-[9px] font-medium leading-none">
-          {label}
+        <span className="text-[#212121] text-[6px] sm:text-[8px] font-medium leading-tight uppercase tracking-tighter sm:tracking-normal">
+          <span className="sm:hidden">{label.charAt(0)}</span>
+          <span className="hidden sm:inline">{label}</span>
         </span>
       </div>
     );
 
     return (
-      <div className="flex items-center gap-2 my-2">
+      <div className="flex items-center gap-1 sm:gap-2 my-0">
         <TimeBox value={days} label="Days" />
         <TimeBox value={hours} label="Hours" />
         <TimeBox value={minutes} label="Minutes" />
@@ -187,7 +190,7 @@ const SaleStripe = ({
           <div className="relative z-10 hidden lg:flex items-center sm:gap-4 gap-2 xl:gap-12 w-full sm:justify-center max-w-[1920px] justify-between">
             <div className="lex items-center justify-center">
 
-            <Image src={saleImg} alt="saleImg" width={0} height={0} className="w-[60px] h-[60px] xl:w-[80px] xl:h-[80px] object-contain" />
+              <Image src={saleImg} alt="saleImg" width={0} height={0} className="w-[60px] h-[60px] xl:w-[80px] xl:h-[80px] object-contain" />
             </div>
             {/* Flash Deals Text */}
             <span className="hidden lg:block text-black font-bold text-sm lg:text-md xl:text-lg whitespace-nowrap">
@@ -195,7 +198,7 @@ const SaleStripe = ({
             </span>
 
             {/* Countdown */}
-            {/* {targetDate && !isSaleDatePassed(targetDate) && isClient && (
+            {targetDate && isCountdownActive(targetDate, startDaysBefore) && isClient && (
               <div className="hidden sm:block">
                 <Countdown
                   date={targetDate}
@@ -203,7 +206,7 @@ const SaleStripe = ({
                   onComplete={() => setShowSaleStripe(false)}
                 />
               </div>
-            )} */}
+            )}
 
             <div className="flexCenter gap-3">
               <div className="flexCenter gap-1">
@@ -223,34 +226,33 @@ const SaleStripe = ({
               </Link>
             </div>
           </div>
-          <div className="flexCenter gap-3 flex-wrap py-4 lg:hidden z-10 relative">
-
-            <span className="text-black font-bold text-lg">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-4 py-1.5 lg:hidden z-10 relative px-2">
+            <span className="text-black font-bold text-[12px] sm:text-sm text-center leading-[1.1]">
               Break the Limits – Extended License at 50% Off!
             </span>
-            {/* {targetDate && !isSaleDatePassed(targetDate) && isClient && (
-              <div className="">
-                <Countdown
-                  date={targetDate}
-                  renderer={yearEndRenderer}
-                  onComplete={() => setShowSaleStripe(false)}
-                />
-              </div>
-            )} */}
-            <Link
-              href={
-                "/extended-license-sale"
-              }
-              target="_blank"
-              className="flex bg-[#F11805] text-white rounded-[8px] sm:px-5 sm:py-2 py-1 px-6 items-center gap-2 text-sm font-bold shadow-md hover:scale-105 transition-transform"
-            >
-              Get Offer
-            </Link>
+            <div className="flex items-center justify-center gap-3 max-w-full">
+              {targetDate && isCountdownActive(targetDate, startDaysBefore) && isClient && (
+                <div className="">
+                  <Countdown
+                    date={targetDate}
+                    renderer={yearEndRenderer}
+                    onComplete={() => setShowSaleStripe(false)}
+                  />
+                </div>
+              )}
+              <Link
+                href={"/extended-license-sale"}
+                target="_blank"
+                className="flex bg-[#F11805] text-white rounded-[4px] sm:rounded-[6px] sm:px-4 sm:py-1.5 py-1 px-3 items-center text-[10px] sm:text-xs font-bold shadow-md hover:scale-105 transition-transform whitespace-nowrap shrink-0"
+              >
+                Get Offer
+              </Link>
+            </div>
           </div>
         </div>
       </div>
     </>
-  );
+  );  
 };
 
 export default SaleStripe;
