@@ -172,7 +172,7 @@ const SaleStripe = ({
 
   return (
     <>
-      <div className="text-white lg:h-[42px] 2xl:h-[50px]  flexCenter relative px-4 lg:px-0 overflow-hidden"
+      <div className="text-white lg:h-[42px] 2xl:h-[50px]  flexCenter relative px-4 lg:px-0 overflow-hidden bg-white  "
       >
 
         <div className="absolute inset-0 z-0">
