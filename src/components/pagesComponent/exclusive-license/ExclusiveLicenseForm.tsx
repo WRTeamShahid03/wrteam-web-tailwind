@@ -86,20 +86,12 @@ const products = [
         label: 'Qearner',
     },
     {
-        value: 'eCart web - multi',
-        label: 'eCart web - multi',
-    },
-    {
         value: 'eBook app',
         label: 'eBook app',
     },
     {
         value: 'News',
         label: 'News',
-    },
-    {
-        value: 'eCart - multi vendor system',
-        label: 'eCart - multi vendor system',
     },
     {
         value: 'eShop manager- admin',
@@ -114,24 +106,8 @@ const products = [
         label: 'eShop - app - single',
     },
     {
-        value: 'eCart web',
-        label: 'eCart web',
-    },
-    {
         value: 'Radio',
         label: 'Radio',
-    },
-    {
-        value: 'Quiz online iOS',
-        label: 'Quiz online iOS',
-    },
-    {
-        value: 'Quiz online android',
-        label: 'Quiz online android',
-    },
-    {
-        value: 'eCart- app',
-        label: 'eCart- app',
     },
     {
         value: 'Quotes app',
