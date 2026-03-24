@@ -44,25 +44,18 @@ const DefaultCenter = ({ badgeClass, iconClass }: { badgeClass: string; iconClas
 
 /**
  * Urgency text shown when countdown IS active.
- * Matches Figma: "Hurry! Last Chance to Get" + "50% Off" outlined badge.
  */
 const UrgencyText = ({ textClass = "text-base", badgeClass = "text-base" }: { textClass?: string; badgeClass?: string }) => (
   <div className="flex items-center gap-2 flex-wrap justify-center">
     <span className={`text-red-800 font-extrabold whitespace-nowrap ${textClass}`}>
       Hurry! Last Chance to Get
     </span>
-    <span className={`bg-white text-red-800 font-black px-4 py-1.5 rounded-2xl outline outline-1 outline-red-800 whitespace-nowrap ${badgeClass}`}>
+    <span className={`bg-white text-red-800 font-black px-4 py-1 rounded-2xl outline outline-1 outline-red-800 whitespace-nowrap ${badgeClass}`}>
       50% Off
     </span>
   </div>
 );
 
-/**
- * CTA button.
- * - label: changes to "Claim Offer Now" when countdown active
- * - iconWrapped: arrow inside a circle (desktop default style)
- * - gradientIcon: Figma countdown style — gradient circle arrow
- */
 const BuyNowLink = ({
   className,
   iconSize = 10,
@@ -94,11 +87,11 @@ const BuyNowLink = ({
   </Link>
 );
 
-/** "Limited Time" label — shown on desktop when countdown is NOT active */
+/** "Limited Time" label */
 const TimerLabel = () => (
-  <div className="flex items-center gap-2 text-red-800 font-bold whitespace-nowrap">
-    <RiAlarmFill className="w-6 h-6 2xl:w-10 2xl:h-10" />
-    <span className="text-sm 2xl:text-base">Limited Time Only</span>
+  <div className="flex items-center gap-1.5 text-red-800 font-bold whitespace-nowrap">
+    <RiAlarmFill className="w-4 h-4 2xl:w-5 2xl:h-5" />
+    <span className="text-sm 2xl:text-sm">Limited Time Only</span>
   </div>
 );
 
@@ -132,17 +125,16 @@ const SaleStripe = ({ setShowSaleStripe }: any) => {
   const showCountdown = isClient && isCountdownVisible(countdownStartDate, saleEndDate);
   const ctaLabel = showCountdown ? "Claim Offer Now" : "Buy Now";
 
-  // ⏳ Countdown renderer — Figma style when active
+  // ⏳ Countdown renderer
   const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
     if (completed) return null;
 
     const f = (n: number) => String(n).padStart(2, "0");
 
-    // Mobile: w-8 compact. Tablet: w-14. Laptop (lg): w-11. Desktop (xl): w-14.
     const Box = ({ v, l }: { v: number; l: string }) => (
-      <div className="w-8 sm:w-14 lg:w-11 xl:w-14 px-1 sm:px-2 lg:px-1.5 xl:px-2.5 py-1 sm:py-1.5 bg-white rounded-md backdrop-blur-sm flex flex-col items-center justify-center gap-0.5 shadow-sm">
-        <span className="text-gray-900 text-xs sm:text-lg lg:text-sm xl:text-lg font-bold leading-tight">{f(v)}</span>
-        <span className="text-red-800 text-[7px] sm:text-[10px] font-normal leading-tight">
+      <div className="w-8 sm:w-12 lg:w-10 xl:w-12 px-1 sm:px-2 lg:px-1.5 xl:px-2 py-0.5 sm:py-1 bg-white rounded-md backdrop-blur-sm flex flex-col items-center justify-center gap-0.5 shadow-sm">
+        <span className="text-gray-900 text-xs sm:text-base lg:text-sm xl:text-base font-bold leading-tight">{f(v)}</span>
+        <span className="text-red-800 text-[7px] sm:text-[9px] font-normal leading-tight">
           <span className="sm:hidden">{l.charAt(0)}</span>
           <span className="hidden sm:inline">{l}</span>
         </span>
@@ -150,7 +142,7 @@ const SaleStripe = ({ setShowSaleStripe }: any) => {
     );
 
     return (
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5">
         <Box v={days} l="Days" />
         <Box v={hours} l="Hours" />
         <Box v={minutes} l="Minutes" />
@@ -172,29 +164,29 @@ const SaleStripe = ({ setShowSaleStripe }: any) => {
 
       {/* ================= MOBILE ================= */}
       {showCountdown ? (
-        // Countdown active: logo row, then [50% Off + countdown] row, then button
-        <div className="flex flex-col items-center gap-1.5 px-3 py-2 sm:hidden">
-          <SaleLogo className="h-7 object-contain" />
+        // Countdown active: logo | [50% Off + countdown] | button
+        <div className="flex flex-col items-center gap-1 px-3 py-1.5 sm:hidden">
+          <SaleLogo className="h-6 object-contain" />
           <div className="flex items-center justify-center gap-2 w-full">
-            <span className="bg-white text-red-800 font-black px-2.5 py-1 rounded-xl outline outline-1 outline-red-800 text-xs whitespace-nowrap shrink-0">
+            <span className="bg-white text-red-800 font-black px-2.5 py-0.5 rounded-xl outline outline-1 outline-red-800 text-xs whitespace-nowrap shrink-0">
               50% Off
             </span>
             <SaleCountdown isClient={isClient} renderer={renderer} />
           </div>
           <BuyNowLink
-            className="bg-red-800 text-white text-[13px] px-4 py-1.5 rounded-full flex items-center gap-1.5 w-full justify-center"
+            className="bg-red-800 text-white text-[13px] px-4 py-1 rounded-full flex items-center gap-1.5 w-full justify-center"
             iconSize={10}
             label={ctaLabel}
           />
         </div>
       ) : (
-        // No countdown: logo then badge + button in one row
-        <div className="flex flex-col items-center gap-2 px-3 py-2 sm:hidden">
-          <SaleLogo className="h-[40px] object-contain" />
-          <div className="flex items-center justify-between w-full gap-3">
-            <OfferBadge className="h-8 object-contain" />
+        // No countdown: logo then badge + button in one row — centered
+        <div className="flex flex-col items-center gap-1.5 px-3 py-1.5 sm:hidden">
+          <SaleLogo className="h-6 object-contain" />
+          <div className="flex items-center justify-center w-full gap-3">
+            <OfferBadge className="h-7 object-contain" />
             <BuyNowLink
-              className="bg-red-800 text-white text-[13px] px-4 py-1.5 rounded-full flex items-center gap-1.5 w-full justify-center"
+              className="bg-red-800 text-white text-[13px] px-4 py-1 rounded-full flex items-center gap-1.5 justify-center whitespace-nowrap"
               iconSize={10}
               label={ctaLabel}
             />
@@ -204,16 +196,16 @@ const SaleStripe = ({ setShowSaleStripe }: any) => {
 
       {/* ================= TABLET ================= */}
       {showCountdown ? (
-        // Countdown active: 2-row centered layout
-        <div className="hidden sm:flex lg:hidden flex-col items-center justify-center gap-2 px-4 py-3">
+        // Countdown active: centered 2-row
+        <div className="hidden sm:flex lg:hidden flex-col items-center justify-center gap-1.5 px-4 py-2">
           <div className="flex items-center gap-3">
-            <SaleLogo className="h-7 w-auto shrink-0 object-contain" />
+            <SaleLogo className="h-6 w-auto shrink-0 object-contain" />
             <UrgencyText textClass="text-sm" badgeClass="text-sm" />
           </div>
           <div className="flex items-center gap-3">
             <SaleCountdown isClient={isClient} renderer={renderer} />
             <BuyNowLink
-              className="px-4 py-2 bg-white rounded-[100px] outline outline-2 outline-white/50 backdrop-blur-[9.80px] flex items-center gap-2 whitespace-nowrap text-red-800 font-semibold text-sm hover:scale-105 transition"
+              className="px-3 py-1.5 bg-white rounded-[100px] outline outline-2 outline-white/50 backdrop-blur-[9.80px] flex items-center gap-2 whitespace-nowrap text-red-800 font-semibold text-sm hover:scale-105 transition"
               iconSize={11}
               iconWrapped
               gradientIcon
@@ -222,16 +214,15 @@ const SaleStripe = ({ setShowSaleStripe }: any) => {
           </div>
         </div>
       ) : (
-        // No countdown: logo | text | center badges | button
-        <div className="hidden sm:flex lg:hidden items-center justify-between px-4 py-2 gap-3">
-          <SaleLogo className="h-6 w-auto shrink-0 object-contain" />
-         
+        // No countdown: all centered in one row
+        <div className="hidden sm:flex lg:hidden items-center justify-center px-4 py-2 gap-4">
+          <SaleLogo className="h-5 w-auto shrink-0 object-contain" />
           <DefaultCenter
-            badgeClass="h-8 w-auto object-contain"
-            iconClass="h-6 w-auto object-contain"
+            badgeClass="h-7 w-auto object-contain"
+            iconClass="h-5 w-auto object-contain"
           />
           <BuyNowLink
-            className="bg-red-800 text-white text-sm px-4 py-2 rounded-full flex items-center gap-1.5 shrink-0 justify-center whitespace-nowrap"
+            className="bg-red-800 text-white text-sm px-4 py-1.5 rounded-full flex items-center gap-1.5 shrink-0 justify-center whitespace-nowrap"
             iconSize={12}
             label={ctaLabel}
           />
@@ -239,26 +230,24 @@ const SaleStripe = ({ setShowSaleStripe }: any) => {
       )}
 
       {/* ================= LAPTOP ================= */}
-      <div className={`hidden lg:flex xl:hidden items-center px-4 py-2.5 gap-3 ${showCountdown ? "justify-center" : "justify-between"}`}>
+      <div className="hidden lg:flex xl:hidden items-center justify-center px-4 py-2 gap-3">
 
         <div className="flex items-center gap-2 shrink-0">
-          <SaleLogo className={showCountdown ? "h-6 w-auto" : "h-8 w-auto"} />
+          <SaleLogo className="h-6 w-auto" />
           {showCountdown ? (
             <UrgencyText textClass="text-sm" badgeClass="text-xs" />
           ) : (
-            <span className="text-red-800 font-bold text-lg whitespace-nowrap">
+            <span className="text-red-800 font-bold text-base whitespace-nowrap">
               Mega Savings on Premium Solutions
             </span>
           )}
         </div>
 
         {!showCountdown && (
-          <div className="flex items-center justify-center flex-1">
-            <DefaultCenter
-              badgeClass="h-10 w-auto object-contain"
-              iconClass="h-5 w-auto object-contain"
-            />
-          </div>
+          <DefaultCenter
+            badgeClass="h-8 w-auto object-contain"
+            iconClass="h-4 w-auto object-contain"
+          />
         )}
 
         <div className="flex items-center gap-2 shrink-0">
@@ -266,8 +255,8 @@ const SaleStripe = ({ setShowSaleStripe }: any) => {
           <BuyNowLink
             className={
               showCountdown
-                ? "px-4 py-2 bg-white rounded-[100px] outline outline-2 outline-white/50 backdrop-blur-[9.80px] flex items-center gap-1.5 whitespace-nowrap hover:scale-105 transition text-red-800 text-sm font-semibold"
-                : "bg-red-800 text-white px-5 py-2 rounded-full flex items-center gap-2 whitespace-nowrap hover:scale-105 transition"
+                ? "px-4 py-1.5 bg-white rounded-[100px] outline outline-2 outline-white/50 backdrop-blur-[9.80px] flex items-center gap-1.5 whitespace-nowrap hover:scale-105 transition text-red-800 text-sm font-semibold"
+                : "bg-red-800 text-white px-4 py-1.5 rounded-full flex items-center gap-2 whitespace-nowrap hover:scale-105 transition text-sm"
             }
             iconSize={11}
             iconWrapped={showCountdown}
@@ -278,42 +267,42 @@ const SaleStripe = ({ setShowSaleStripe }: any) => {
       </div>
 
       {/* ================= DESKTOP ================= */}
-      <div className={`hidden xl:flex relative z-10 items-center px-6 2xl:px-10 py-4 max-w-[1600px] 2xl:max-w-[1800px] mx-auto gap-6 2xl:gap-9 ${showCountdown ? "justify-center" : "justify-between"}`}>
+      <div className="hidden xl:flex relative z-10 items-center justify-center px-6 2xl:px-10 py-2.5 max-w-[1600px] 2xl:max-w-[1800px] mx-auto gap-7">
 
         {/* LEFT */}
-        <div className="flex items-center gap-3 2xl:gap-4 shrink-0">
-          <SaleLogo className="h-8 2xl:h-10 w-auto" />
+        <div className="flex items-center gap-7 shrink-0">
+          <SaleLogo className="h-7 2xl:h-9 w-auto" />
           {showCountdown ? (
             <UrgencyText
-              textClass="text-xl 2xl:text-3xl"
-              badgeClass="text-xl 2xl:text-3xl"
+              textClass="text-xl 2xl:text-2xl"
+              badgeClass="text-xl 2xl:text-2xl"
             />
           ) : (
-            <span className="text-red-800 text-xl 2xl:text-2xl font-bold whitespace-nowrap">
+            <span className="text-red-800 text-lg 2xl:text-xl font-bold whitespace-nowrap">
               Mega Savings on Premium Solutions
             </span>
           )}
         </div>
 
-        {/* CENTER — only rendered when countdown is not active */}
+        {/* CENTER — only when countdown not active */}
         {!showCountdown && (
-          <div className="flex items-center justify-center gap-2 2xl:gap-3 flex-1 max-w-[420px] 2xl:max-w-[560px]">
+          <div className="flex items-center justify-center gap-2 2xl:gap-3">
             <DefaultCenter
-              badgeClass="h-12 2xl:h-16 w-auto object-contain"
-              iconClass="h-6 2xl:h-10 w-auto object-contain"
+              badgeClass="h-10 2xl:h-12 w-auto object-contain"
+              iconClass="h-5 2xl:h-7 w-auto object-contain"
             />
           </div>
         )}
 
         {/* RIGHT */}
-        <div className="flex items-center gap-3 2xl:gap-4 shrink-0">
+        <div className="flex items-center gap-7 shrink-0">
           {!showCountdown && <TimerLabel />}
           <SaleCountdown isClient={isClient} renderer={renderer} />
           <BuyNowLink
             className={
               showCountdown
-                ? "px-6 py-3.5 bg-white rounded-[100px] outline outline-2 outline-white/50 backdrop-blur-[9.80px] flex items-center gap-2 whitespace-nowrap hover:scale-105 transition text-red-800 text-lg font-semibold"
-                : "bg-white px-4 2xl:px-6 py-2.5 2xl:py-3 rounded-full text-red-800 text-sm 2xl:text-base font-semibold flex items-center gap-2 whitespace-nowrap hover:scale-105 transition"
+                ? "px-5 py-2.5 bg-white rounded-[100px] outline outline-2 outline-white/50 backdrop-blur-[9.80px] flex items-center gap-2 whitespace-nowrap hover:scale-105 transition text-red-800 text-base font-semibold"
+                : "bg-white px-4 2xl:px-5 py-2 2xl:py-2.5 rounded-full text-red-800 text-sm 2xl:text-sm font-semibold flex items-center gap-2 whitespace-nowrap hover:scale-105 transition"
             }
             iconSize={10}
             iconWrapped
