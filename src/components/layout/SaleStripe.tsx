@@ -154,6 +154,14 @@ const SaleStripe = ({ setShowSaleStripe }: any) => {
   return (
     <div className="w-full relative overflow-hidden bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,_#FFEDEF_0%,_#FFE3E5_100%)]">
 
+      {/* Marquee keyframe */}
+      <style>{`
+        @keyframes saleMarquee {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+      `}</style>
+
       {/* Decorative effects — hidden on mobile */}
       <div className="hidden sm:block absolute left-0 top-0 h-full w-[45%]">
         <Image src={leftEffect} alt="" fill className="object-cover" />
@@ -163,36 +171,36 @@ const SaleStripe = ({ setShowSaleStripe }: any) => {
       </div>
 
       {/* ================= MOBILE ================= */}
-      {showCountdown ? (
-        // Countdown active: logo | [50% Off + countdown] | button
-        <div className="flex flex-col items-center gap-1 px-3 py-1.5 sm:hidden">
-          <SaleLogo className="h-6 object-contain" />
-          <div className="flex items-center justify-center gap-2 w-full">
-            <span className="bg-white text-red-800 font-black px-2.5 py-0.5 rounded-xl outline outline-1 outline-red-800 text-xs whitespace-nowrap shrink-0">
-              50% Off
-            </span>
-            <SaleCountdown isClient={isClient} renderer={renderer} />
+      <div className="flex items-center sm:hidden py-2 overflow-hidden">
+
+        {/* Scrolling marquee track */}
+        <div className="flex-1 overflow-hidden min-w-0">
+          <div
+            className="flex items-center w-max"
+            style={{ animation: "saleMarquee 20s linear infinite" }}
+          >
+            {/* Two identical copies for seamless looping */}
+            {[0, 1, 2, 3].map((idx) => (
+              <div key={idx} className="flex items-center gap-3 px-4 shrink-0">
+                <SaleLogo className="h-8 object-contain shrink-0" />
+                <span className="text-red-800 font-extrabold text-[16px] whitespace-nowrap shrink-0">
+                  {showCountdown ? "Hurry! Last Chance to Get" : "Mega Savings on Premium Solutions"}
+                </span>
+                <OfferBadge className="h-8 object-contain shrink-0" />
+              </div>
+            ))}
           </div>
+        </div>
+
+        {/* Fixed button at stripe end */}
+        <div className="shrink-0 border-l border-red-300 pl-2.5 pr-3">
           <BuyNowLink
-            className="bg-red-800 text-white text-[13px] px-4 py-1 rounded-full flex items-center gap-1.5 w-full justify-center"
-            iconSize={10}
+            className="bg-red-800 text-white text-[11px] px-3 py-1.5 rounded-full flex items-center gap-1 whitespace-nowrap"
+            iconSize={8}
             label={ctaLabel}
           />
         </div>
-      ) : (
-        // No countdown: logo then badge + button in one row — centered
-        <div className="flex flex-col items-center gap-1.5 px-3 py-1.5 sm:hidden">
-          <SaleLogo className="h-6 object-contain" />
-          <div className="flex items-center justify-center w-full gap-3">
-            <OfferBadge className="h-7 object-contain" />
-            <BuyNowLink
-              className="bg-red-800 text-white text-[13px] px-4 py-1 rounded-full flex items-center gap-1.5 justify-center whitespace-nowrap"
-              iconSize={10}
-              label={ctaLabel}
-            />
-          </div>
-        </div>
-      )}
+      </div>
 
       {/* ================= TABLET ================= */}
       {showCountdown ? (
