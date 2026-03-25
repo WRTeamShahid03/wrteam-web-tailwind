@@ -24,6 +24,7 @@ const Custom404 = () => {
     "/cyber-sale",
     "/year-end-sale",
     "/new-year-sale",
+    "/extended-license-sale",
   ];
   const isSalePage = salePages.some((salePath) =>
     pathname.startsWith(salePath)
@@ -215,13 +216,13 @@ const SaleEndedView = () => {
               <p className="whitespace-nowrap">But the Good Stuff </p>
               <p className="whitespace-nowrap">Hasn’t</p>
             </h1>
-            <p className="">
+            <div className="">
               <p className="whitespace-nowrap xl:text-[30px] font-normal text-[12px] xl:leading-[40px] lg:leading-[20px] leading-[20px] text-[#4B5563] sm:text-base">Get early access to WRTeam updates, product </p>
               <p className="whitespace-nowrap xl:text-[30px] font-normal text-[12px] xl:leading-[40px] lg:leading-[20px] leading-[20px] text-[#4B5563] sm:text-base">launches, discounts, and important notifications,</p>
               <p className="whitespace-nowrap xl:text-[30px] font-normal text-[12px] xl:leading-[40px] lg:leading-[20px] leading-[20px] text-[#4B5563] sm:text-base">only on our <span className="font-semibold text-[#0A1A32E5]">
                 WhatsApp channel
               </span></p>
-            </p>
+            </div>
             <Link
               href={whatsappChannelUrl}
               target="_blank"

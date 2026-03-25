@@ -4,7 +4,7 @@ import path from 'path';
 export async function GET() {
     try {
         // Read the HTML file from the landing-pages directory
-        const htmlFilePath = path.join(process.cwd(), 'src/landing-pages/extended-license-sale/index.html');
+        const htmlFilePath = path.join(process.cwd(), 'src/landing-pages/march-mega-sale/index.html');
 
         // Check if file exists before reading
         if (!fs.existsSync(htmlFilePath)) {
@@ -18,10 +18,8 @@ export async function GET() {
 
         let htmlContent = fs.readFileSync(htmlFilePath, 'utf-8');
 
-        // Replace all asset paths from /_next/ to /extended-license-sale/_next/
-        // This fixes the 404 errors for CSS, JS, and media files
-        // The assets are located in public/extended-license-sale/_next/ but HTML references /_next/
-        htmlContent = htmlContent.replace(/\/_next\//g, '/extended-license-sale/_next/');
+        // NOTE: Unlike other landing pages, march-mega-sale HTML already has
+        // /march-mega-sale/_next/ paths pre-baked, so no path replacement needed.
 
         // Inject cleanup script to remove google-site-verification text leak
         const cleanupScript = `
@@ -48,7 +46,7 @@ export async function GET() {
         });
     } catch (error) {
         // Handle any errors that occur during file reading
-        console.error('Error serving extended-sale page:', error);
+        console.error('Error serving march-mega-sale page:', error);
         return new Response('Internal Server Error', {
             status: 500,
             headers: {

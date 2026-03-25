@@ -88,7 +88,7 @@ export function isSaleDatePassed(targetDate: Date | null): boolean {
 
 /**
  * Checks if the countdown should be visible
- * 
+ *
  * @param targetDate - The target end date of the sale
  * @param startDaysBefore - How many days before the target date the countdown should start showing
  * @returns true if the countdown should be visible, false otherwise
@@ -115,5 +115,30 @@ export function isCountdownActive(targetDate: Date | null, startDaysBefore: numb
   startDate.setDate(startDate.getDate() - startDaysBefore);
 
   return now >= startDate;
+}
+
+/**
+ * Checks if the countdown should be visible using explicit start/end dates.
+ * Countdown is visible when: countdownStartDate <= now < targetDate
+ *
+ * @param countdownStartDate - When the countdown starts showing
+ * @param targetDate         - The date the countdown counts down to
+ * @returns true if the countdown should be visible
+ */
+export function isCountdownVisible(countdownStartDate: Date, targetDate: Date): boolean {
+  const now = new Date();
+  return now >= countdownStartDate && now < targetDate;
+}
+
+/**
+ * Checks if the sale stripe should be visible based on start and end dates
+ *
+ * @param startDate - When the stripe should start showing
+ * @param endDate   - When the stripe should stop showing
+ * @returns true if now is between startDate and endDate
+ */
+export function isSaleActive(startDate: Date, endDate: Date): boolean {
+  const now = new Date();
+  return now >= startDate && now < endDate;
 }
 
