@@ -15,7 +15,7 @@
 
 const saleConfig = {
   // Stripe starts showing on this date
-  saleStartDate: new Date(2026, 2, 24, 11, 30), // 25 March 2026, 6:30 PM
+  saleStartDate: new Date(2026, 2, 25, 18, 30), // 25 March 2026, 6:30 PM
 
   // Countdown becomes visible from this date (counts down to saleEndDate)
   countdownStartDate: new Date(2026, 3, 2, 18, 30), // 2 April 2026, 6:30 PM
