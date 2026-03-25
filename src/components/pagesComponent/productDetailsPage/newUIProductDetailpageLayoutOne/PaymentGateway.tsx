@@ -45,7 +45,7 @@ export default function PaymentGateway({ title, description, image_url, gateways
               width={500}
               height={512}
               sizes="(max-width: 575px) 337px, (max-width: 1024px) 400px, 500px"
-              className="w-full max-w-[500px] aspect-[1/1.02] rounded-3xl object-cover"
+              className="w-full max-w-[500px] aspect-[1/1.02] rounded-3xl object-contain"
               quality={75} // optional compression setting
             />
 
