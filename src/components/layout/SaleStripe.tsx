@@ -69,7 +69,7 @@ const BuyNowLink = ({
   gradientIcon?: boolean;
   label?: string;
 }) => (
-  <Link href="/extended-license-sale" className={className}>
+  <Link href="/march-mega-sale" className={className}>
     {label}
     {iconWrapped ? (
       <span
