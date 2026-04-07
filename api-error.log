@@ -5,3 +5,17 @@ cURL Command to reproduce:
 curl -X GET 'https://backend.wrteam.in/api/seo-settings?type=home'
 
 ==================================================
+[2026-04-07T10:31:03.781Z] [Attempt 1] ERROR: Network/System Error: Dynamic server usage: Route /products couldn't be rendered statically because it used no-store fetch https://backend.wrteam.in/api/seo-settings?type=app_products /products. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+Duration: 2ms
+
+cURL Command to reproduce:
+curl -X GET 'https://backend.wrteam.in/api/seo-settings?type=app_products'
+
+==================================================
+[2026-04-07T10:31:04.247Z] [Attempt 2] ERROR: Network/System Error: Dynamic server usage: Route /products couldn't be rendered statically because it used no-store fetch https://backend.wrteam.in/api/seo-settings?type=app_products /products. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+Duration: 0ms
+
+cURL Command to reproduce:
+curl -X GET 'https://backend.wrteam.in/api/seo-settings?type=app_products'
+
+==================================================
