@@ -25,6 +25,7 @@ const Custom404 = () => {
     "/year-end-sale",
     "/new-year-sale",
     "/extended-license-sale",
+    "/march-mega-sale"
   ];
   const isSalePage = salePages.some((salePath) =>
     pathname.startsWith(salePath)
