@@ -27,6 +27,7 @@ const Custom404 = () => {
     "/extended-license-sale",
     "/march-mega-sale"
   ];
+  console.log("pathname", pathname);
   const isSalePage = salePages.some((salePath) =>
     pathname.startsWith(salePath)
   );
@@ -36,6 +37,7 @@ const Custom404 = () => {
 
   // console.log(pathname);
   useEffect(() => {
+    console.log("isSalePage", isSalePage);
     let redirected = false;
 
     // All redirect logic now runs only for non-sale URLs.
