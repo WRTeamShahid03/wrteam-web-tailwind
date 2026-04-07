@@ -1,12 +1,7 @@
-"use client";
-import React from "react";
-import Layout from "@/components/layout/Layout";
+import { redirect } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
-const Portfolio = () => {
-    return <Layout>
-        <div></div>
-    </Layout>;
-};
 
-export default Portfolio;
+export default function Portfolio() {
+  redirect('/our-work/development');
+}
