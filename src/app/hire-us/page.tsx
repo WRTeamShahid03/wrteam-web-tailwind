@@ -2,6 +2,8 @@ import HireUs from '@/components/pagesComponent/hireUs/HireUs'
 import React from 'react'
 import { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic';
+
 const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 // Generate metadata for the page
 async function fetchSeoData() {

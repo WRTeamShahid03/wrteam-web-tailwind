@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import HomePage from "@/components/homePage";
 import JsonLd from "@/components/Schema/JsonLd";
 
+export const dynamic = 'force-dynamic';
+
 const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 
 // Generate metadata for the page

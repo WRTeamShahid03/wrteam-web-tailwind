@@ -3,6 +3,8 @@ import React from 'react'
 import { Metadata } from 'next'
 import JsonLd from '@/components/Schema/JsonLd';
 
+export const dynamic = 'force-dynamic';
+
 // Generate metadata for the page
 async function fetchSeoData() {
   try {

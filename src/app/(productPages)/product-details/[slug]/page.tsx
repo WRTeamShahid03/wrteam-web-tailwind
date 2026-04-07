@@ -3,6 +3,8 @@ import { use } from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import ProductDetailsPage from "@/components/pagesComponent/productDetailsPage/ProductDetailsPage";
+
+export const dynamic = 'force-dynamic';
 import OldProductDetailPage from "@/components/pagesComponent/productDetailsPage/oldUi/OldProductDetailPage";
 import { SoftwareProductSchema } from "@/components/JsonLdSchema";
 import { fetchWithRetry } from "@/lib/fetchWithRetry";
