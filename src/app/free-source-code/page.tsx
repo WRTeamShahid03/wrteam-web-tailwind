@@ -1,7 +1,9 @@
 import FreeSourceCode from '@/components/pagesComponent/freeSourceCode/FreeSourceCode'
 import React from 'react'
 import type { Metadata } from 'next'
- 
+
+export const dynamic = 'force-dynamic';
+
 // either Static metadata
 export const metadata: Metadata = {
   title: 'Free Source Code',

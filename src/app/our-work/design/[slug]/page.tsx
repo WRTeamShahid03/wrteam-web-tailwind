@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import PortfolioDetials from '@/components/pagesComponent/portfolio/PortfolioDetials';
 import { fetchWithRetry } from '@/lib/fetchWithRetry';
 
+export const dynamic = 'force-dynamic';
+
 const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";
 // Function to fetch portfolio data from the API
 async function fetchPortfolioData(slug: string) {

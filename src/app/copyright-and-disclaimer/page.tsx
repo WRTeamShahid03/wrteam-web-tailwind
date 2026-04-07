@@ -1,7 +1,9 @@
 import CopyRightDisclaimer from '@/components/pagesComponent/copyRightDisclaimer/CopyRightDisclaimer'
 import React from 'react'
 import type { Metadata } from 'next'
- 
+
+export const dynamic = 'force-dynamic';
+
 // either Static metadata
 export const metadata: Metadata = {
   title: 'Copyrights and Disclaimer of WRTeam',

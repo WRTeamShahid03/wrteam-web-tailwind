@@ -2,6 +2,8 @@ import Customization from '@/components/pagesComponent/customization/Customizati
 import React from 'react'
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic';
+
 // either Static metadata
 export const metadata: Metadata = {
   title: 'Web and Mobile App Customization Services Bhuj, India | WRTeam',

@@ -3,6 +3,8 @@ import React from 'react'
 import type { Metadata } from 'next'
 import InstallationTerms from '@/components/pagesComponent/installtionTerms/InstalltionTerms'
 
+export const dynamic = 'force-dynamic';
+
 // either Static metadata
 export const metadata: Metadata = {
     title: 'Installation Terms of Use of WRTeam',

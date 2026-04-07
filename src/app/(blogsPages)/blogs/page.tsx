@@ -3,6 +3,8 @@ import { use } from "react";
 import Blogs from "@/components/pagesComponent/blogs/Blogs";
 import { Metadata } from "next";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: "Blogs | WRTeam",
   description:

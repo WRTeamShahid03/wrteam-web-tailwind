@@ -1,7 +1,9 @@
 import TermsOfUse from '@/components/pagesComponent/termOfUse/TermsOfUse'
 import React from 'react'
 import type { Metadata } from 'next'
- 
+
+export const dynamic = 'force-dynamic';
+
 // either Static metadata
 export const metadata: Metadata = {
   title: 'Terms of Use of WRTeam',

@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import React from "react";
 import { use } from "react";
 
+export const dynamic = 'force-dynamic';
+
 const isProduction = process.env.NEXT_PUBLIC_APP_ENV === "production";  
 
 // Generate metadata for the blog page

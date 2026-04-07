@@ -1,6 +1,8 @@
 import DesignPortfolio from "@/components/pagesComponent/portfolio/DesignPortfolio";
 import { Metadata } from "next";
 
+export const dynamic = 'force-dynamic';
+
 // either Static metadata
 export const metadata: Metadata = {
   title: 'Web and Mobile App Design Services Bhuj, India | WRTeam',

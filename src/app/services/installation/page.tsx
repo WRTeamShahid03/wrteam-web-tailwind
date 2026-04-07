@@ -2,6 +2,8 @@ import Installation from '@/components/pagesComponent/installation/Installation'
 import React from 'react'
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic';
+
 // either Static metadata
 export const metadata: Metadata = {
   title: 'Installation - Customisable App & Web Setup and Installation',

@@ -1,7 +1,9 @@
 import PrivacyPolicy from '@/components/pagesComponent/privacyPolicy/PrivacyPolicy'
 import React from 'react'
 import type { Metadata } from 'next'
- 
+
+export const dynamic = 'force-dynamic';
+
 // either Static metadata
 export const metadata: Metadata = {
   title: 'Privacy Policy of WRTeam',
