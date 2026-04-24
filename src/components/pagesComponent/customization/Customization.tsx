@@ -125,7 +125,7 @@ const Customization: React.FC = () => {
               <p className="sectionPara">
                 After reviewing your customization requirements? we will provide
                 an estimated timeframe for completing your project. Our standard
-                rate for customization is $17 per hour.
+                rate for customization is $20 per hour.
               </p>
               <Image
                 src={formSideImg}
