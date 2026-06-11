@@ -35,7 +35,7 @@ export async function generateMetadata(
 
   // console.log(seoData,"seoData -->");
 
-  if (!seoData || seoData.error) {
+  if (!seoData || seoData.error || !seoData.data) {
     // Fallback metadata if product data not found
     return {
       title: process.env.NEXT_PUBLIC_TITLE,
